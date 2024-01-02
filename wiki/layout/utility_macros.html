@@ -1,0 +1,116 @@
+{% macro heading(text, show=True) -%}
+  <div class="hidden">{{ set_page(text) }}</div>
+  {% if show %}
+    <h1 class="ml-2 mb-8">{{ text }}</h1>
+  {% endif %}
+{%- endmacro %}
+
+{% macro subheading(text, img="") -%}
+  <div class="hidden">
+  {{ ensure_subpage() }}
+  {{
+    subpages[-1].subheadings.append({
+      "text": text,
+      "key": subpages[-1].key + "-" + text.lower().replace(" ", "-"),
+      "subsubheadings": []
+    })
+  }}</div>
+	<h2 id="{{ subpages[-1].subheadings[-1].key }}"
+      class="flex items-center w-full">
+    <div class="{{ 'w-1/2' if img != '' else '' }}">
+      {{text}}
+    </div>
+    {% if img != '' %}
+      <div class="justify-center w-1/2 hidden lg:block">
+        <img src="{{ img }}" alt="{{ text }}" class="w-1/2">
+      </div>
+    {% endif %}
+	</h2>
+{%- endmacro %}
+
+{% macro subsubheading(text) -%}
+  <div class="hidden">{{ subpages[-1].subheadings[-1].subsubheadings.append({
+      "text": text,
+      "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")
+    })
+  }}</div>
+	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}">
+		{{text}}
+	</h3>
+{%- endmacro %}
+
+{% macro subsubsubheading(text) -%}
+	<h4>
+		{{text}}
+	</h4>
+{%- endmacro %}
+
+{% macro subpage(text, img="") -%}
+  <div class="hidden">{{ subpages.append({
+      "heading": text,
+      "key": text.lower().replace(" ", "-"),
+      "img": img,
+      "subheadings": []
+    })
+  }}</div>
+{%- endmacro %}
+
+{% macro cite(text) -%}
+  {% set citation_number = citer.cite(text) -%}
+  <a  href="#{{ subpages[-1].key }}-citation-{{ citation_number }}"
+      class="text-primary-medium font-bold">
+    <sup>[{{ citation_number }}]</sup>
+  </a>
+{%- endmacro %}
+
+{% macro banner(header, description) -%}
+  <div class="flex bg-primary-light items-center gap-4 justify-center
+              lg:py-8 lg:px-24 lg:flex-row
+              py-8 px-8
+              flex-col
+              ">
+    <div class="text-font-light lg:text-6xl text-5xl">
+      {{ header }}
+    </div>
+    <div class="uppercase text-primary-dark
+                lg:text-4xl
+                text-2xl">
+      {{ description }}
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro subpage_banner() -%}
+  <div class="flex flex-col items-center gap-4 custom
+              lg:pt-16 lg:pb-32
+              py-8">
+    <div class="text-gray-600 text-xl font-archivo">
+      {{ pages[0] }}
+    </div>
+    <div class="font-kaisei-decol
+                font-bold
+                lg:text-6xl
+                text-5xl">
+      {{ subpages[-1].heading }}
+    </div>
+    <div class="w-72 h-0.5 bg-black m-8"></div>
+  </div>
+{%- endmacro %}
+
+{% macro img(src, alt="", source="", width="100%") -%}
+  <div class="flex flex-col items-center">
+    <div class="image py-4" style="width: {{ width }}">
+      <img src="{{ src }}" alt="{{ alt }}">
+      <div class="px-4 italic">
+        {{ alt }}
+      </div>
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro pdf(src) -%}
+<iframe src="{{ src }}" class="w-full h-96">
+  <a href="{{ src }}">Download PDF</a>
+</iframe>
+{%- endmacro %}
+

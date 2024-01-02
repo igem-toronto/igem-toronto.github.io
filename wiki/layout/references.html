@@ -1,0 +1,39 @@
+{# The template to generate the references list #}
+
+<div class="flex flex-col gap-4 overflow-x-hidden">
+  {% for ref in citer.references() %}
+    <div class="text-sm px-4" id="{{ subpages[-1].key }}-citation-{{ loop.index }}">
+      {% if ref.ENTRYTYPE == 'misc' %}
+        <span>[{{ loop.index }}]</span>
+        {% if ref.author is defined %}
+        <span class="author">{{ ref.author }}</span>:
+        {% endif %}
+        {% if ref.title is defined %}
+        {{ ref.title }}.
+        {% endif %}
+        {% if ref.year is defined %}
+            ({{ ref.year }}).
+        {% else %}
+            (n.d.).
+        {% endif %}
+        {% if ref.url is defined %}
+            Retrieved from <a class="text-blue" href="{{ ref.url }}">{{ ref.url }}</a>.
+        {% endif %}
+  
+      {% elif ref.ENTRYTYPE == 'article' or ref.ENTRYTYPE == 'book' or ref.ENTRYTYPE == 'incollection' %}
+        <span>[{{ loop.index }}]</span>
+        <span class="author">{{ ref.author }}</span>
+        ({{ ref.year }}).
+        {% if ref.title is defined %}
+        {{ ref.title }}.
+        {% endif %}
+        {% if ref.journal is defined %}
+        {{ ref.journal}}, {{ ref.volume }}{% if ref.number is defined %}({{ ref.number }}){% endif %}, {{ ref.pages }}.    
+        {% endif %}
+        {% if ref.doi is defined %}
+            doi: <a class="text-blue" href="https://doi.org/{{ ref.doi }}">{{ ref.doi }}</a>.
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

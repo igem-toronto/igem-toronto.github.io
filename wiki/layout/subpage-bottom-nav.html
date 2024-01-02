@@ -1,0 +1,20 @@
+{# 
+  The subpage navigation at the bottom of pages that have multiple subpages.
+  Only displays subpage links which have an image associated with them.
+  #}
+
+
+<div class="flex flex-wrap w-full lg:px-20 xl:px-60 justify-center mb-8">
+  <template x-for="(sp, index) in subpages" :key="sp.key">
+    <template x-if="sp.img != ''">
+      <div
+          @click="selectSubpage(index); window.scrollTo(0, 0)"
+          class=" w-80 m-2
+                  hover:shadow-xl hover:cursor-pointer hover:border-gray-200
+                  border-transparent border-2 rounded-md">
+        <img class="w-full rounded-t-md" :src="sp.img" :alt="sp.heading">
+        <p x-text="sp.heading" class="uppercase w-full text-center p-4 font-archivo"></p>
+      </div>
+    </template>
+  </template>
+</div>

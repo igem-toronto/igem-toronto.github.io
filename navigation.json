@@ -1,0 +1,29 @@
+[
+  {
+    "text": "Projects",
+    "sublinks": [
+      {
+        "text": "2023",
+        "link": "https://2023.igem.wiki/toronto/"
+      },
+      {
+        "text": "2022",
+        "link": "https://2022.igem.wiki/toronto/"
+      }
+    ]
+  },
+  {
+    "text": "Team",
+    "sublinks": [
+      {
+        "text": "Divisions"
+      },
+      {
+        "text": "People"
+      }
+    ]
+  },
+  {
+    "text": "Collaborations"
+  }
+]

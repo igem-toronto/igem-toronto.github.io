@@ -1,0 +1,119 @@
+{% extends 'layout/layout.html' %}
+
+{% block content %}
+<div>
+  {{ subheading("Team Toronto")}}
+  {{ img(cdn("hpphoto/img-3314.jpg"),
+      alt="Picture taken during one of the in person meetings",
+      width="60%") }}
+</div>
+  <div class="custom">
+    <script>
+      function createPlaceholder(img) {
+        var element = document.createElement("div");
+        element.classList.add("w-48", "h-64", "bg-gray-200", "rounded-md");
+        img.replaceWith(element);
+      }
+    </script>
+    {% for group in team_members.keys() %}
+    <div class="py-5">
+      {{ subheading(group) }}
+      <div class="flex flex-wrap justify-center">
+        {% for member in team_members[group] %}
+          <div  @click="focused = !focused"
+                x-data="{ focused: false }"
+                class="p-4 w-60 flex flex-col items-center
+                      hover:shadow-xl hover:cursor-pointer hover:border-gray-200
+                      border-transparent border-2 rounded-md">
+            <div
+                @click.away="focused = false" 
+                x-show="focused"
+                x-cloak
+                class="fixed top-0 left-0 m-0 p-0 w-screen h-screen opacity-50 bg-black"></div>
+            <div class="w-screen h-screen fixed top-0 left-0 grid place-items-center" x-show="focused" x-cloak>
+              <div
+                  @click.away="focused = false" 
+                  class="p-4 lg:w-5/12 w-9/12 border-2 border-primary-dark bg-white rounded-md">
+                <h2>{{ member.name }}</h2>
+                {{ member.description }}
+              </div>
+            </div>
+            {% if member.picture != None %}
+              <img
+                alt="{{ member.name }}"
+                src="{{ cdn(member.picture) }}"
+                class="w-48 rounded-md"
+                onerror="createPlaceholder(this)">
+            {% else %}
+              <div class="w-52 h-64 bg-gray-200 rounded-md"></div>
+            {% endif %}
+            <div class="text-center">
+              <div class="text-center text-xl">
+                {{ member.name }}
+              </div>
+              {% for role in member.role.split(", ") %}
+                <div class="p-1 my-2 w-48 rounded-md bg-orange-400 text-sm">
+                  {{ role }}
+                </div>
+              {% endfor %}
+              {% if member.links != "" %}
+                <div class="flex gap-2 items-center justify-start">
+                    {% if member.linkedin.strip() != "" %}
+                      <a href="{{ member.linkedin }}">
+                        <img
+                          alt="{{ member.name }}'s LinkedIn"
+                          src="{{ cdn('li-in-bug.png') }}"
+                          class="h-8">
+                      </a>
+                    {% endif %}
+                    {% if member.website.strip() != "" %}
+                      <a href="{{ member.website }}">
+                        <svg class="h-8" viewBox="0 0 100 100"  xmlns="http://www.w3.org/2000/svg">
+                          <path d=" M 50 10
+                                    A 40 40 0 0 0 50 90"
+                                    fill="transparent" stroke-width="2" stroke="black"/>
+                          <path d=" M 50 90
+                                    A 40 40 0 0 0 50 10"
+                                    fill="transparent" stroke-width="2" stroke="black"/>
+                          <path d="M 10 50
+                                  L 90 50" fill="transparent" stroke-width="2" stroke="black"/>
+                          <path d="M 50 10
+                                  L 50 90" fill="transparent" stroke-width="2" stroke="black"/>
+                        
+                          <path d="M 22 22
+                                  Q 50 45, 78 22" fill="transparent" stroke-width="2" stroke="black"/>
+                        
+                          <path d="M 22 78
+                                  Q 50 55, 78 78" fill="transparent" stroke-width="2" stroke="black"/>
+                          
+                          <path d="M 50 10
+                                  Q 10 50, 50 90" fill="transparent" stroke-width="2" stroke="black"/>
+                          <path d="M 50 10
+                                  Q 10 50, 50 90" fill="transparent" stroke-width="2" stroke="black"/>
+                          
+                          <path d="M 50 10
+                                  Q 90 50, 50 90" fill="transparent" stroke-width="2" stroke="black"/>
+                          <path d="M 50 10
+                                  Q 90 50, 50 90" fill="transparent" stroke-width="2" stroke="black"/>
+                        </svg>
+                      </a>
+                    {% endif %}
+                    {% if member.email.strip() != "" %}
+                      <a href="mailto:{{ member.email }}">
+                        <svg height="25" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M 0 0 L 150 0 L 150 100 L 0 100" fill="black"/>
+                          <path d="M 10 10 L 140 10 L 140 90 L 10 90 L 10 10" fill="white"/>
+                          <path d="M 8 0 L 75 60 L 142 0 L 150 5 L 75 70 L 0 5 L 8 0" fill="black"/>
+                        </svg>
+                      </a>
+                    {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}

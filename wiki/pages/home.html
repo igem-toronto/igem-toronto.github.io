@@ -1,0 +1,38 @@
+{% extends "layout/layout.html" %}
+
+{% block banner %}
+  <div class="py-20">
+    <div class="px-5 lg:px-80 py-5">
+      <h2>
+        The future of <i><span class="text-sky-800">synthetic</span> biology</i>,
+        at Canada's <span class="text-sky-800"><i>best</i></span> university.
+      </h2>
+    </div>
+    <div class="flex w-full justify-center py-5">
+      <a href="#" class=" px-12 py-3 bg-sky-900 rounded-md text-white text-2xl
+                        border-sky-900 border-2
+                        hover:bg-white hover:text-sky-900
+                        duration-200">
+        Apply Now
+      </a>
+    </div>
+  </div>
+  <img src="{{ url_for('static', filename='glassware.jpg') }}" class="w-screen">
+{% endblock %}
+
+{% block content %}
+<div>
+  {{ subheading("About Us")}}
+  <p>
+    iGEM (International Genetically Engineered Machine)Toronto is an
+    interdisciplinary team that identifies problems in our community,
+    proposes and executes a synthetic biology-based solution. 
+
+    We are dedicated to the practice of biotechnology and the dissemination
+    of its scientific foundations. The culmination of each year's efforts
+    is a submission to the iGEM conference (Grand Jamboree), representing
+    the University of Toronto.
+  </p>
+</div>
+
+{% endblock %}

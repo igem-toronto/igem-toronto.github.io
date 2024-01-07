@@ -11,7 +11,7 @@ h1 {
 }
 
 h2 {
-    @apply text-5xl lg:text-6xl font-montserrat font-bold;
+    @apply text-3xl lg:text-4xl font-montserrat font-bold;
 }
 
 h3 {

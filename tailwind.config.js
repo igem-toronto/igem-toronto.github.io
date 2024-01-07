@@ -26,6 +26,7 @@ module.exports = {
         'accent-orange': "#de601e",
         'accent-blue': "#559dbc",
         'accent-turquoise': '#028d81',
+        'accent-blue-dark': '#19425A'
       }
     }
   },

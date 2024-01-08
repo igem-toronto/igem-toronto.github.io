@@ -66,11 +66,14 @@ def home():
 @app.route("/people.html")
 def people():
     team_members = defaultdict(list)
+    team_members["Advisor"] = []
     team_members["President"] = []
     team_members["Wet Lab"] = []
     team_members["Dry Lab"] = []
-    team_members["Human Practices"] = []
     team_members["Hardware"] = []
+    team_members["Entrepreneurship"] = []
+    team_members["Human Practices"] = []
+    team_members["Wiki Team"] = []
     with open("static/team.csv", newline="") as f:
         reader = csv.reader(f)
         for line in reader:

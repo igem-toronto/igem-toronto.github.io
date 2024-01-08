@@ -28,14 +28,17 @@
     "text": "Team",
     "sublinks": [
       {
-        "text": "Divisions"
+        "text": "Divisions",
+        "link": "/divisions.html"
       },
       {
-        "text": "People"
+        "text": "People",
+        "link": "/people.html"
       }
     ]
   },
   {
-    "text": "Collaborations"
+    "text": "Collaborations",
+    "link": "/collaborations.html"
   }
 ]

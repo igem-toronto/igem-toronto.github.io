@@ -63,8 +63,8 @@ def home():
                            **subpages_skeleton(),
                            navigation=navigation)
 
-@app.route("/people")
-def peopl():
+@app.route("/people.html")
+def people():
     team_members = defaultdict(list)
     team_members["President"] = []
     team_members["Wet Lab"] = []
@@ -110,7 +110,7 @@ def peopl():
 @app.route('/<page>')
 def pages(page):
     subpages = subpages_skeleton()
-    return render_template("pages/" + page.lower() + '.html',
+    return render_template("pages/" + page.lower(),
                         cdn=lambda x: cdn_url + x,
                         **subpages,
                         navigation=navigation)

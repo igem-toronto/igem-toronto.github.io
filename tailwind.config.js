@@ -18,15 +18,15 @@ module.exports = {
         '88': '22rem',
       },
       colors: {
-        'primary-light': "#99bf8f",
-        'primary-medium': "#285a06",
-        'primary-dark': "#0b2b16",
+        'primary-extra-light': "#d8f0ef",
+        'primary-light': "#a0d4f2",
+        'primary-medium': "#6dacd1",
+        'primary-dark': "#19425A",
         'font-light': "#fbf7f0",
         'font-medium': "#cdc1b6",
         'accent-orange': "#de601e",
         'accent-blue': "#559dbc",
-        'accent-turquoise': '#028d81',
-        'accent-blue-dark': '#19425A'
+        'accent-turquoise': '#028d81'
       }
     }
   },

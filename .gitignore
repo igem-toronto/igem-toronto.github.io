@@ -4,3 +4,4 @@ venv
 __pycache__
 public
 node_modules
+static/output.css

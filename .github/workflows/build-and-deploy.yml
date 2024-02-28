@@ -15,9 +15,8 @@ jobs:
       - name: Install and Build
         run: |
           npm ci
-          npm run build:prod
           pip install --no-cache-dir -r dependencies.txt
-          FLASK_APP=app.py flask freeze
+          npm run build
 
       - name: Archive artifact
         shell: sh

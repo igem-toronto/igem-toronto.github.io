@@ -1,22 +1,10 @@
-# Team Toronto 2023 Wiki
+# iGEM Toronto Website adapted from the iGEM Toronto 2023 Wiki
 
-This repository **MUST** contain all coding assets to generate your team's
-wiki (HTML, CSS, JavaScript, TypeScript, Python, etc).
-
-Images, photos, icons and fonts **MUST** be stored on `static.igem.wiki` using
-[uploads.igem.org](https://uploads.igem.org), and Videos **must** be embedded
-from [iGEM Video Universe](https://video.igem.org).
-
-For up-to-date requirements, resources, help and guidance, visit
-[competition.igem.org/deliverables/team-wiki](https://competition.igem.org/deliverables/team-wiki).
-
-## About this Template (See customizations at the bottom!)
-
+## Overview
 ### Files
 
 The static assets are in the `static` directory. The layout and templates are
 in the `wiki` directory, and the pages live in the `wiki > pages` directory.
-Unless you are an experienced and/or adventurous human, you probably shouldn't change other files.
 
     |__ static/             -> static assets (CSS and JavaScript files only)
     |__ wiki/               -> Main directory for the pages and layouts
@@ -24,12 +12,17 @@ Unless you are an experienced and/or adventurous human, you probably shouldn't c
             |__ *.html      -> Actual layout files
         |__ pages/          -> Directory for all the pages
             |__ *.html      -> Actual pages of your wiki
-    |__ .gitignore          -> Tells GitLab which files/directories should not be uploaded to the repository
-    |__ .gitlab-ci.yml      -> Automated flow for building, testing and deploying your website.
-    |__ LICENSE             -> License CC-by-4.0, all wikis are required to have this license - DO NOT MODIFY
+    |__ .gitignore          -> Tells Git which files/directories should not be uploaded to the repository
+    |__ .github/
+        | _ workflows
+            |_ build-and-deploy.yml      -> Automated flow for building, testing and deploying your website
     |__ README.md           -> File containing the text you are reading right now
-    |__ app.py              -> Python code managing your wiki
+    |__ app.py              -> Python code managing our wiki
+    |__ citations.py        -> Python code for the citation extension
+    |__ navigation.json     -> Configuration for the main navigation bar
     |__ dependencies.txt    -> Software dependencies from the Python code
+    |__ package.json        -> Software dependencies from JavaScript (mainly TailwindCSS)
+    |__ package-lock.json   -> Pinned software dependencies from JavaScript (mainly TailwindCSS)
 
 ### Technologies
 
@@ -37,35 +30,32 @@ Unless you are an experienced and/or adventurous human, you probably shouldn't c
   * [Python](https://www.python.org): Programming language
   * [Flask](https://palletsprojects.com/p/flask/): Python framework
   * [Frozen-Flask](https://pythonhosted.org/Frozen-Flask): Library that builds the wiki to be deployed as a static website
-  * [NodeJS](https://nodejs.org/en): Node to use tailwindcss as the CSS framework. Use the LTS version
+  * [NodeJS](https://nodejs.org/en): Node to bundle tailwindcss as the CSS framework. Use the LTS version
 
-### Building locally (advanced users)
-
-To work locally with this project, follow the steps below:
-
-#### Install
+## Setup
 ```bash
-git clone https://gitlab.igem.org/2023/toronto.git
-cd toronto
+git clone https://github.com/igem-toronto/igem-toronto.github.io.git
 python3 -m venv venv
 . venv/bin/activate # on Linux, MacOS; or
 . venv\Scripts\activate # on Windows
 pip install -r dependencies.txt
-npm i
+npm install
 ```
 
-#### Execute
+## Run for Development
 To run the page generation and provide live HTML/Content updates, run this:
 ```bash
-python app.py
+npm start
 ```
 The page is now accessible under [http://localhost:3000](http://localhost:3000).
 
-If you change the tailwindcss utility classes or anything else about tailwindcss,
-you also need to run the following command in a separate terminal and keep it running:
+## Build for Production
+To statically build the website using Flask Freeze run
 ```bash
-npx tailwindcss -i ./static/input.css -o ./static/output.css --watch
+npm run build
 ```
+
+A directory called public is created whose contents can be published to a server.
 
 ## Custom Extensions
 ### Bibtex Citations
@@ -105,7 +95,7 @@ For images, you can use the img macro:
 You should embed images only from the cdn. Then you can use
 
 ```
-{{ img('cdn("image_name_on_cdn.png")', 'alt text', 'source description') }}
+{{ img(cdn("image_name_on_cdn.png"), 'alt text', 'source description') }}
 ```
 
 Side-by-side is possible by wrapping content that should be side-by-side in
@@ -132,7 +122,7 @@ for an example.
 Subpages and subheadings are managed through a list called subpages. It is passed
 around as json with the following schema:
 
-```
+```json
 [
     {
         "heading": "heading of the subpage",

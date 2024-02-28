@@ -1,8 +1,9 @@
 from os import path
 from collections import defaultdict
 import csv, json
+import subprocess
 
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 from flask_frozen import Freezer
 from citations import CitationLoader
 
@@ -55,6 +56,29 @@ def subpages_skeleton():
     d["reset_citer"] = d["citer"].reset
     
     return d
+
+tailwind_timestamp = None
+tailwind_cache = ""
+tailwind_input = 'static/input.css'
+
+@app.route('/dist/<filename>')
+def dist(filename: str):
+    global tailwind_cache, tailwind_timestamp, tailwind_input
+    if filename.startswith('alpinejs'):
+        with open('node_modules/alpinejs/dist/cdn.min.js') as f:
+            content = f.read()
+            return Response(content, mimetype='text/javasript')
+    elif filename.endswith('.css'):
+        current_timestamp = path.getmtime(tailwind_input)
+        if tailwind_timestamp is None or current_timestamp > tailwind_timestamp:
+            result = subprocess.run(["npx", "tailwindcss", "-i", tailwind_input],
+                text=True, capture_output=True)
+            tailwind_cache = result.stdout
+
+        tailwind_timestamp = current_timestamp
+        return Response(tailwind_cache, mimetype="text/css")
+    else:
+        return Response(status=404)
 
 @app.route('/')
 def home():

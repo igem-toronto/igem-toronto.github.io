@@ -12,7 +12,7 @@ in the `wiki` directory, and the pages live in the `wiki > pages` directory.
             |__ *.html      -> Actual layout files
         |__ pages/          -> Directory for all the pages
             |__ *.html      -> Actual pages of your wiki
-    |__ .gitignore          -> Tells GitLab which files/directories should not be uploaded to the repository
+    |__ .gitignore          -> Tells Git which files/directories should not be uploaded to the repository
     |__ .github/
         | _ workflows
             |_ build-and-deploy.yml      -> Automated flow for building, testing and deploying your website

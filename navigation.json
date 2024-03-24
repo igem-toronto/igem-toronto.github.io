@@ -1,44 +1,76 @@
 [
   {
-    "text": "Projects",
-    "sublinks": [
-      {
-        "text": "2023",
-        "link": "https://2023.igem.wiki/toronto/"
-      },
-      {
-        "text": "2022",
-        "link": "https://2022.igem.wiki/toronto/"
-      },
-      {
-        "text": "2019",
-        "link": "https://2019.igem.org/Team:Toronto/"
-      },
-      {
-        "text": "2018",
-        "link": "https://2018.igem.org/Team:Toronto/"
-      },
-      {
-        "text": "2017",
-        "link": "https://2017.igem.org/Team:Toronto/"
-      }
-    ]
-  },
-  {
     "text": "Team",
     "sublinks": [
       {
-        "text": "Divisions",
-        "link": "/divisions.html"
+        "text": "Introduction",
+        "link": "team"
       },
       {
-        "text": "People",
-        "link": "/people.html"
+        "text": "Attributions"
       }
     ]
   },
   {
-    "text": "Collaborations",
-    "link": "/collaborations.html"
+    "text": "Project",
+    "sublinks": [
+      {
+        "text": "Description"
+      },
+      {
+        "text": "Engineering"
+      },
+      {
+        "text": "Experiments"
+      },
+      {
+        "text": "Contribution"
+      },
+      {
+        "text": "Notebook"
+      }
+    ]
+  },
+  {
+    "text": "Parts"
+  },
+  {
+    "text": "Results",
+    "sublinks": [
+      {
+        "text": "Wet Lab"
+      },
+      {
+        "text": "Software"
+      },
+      {
+        "text": "Model"
+      },
+      {
+        "text": "Hardware"
+      }
+    ]
+  },
+  {
+    "text": "Human Practices",
+    "sublinks": [
+      {
+        "text": "Human Practices"
+      },
+      {
+        "text": "Safety"
+      },
+      {
+        "text": "Entrepreneurship"
+      }
+    ]
+  },
+  {
+    "text": "Relations",
+    "sublinks": [
+      {
+        "text": "Sponsors"
+      }
+    ]
   }
 ]

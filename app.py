@@ -71,7 +71,7 @@ def dist(filename: str):
     elif filename.endswith('.css'):
         current_timestamp = path.getmtime(tailwind_input)
         if tailwind_timestamp is None or current_timestamp > tailwind_timestamp:
-            result = subprocess.run(["npx", "tailwindcss", "-i", tailwind_input],
+            result = subprocess.run(["npx", "tailwindcss", "-i", tailwind_input, "--minify"],
                 text=True, capture_output=True)
             tailwind_cache = result.stdout
 

@@ -2,7 +2,7 @@
   <div class="hover:text-primary-light ease-in duration-100
               lg:py-0 lg:px-10
               text-left py-2 flex items-center">
-    <a href="{{ url_for('pages', page=target) }}">{{ text }}</a>
+    <a href="{{ url_for('pages', page=target + '.html') }}">{{ text }}</a>
   </div>
 {%- endmacro %}
 
@@ -33,7 +33,7 @@
       <div class="flex flex-col bg-opacity-80
                 lg:border-primary-dark lg:border-l-2 lg:bg-primary-extra-light">
       {% for sublink in sublinks %}
-        <a  href="{{ sublink[1] if sublink[1].startswith('http') else url_for('pages', page=sublink[1]) }}"
+        <a  href="{{ sublink[1] if sublink[1].startswith('http') else url_for('pages', page=sublink[1] + '.html') }}"
             class=" ease-in duration-100 p-2 text-lg lg:text-primary-dark text-font-light
                     border-transparent border-l-4 hover:border-primary-dark">
           <span>{{ sublink[0] }}</span>

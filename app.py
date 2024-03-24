@@ -87,7 +87,7 @@ def home():
                            **subpages_skeleton(),
                            navigation=navigation)
 
-@app.route("/people.html")
+@app.route("/team.html")
 def people():
     team_members = defaultdict(list)
     team_members["Advisor"] = []
@@ -128,7 +128,7 @@ def people():
     for group in team_members.values():
         group.sort(key=lambda x: x["priority"], reverse=True)
 
-    return render_template('pages/people.html',
+    return render_template('pages/team.html',
                            cdn=lambda x: cdn_url + x,
                            team_members=team_members,
                            **subpages_skeleton(),

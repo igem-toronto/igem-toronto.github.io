@@ -1,42 +1,55 @@
-{% extends "layout/layout.html" %}
+{% extends 'layout/core.html' %}
+{% from 'layout/header.html' import links with context %}
 
-{% block banner %}
-  <div class="py-20">
-    <div class="px-5 lg:px-80 py-5 text-center">
-      <h2>
-        The future of <i><span class="text-primary-dark">synthetic</span> biology</i>,
-        at Canada's <span class="text-primary-dark"><i>best</i></span> university.
-      </h2>
+{% block body %}
+  <body class="flex flex-col min-h-screen justify-between">
+    <div class="w-screen lg:hidden">
+      {% include 'layout/header.html' %}
     </div>
-    <div class="flex w-full justify-center py-5">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform" class=" px-12 py-3 bg-sky-900 rounded-md text-white text-2xl
-                        border-primary-dark border-2
-                        hover:bg-white hover:text-primary-dark
-                        duration-200">
-        Join the Mailing List
-      </a>
+    <div class="flex lg:flex-row flex-col">
+      <div class="flex flex-col
+                lg:p-12 lg:w-5/12 lg:justify-around lg:h-screen
+                p-8 w-screen h-2/3">
+      <div class="w-full h-96">
+        <img  src="{{ cdn('graphics/raccoon-happy-wave-full-body.png') }}"
+              alt="Raccoon says hello"
+              class="h-full mx-auto">
+      </div>
+      <div>
+        <img  src="{{ cdn('graphics/methanivore-text-dark-green.png') }}"
+              alt="Methanivore"
+              class="mx-auto">
+        <p class="font-archivo text-2xl xl:text-3xl text-center">
+          A Comprehensive Solution to Harness Landfill Gas Emissions
+        </p>
+      </div>
     </div>
-  </div>
-  <img src="{{ url_for('static', filename='dna.png') }}" class="w-screen">
-{% endblock %}
-
-{% block content %}
-<div>
-  {{ subheading("About Us")}}
-  <p>
-    iGEM Toronto is a pioneering team at the forefront of synthetic biology
-    research and innovation. As participants in the International Genetically
-    Engineered Machine (iGEM) competition, we aim to tackle global challenges
-    through the application of cutting-edge biological solutions. Our team is
-    dedicated to fostering creativity, collaboration, and scientific excellence.
-  </p>
-  <p>
-    Since 2007, we have been representing the University of Toronto at the
-    undergraduate level. Our hard work has culminated in 4 gold medals, 4 silver
-    medals, 4 bronze medals, and many special prizes. This year, our team won
-    the award for Best Model, as well as the Gold Medal, and 5 other special
-    nominations!
-  </p>
-</div>
-
+    <div  class="hidden lg:flex grow flex-col items-center justify-between bg-primary-medium
+                lg:w-7/12 lg:h-screen lg:bg-cover lg:text-3xl
+                w-screen h-1/3 bg-cover text-xl"
+          x-data="{ expanded: '' }">
+      <div  class=" w-full flex justify-between bg-black bg-opacity-50 text-font-light
+                    xl:px-20 xl:py-5
+                    lg:py-2
+                    py-1
+                    px-10">
+        {{ links(navigation[:navigation|length // 2]) }}
+      </div>
+      <iframe
+        class="w-full h-full"
+        title="iGEM Toronto Promitional Video"
+        src="https://video.igem.org/videos/embed/78e900c8-4886-462a-96b2-ca0dde54e72b"
+        frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+      <div  class="w-full flex justify-between bg-black bg-opacity-50 text-font-light
+                  lg:px-20 xl:py-5
+                  lg:py-2
+                  py-1
+                  px-10">
+        {{ links(navigation[navigation|length // 2:], direction="up") }}
+      </div>
+    </div>
+    </div>
+    
+    {% include 'layout/footer.html' %}
+  </body>
 {% endblock %}

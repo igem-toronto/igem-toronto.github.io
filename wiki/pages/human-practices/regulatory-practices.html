@@ -1,0 +1,458 @@
+{% extends "layout/subpage.html" %}
+
+{% block content %}
+  {{ subpage_banner() }}
+  <div>
+    <p>
+      There are a variety of regulative policies and policies in place that would
+      impact the implementation and success of iGEM Toronto’s project. There are
+      regulative politics in place that impact landfill sites that govern the
+      maintenance, monitoring, and disposal of landfill gas. These regulatory
+      policies were put in place in an effort to reduce landfill gas emissions in
+      Canada, and govern at what size and capacity would landfill sites be required
+      to monitor their landfill gas emissions and also dispose of the landfill gas.
+      In order to educate individuals who are not familiar with the nuanced
+      landscape of landfill gas regulation, our team created a summary of this
+      framework:
+    </p>
+  </div>
+  <div>
+    {{ subheading("Summary of the Regulatory Framework") }}
+    <div>
+      <p>
+        Methane is a highly potent greenhouse gas with a warming potential 28 times
+        of carbon dioxide. A source of this methane is from the decomposition of
+        biodegradable waste in landfills, accounting for 24% of national methane
+        emissions  in Canada. As such, in facing the dangers posed by methane,
+        there is a regulatory framework in place aimed at reducing emissions from
+        landfills. 
+      </p>
+    </div>
+    <div>
+      {{ subsubheading("Current Strategies") }}
+      <p>
+        The framework suggests implementing infrastructure and equipment at
+        landfills to recover the gas and either flare it or use it for energy
+        generation. Existing approaches are technically feasible, commercially
+        available, and provide measurable methane emission reductions. Building
+        from these current approaches, emerging strategies involve using specific
+        landfill cover materials and designs to facilitate the biological
+        destruction of methane that will produce less pollution and be more cost
+        effective. iGEM Toronto is interested in being at the forefront of using
+        synthetic biology to reduce the amount of landfill gas emissions in an
+        environmentally safe and efficient way. 
+      </p>
+    </div>
+    <div>
+      {{ subsubheading("Implementation") }}
+      <p>
+        In implementing the landfill gas strategies discussed above, the
+        regulatory framework proposes several key requirements:
+      </p>
+      <p>
+        Implementation of a landfill methane control approach: Landfills
+        exceeding a methane  generation or emission threshold would be required
+        to implement a landfill methane control  approach. This could involve
+        active or passive landfill gas recovery systems, methane  destruction
+        devices, engineered biosystems (such as biocovers or biowindows), or
+        landfill design  and operational plans to reduce methane emissions.
+      </p>
+      <p>
+        Methane control monitoring and corrective action plan: Landfills
+        subject to the regulations  would need to conduct regular monitoring
+        of methane emissions and have a corrective action  plan in place to
+        address any issues or leaks in the methane control systems. Increasing
+        the frequency of monitoring and maintenance has been shown to enhance
+        methane recovery and  emission reduction. 
+      </p>
+      <p>
+        Notifications, record keeping, and annual reporting: Landfills would be
+        required to provide  notifications to the regulatory authority, keep
+        records of methane control activities and  measurements, and submit
+        annual reports on their methane emissions and control efforts. 
+      </p>
+    </div>
+    <div>
+      {{ subsubheading("Applicability Thresholds") }}
+      <p>
+        These regulations would apply to landfills based on the quantity of
+        municipal solid waste (MSW) disposed of at the site. The applicability
+        thresholds are as follows: 
+      </p>
+      <ul>
+        <li>
+          Closed landfills that accepted any quantity of MSW after January 1,
+          2009, and have more than  450,000 tonnes of MSW-in-place.
+        </li>
+        <li>
+          Open landfills that have more than 100,000 tonnes of MSW-in-place or
+          have accepted more than 10,000 tonnes of MSW for disposal per year
+          after the regulations come into force. 
+        </li> 
+      </ul>
+      <p>
+        Landfills meeting these criteria would be required to conduct a methane
+        generation assessment  using a designated model and report the results
+        to the regulatory authority. If the landfill's annual methane
+        generation exceeds a specified threshold of 664 tonnes per year, the
+        regulations would  require the implementation of a landfill methane
+        control approach.
+      </p>
+      <p>
+        Exemptions may be granted based on measured methane values. For
+        landfills without existing  methane control systems, they can be
+        exempted if the methane concentration at or above the  landfill surface
+        is below specified thresholds. Closed landfills with existing gas
+        recovery systems  may be exempted if methane concentrations in the
+        recovered gas and surface emissions are  below specified thresholds.
+      </p>
+      <p>
+        To determine compliance with thresholds, the regulations propose using
+        drone-based and  ground-based methane concentration measurements.
+        Drone-based surveys would be conducted at  specified intervals, while
+        ground-based measurements would verify exceedances identified by the
+        drone-based method. 
+      </p>
+      <p>
+        The framework acknowledges that further development and validation of
+        measurement methods  and thresholds are necessary. Stakeholders are
+        invited to provide data and information to support this analysis. 
+      </p>
+    </div>
+    <div>
+      {{ subsubheading("Improvements to the Framework") }}
+      <p>
+        The proposed framework aims to align with Canada's commitment to
+        reducing methane emissions, as outlined in the Global Methane Pledge
+        and the Faster and Further: Canada's  Methane Strategy. The regulations
+        seek to achieve the greatest feasible reductions in landfill  methane
+        emissions and improve monitoring and mitigation practices. Feedback on
+        the proposed  regulatory framework was invited until May 19, 2023, to
+        inform the development of the  regulations.
+      </p>
+      <p>
+        The various requirements for the operation, maintenance, and monitoring
+        of landfill gas recovery  systems and methane control approaches are as
+        follows: 
+      </p>
+      <div>
+        {{ subsubsubheading("Operations and Maintenance") }}
+        <ul>
+          <li>
+            Landfill gas combustion or processing systems must be operated and
+            maintained  according to manufacturer recommendations. 
+          </li>
+          <li>
+            Flares should be operated at or above the temperature that achieves
+            99% destruction  efficiency, as determined by the most recent
+            source test.
+          </li>
+          <li>
+            Valves on gas recovery systems must be closed within one hour of
+            shutting down the  equipment. 
+          </li>
+        </ul>
+      </div>
+      <div>
+        {{ subsubsubheading("Methane Monitoring and Corrective Action Plan") }}
+        <ul>
+          <li>
+            Landfills must develop and implement a methane control monitoring
+            and corrective  action plan.
+          </li>
+          <li>
+            The plan should include monitoring for landfill methane recovery
+            systems, biosystems (biocovers), and methane leaks. 
+          </li>
+          <li>
+            Landfill owners have flexibility in setting action thresholds for
+            some parameters, while  certain thresholds will be specified in the
+            regulations.
+          </li>
+          <li>
+            The plan should define procedures for follow-up actions when
+            thresholds are exceeded  and document exceedances and corrective
+            actions taken.
+          </li>
+        </ul>
+      </div>
+      <div>
+        {{ subsubsubheading("Monitoring Landfill Gas Recovery Systems") }}
+        <ul>
+          <li>
+            Landfills with active gas recovery systems must conduct monitoring
+            in extraction wells  and at the gas recovery plant. 
+          </li>
+          <li>
+            Monitoring parameters include oxygen, nitrogen, liquid level, and
+            vacuum pressure.
+          </li>
+          <li>
+            Monitoring frequency may vary based on methane generation rates,
+            ranging from  monthly to continuous measurements. 
+          </li>
+        </ul>
+      </div>
+      <div>
+        {{ subsubsubheading("Monitoring Engineered Biocovers/Biosystems") }}
+        <ul>
+          <li>
+            Monitoring requirements for biocovers/biosystems may include in
+            situ testing,  monitoring media properties, and inspecting the
+            biocover surface.
+          </li>
+        </ul>
+      </div>
+      <div>
+        {{ subsubsubheading("Monitoring to Identify Methane Leaks") }}
+        <ul>
+          <li>
+            The methane control plan should include leak detection and repair
+            (LDAR) requirements.
+          </li>
+          <li>
+            Leaks are defined based on measured methane concentrations
+            exceeding specified thresholds.
+          </li>
+          <li>
+            Monthly visual inspections of the landfill surface and monitoring
+            of gas recovery system components are required.
+          </li>
+          <li>
+            Drone-based monitoring of surface methane concentrations is
+            required three times per  year.
+          </li>
+          <li>
+            Annual monitoring may be allowed in areas where landfill gas is not
+            being recovered and surface methane emissions are below the
+            performance standard. 
+          </li>
+        </ul>
+      </div>
+      <div>
+        {{ subsubsubheading("Alternative Monitoring Methods") }}
+        <ul>
+          <li>
+            Landfills may propose alternative LDAR approaches that can identify
+            the same number  of leaks as the standard requirements.
+          </li>
+          <li>
+            Site-specific performance standards may be considered if equivalency
+            can be demonstrated.
+          </li>
+        </ul>
+      </div>
+      <div>
+        {{ subsubsubheading("Notifications, Record Keeping, and Annual Reporting") }}
+        <ul>
+          <li>
+            Landfills need to submit methane generation reports, registration
+            of methane destruction devices, and notifications of methane
+            control monitoring and corrective action reports. 
+          </li>
+          <li>
+            Records should be maintained for five years, including surface
+            emission monitoring results, source testing results, and methane
+            leak detection information.
+          </li>
+          <li>
+            Annual reporting of landfill operational status, waste received,
+            and waste-in-place is  required.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    {{ subheading("Climate Crisis Case Study: iGEM Toronto “Methanivore” ") }}
+    <div>
+      {{ subsubheading("Introduction") }}
+      <p>
+        Pollution is defined as the introduction of harmful substances into the
+        environment and can be categorised as either air pollution, water
+        pollution, or land pollution. In particular, air pollution from
+        greenhouse gases is a major concern due to its association with global
+        warming {{ cite("national_geographic_pollution") }}. Greenhouse gases such as carbon
+        dioxide and methane absorb sunlight reflected from the earth’s surface,
+        trapping heat in the atmosphere via the greenhouse effect. Although
+        this greenhouse effect is a natural process, recent human activities
+        have been increasing the amount of greenhouse gases released into the
+        atmosphere, causing rising global temperatures {{ cite("national_geographic_pollution") }}. 
+      </p>
+      <p>
+        Landfill gas occurs due to the anaerobic decomposition of organic
+        materials such as food and paper deposited at landfill sites
+        {{ cite("eccc_reducing_methane_emissions_landfills") }}. As of today,
+        solid waste landfills are responsible for a staggering 23% of Canada’s
+        total methane emissions. Instead of allowing methane to escape into the
+        atmosphere, methane can be collected within landfill sites using a
+        series of vertical and horizontal pipes. The methane is then collected
+        at a central site where it can undergo treatment and be used to
+        generate electricity or create fuel. Alternatively, the landfill gas
+        can also be burned in a process known as “flaring” to create carbon
+        dioxide, which has a lower impact on the greenhouse effect than methane
+        {{ cite("epa_basic_information_landfill_gas") }}. According to a survey
+        done by the Government of Canada in 2020, approximately 1,401
+        kilotonnes (kt) of methane were generated from Canadian landfills
+        {{ cite("eccc_waste_greenhouse_gases") }}. Of this amount, only 418 kt,
+        roughly a third, of it was captured (30%)
+        {{ cite("eccc_waste_greenhouse_gases") }}.
+      </p>
+      <p>
+        It is evident that new regulations and technologies are necessary to
+        reduce methane emissions in Canada. More landfill sites should begin to
+        capture methane in an effort to reduce the environmental impact of our
+        garbage. Furthermore, greener, more clean solutions for utilising
+        methane gas should be considered in lieu of flaring, which still
+        introduces a greenhouse gas (carbon dioxide) into the environment. 
+      </p>
+      <p>
+        iGEM Toronto’s 2023 project, named “Methanivore”, aims to engineer
+        bacteria capable of consuming methane and methane derivatives, such as
+        methanol, formate, and formaldehyde, and implement this system in
+        landfill sites. To do this, the methane from landfill gas will be
+        isolated and then oxidized to methanol. This methanol will serve as a
+        carbon feedstock into methylotrophic strain bacteria. The bacteria that
+        feed on the methanol will also have to be cultivated on an industrial
+        scale to effectively remove methane from the landfill gas ecosystem.
+        The Toronto iGEM’s hardware team aims to design a separation process
+        for the landfill gas, a process for oxidizing the resultant methane
+        gas, and a fermenter to cultivate the methylotrophic bacteria at scale,
+        while the wet lab and dry lab team are utilizing a variety of
+        experimental techniques to enhance the assimilation of single-carbon
+        compounds in our engineered strains using overexpression, CIRPSR-Cas
+        system knockout, and adaptive evolution. 
+      </p>
+    </div>
+    <div>
+      {{ subsubheading("Regulatory Landscape and Risk Assessment") }}
+      <p>
+        To the best of iGEM Toronto’s 2023 team’s knowledge, the application of
+        genetically modified organisms (GMOs) to manage landfill gas emissions
+        has not been previously explored. However, current research offers
+        valuable insights into engineered methanotrophs, a field our team is
+        actively expanding upon in our project. Past studies have investigated
+        the utilization of genetic tools to research and optimize methanotroph
+        physiology, aiming to enable metabolic engineering for converting
+        methane into valuable bioproducts {{ cite("puri_tools_buryatense") }}
+        {{ cite("jeong_toolkit_biorefinery") }}.
+      </p>
+      <p>
+        While the research techniques the team is employing, such as
+        CRISPR-Cas9, are vital for optimizing methane conversion, the true
+        bioethical and regulatory challenges arise not within the laboratory
+        setting, but when considering the real-world implementation of these
+        engineered methanotrophs at landfill sites. Therefore, there are a
+        variety of bioethical considerations and perspectives that our team
+        considered during the creation of our project, which are discussed
+        below.
+      </p>
+      <p>
+        The use of GMOs in Canada extends into various industrial processes and
+        consumer goods within Canada and are included in a category of
+        approximately 23,000 different substances that are utilized in the
+        country. 
+      </p>
+      <p>
+        To ensure public health and environmental safety, Health Canada and
+        Environment Canada jointly established the <i>Canadian Environmental
+        Protection Act</i>, 1999 {{ cite("gc_cepa") }}. This legislation
+        mandates a thorough risk assessment of environmental and industrial
+        products, including those that are utilized in biotechnology. The
+        product is evaluated for its potential risk against both human health
+        and the environment, and if it is toxic. A substance is considered to
+        be toxic if it enters or may enter an environment where it can pose a
+        risk to human health, the environment (such as wildlife), and
+        environment in which wildlife depend on, such as water, air, or soil. 
+      </p>
+      <p>
+        In order to separate chemicals and other products from biotechnology
+        products involving living organisms, a specialized section of the CEPA
+        1999 act addresses the threat and risk assessment of these entities.
+        This section requires information from companies or manufacturers
+        regarding the organism’s identification, characteristics, exposure,
+        and any potential health threats to humans or to the environment. While
+        iGEM Toronto believes that our engineered methanotrophs pose no threat
+        to human health, there are some considerations when weighing the
+        potential environmental risk of our organisms to the environment.
+      </p>
+      <p>
+        Engineered methanotrophs, modified within the confines of a lab, cannot
+        be deemed native to the local environment. Methanotrophs naturally
+        inhibit various ecosystems, such as in rice fields, wetlands, sewage
+        treatment facilities, and landfills {{ cite("sip_testing") }}. It can
+        be expected that each geographical region may have different
+        predominant and local species of methanotrophs, resulting in each
+        location having its own unique biological footprint. Consequently, the
+        potential introduction of genetically engineered methanotrophs may
+        jeopardize the natural diversity of methanotrophs at a landfill site if
+        they were to escape confinement within our hardware system and
+        outcompete native strains.
+      </p>
+      <p>
+        The concern about engineered methanotrophs outcompeting local strains
+        underscores the importance of preserving nature’s biodiversity, since
+        it is unlikely that the exposure of engineered methanotrophs would
+        cause long lasting environmental damage that could potentially impact
+        the ecosystem. In fact, previous researchers have contemplated the
+        deliberate introduction of engineered methanotrophs directly into the
+        soil at sites for soil remediation {{ cite("ge_methanotroph_bioaugmentation") }},
+        and waste water treatment {{ cite("methanotrophs_applications") }},
+        and in coal mines to mitigate high methane emissions
+        {{ cite("methanotrophs_bioengineering") }}
+      </p>
+    </div>
+    <div>
+      {{ subsubheading("Conclusion") }}
+      <p>
+        The iGEM Toronto 2023 team, “Methanivore”, worked on an innovative and
+        unique project by introducing genetically modified organisms into a
+        landfill gas collection system—a unique application in the field. Given
+        the stringent regulations surrounding genetically modified organisms
+        and synthetic biology, our team dedicated significant effort to
+        comprehensively research the regulatory and bioethical dimensions of
+        our project, with the aim of demonstrating our project’s viability for
+        real-world implementation beyond the laboratory. 
+      </p>
+      <p>
+        In Canada, the utilization of genetically modified organisms is highly
+        regulated under the 1999 Canadian Environmental Protection Act. This
+        legislation requires companies, manufacturers, or other entities to
+        prove that their chemical, product, or living organisms pose no threat
+        to human health or the environment. 
+      </p>
+      <p>
+        While our project poses no direct harm to human health, we acknowledge
+        valid environmental concerns regarding the potential consequences
+        should our engineered methanotrophs escape into the landfill site. The
+        engineered methanotrophs can potentially interbreed with native local
+        strains, or competitively displace them, thereby affecting the local
+        populations. This concern extends to biodiversity preservation,
+        emphasizing our commitment to safeguarding nature’s intricate
+        ecosystems, regardless of their size and big or small.  
+      </p>
+      <p>
+        While assessing the risks of our hardware system and project, our team
+        has come to the conclusion that the chances of our engineered
+        methanotrophs escaping our hardware system are minimal, reducing the
+        risk of contamination or leakage. Nevertheless, we advocate for a
+        proactive stance by endorsing the importance of well-defined spill
+        cleaning procedures at landfill sites. These procedures encompass the
+        use of materials designed to absorb spills, having biohazard disposal
+        bags, and disinfects, all which serve as a contingency plan to swiftly
+        address and solve any unforeseen incidents.
+      </p>
+      <p>
+        In summary, the iGEM Toronto team, "Methanivore," recognizes the
+        importance of addressing regulatory and bioethical considerations when
+        exploring novel applications of genetically modified organisms in
+        landfill gas collection systems. While there are potential
+        environmental concerns regarding biodiversity, the team's risk
+        assessment indicates a low likelihood of escape from our system. We
+        emphasize the imperative need for proactive bio spill cleaning
+        procedures, reinforcing our commitment to responsible and secure
+        implementation of our innovative solution in the world.  
+      </p>
+    </div>
+  </div>
+{% endblock %}

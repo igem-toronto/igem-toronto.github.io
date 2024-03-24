@@ -1,0 +1,836 @@
+{% extends "layout/subpage.html" %}
+
+{% block content %}
+  {{ subpage_banner() }}
+  <div>
+    <p>
+      Our team reached out to a variety of industry and academic experts to
+      discuss our projects. As discussed in our framework section above, we
+      followed our “Third-Party Feedback Template” to showcase the
+      conversations we had and highlight how our stakeholders drove our project
+      forward. 
+    </p>
+  </div>
+  <div>
+    {{ subheading("Wet Lab") }}
+    <div class="side-by-side">
+      <div>
+        {{ subsubheading("Professor Christoper Lawson") }}
+        <div>
+          {{ subsubsubheading("Who is the stakeholder?") }}
+          <p>
+            Professor Lawson is part of Biozone - Center for Applied Bioscience
+            and Bioengineering at the University of Toronto. His research
+            investigates metabolic regulation of anaerobic microbiome metabolism.
+            He has expertises in implementing synthetic biology solutions to
+            wastewater treatment and solid waste management, which aligns with
+            iGEM Toronto project this year. 
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("What did they say?") }}
+          <p>
+            In Biozone, there are two devices that can measure metabolites: Gas
+            Chromatograph or HPLC. Professor Lawson recommended HPLC because the
+            training required for GC is much more intensive than HPLC. The
+            preparation of GC includes gas handling. Although GC is known to be
+            better for volatile compounds (Methanol in our case), the safety
+            hazard behind preparing or operating GC is higher than HPLC,
+            specially none of the wet lab members had experience with GC. 
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("Reflection or next steps") }}
+          <p>
+            Wet lab discarded the GC protocol and developed a protocol for
+            preparing our sample for HPLC. We also reached out to Biozone members
+            who have experience with HPLC to help our team out with the details. 
+          </p>
+        </div>
+      </div>
+      {{ img(cdn("human-practices/wetlab-experts/lawson.jpg"), alt="Professor Christoper Lawson") }}
+    </div>
+    <div class="side-by-side">
+      <div>
+        {{ subsubheading("Dr. Nico Claassens") }}
+        <div>
+          {{ subsubsubheading("Who is the stakeholder?") }}
+          <p>
+            Dr. Claassens is a renowned professor and researcher in the field of
+            Reductive Glycine Pathway (rGlyp) pathway and C1 assimilation
+            pathways and is affiliated with the Laboratory of Microbiology, from
+            the University of Wageningen. Our team was interested in acquiring
+            one of the strains that was generated in his lab. He gave advice to
+            our team and gave recommendations on selecting C1-assimilating
+            pathways and strains, as well as giving insight on potential
+            chemostat setup.  
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("What did they say?") }}
+          <p>
+            Dr. Claassens told us that it would be important to prioritize
+            genomic manipulations rather than plasmid overexpression in metabolic
+            engineering, and that mdh is a bottleneck and  important genetic
+            target in the Rump cycle. Lastly, we tried to acquire the  P. putida
+            rGlyp strain from his lab.
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("Reflection or next steps") }}
+          <p>
+            From our conversation, we listed tpiA gene KO and mdh KI in our plan,
+            and we researched different mdh variants.
+          </p>
+        </div>
+      </div>
+      {{ img(cdn("human-practices/wetlab-experts/claassens.jpg"), alt="Dr. Nico Claassens") }}
+    </div>
+    <div class="side-by-side">
+      <div>
+        {{ subsubheading("Dafni Giannari") }}
+        <div>
+          {{ subsubsubheading("Who is the stakeholder?") }}
+          <p>
+            Dafni is a graduate student at the Department of Chemical Engineering
+            at the University of Toronto, and was one of our academic advisors.
+            We reached out because we needed help determining which tools would
+            be best for modeling and narrowing focus in flux balance analysis to
+            industry standard tools.
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("What did they say?") }}
+          <p>
+            Dafni provided recommendations on how to make the in-silico metabolic
+            model simulations more accurate (when modeling the methylotrophic
+            E. coli).
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("Reflection or next steps") }}
+          <p>
+            Worked with Danfi iteratively over the course of the project to
+            update the approach to modelling. We continuously updated a list of
+            questions for her and changed the analysis approach using her
+            guidance. For example, our team chose flux balance software based on
+            her suggestion, and made adjustments to media concentrations based on
+            her later feedback. 
+          </p>
+        </div>
+      </div>
+      {{ img(cdn("human-practices/wetlab-experts/giannari.jpg"), alt="Dafni Giannari") }}
+    </div>
+    <div>
+      {{ subsubheading("Ethan Agena") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Ethan was one of our team’s academic advisor’s. We needed to use the
+          university's lab space in BioZone, and Ethan is a graduate student
+          within the lab who has experience with cloning and common synthetic
+          biology techniques. He also has previous iGEM experience as an
+          undergrad. Due to his experience and personal connection to iGEM we
+          felt as though he would be a great asset to our team as a
+          stakeholder for our project. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Ethan worked with our wet lab team and allocated time and space for
+          our experiments in his lab. He also helped our team establish a
+          protocol for HPLC and aided us in preparing samples for it.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          We incorporated his feedback towards our protocols. He oriented us
+          with lab facilities, hence allowing us to do work on the project. 
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Mohamed Nasr") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Mohamed was one of our team’s academic advisor’s from the Department
+          of Chemical Engineering at the University of Toronto, and provided
+          advice for the experimental designs for CRISPR-Cas9 knockout of tpiA.
+          He offered insights in designing primers, assembling sgRNA and
+          co-transformation. Mohamed has a lot of experience in CRISPR genetic
+          engineering in different E.Coli strains and yeast. Our team is fresh
+          to CRISPR-Cas9 designs so we consulted him for expert opinions on
+          CRISPR knockouts. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          He provided valid information regarding designing primers for inverse
+          PCR to assemble sgRNA. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          We successfully assembled sgRNA by conducting inverse PCR using the
+          primers designs Mohamed suggested. We also successfully designed and
+          acquired donor DNA for knockout of tpiA
+        </p>
+      </div>
+    </div>
+    <div class="side-by-side">
+      <div>
+        {{ subsubheading("Gary Hoang") }}
+        <div>
+          {{ subsubsubheading("Who is the stakeholder?") }}
+          <p>
+            Gary is a lab technician at the University of Toronto and was our
+            team’s wet lab advisor for safety training, lab methods, and helping
+            our team develop our protocol. We needed to use the lab space within
+            the Institute of Biomedical Engineering, and Gary was there with us
+            during experimentation to help us solve any problems. He has
+            extensive experience with synthetic biology techniques and
+            troubleshooted our protocols with us. He also provided us with
+            reagents and consumables.
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("What did they say?") }}
+          <p>
+            He gave us invaluable advice by helping us troubleshoot all protocols
+            that failed and improving our protocols where necessary. 
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("Reflection or next steps") }}
+          <p>
+            His feedback was instrumental towards the success of our cloning
+            experiments. He provided us with the space to even begin the project
+            at all.
+          </p>
+        </div>
+      </div>
+      {{ img(cdn("human-practices/wetlab-experts/hoang.jpg"), alt="Gary Hoang") }}
+    </div>
+    <div class="side-by-side">
+      <div>
+        {{ subsubheading("Dr. Olanrewaju Raji") }}
+        <div>
+          {{ subsubsubheading("Who is the stakeholder?") }}
+          <p>
+            Dr. Raji is a post-doctoral research fellow at the University of
+            Toronto. We reached out to him for help and access to HPLC equipment.
+            He advised the team on the best way to perform HPLC experiments and
+            how to prepare samples. 
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("What did they say?") }}
+          <p>
+            Information conveyed to us includes the following: describing how the
+            BioZone HPLC equipment functions, describing how to prepare samples
+            containing MeOH, and describing how to schedule HPLC tasks.
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("Reflection or next steps") }}
+          <p>
+            Collaboration with Dr. Raijji  allowed our team to quantify the MeOH
+            consumption of the T-B18 bacteria in BioZone. His advice informed our
+            decisions about how to properly prepare HPLC samples.
+          </p>
+        </div>
+      </div>
+      {{ img(cdn("human-practices/wetlab-experts/raji.jpg"), alt="Dr. Olanrewaju Raji") }}
+    </div>
+    <div class="side-by-side">
+      <div>
+        {{ subsubheading("Jenny Baker") }}
+        <div>
+          {{ subsubsubheading("Who is the stakeholder?") }}
+          <p>
+            Jenny was a past member from the University of Wageningen iGEM team
+            that worked with methane assimilation strains, and she is experienced
+            in experiments relevant to what we wanted to conduct in our project.
+            Jenny gave advice and recommendations on selecting C1-assimilating
+            pathways & strains. 
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("What did they say?") }}
+          <p>
+            She gave details on improving on our experimental approaches.
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("Reflection or next steps") }}
+          <p>
+            We have gained insight on how to potentially apply toxic compounds
+            (methanol) into our experiment and ALE.
+          </p>
+        </div>
+      </div>
+      {{ img(cdn("human-practices/wetlab-experts/baker.jpg"), alt="Jenny Baker") }}
+    </div>
+    <div class="side-by-side">
+      <div>
+        {{ subsubheading("Michelle Feigis") }}
+        <div>
+          {{ subsubsubheading("Who is the stakeholder?") }}
+          <p>
+            Michelle is a graduate student at the University of Toronto and was
+            one of our academic advisors. No one on the team had previous
+            experience with adaptive evolution. Michelle has the most experience
+            in ALE in the chemical engineering department, thus we reached out to
+            seek her expertise. We were planning to do ALE through serial passaging,
+            but there are not clear protocols in publications (due to its
+            "simplicity"). However, we wanted to make sure the protocol we made
+            from extracting information from publications makes sense, hence we
+            reached out to Michelle for her input.  
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("What did they say?") }}
+          <p>
+            Michelle clarified and explained many things that's part of a standard
+            ALE protocol, and pointed out potential issues in ours:
+            <ul>
+              <li>
+                Catabolite repression is likely (glucose consumed first, then will
+                switch to methanol). Usually having two fluxes change at the same
+                time is usually what you would to in ALE.
+              </li>
+              <li>
+                Passaging: occasionally make a glycerol stock so we don't lose progress.
+              </li>
+              <li>
+                Sterility: we had no choice but to use fume hoods due to methanol. Fume
+                hoods are very dirty (adding antibiotics should prevent contamination,
+                but we should also be very careful during this procedure).
+              </li>
+              <li>
+                M9 media: add MOPS buffer into the media (in case of acid byproducts).
+              </li>
+              <li>
+                OD600: make sure we have enough volume, also need to confirm OD range
+                (e.g., there might be a need for dilutions).
+              </li>
+              <li>
+                Passage transfer volume: use 10%
+              </li>
+            </ul>
+          </p>
+        </div>
+        <div>
+          {{ subsubsubheading("Reflection or next steps") }}
+          <p>
+            We took her advice and adjusted our protocol. Meeting with her was very
+            helpful in clarifying things we were confused about, especially about the
+            general guidelines for certain ALE methods. She also gave us confidence in
+            believing our experiments will work.
+          </p>
+        </div>
+      </div>
+      {{ img(cdn("human-practices/wetlab-experts/feigis.jpg"), alt="Michelle Feigis") }}
+    </div>
+    <div>
+      {{ subsubheading("Dr. Mona Abo-Hashesh") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Dr. Mona helped us with suggesting changes to our gel extraction protocol
+          to increase concentration and offering advice on our restriction
+          digestion and ligation timeline. We were experiencing some trouble
+          with low DNA concentrations after running a gel purification, and
+          reached out to her for some help. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          She suggested that we try several things:
+          <ul>
+            <li>
+              Increasing initial DNA concentration
+            </li>
+            <li>
+              Combining multiple gel excisions into one column
+            </li>
+            <li>
+              Incubate for 15 mins at 37 C for the elution step
+            </li>
+          </ul>
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          We changed our gel extraction protocol to apply the suggested
+          modifications.
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("iGEM Muenster Team") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          As a fellow iGEM team, we contacted iGEM Muenster since our
+          team's software design is based upon the same FSEOF algorithm
+          as the Muenster's team but follows the original research paper
+          more closely.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          They confirmed having had the same difficulties implementing FVSEOF,
+          clarified some of the misunderstandings regarding the enforcing of
+          flux bounds in FSEOF implementation, and suggested us to focus less
+          on trying out new nonlinear solvers.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          We decided to focus more on re-implementing FSEOF, keep our choice of
+          enforcing flux bounds on both ends and settled on only trying out the
+          MindtPy non-linear solver.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div>
+    {{ subheading("Hardware") }}
+    <div>
+      {{ subsubheading("Professor Jay Werber") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Prof. Werber is an assistant professor at the University of Toronto Chemical.
+          Engineering department. His interests are in membrane separation and he runs the 
+          Advanced Membranes lab there. The hardware team needed to identify potential 
+          solutions to separating methane from landfill gas, and to identify means of 
+          modelling membranes to size them and so they reached out to him for guidance. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Prof. Werber provided us with reference material to begin designing a
+          membrane separation, and introduced us to concepts such as stage cut and
+          the solution-diffusion model. He also directed us to finite element
+          models which we implemented. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          At the beginning of the project we were debating on using an adsorption
+          column vs membranes for separation. Prof. Werber's input allowed us to
+          converge on membranes as a separation solution. His advice gave us the
+          technical background required to begin looking into research materials
+          for membranes, and presented an approach to membrane modelling despite
+          Aspen lacking a membrane model.
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Niloofar Shirali Zadeh") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Niloofar is a PhD student at the University of Toronto who works under
+          Prof. Jay Werber at the Advanced Membranes Lab. She investigates bipolar
+          membranes but is very knowledeable on gas separation and runs the gas
+          separation setup at that lab.
+          Hardware needed to demonstrate a proof-of-concept for membrane
+          separations on gas mixtures and the gas separation setup in the
+          Advanced Membranes Lab is managed by Niloofar.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Niloofar provided us with a hardware design, including a list of
+          materials required and supplier information, and usage protocols for
+          a single-gas membrane flow setup.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          Our team wanted to prototype mixed-gas separations, which is an
+          improvement over what Niloofar manages in the Advanced Membranes lab.
+          We took upon Niloofar's design and modified it for that purpose.
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Yuxin (Sindy) Zhang") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Sindy is a masters student at the University of Toronto who works under
+          Prof. Jay Werber at the Advanced Membranes Lab. She investigates polysulfone
+          membranes and their behaviour at high stress and near failure conditions,
+          and is an expert at polysulfone membrane synthesis. The Hardware team needed to 
+          inquire on membrane synthesis techniques and needed a polysulfone membrane 
+          to carry out the prototyping.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Sindy provided us with membrane synthesis techniques and a polysulfone
+          membrane sample which was intended for the prototyping.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          We gained an insight into membrane separation techniques and allowed us
+          to acquire membranes for the gas separation setup without requiring
+          external sponsors.
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Professor Daniela Galatro") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Professor Daniela Galatro is an assistant professor at the University
+          of Toronto who mainly engages in process simulation and heat transfer
+          pedagogy. She has over two decades of industry working with process
+          simulation software, and her research interests are on physical modelling
+          and machine learning. The Hardware team needed to inquire on the quality 
+          of the Aspen Plus simulations performed.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Prof. Galatro provided us with feedback on Aspen model use, including
+          thermodynamics model selection, recycle stream validity, phase
+          separation techniques, and membrane modelling automation with Python.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          We obtained tangible next steps for Aspen Plus modelling should the
+          project continue for longer. We gained insight into how recycle streams
+          are not very ideal in processes and should be kept small, and how
+          distillation columns could be used for high performance phase separation.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div>
+    {{ subheading("Human Practices") }}
+    <div>
+      {{ subsubheading("Ravneet Gill") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Ravneet Gill works at Waste to Resource Ontario, and is in charge of the
+          stakeholders and collaborations division at the organisation. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Due to her in-depth experience in the field of waste management in Ontario,
+          we asked her questions regarding the implementation of our project and
+          how we can collaborate with landfills and governments. She explained to us
+          that landfill site management is actually a very complicated process, and
+          that each municipality is in charge of its own landfill site with little
+          to no oversight from the federal government. Landfill sites often hire
+          companies to manage their landfills for them, and recommended for us to
+          research these management companies. To her knowledge, there is no other
+          company or current initiatives within Ontario that is using synthetic
+          biology to convert landfill gas to reduce landfill gas emissions. She
+          thinks that our project is unique and that it is a good idea. Furthermore,
+          she recognized that there is currently a lot of talk regarding landfill
+          gas right now within the industry, and that our project is very much so
+          on-trend. Lastly, she emphasised the fact that the landfill industry is
+          very much so dependent on cents and dollars, and that if we wanted to
+          market our product and have it succeed compared to other competitors we
+          need to ensure that our project is budget friendly and realistic. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          <ul>
+            <li>
+              <b>How did we use the feedback to change/improve our project?</b>
+              Our conversation with Ravneet changed the way we approached our human
+              practices outreach because without fully understanding how landfill
+              sites are being regulated, we were interested in reaching out to the
+              federal government to gain more insight regarding landfill site
+              regulations. However, after speaking with her and understanding that
+              each landfill site is regulated municipally, we focused on reaching
+              out to city members as well as landfill site management companies that
+              have a more direct role in our project. 
+            </li>
+            <li>
+              <b>How did this feedback change how we think?</b>
+              This feedback changed our fundamental impression of landfill sites. It
+              is much more nuanced that anyone on the team was originally expecting.
+            </li>
+          </ul>
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Randi Ramdeen") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          A critical component for the success of our project is to consider the
+          political support for our project. Projects addressing politically
+          visible issues can often receive more resources and receive a stronger
+          push for implementation, while discomfort with synthetic biology or a
+          lack of interest can hinder usage of our project in landfills. We
+          spoke with Randi Ramdeen, a member of the Green Party of Canada who
+          had a common goal in preventing climate change. Furthermore, speaking
+          to a stakeholder involved in Canada's political scene has strong
+          knowledge regarding current climate initiatives and priorities in the
+          country. We were referred to her from the Hamilton Stoney Creek area.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Randi helped us learn more about how to talk about climate change and
+          raise awareness in different communities, as well as provided us an
+          inside look at how the Green Party is structured. Randi explained that
+          currently landfill gas, to her knowledge, is not currently on the radar
+          for many politicians and climate initiatives in Ontario. This
+          demonstrated to our team that landfill gas and its effects on climate
+          change is currently neglected within Ontarios current policy makers
+          and drivers. Therefore, it is crucial for our project to also educate
+          the public when it comes to the significance of landfill gas on global
+          warming.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          These insights from someone who worked on the front lines of talking to
+          vulnerable populations, youths and numerous organization have provided
+          novel approaches on how we can identify and persuade new stakeholders
+          in supporting our cause. Furthermore, we are planning to further our
+          relationship with the Green Party to learn more about the legislation,
+          political climate, and potential collaborations. Randi has offered to
+          connect us with Mike Morris, a Member of Parliament from the party,
+          as well as other contacts. We hope that this will become an ongoing
+          relationship that will help our team learn about the rules and
+          regulations and gather the support to implement our project.
+        </p>
+      </div>
+      {{ img( src=cdn("human-practices/hp-meeting-randi-ramdeen.jpg"),
+              alt="Meeting with Randi Ramdeen") }}
+    </div>
+    <div>
+      {{ subsubheading("Nancy Hurst") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          The implementation of our project cannot be separated from the
+          people making the purchasing decisions. As such, we wanted to gauge
+          the interest and funding for projects like ours, as well as the
+          process of pitching our solution. As such, we spoke with Nancy Hurst
+          who is an environmental advisor
+          from Ward 12 of the City of Hamilton, who was heavily involved in
+          environmental activism against Doug Ford's proposed urban expansion
+          before joining city council. We were interested in her perspective,
+          as she has seen both sides of pushing topics into public
+          consciousness and putting political pressure onto city councillors.
+          We were referred to her from the Green Party representative in the
+          Hamilton Ancaster/Dundas region.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Nancy provided valuable insights into the current priorities and
+          funding of the Hamilton municipality, including the Greenbelt
+          expansion, coal use in steel industry and landfill gases. Specifically,
+          she indicated that the municipality is aware of the landfill gas
+          issue, and some of the landfills are already using methane capturing
+          solutions. As such, she gave two critical ideas: our solution has
+          competitors that are currently implemented, and landfill sites are
+          open to using methane capture technology. This gives us a target to
+          ensure that our solution has an advantage over current solutions.
+          For example, this made it clear that we must produce a useful product
+          downstream rather than simple methane capture that is currently used.
+          Moreover, this conversation gave us reassurance that there is interest
+          in our solutions for landfill gases, not only from the municipality
+          and landfill sites, but also from the public. As she mentioned, the
+          public support for the green initiative is higher than ever, especially
+          among the younger population. Just recently, there was a parade on
+          Yonge street for environmental activism.
+        </p>
+        <p>
+          Understanding the public's opinion and pitching solutions that match
+          their interest is necessary for gaining the support for enacting change
+          and direct funding to implement our project. To do this, Nancy told us
+          about her experiences of organizing a petition, including how she
+          gathered support over Facebook, how to target certain demographics,
+          the approximate timeline to gain supporters, and how to leverage windows
+          of opportunities.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          In our conversations, we were given insight into how to improve both our
+          project, as well as the messaging behind our project. One of the chief
+          complaints of the public regarding landfill sites is the smell, which
+          could be translated into changes in our filtering hardware to also
+          redirect noxious-smelling gases like sulfides and ammonia. This is
+          important information, as she told us a part of ensuring a successful
+          campaign is to have catchy slogans that captures public interest.
+          In fact, she brainstormed some with us, including “Our dumps are farting,
+          put a plug on it,” to evoke the imagery of foul smelling gases and the
+          potential of our solution to stop it. She also told us how to target
+          the different demographic, such as using affordable advertising spaces
+          on Instagram and other social media to get interest from the younger
+          demographic. We also learned about her experience of viewing her
+          initiative of stopping urban boundary expansion from multiple perspectives
+          to cater towards different interests, such as from the perspective of tax
+          increases for people who may be less interested in climate change but are
+          concerned with their finances.
+        </p>
+        <p>
+          Furthermore, we learned about groups in Hamilton, like McMaster City Lab,
+          with whom we can collaborate, because they have more experience introducing
+          solutions to the community and implementing pilot trials that can become
+          permanent solutions.
+        </p>
+        <p>
+          Nancy also reshaped our thinking of public perception of synthetic biology.
+          Our collaborators will likely be environmental groups who are in support
+          of reducing climate change and decreasing greenhouse gas emissions. However,
+          given the backlash and fear of the public and certain environmental groups
+          around GMOs, we were worried that the perception of synthetic biology would
+          hinder our messaging to our biggest supporters. However, Nancy stated that
+          people are unlikely to tie the concept of genetically modified crops or
+          food to genetically modified bacteria aimed to reduce emissions. As such,
+          we do not have to fear pushbacks from environmental groups about genetically
+          modifying the bacteria. She also changed our thinking on how complete our
+          project has to be and who to communicate with. For example, because the
+          municipalities regulate the landfills, we should be pitching our solutions
+          to the city councils rather than the landfills themselves. In order to do so,
+          our project needs to reach a level where it is a complete product, ready to
+          be purchased and implemented. In addition to the private pitch, we learned
+          that we could push for public support to enact a bylaw requiring landfills
+          to use some form of methane capture. Overall, speaking with Nancy gave us
+          direction in how to improve the hardware of our project as well as the
+          messaging and promotion of our project.
+        </p>
+      </div>
+    </div>
+    {{ img( src=cdn("human-practices/hp-meeting-nancy-hurst.jpg"),
+            alt="Meeting with Nancy Hurst") }}
+  </div>
+  <div>
+    {{ subheading("Entrepreneurship") }}
+    <div>
+      {{ subsubheading("Rebecca Tam") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Rebecca was one of our external industry stakeholders who we reached
+          out to in order to find opportunities to talk about our project to
+          other founders, students, and researchers. Rebecca hosts a platform
+          to talk and discuss startup projects with researchers and other
+          startup founders. She served as connector between Methanivore and
+          other department staff.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Rebecca helped our team choose and practice a specific pitching style,
+          encompassing key points and differentiators that make our project
+          idea standout. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          We polished our business plan to incorporate sections important. We
+          also implemented her advice on how to pitch, and talk about our project
+          for future presentations. 
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Brittany Goldhawke") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Brittany is from Toronto’s Creative Destruction Lab (CDL), a
+          seed-stage program for start-up companies created by the Rotman
+          School of Management at the University of Toronto. We reached out
+          to her to seek mentorship, and to apply to the CDL incubator.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          Brittany handled Methanivore’s CDL application, and invited our team
+          to the interview stage of the admission process. She explained that
+          our idea is still too young to enter the CDL incubator, but that our
+          mission has strong potential down the line. They offered avenues for
+          CDL to help us mature our idea further, and invited us to an
+          exclusive agreement to receive mentorship.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          We will continue our exclusive mentorship with CDL to help our project
+          grow after the iGEM competition.
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Shannon Lee") }}
+      <div>
+        {{ subsubsubheading("Who is the stakeholder?") }}
+        <p>
+          Shannon Lee is the Program Lead at the Faculty of Applied Science
+          and Engineering’s incubator program. We connected with her to acquire
+          advice and admission to the startup incubation program and to receive
+          insight of our company’s current state. 
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What did they say?") }}
+        <p>
+          She provided recommendations of alternative incubation programs to
+          pursue appropriate for the current maturity of the company, while
+          providing recommendations of alternative programs for future
+          development.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("Reflection or next steps") }}
+        <p>
+          After receiving the feedback, we were able to further develop our
+          growth potential and exit strategy within our Entrepreneurship
+          business plan.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

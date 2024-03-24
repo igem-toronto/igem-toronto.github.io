@@ -1,0 +1,228 @@
+{% extends "layout/subpage.html" %}
+
+{% block content %}
+<div>
+    <b><i><h1>Methane-selective Gas Separation Modelling and Upscaling</h1></i></b><br>
+    <div>
+        {{ subheading("Summary") }} <br>
+        <p>
+            The hardware team proposes the use of a hollow fibre membrane to purify the methane from landfill gas.
+            Using
+            MATLAB to model a system of differential equations {{cite('TESSENDORF1996S653')}}, the team was able to achieve a
+                retentate molar stream composition of 95.37% methane and 4.63%, with a permeate molar stream
+                composition of 5%
+                methane and 95% carbon dioxide, all from a single pass. This is the first step in the methane
+                conversion
+                process, as the retentate stream is later provided to the oxidation process, allowing the team to
+                convert
+                methane to methanol.
+        </p>
+    </div>
+    <div>
+        {{ subheading("Background") }} <br>
+        <p>
+            After landfill gas is collected, it must be separated into its constituents as effectively as possible.
+            The
+            hardware team chose to employ membrane separation technology due its low capital and operational cost
+            compared
+            to traditional gas phase separation techniques. It is critical to have a source of methane that is as
+            pure as
+            possible to ensure that the oxidation to methanol process is highly efficient.
+            <br><br>
+            A membrane separation makes use of the difference of physical size between various molecules. By
+            selecting a
+            membrane with a large enough pore size for one molecule to pass through but not the others, a gas phase
+            stream
+            can be separated into its components. After passing through the membrane, the inlet stream is split into
+            two
+            product streams: the permeate and retentate streams. The permeate stream is the stream that passes, or
+            permeates, through microscopic gaps in the membrane. In contrast, the retentate stream is the stream
+            that cannot
+            physically pass through the membrane.
+            <br><br>
+            Depending on the composition of the inlet stream, a membrane can serve as a very effective and efficient
+            separation process, in comparison to a process such as absorption. Membranes require little energy and
+            capital
+            to operate and are therefore very appealing to implement in a process when possible. For our application
+            (separating methane and carbon dioxide), a membrane is appropriate and commonly used in the industry.
+            After
+            first investigating the possibility of an absorption column, the team finally decided on choosing a
+            membrane for
+            the gas-phase separation stage of the project.
+
+        </p>
+    </div>
+    <div>
+        {{ subheading("Methods") }} <br>
+        <p>
+            To approach this problem, the team began by using a cellulose acetate membrane with concurrent flow.
+            Using a
+            system of nonlinear differential equations {{cite('TESSENDORF1996S653')}}, this separation process can be modelled
+                using
+                any form of ordinary differential equation solving algorithm. The team experienced difficulties in
+                achieving
+                the desired outlet compositions, and after speaking with Professor Jay Werber at the University of
+                Toronto,
+                who conducts a large amount of membrane separation with his research group, the team was advised to
+                experiment
+                with an asymmetric hollow fibre membrane instead. <b>Inlet compositions and flow rates were based on
+                    London,
+                    Ontario's W12A landfill's landfill gas emissions. Different landfills will have different
+                    landfill gas
+                    compositions and require potentially different reactor compositions.</b>
+                <br><br>
+                Ultimately, the team chose to use MATLAB to model an asymmetric hollow fibre membrane for the
+                separation
+                process. The team based the model off a system of four ordinary differential equations
+                {{cite('springerPermeationSeparation')}}. Using the “bvp5c” function in MATLAB, which employs a collocation
+                    method to
+                    solve a system of boundary value problems (BVPs), the team successfully completed the membrane
+                    separation
+                    modelling process. The membrane modelled had an internal diameter of 389 micrometres, an
+                    external diameter
+                    of 735 micrometres, a length of 15 cm, and 100 fibres. Additionally, a permeate pressure of 1
+                    atmosphere and
+                    a feed side pressure of 7 atmospheres were also set. This was based on the parameters outlined
+                    in the
+                    research paper {{cite('springerPermeationSeparation')}}. Finally, the team only considered a single pass
+                        separation in
+                        the MATLAB model, but decided to recycle the retentate stream after mixing it with fresh
+                        landfill gas to
+                        improve the separation prior to the oxidation process.
+                        <br><br>
+                        Several assumptions were made when setting up this model. First, the landfill gas was
+                        treated as a binary
+                        gas mixture, consisting of only carbon dioxide and methane. In reality, nitrogen has a
+                        noticeable presence
+                        in the gas mixture, with other gases such as oxygen and water vapour being present in trace
+                        amounts.
+                        Ultimately, the permeability of nitrogen was assumed to be the same as methane in the
+                        membrane. This
+                        assumption is not true in reality {{cite('KHAN201187')}}, but it is an appropriate approximation for
+                            the level of
+                            accuracy required at this stage in the project. Another key assumption was that the
+                            operating
+                            temperature was assumed to be 25°C. With relatively minimal temperature changes, the
+                            performance of the
+                            membrane is not expected to change significantly, but this is an important assumption to
+                            make
+                            nonetheless. Finally, the team assumed that no pressure loss occurred during the
+                            separation. Once again
+                            this is not true, but it is a close and justifiable approximation that simplifies the
+                            calculations.
+                            <br><br>
+                            The overarching goal was to size the membrane such that the retentate stream had an
+                            outlet composition
+                            of over 90% methane, to ensure a greater conversion to methanol during the oxidation
+                            process. In the
+                            case that this was unachievable with a single pass through the membrane (i.e. multiple
+                            membranes or a
+                            recycle stream was necessary), the team also devised an alternative plan to run membrane
+                            separation
+                            simulations in Aspen Plus. Despite this preparation, the team was able to achieve the
+                            targeted outlet
+                            composition with only a single pass through an appropriately-sized membrane, and
+                            therefore did not have
+                            to rely on Aspen Plus to run these tests.
+
+        </p>
+    </div>
+    <div>
+        {{ subheading("Results") }} <br>
+        <p>
+            Running the MATLAB code and completing all computations resulted in a permeate stream composition of 95%
+            carbon
+            dioxide and 5% methane and a retentate stream composition of 4.63% carbon dioxide and 95.37% methane
+            with a
+            single pass. As previously mentioned, the goal was to have a retentate stream with over 90% methane,
+            which the
+            team successfully achieved with a single pass through one membrane separation unit. The inlet pressure
+            required
+            to achieve the target was 7 atm and the permeate pressure was 1 atm. This output stream was subsequently
+            inputted to the oxidation process.
+
+        </p>
+        {{img(cdn("pictures/hardwares/9.png"), width="30%", alt="Mole Fraction of CO2 through one membrane separation unit")}}
+        <p>
+            As seen in the graph above, the mole fraction of carbon dioxide in the feed/retentate stream starts at
+            50% at
+            the membrane inlet, then achieves roughly a 5% mole fraction at the outlet. This graph allows us to
+            visualise
+            the permeation process as a fraction of the membrane that has been covered by the stream during the
+            single pass.
+        </p>
+        {{img(cdn("pictures/hardwares/2-short.png"), alt="Dimensions of the membrane module designed by iGEM Toronto", width="70%")}}
+        <p>
+            By modelling we were able to assign dimensions to our membrane module. Our membrane module will be 30cm
+            in
+            diameter and 1m long, with 110 membrane fibres incorporated. Each membrane fibre is a straw-shaped
+            cellulose
+            acetate membrane unit that runs the length of the membrane (i.e. 1m), and has an external and internal
+            diameter
+            of 650 and 389 micrometres respectively.
+        </p>
+    </div>
+    <div>
+        {{ subheading("Discussion") }} <br>
+        <p>
+            Achieving a retentate, or outlet, stream composition of over 95% methane certainly exceeded the team's
+            goal and
+            expectation of 90% methane. By implementing multiple membranes or recycle streams during this process,
+            it is
+            certainly possible to further improve the methane purity of the retentate stream, but the team concluded
+            that
+            this would be unnecessary as the increase in methanol conversion would be more or less the same.
+            <br><br>
+            Considering the single pass separation is very high, the fact that the current model does not have a
+            recycle
+            stream is not much of a limitation. As outlined in the oxidation section, the poor methanol yield is not
+            the
+            result of impurities present in the oxidation feed, but rather the process itself. Therefore, the
+            inclusion of
+            multiple membrane separations or recycle streams will most likely lead to unnecessary capital and
+            operational
+            costs, as a completely pure methane stream is not required for our proposed process.
+
+        </p>
+    </div>
+    <div>
+        {{ subheading("Next Steps & Improvement") }} <br>
+        <p>Moving forward, there are a number of improvements that can be made to this aspect of the model. First,
+            the
+            team would like to account for the influence of nitrogen in the separation process, and ideally all
+            gases,
+            including those present in trace amounts. The modelling aspect of a mixture with numerous components
+            would
+            require more sophisticated equations and computations, but this would give a more holistic overview of
+            the gas
+            phase separation required. Testing on a physical prototype may give more insight to how the complete gas
+            mixture
+            behaves, but due to safety reasons and logistical constraints the team could not test a membrane using
+            collected
+            landfill gas.
+            <br><br>
+            Another potential area for improvement would require the implementation of membrane modelling into Aspen
+            Plus.
+            Currently, AspenTech does not support membrane separation processes in Aspen Plus and the team had to
+            use a
+            custom separation unit operation instead. Having this feature available would likely improve the
+            accuracy of our
+            calculations, as the ideal separation process would recalculate the split fraction in every recycle
+            iteration,
+            and our current model cannot do this, so the team instead assumed a constant split fraction each time
+            the
+            recycle stream passed through the membrane.
+            <br><br>
+            Furthermore, the team would like to eventually use a non-ideal gas assumption model. This would
+            ultimately
+            determine the pressure loss in the retentate stream and would provide results that are closer to what
+            would be
+            observed in a practical application of the membrane separation. Doing so would require much more
+            sophisticated
+            differential equations but would result in a greater level of confidence on the actual performance of
+            our
+            separation unit prior to field use in an actual landfill.
+        </p>
+    </div>
+</div>
+{% endblock %}

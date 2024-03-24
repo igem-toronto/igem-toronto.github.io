@@ -1,0 +1,720 @@
+{% extends "layout/layout.html" %}
+  
+{% block banner %}
+
+<div class="mt-8">
+    {{ banner("", "Flux Balance Analysis for Metabolic Engineering of Methylotrophic E. coli") }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div>
+    {{ subheading("1. Purpose") }}
+    <div>
+      <p>
+        <i>Escherichia coli</i> can be genetically modified to uptake methane from landfill sites, 
+        mitigating the pollutive impact of methane production. The Dry Lab division aims to provide 
+        genetic addition, knock-out, and over-expression targets for improved methane uptake. 
+        We made use of well-established modelling and simulation tools such as Flux Balance Analysis 
+        as well novel implementations of scanning algorithms to produce results. 
+        The key targets reported are frdABCD (knockout), MEOHDH, MEOHtrpp, MEOHtex(overexpression), FDH (addition). 
+        These results were validated through literature. Experimental validation will follow. 
+        The two main new software implementations by the team are a modified implementation 
+        of the existing Flux Scanning Based on Enforced Objective Flux (FSEOF) algorithm and Knock-Out Candidate Scanning algorithm.
+      </p>
+    </div>
+</div>
+<div>
+    {{ subheading("2. Background: Metabolic Modelling and Analysis")}}
+    <p>
+        Flux-balance analysis (FBA) is a method that seeks to mathematically model and simulate the metabolism of organisms. 
+        A comprehensive tutorial can be found in {{cite('orth2010fba')}}. 
+        For completeness, we briefly recount FBA in the following.  
+    </p>
+    <div>
+        <p>At its core, FBA solves a linear programming (LP) problem with stoichiometric constraints 
+            and an objective corresponding to cellular growth. The first step in FBA is to construct a 
+            genome-scale metabolic model (GSMM) for the organism. A GSMM comprises (1) a set of \(M\) metabolites 
+            in the organism, (2) a list of \(N\) reactions between the metabolites, and (3) a set of gene-protein 
+            rules that relate the organism's genes to the reactions. The gene-protein rules are often encoded as 
+            Boolean expressions that specify how the functionality of a reaction depends on a set of related genes. 
+            Next, FBA makes an important steady-state assumption: that the concentration of all metabolites is constant 
+            over time. This stoichiometrically couples the fluxes of the GSMM, which is a key to the efficiency of FBA. 
+            Formally, let \(v_i\) be the flux through the \(i\)-th reaction, commonly given in units of \( \text{mmol / (gDw.h)} \). 
+            Given a metabolite \(x\) with concentration \([x]\), for suitable stoichiometric coefficients \(s_i\):
+        </p>
+    </div>
+
+<div>
+  <span>$$\sum_{i = 1}^n s_i v_i = \frac{d [x]}{dt} = 0,$$</span>
+</div>
+
+<p>Where the last equality follows from the steady-state assumption. Written differently, 
+    \(\mathbf{Sv} = \mathbf{0}\), where \(\mathbf{v} \in \mathbb{R}^N\) is the vector of reaction 
+    fluxes and \(\mathbf{S}\) is an \(M \times N\) stoichiometric matrix derived from the metabolic 
+    reaction network of the GSMM. We may also want to bound the fluxes within some interval, 
+    \(\mathbf{a} \leq \mathbf{v} \leq \mathbf{b}\), with the inequalities applied element-wise.
+</p>
+    
+<div>
+    <p>Finally, we provide FBA with an objective function \(f(\mathbf{v})\) that is linear in the elements of \(\mathbf{v}\). 
+        FBA then solves for the flux distributions that optimize the objective:
+    </p>
+</div>
+<div>
+    <span>\( \max_{\mathbf{v} \in \mathbb{R}^n} f(\mathbf{v}), \quad \text{subject to: } \mathbf{Sv} = \mathbf{0} \text{ and } \mathbf{a} \leq \mathbf{v} \leq \mathbf{b} \)
+
+    </span>
+</div>
+<div>
+    <p>This is an LP problem, which is well-studied and can be solved efficiently. 
+        Commonly, \(f\) is a "biomass" function that is tuned such that its optimal value under FBA 
+        matches the growth rate of the organism.</p>
+</div>
+</div>
+<div>
+    {{ subheading("3. Methodology") }}
+    <div>
+    <!-- refer to FSEOF section -->
+        <p>
+            With the aforementioned tools, we modeled metabolic pathways of <em>{E. coli}</em> 
+            and its media culture <em>{in silico}</em> using well-established algorithms, as well as 
+            novel implementations (see Section \ref{FSEOF modifications}) primarily relying on flux balance and 
+            steady-state assumption. Thus, we predicted optimal genetic modifications to enable improved methane uptake.
+        </p>
+    </div>
+
+    <div>
+      {{ subsubheading("3.1. Motivation") }}
+    </div>
+    <div>
+        <p>
+            The primary motivation for Dy Lab modeling was to guide Wet Lab experiments by providing relevant 
+            knock-out, over-expression, and addition targets. In order to achieve this, we aimed to simulate 
+            the bacteria and its media as accurately as possible, enabling well-informed predictions. 
+            Additionally, all Dry Lab work followed the iterative engineering cycle. Results were continuously brought to
+             and discussed with the experiment design team. Given the mathematical and simplified nature of metabolic modelling, 
+             it was crucial to analyze the validity of all results from a biological perspective, assessing the biological explanation 
+             behind the results. This led to a feedback cycle, generating multiple iterations of all algorithms and results.
+          </p>
+    </div>
+    
+    <div>
+        <p>
+            <!-- TODO link to Knockout Algorithm section -->
+            Additionally, the implementation of many algorithms was primarily optimized for producing helpful and productive results
+            for experimental teams. For example, the knockout algorithm (Section \ref{Knockout algorithms}) prioritizes increased 
+            granularity in results in order to clearly distinguish between the top identified knockout targets.
+            This was motivated by the fact that due to time limitations, the experimental team could only test one knockout prediction, 
+            and higher certainty and distinction between targets was greatly valuable. 
+          </p>
+    </div>
+    
+
+    <div>
+        {{ subsubheading("3.2. Constructing the GSMM of T-B18")}}
+        <p>The bacterial strain used as a base chassis for metabolic engineering is 
+            <strong>T-B18</strong>, a genetically engineered strain of <i>E. coli</i>
+            capable of assimilating methanol via the ribulose monophosphate pathway (RuMP cycle)
+            {{ cite("Har2021Adaptive")}}. This strain was further optimized through genetic
+            modifications in order to improve methanol uptake. <i>In vitro</i> engineering
+             of T-B18 was performed by Wet Lab via CRISPR knockouts, knock-ins, Adaptive 
+             Laboratory Evolution (ALE), and other genetic engineering techniques 
+             (<a href="#TODO">link to Wet Lab page</a>).
+        </p>
+    </div>
+<div>
+    <p>The Python package <strong>COBRApy</strong> (Constraint-Based Reconstruction and Analysis) 
+        was chosen as a freely available and community-supported software package for the analysis
+         of metabolic systems at a large scale. The package supports commonly used analysis methods, 
+         including flux balance analysis (FBA), flux variability analysis (FVA), gene deletion, and
+          model reconstruction, all of which are implemented using object-oriented interfaces. 
+          The centralized repository for high-quality genome-scale metabolic models <strong>BiGG</strong>
+         was used to obtain GSMMs of COBRApy-compatible format.</p>
+</div>
+<div>
+    <p>Given its novelty, there are currently no publicly available GSMMs of T-B18. 
+        Hence, we obtain the GSMM of T-B18 strain via the following steps:</p>
+    <ol>
+        <li>1. Obtain existing GSMM <i>iML1515</i> of strain <i>MG1655</i> from BiGG Models</li>
+        <li>2. Knock out <i>araABD</i>, <i>rhaABD</i>, <i>lacZ</i> to obtain the GSMM of strain <i>BW25113</i> {{cite("genomicwebsite")}} </li>
+        <li>3. Knock out <i>frmA</i> (encoding formaldehyde dehydrogenase), and add in <i>puD9</i>
+         plasmid containing the exogenous, methanol assimilation genes <i>mdh</i>
+          (methanol dehydrogenase), <i>phi</i> (6-phospho-3-hexulose isomerase), <i>hps</i> 
+          (3-hexulose-6-phosphate synthase) to obtain the GSMM of T-B18 strain.</li>
+    </ol>
+</div>
+
+<div>
+    <figure>
+    <div class="side-by-side">
+        {{ img(cdn("models/wildtype.png"),
+    alt="Figure 1a. Metabolic pathway of strain E. coli BW25113",
+    width="90%") }}
+    
+    {{ img(cdn("models/tb18-wildtype-comparison.png"),
+        alt="Figure 1b. Metabolic pathway of strain E. coli T-B18",
+        width="90%") }}
+    </div>
+    <figcaption>
+        Escher-FBA generated visualization of <i>E. coli</i> upstream 
+        metabolic pathway of BW25113 (Fig. 1a) and T-B18 strain (Fig. 1b). 
+        Note the addition of upstream methanol consumption genes which 
+        results in new pathways (upper left corner, highlighted in red).
+    </figcaption>
+    </figure>
+    </div>
+    
+    <div>
+      {{ subsubheading("3.3. Gene-Protein-Reaction associations") }}
+    </div>
+    <div>
+        {{ img(cdn("models/3gsmm-pn.jpg"),
+        alt="",
+          width="90%") }}
+    </div>
+    <div>
+        <p>
+            Our genome-scale metabolic model (GSMM) of the engineered T-B18 strain
+        is modified from the <i>iML1515</i> genome scale reconstruction of the 
+        metabolic network in <i>E. coli</i> K-12 MG1655 {{cite("Monk2017")}}. 
+        In particular, every gene in <i>iML1515</i> is associated with a protein product, 
+        catalyzing domain, and enzymatic transformation. Such reconstructed gene-protein-reaction
+        association is extracted from external databases, in particular the NCBI Protein Data Bank
+        and homology models.
+        </p>
+      </div>
+    <div>
+        <p>
+            Thus, A GPR provides an explicit, formal connection between genotype and phenotype
+             in a genome-scale reconstruction; it links the gene (G) to the protein (P) that 
+             catalyzes a reaction (R) in the network. The Gene-Protein-Reaction rules are 
+             read from BiGG model and embedded in COBRApy reconstructed mdoel using the 
+             Abstract Syntax Tree (AST) as a base class. 
+             In particular, how a set of genes regulate a given reaction is represented using
+              Boolean binary operators  \( \land \) and \( \lor \).
+        </p>
+    </div>
+
+    <div>
+        <p>For example, the encoding of enzyme cytochrome oxidase <i>bio3</i> is regulated by all of the four genes: <tt>cyoA</tt>, <tt>cyoB</tt>, <tt>cyoD</tt>, <tt>cyoC</tt>. This is represented as below:</p>
+\[
+\textrm{Cytochrome oxidase bo3 (ubiquinol-8: 4 protons) (periplasm)} : \textrm{cyoA} \land \textrm{cyoB} \land \textrm{cyoD} \land \textrm{cyoC} 
+\]
+    </div>
+    <div>
+        <p>
+            However, the direction of the association is an important piece of information that is not embedded within the BiGG model; that is, whether a gene induces or inhibits a reaction that catalyze specific enzymes. As in the above example, it is unclear if any, some of all of the four genes listed is responsible for inducing or inhibiting the transcription of cytochrome oxidase. Therefore, it is important that wet-lab insight is consulted regarding analysis of over-expression candidates within a transcriptional genomics context before any laboratory experimentation is conducted based on these results.
+        </p>
+        </div>
+
+    <div>
+        {{ subsubheading("3.4. Media Analysis") }}
+    </div>
+    <div>
+        <p>One of the greatest challenges of conducting meaningful simulations using GSMMs is modeling the growth media of the bacteria. Since the metabolic model is centered in the bacteria's metabolome, the growth media is defined as the set of pseudo reactions that represent the transport of molecules from outside to the inside of the cell. These reactions are called <i>exchange reactions</i>. However, the language in which these GSMMs talk and listen about metabolites and chemicals is "fluxes". That is, resources in the growth media are represented, not in concentrations (e.g., millimoles), but in \(\frac{\text{mMol}}{\text{gDW} \cdot \text{h}}\). This contrasts with how academic papers and the scientific community describe growth media compositions: in concentrations.</p>
+    </div>
+    <div>
+        <p>
+            Thus, exploring the relationship between exchange reactions and the behavior of the rest of the metabolic network is to both: translate between fluxes and concentrations, and optimize of exchange fluxes to maximize growth while potentially minimizing resource consumption. 
+        </p>
+    </div>
+    <div>
+        <p>The most immediately relevant translation task was fitting the fluxes of the relevant exchange reactions to available experimental data. Specifically, we first aimed to make the growth rate predicted by our model match the experimentally measured one. However, due to time and logistic constraints, rather than performing our own experimental trials to determine growth rate, we decided to use existing data. We contacted directly the authors of the paper that had designed the <i>E. coli</i> strain, T-B18, that we later used as the base chassis for further genetic engineering. The authors Maciek Antoniewicz and Jie Ren Gerald Har kindly shared with us the Optical Density at 600nm (<i>OD<sub>600</sub></i>) vs. time data of T-B18 bacteria as they grew under known conditions (M9 minimal media, supplemented with 5mM Threonine and 250 mM Methanol). From this, we calculated the exponential growth rate by plotting the natural logarithm of <i>OD<sub>600</sub></i> against time and obtaining the slope of the steepest "growth phase". We defined a "growth phase" as a set of (<i>OD<sub>600</sub></i>, time) points such that the slope between any two neighboring points varies less than 20% from the slope of the linear regression of all points in the growth phase (see Figure 3). The calculated average growth rate was 0.4358 ± 0.0162 h<sup>-1</sup>.</p>
+    </div>
+
+    <div>
+        <figure>
+        <div class="side-by-side">
+            {{ img(cdn("models/od-vs-time.png"),
+        alt="Figure 1a. Metabolic pathway of strain E. coli BW25113",
+        width="90%") }}
+        
+        {{ img(cdn("models/lnod-vs-time.png"),
+            alt="Figure 1b. Metabolic pathway of strain E. coli T-B18",
+            width="90%") }}
+        </div>
+        <figcaption>
+            <p>Calculation of experimentally measured growth rate:</p>
+            <p>(a) <i>OD<sub>600</sub></i> vs. Time graph</p>
+            <p>(b) \( \ln(OD_{600}) \) vs. Time graph</p>
+            <p>of T-B18 growing on M9 minimal media with 250 mM of methanol and 5mM of threonine. Three repetitions were made (labeled Rep 1, Rep 2, and Rep 3).</p>
+        </figcaption>
+        </figure>
+        </div>
+
+    <div>
+        <p>
+            Now, to adjust the fluxes through relevant exchange reactions so that our model produced a very similar growth rate we used three different methods:
+        </p>
+        <p>
+            <ul>
+                <li>Scanning through enforced growth rates.</li>
+                <li>Scanning through enforced exchange reaction combinations using Phenotypic Phase Plane Analysis.</li>
+                <li>Calculating concentrations using a translation formula.</li>
+            </ul>
+            
+        </p>
+        <p>For scanning through enforced growth rates, we added a constraint to FBA so that the bacteria model was "forced" to have a specified growth rate. Then we repeatedly performed FBA with different enforced growth rates and recorded how the fluxes through every exchange reaction changed accordingly. Furthermore, we constrained the maximum flux through Threonine exchange to be a \(\frac{5}{250}\)th of the maximum flux through methanol exchange, so that the ratio between concentrations was approximately conserved in the ratio between fluxes. Overall, we scanned through 10 different growth rates ranging from 80% to 120% of the experimentally measured one. 
+            However, those results had two main problems: firstly, the ratio between fluxes was not very close to the ratio between concentrations, and - assuming flux at steady state is proportional to initial concentration - this is a misrepresentation of experimental conditions. Secondly, the produced flux through the methanol exchange reaction was in all cases higher than what is generally accepted to be biologically realistic fluxes for these types of cases.
+    </p>
+    <p>
+        Thus, we tried a more systems biology-appropriate approach: Phenotypic Phase Plane (PhPP) analysis. FBA can be used to generate a Pheotype Phase Plane (also known as production envelope), which provides a much more systematic and comprehensive picture of how the flux of two exchange reactions impact biomass. It is built by varying the flux through two reactions through specified ranges and performing FBA for each combination of fluxes, to optimize for biomass production. In our case, we used it to evaluate the impact of threonine and methanol fluxes, which are by far the most significant carbon sources in the media. A graphic representation is shown in Figure 4.
+    </p>
+        </div>
+        <div>
+            <figure>
+            <div class="side-by-side">
+                {{ img(cdn("models/od-vs-time.png"),
+            alt="Figure 1a. Metabolic pathway of strain E. coli BW25113",
+            width="90%") }}
+            
+            {{ img(cdn("models/phpp-of-meoh-and-thr2.png"),
+                alt="Figure 1b. Metabolic pathway of strain E. coli T-B18",
+                width="90%") }}
+            </div>
+            <figcaption>
+                Phenotype Phase Plane of varying threonine and methanol fluxes.</p>
+            </figcaption>
+            </figure>
+            </div>
+    <div>
+        <p>
+            As can be seen, there is more than one combination of exchange fluxes that will make our model produce the same, or nearly the same, growth rate. This is not entirely unexpected, as it is the nature of linear optimization problems that sometimes more than a single combination of parameters will produce the optimal value. Therefore, we then further processed and filtered the PhPP information to narrow the possible threonine and methanol fluxes that our bacteria might really "choose" in experimental conditions.
+        </p>
+        <p>
+            It is important to note that PhPP provides much more information than just relations between growth rates and fluxes. For instance, it also provides insights such as carbon yield: the ratio between output moles of carbon atoms of the product (in this case biomass) and input moles of carbon coming from source compounds (in this case threonine and methanol). A higher carbon yield could hence be though of as a more efficient allocation of resources. This is useful because in an evolutionary setting such as ALE there is selective pressure in favour of more efficient consumption of media resources.  Thus, it is a valid assumption that exchange flux combinations that result in a higher carbon yield will be preferred by T-B18, since it already went through ALE. 
+        </p>
+        <p>
+            Additionally, we calculated the methanol-to-threonine exchange flux ratio for each possible flux combination evaluated in the PhPP. So, the two criteria followed to filter out combinations of threonine and methanol fluxes that resulted in the same observed growth rate were:
+        </p>
+        <ul>
+            <li>How close the methanol exchange flux to threonine exchange flux ratio is to the methanol initial concentration to threonine initial concentration ratio.</li>
+            <li>How high the carbon yield is, with respect to other candidate combinations.</li>
+        </ul>
+        <div>
+            <p>
+                These criteria led to more reasonable fluxes to model growth media (see "Results" section).
+            </p>
+        </div>
+        <div style="text-align: center; font-size: 1.5em;">
+            <p>
+                Lastly, another method of flux estimation was the formula:
+                \(\varphi_{\text{exchange}} = \frac{[\varphi_{\text{exchange}}]_{\text{steady-state}}}{t_{\text{steady-state}} \cdot [Cell] \cdot m_{\text{cell}}}\)
+
+            </p>
+                    <p>Where \(\varphi_{\text{exchange}}\) is the exchange flux in \(\text{mmol/gDW}\cdot\text{h}\), \([\varphi_{\text{exchange}}]_{\text{steady-state}}\) is the metabolite concentration in the growth media at the beginning of the steady state in \(\text{mM}\), \(t_{\text{steady-state}}\) is the time taken for bacteria to reach steady state in \(\text{h}\), \([Cell]\) is the cell concentration in \(\text{cells/L}\), and \(m_{\text{cell}}\) is the mass of each cell in \(\text{gDW/cell}\).</p>
+
+        </div>
+    </div>
+    <div>
+        <p>The parameters were taken from a combination of experimental data and values reported in the scientific literature. The only value that could not be obtained from either of those categories was \([\varphi_{\text{exchange}}]_{\text{steady-state}}\). So, the formula was used for 100 different values of \([\varphi_{\text{exchange}}]_{\text{steady-state}}\), ranging from 0 to 99% of initial methanol consumption. This produced unreasonably high fluxes for the vast majority of values, so the results were not investigated further. The only fluxes that fell within biologically viable ranges were the ones in which it was assumed that 98% or more of the initial methanol had been consumed by the <i>start</i> of the steady state.</p>
+    </div>
+    <div>
+        <figure>
+            {{img(cdn("models/exchange-flux-of-methanol-as-a-function-of-percentage-of-consumed-methanol.png"),
+            width="90%",
+            alt="Figure 4: Calculated exchange flux of methanol as a function of percentage of consumed methanol")}}
+        </figure>
+    </div>
+    <div>
+        <p>
+            Hence, the most reasonable results are the ones from the PhPP approach, so that methodology was chosen to determine the exchange fluxes that best modelled the growth media. This was used to make the genetic modification algorithms run on the closest model to experimental conditions.
+        </p>
+    </div>
+
+    <div>
+        {{subsubheading("3.5. Flux scanning based on enforced objective flux (FSEOF) and FSEOF-like algorithms")}}
+        {{subsubsubheading("3.5.1. Classical FSEOF")}}
+    </div>
+    <div>
+        <p>Flux Scanning Based on Enforced Objective Flux (FSEOF) is an algorithm developed to predict gene amplification targets, in particular over-expression <cite>[Choi2010In]</cite>. Here, initial metabolic fluxes (\(v^{initial}_j\)) are calculated using FBA. Biomass flux (\(v_{biomass}\)) is maximized while subjected to an enforced secondary constraint as follows:</p>
+    </div>
+    <div style="text-align: center;">
+        \(\begin{align}
+        v^{\text{enforced}}_{\text{product}} &= v^{\text{initial}}_{\text{product}} + \frac{k}{n}(v^{\text{max}}_{\text{product}} - v^{\text{initial}}_{\text{product}})
+        \end{align}\)
+      </div>
+    <div>
+        <p>Where \(K = \{k \,|\, k = 1, 2, \ldots, n-1\}\) and \(n \geq 10\). \(k\) essentially corresponds to the number of steps of the increase, and \(n\) corresponds to the \(n^\text{th}\) fraction of the difference taken between \(v^{\text{max}}_{\text{product}}\) and \(v^{\text{initial}}_{\text{product}}\).</p>
+    </div>
+    <div>
+        <p>This constraint is typically the reaction being maximized or minimized in addition to biomass production. As the reaction is enforced, the fluxes of various metabolites are scanned for. Internal fluxes that increase with increased product formation flux are selected as amplification targets. Though this is a well-established algorithm, the original publication lacks source code for the algorithm. The only two implementations of the algorithm found by our team are the Cameo FSEOF algorithm and an open-source development by a former iGEM team. Initial results were generated using these algorithms and are available in Section <a href="#Gene_Overexpression">Gene Overexpression</a>. Cameo's implementation of FSEOF is refered to as "Cameo FSEOF." The team's implementation of the version of FSEOF detailed in this paper is referenced as "Classical, Team Implementation." The two changes made by the team to the algorithm are referred to as "Special Case (Team Implementation)" and "Q-Slope (Team Implementation)."</p>
+
+    </div>
+    <div>
+        {{subsubsubheading("3.5.2. FSEOF Modification")}}
+        <p>
+            Given the existing implementation of FSEOF, there are rooms for improvement, both in inaccurate mathematical interpretation of the original research paper, as well as the flexibility to tailor the algorithm to our specific needs.
+        </p>
+        <p>
+            The FSEOF algorithm is based on an important presupposition about the enforced objective: the enforced reaction is assumed to compete with the objective (biomass) reaction.
+        </p>
+        <p>
+            Given the equation to calculate different enforced objectives:
+        </p>
+        <p>Maximize \(v_{\text{biomass}}\)</p>
+        <p>Subject to for \(n, k\) \(\in\) \(\mathbb{N}\) such that \(\forall k < n\) we have \(v_{\text{product}}^{enforced} = v_{\text{product}}^{initial} + \frac{k}{n}(v_{\text{product}}^{max} - v_{\text{product}}^{initial})\)</p>
+        <p>\(\forall i \in M, j \in N \implies \sum_{j = 1}^{|N|} S_{ij}v_j = 0\)</p>
+    <p>
+        We have the following:
+        <p>If \(v_{\text{product}}^{max} = v_{\text{product}}^{initial}\), then the constraint becomes \(v_{\text{product}}^{enforced} = v_{\text{product}}^{initial}\) because the other terms become zero. Thus, the "enforced" flux becomes completely meaningless since we are simply enforcing it to be equal to itself. Furthermore, if we tried to enforce, not up to the maximal possible flux through the objective reaction, but rather up to a realistic upper bound (approximately 90\% according to {{cite("Choi2010In")}}, the algorithm fails:</p>
+        <p>If we are constraining \(v_{\text{product}}^{\text{enforced}} = v_{\text{product}}^{\text{initial}} + \frac{k}{n}(v_{\text{product}}^{\text{max}} \cdot 0.9 - v_{\text{product}}^{\text{initial}})\) and \(v_{\text{product}}^{\text{max}} = v_{\text{product}}^{\text{initial}}\), then \(\frac{k}{n}(v_{\text{product}}^{\text{max}} \cdot 0.9 - v_{\text{product}}^{\text{initial}}) < 0\).</p>
+
+    </p>
+    </div>
+    <div>
+        <p>Therefore, the algorithm would inadvertently enforce a <i>decreasing</i> flux instead of an <i>increasing</i> one. The predicted targets for over-expression would thus not only be biologically irrelevant, but also misleading.</p>
+
+        <p>If the maximum flux through the enforced reaction is the same as the initial flux, the enforced reaction would not be competing against, but rather complementing growth. In other words, the enforced reaction is <i>synergistic</i> with biomass. This makes sense especially in our case, since the reaction we are enforcing is a <i>consumption</i> reaction. Specifically, consumption of a carbon source that gets used in <em>E. coli</em>'s central carbon metabolism. An <i>antagonistic</i> enforced objective would have the opposite effect. We consider this a significant shortcoming of the classical FSEOF as it fails to take into consideration <i>synergistic objectives.</i></p>
+
+        <p>To address the synergistic enforced objective, we set \(v_{\text{product}}^{\text{initial}}\) to zero in the case where \(v_{\text{product}}^{\text{initial}} = v_{\text{product}}^{\text{max}}\). Therefore, the flux is gradually increased from 0 to the maximum. This is rationalized as follows: Even if methanol consumption and biomass are synergistic with each other, there are several reactions in the metabolic network whose flux necessarily increases as methanol consumption increases, but not necessarily as biomass increases. These are the reactions we want to uncover with this fix. For example, flux through the Ribose-5-phosphate isomerase reaction is associated with high methanol consumption (more negative methanol exchange fluxes); nevertheless, high fluxes through this reaction are also associated with smaller biomass fluxes.</p>
+
+    </div>
+    <div>
+        <p>
+        Another aspect of our particular case that the classical FSEOF failed to consider, was that in GSMMs usually, consumption reactions are set to have negative fluxes. The more negative a flux, through a consumption reaction, the more metabolite is consumed. Hence, the way $v_{product}^{max}$ is calculated must change because the maximum flux is the most negative, which means the optimization problem must be phrased differently.
+        </p>
+    </div>
+    <div>
+        <p>To address this issue, our algorithm changed the calculation of \(v_{\text{product}}^{\text{max}}\) if \(v_{\text{product}}\) is a consumption reaction. \(v_{\text{product}}^{\text{max}}\) is calculated as follows:</p>
+        <p>Minimize \(v_{\text{product}}\)</p>
+        <p>Subject to:</p>
+        <p>\(\forall i \in M, j \in N \implies \sum_{j = 1}^{|N|} S_{ij}v_j = 0\)</p>
+        <p>\(v_j^\alpha \leq v_< \leq v_j^\beta\)</p>
+        <p>where \(v_j^\alpha\) and \(v_j^\beta\) are the lower and upper bounds for flux in any arbitrary reaction \(v_j\). For non-reversible consumption reactions, \(v_j^\beta = 0\), and for non-reversible production reactions, \(v_j^\alpha = 0\).</p>
+
+    </div>
+    <div>
+        <p>Lastly, the classical FSEOF does not provide a very fine ranking of overexpression targets. So, we implemented a rough measure of how much the flux through a given reaction increases/decreases as we scan through enforced objectives: it is simply a linear regression and its associated Pearson Correlation Coefficient (\(r\)) value. The steeper the slope and the higher the \(r\) value, the "better" candidate a reaction is for overexpression.</p>
+
+    </div>
+
+    <div>
+        {{subsubheading("3.6. Knockout Algorithm")}}
+        <p>To search for gene knockout candidates, we begin with the following motivation. Suppose there are two individuals of T-B18 that have growth rates \(\rho\) and \(\rho^*\), where \(\rho < \rho^*\). For a reaction \(r\), consider the fluxes \(v_{r}\) and \(v_{r}^*\) through \(r\) in individuals \(\rho\) and \(\rho^*\), respectively. If</p>
+        <p>Suppose there are two individuals of T-B18 that have growth rates \(\rho\) and \(\rho^*\), where \(\rho < \rho^*\). For a reaction \(r\), consider the fluxes \(v_{r}\) and \(v_{r}^*\) through \(r\) in individuals \(\rho\) and \(\rho^*\), respectively. If</p>
+    <div>
+        \[
+        \left|v_{r}\right| \gg 0 \quad\text{and}\quad \left|v_{r}^*\right| \approx 0
+        \]
+    </div>
+    <p>then the reaction \(r\) might be a good knockout target. Intuitively, \(r\) exhibits high flux in the slower-growing individual but low flux in the faster-growing one. Then, knocking it out may encourage the bacteria to adopt a more optimal metabolic flux distribution. We can turn this into gene-level <i>scores</i> by considering for each gene \(g\):</p>
+    <div>
+        \[
+        s(g) = \max\{|v_r| \mid r \text{ is a reaction associated with } g\}
+        \]
+    </div>
+    <p>and defining \(s^*(g)\) analogously. That is, we desire that \(s(g) \gg 0\) and \(s^*(g) \approx 0\).</p>
+    <p><strong>Implementation.</strong> We use the same T-B18 model and media as described above. We set \(\rho = 0.7\mu\) and \(\rho^* = 0.9\mu\), where \(\mu\) is the optimal simulated growth rate under FBA. An important technicality is that, in the preceding discussion, we presupposed a single flux distribution for each individual. However, the solution space for FBA problems is rarely uniquely determined. Hence, we require another heuristic: the metabolic flux of T-B18 growing on methanol should be minimally rerouted from that of native <i>E. coli</i>, or T-B18 growing on glucose. Specifically, consider the individual with growth rate \(\rho\). Using parsimonious enzyme usage FBA{{cite("lewis2010omic")}} </a>, we first obtain the flux distribution \(\mathbf{v}_0\) of T-B18 growing at rate \(\rho\) on the same media except with glucose instead of methanol. Then, we solve for the fluxes \(\mathbf{v}\) of T-B18 on the original media, but take the solution that minimizes the flux distance \(\|\mathbf{v} - \mathbf{v}_0\|_1\). This is done through the linear minimization of metabolic adjustment algorithm {{cite("cobrav2")}}. We perform the same process for the faster-growing individual.</p>
+
+    </div>
+    <div>
+        {{subsubheading("3.7 OptForce Model and Validation")}}
+    </div>
+    <div>
+        <p>One of the algorithms considered additionally to FSEOF is OptForce. The purpose of algorithms such as FSEOF and OptForce is to consider the role of overexpression in product optimization under FBA. FSEOF was used to model overexpression targets, and OptForce was used to verify them and provide a basic sensitivity analysis. These incorporated the application of FBA to the problem of optimizing reaction fluxes across an organism's metabolic network.</p>
+    <p>We consider the possibility of different reaction bounds and minimum/maximum ranges for fluxes for each reaction in the network. OptForce takes these combinations of bounds and dictates the specific set of genes targeting those reactions which will optimize the flux in a given direction, increasing or decreasing that particular flux <a href="https://pubmed.ncbi.nlm.nih.gov/20425248/" target="_blank">[Ranganathan2010OptForce]</a>. In this way, we obtain a range of possible bounds—here chosen between linear combinations of the original default lower and upper bounds, and either a linear shift, \(\boldsymbol{\alpha}_{1} = (0, 0.1, 0.2, 0.3, \ldots, 1.0)\), or an exponential shift, \(\boldsymbol{\alpha}_{2} = (10^{-5}, 10^{-4}, 10^{-3}, \ldots, 10^{5})</a>. Based on the algorithm developed by Ranganathan et al., we construct a modified Flux Variability Analysis method applied to the reactions triggered by each gene found by FSEOF <a href="https://pubmed.ncbi.nlm.nih.gov/20520742/" target="_blank">[Choi2010In]</a><a href="https://pubmed.ncbi.nlm.nih.gov/22316794/" target="_blank">[Park2012Flux]</a>. This allows a variation in certain conditions such as gene expression, which may influence the overall flux of the target.</p>
+    <p>In our case, the optimization problem involves maximizing biomass and targeting the MEOH exchange production process. The variation of ranges allows for a broad verification of the FSEOF targets and the basis of a future genome-wide search looking at combinations of genes which must increase or decrease in flux to maintain a consistent and optimal Biomass production <a href="https://pubmed.ncbi.nlm.nih.gov/20425248/" target="_blank">[Ranganathan2010OptForce]</a>. A basic OptForce analysis was computed and is available on the Gitlab, though a full OptForce genome-wide study will be left for the road ahead.</p>
+
+    </div>
+</div>
+    <div>
+        {{subheading("4. Result")}}
+        <div>
+            {{subsubheading("4.1. Gene Additions")}}
+            <p>We used FBA and its associated methods for the in silico discovery of genes that can be added. One of our preliminary simulations found a 25% increase in (optimal) exponential growth rate by adding formaldehyde dehydrogenase (FDH) from P. putida to T-B18.</p>
+        </div>
+    <div>
+        {{subsubheading("4.2. Gene Overexpression")}}
+        <p>The main results from the overexpression algorithms are reported in Table 1 as reactions that are easily searchable in the BiGG Models database. 
+        </p>
+        <p>
+            <em>Cameo FSEOF</em>: Cameo is a Python library that provides algorithms for metabolic modeling and simulations [insert ref for Cameo] We ran its FSEOF algorithm on our T-B18 model, and generated a list of target reactions under 'Cameo FSEOF'. 
+        </p>
+        <p>
+            <em>Classical</em>: Our team developed the FSEOF algorithm in COBRApy, and the resulting target reactions from it are in the 'Classical (Team Implement)' column.
+        </p>
+        <div class="lg:overflow-visible overflow-scroll">
+            <table>
+                <caption>Over-Expression Targets</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="4">Over-Expression Algorithms</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>Cameo FSEOF</th>
+                        <th>Classical (Team Implement)</th>
+                        <th>Special Case (Team Implement)</th>
+                        <th>Q-Slope (Team Implement)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Target 1</th>
+                        <td>MEOHDH</td>
+                        <td>MTHFD</td>
+                        <td>Gene name</td>
+                        <td>ATPS4rpp</td>
+                    </tr>
+                    <tr>
+                        <th>Target 2</th>
+                        <td>MEOHtrpp</td>
+                        <td>ADPRDP</td>
+                        <td>Gene name</td>
+                        <td>EX_h2o_e</td>
+                    </tr>
+                    <tr>
+                        <th>Target 3</th>
+                        <td>MEOHtex</td>
+                        <td>FORtppi</td>
+                        <td>Gene name</td>
+                        <td>NADH16pp</td>
+                    </tr>
+                    <tr>
+                        <th>Target 4</th>
+                        <td>HPS</td>
+                        <td>NMNDA</td>
+                        <td>Gene name</td>
+                        <td>CYTBO3_4pp</td>
+                    </tr>
+                    <tr>
+                        <th>Target 5</th>
+                        <td>PHI</td>
+                        <td>NADN</td>
+                        <td>Gene name</td>
+                        <td>MEOHDH</td>
+                    </tr>
+                    <tr>
+                        <th>Target 6</th>
+                        <td>PFL</td>
+                        <td>GLYCL</td>
+                        <td>Gene name</td>
+                        <td>HPS</td>
+                    </tr>
+                    <tr>
+                        <th>Target 7</th>
+                        <td>FORtppi</td>
+                        <td>NNATr</td>
+                        <td>Gene name</td>
+                        <td>PHI</td>
+                    </tr>
+                    <tr>
+                        <th>Target 8</th>
+                        <td>FLDR2</td>
+                        <td>LPLIPAL2E161</td>
+                        <td>Gene name</td>
+                        <td>MEOHtrpp</td>
+                    </tr>
+                    <tr>
+                        <th>Target 9</th>
+                        <td>CO2tpp</td>
+                        <td>FTHFD</td>
+                        <td>Gene name</td>
+                        <td>MEOHtex</td>
+                    </tr>
+                    <tr>
+                        <th>Target 10</th>
+                        <td>CO2tex</td>
+                        <td>FEROpp</td>
+                        <td>Gene name</td>
+                        <td>O2tpp</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        </div>
+
+        <div>
+            {{subsubheading("4.3. Gene Knockouts")}}
+            <p>
+                The main results of the final knockout algorithm are reported below.
+            </p>
+            <table border="1" align="center">
+                <caption>Gene knockout targets</caption>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th><p>Score ($$0.7 \times \text{optGR})$$</p></th>
+                        <th><p>Score ($$0.9 \times \text{optGR})$$</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>frdC</td>
+                        <td>0.810332</td>
+                        <td>4.037750e-03</td>
+                    </tr>
+                    <tr>
+                        <td>frdB</td>
+                        <td>0.810332</td>
+                        <td>4.037750e-03</td>
+                    </tr>
+                    <tr>
+                        <td>frdA</td>
+                        <td>0.810332</td>
+                        <td>4.037750e-03</td>
+                    </tr>
+                    <tr>
+                        <td>frdD</td>
+                        <td>0.810332</td>
+                        <td>4.037750e-03</td>
+                    </tr>
+                    <tr>
+                        <td>ppc</td>
+                        <td>0.368830</td>
+                        <td>0.000000e+00</td>
+                    </tr>
+                    <tr>
+                        <td>glxK</td>
+                        <td>0.184415</td>
+                        <td>2.450159e-15</td>
+                    </tr>
+                    <tr>
+                        <td>gcl</td>
+                        <td>0.184415</td>
+                        <td>2.450159e-15</td>
+                    </tr>
+                    <tr>
+                        <td>glxR</td>
+                        <td>0.184415</td>
+                        <td>2.450159e-15</td>
+                    </tr>
+                    <tr>
+                        <td>garR</td>
+                        <td>0.184415</td>
+                        <td>2.450159e-15</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>The top four genes are associated with the same reaction: Fumarate reductase.
+            </p>
+            </div>
+        </div>
+    <div>
+        {{subheading("5. Discussion")}}
+        <div>
+            {{subsubheading("5.1. Analysis of results")}}
+            {{subsubsubheading("5.1.1. Addition")}}
+            <p>
+                The abnormally high methanol concentration resulting from the addition 
+                suggest that formate was a non-trivial waste product (e.g., not \( \ce{H2O} \) or \( \ce{CO2} \))
+            </p>
+            {{subsubsubheading("5.1.2. Knockout")}}
+            <p>
+                Some existing literature suggests that <em>fumarate reductases (frdC, frdB, frdA, frdD)</em>
+                could be reasonanle knockout targets.{{cite("Fuchs1978Function")}}
+            </p>
+            {{subsubsubheading("5.1.3. Over-Expression")}}
+            <p>
+                From generated results, it seems that reactions involved in upstream methanol consumption
+                are good targets for over-expression.
+            </p>
+
+        </div>
+    <div>
+        {{subsubheading("5.2 Limitations and Applications")}}
+        <p>
+            One of the main limitations of FSEOF and FSEOF-like methods is their oversimplification of phenotypic expression landscape. It assumes that an increasing tendency in flux through a given reaction as the flux through the enforced objective increases means an increase in flux will always correspond to an increase in enforced objective. In reality, there might be biological mechanisms in place to prevent wasteful use of energy spent on an abnormally high biochemical process within an organism, as well as other unforeseen phenotypic behaviors. Shortly, FSEOF works best for phenotypic phase planes that tend to the following trajectory:
+        </p>
+        {{img(cdn("models/phpp-of-meoh-and-thr-restricted-fluxes-updates.png"),
+        width="90%",
+        alt="Phenotypic Phase Plane of methanol and threonine flux, over the flux ranges at which that exhibit simple linear association.")}}
+    In contrast, phase planes that follow abnormal behavior are not well detected by FSEOF.
+    <div class="side-by-side">
+        <figure>
+            {{img(cdn("models/phpp-of-methanol-vs-triose-phosphate-isomerase2.png"),
+            width="90%",
+            alt="")}}
+        </figure>
+        <figure>
+            {{img(cdn("models/phpp-of-methanol-vs-triose-phosphate-isomerase4.png"),
+            width="90%",
+            alt="")}}
+        </figure>
+    </div>
+        <figcaption>
+            Phenotype Phase Plane of Methanol exchange and Triose-phosphate isomerase. This does not exhibit simple linear behavior.
+        </figcaption>
+        <p>
+            In the second case, which is, in fact, one of the top targets for overexpression predicted by our algorithms, a small increase in fluxes through Triose-phosphate isomerase (TPI) correlates with the highest growth rates. However, as can be observed from Figure 6, this relationship is not uniformly positive throughout the entire possible flux ranges. This makes TPI a less than ideal candidate for overexpression than what FSEOF suggests. 
+        </p>
+        <p>
+            This lack of accuracy can be explained as follow. Since FBA always seeks the optimal solution, for the range of methanol exchange fluxes FSEOF scans over, the model only assigns a small flux through (TPI), as that would result in the highest growth rate. Coincidentally, that flux is small enough such that there is a positive and strong correlation between absolute flux through TPI and absolute exchange flux through methanol exchange (both optimized for biomass maximization). However, as is inferred from above graphs, a too abnormal increase in the flux will cause the growth rate to plummet. FSEOF will mark this reaction as a great target for overexpression, not realizing that if we overexpress too much then growth will be negatively, rather than positively, affected. 
+        </p>
+        <p>
+            More generally, applications of the various bounds for OptForce creates a sensitivity analysis for different ranges of fluxes by target. Especially, due to computational constraints, which would require parallel processing of the entire E. coli genome, we were unable to assess a broad framework to determine the MUST and FORCE sets.  Hence, we were limited to focusing on the specific pathways discovered by FSEOF. With a lack of such a genome-wide perspective, we were unable to construct the MUST and FORCE sets for each of the genes in the FSEOF-dictated pathways. This would form the basis of a future genome-wide search, in order to find the auxillary genes which guarantee optimal Biomass production.
+        </p>
+    </div>
+    </div>
+    <div>
+        {{subheading("6. Open-Source Implementations")}}
+        <p>
+            Our FSEOF implementation is available <a href="https://gitlab.igem.org/2023/software-tools/toronto">here</a> on Github. 
+        </p>
+    </div>
+    <div>
+        {{subheading("7. The Road Ahead")}}
+        <p>
+            In order to further enhance our project that leverages stoichiometric modeling to predict knockout, gene addition, and overexpression targets, we will focus on advancing our methodologies and extending our predictive capabilities. The following steps outline our path forward:
+        </p>
+        
+    <h3>Integration of Flux Variability Scanning based on Enforced Objective Flux (FVSEOF):</h3>
+    <ul>
+        <li>Explore and implement the FVSEOF approach into our existing modeling framework. This advanced method will enable us to identify gene amplification targets with higher precision and efficiency.</li>
+        <li>Develop algorithms and scripts to automate the FVSEOF analysis, making it more accessible and user-friendly for the research team.</li>
+    </ul>
+
+    <h3>Enhanced Kinetic and Enzymatic Modeling:</h3>
+    <ul>
+        <li>Incorporate additional variables into our kinetic and enzymatic models, such as substrate availability, cellular compartmentalization, and enzyme regulation.</li>
+        <li>Optimize parameter estimation techniques to refine the accuracy of our models, potentially incorporating experimental data to validate and calibrate the models.</li>
+    </ul>
+
+    <h3>Experimental Validation:</h3>
+    <ul>
+        <li>Collaborate more with experimental biologists and geneticists to validate our predictions in the laboratory. Conduct knockout, gene addition, and overexpression experiments to verify the targets identified through our modeling approaches.</li>
+        <li>Gather quantitative data from these experiments and use it to iteratively improve our models, enhancing their predictive power.</li>
+    </ul>
+
+    <h3>Incorporate omics data:</h3>
+    <ul>
+        <li>Integrate omics data, such as transcriptomics, proteomics, and metabolomics, into our modeling framework. This will provide a more comprehensive understanding of cellular processes and help refine our predictions.</li>
+    </ul>
+
+    <h3>Machine Learning Integration:</h3>
+    <ul>
+        <li>Implement machine learning techniques to assist in data analysis and model refinement. These methods can help identify patterns and correlations within large datasets, improving the accuracy of our predictions.</li>
+    </ul>
+
+    <h3>Documentation and Knowledge Sharing:</h3>
+    <ul>
+        <li>Document our methodologies, algorithms, and modeling parameters comprehensively. This documentation will serve as a valuable resource for the research community and facilitate knowledge sharing.</li>
+    </ul>
+
+    <h3>Optimizing OptForce: </h3>
+        <p>A couple of issues we had with OptForce involved certain ambiguities in implementation for the metabolic network model. OptForce requires a systematic genome-wide assessment of the metabolic fluxes, so a good starting point would be to, for example, assess a sensitivity analysis for a search across the entire genome of <em>E. coli</em>. 
+        From this, a flux network can be constructed where, using the mathematics of network theory {{cite("Ruiz2022Basics")}} 
+        and genomics at a systems level (e.g. {{cite("Erciyes2015Distributed")}}, 
+        {{cite("Civelek2013Systems")}}, {{cite("2022Microbial")}}), can be constructed for each gene to observe
+         its respective effect on all the fluxes in the network. In most cases, one should pay attention to the biomass production under 
+         the overexpression of the target reactions at a shift of a linear rate increases, 
+         but it converges at a shift of an exponential rate. The most relevant reactions among those found by FSEOF were investigated 
+         to assess the sensitivity and generalizability of the results using OptForce.</p>
+
+    <p>By following these steps and embracing a multidisciplinary approach, we aim to further advance our project's capabilities in predicting knockout, gene addition, and overexpression targets while contributing valuable insights to the field of systems biology and synthetic biology.</p>
+    </div>
+    <div>
+        {{subheading("8. Conclusion")}}
+        <p>
+            We have modeled and simulated \(\textit{E. coli}\) T-B18 using media simulation and Flux Balance Analysis (FBA) to make predictions for genetic modifications aimed at improving the bacteria's methane uptake and consumption of landfill gas. After exploring existing algorithms and their implementations, such as Flux Scanning based on Enforced Objective Flux (FSEOF) and FBA knockout prediction, we created project-specific implementations of these algorithms to improve their accuracy with respect to our own model. Our open-source implementation of FSEOF is available on Github. Our final recommendations for gene addition, knock-outs, and over-expression were found to be \(\textbf{FDH, frdABCD, and MEOHDH, MEOHtrpp, MEOHtex}\), respectively. Experimental validation will follow, enabling iteration upon these predictions.
+
+        </p>
+    </div>
+
+     
+    
+{% endblock %}

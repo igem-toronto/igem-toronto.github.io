@@ -89,3 +89,13 @@ h4 {
 *[x-cloak] {
     @apply hidden
 }
+
+.container {
+    display: flex;
+   }
+
+.container-items {
+    margin: 0.5%;
+    width: 35%;
+}
+

@@ -12,17 +12,34 @@
   th, td {
     padding: 1em;
   }
+  thead {
+    background-color: #285a06;
+  }
+  tbody {
+    background-color: #dfffc9;
+    color: black;
+  }
 
   ul {
     list-style-type: disc;
     list-style-position: outside;
     padding-left: 2em;
   }
+  caption { 
+    caption-side: bottom;
+    text-align: left;
+    margin-top: 10px;
+    color: black;
+    font-style: italic
+  }
 </style>
 <div class="custom">
   <h4>Table 1: Bacterial Strains Utilised</h4>
   <div class="lg:overflow-visible overflow-scroll">
     <table class = "font-jost" style = "width:100%">
+        <caption>
+          This table lists the bacterial strains used in the study, along with their descriptions and sources.
+        </caption>
         <thead>
             <tr>
                 <th>Strain Name</th>
@@ -59,6 +76,9 @@
 
   <div class="lg:overflow-visible overflow-scroll">
     <table class = "font-jost" style = "width:100%" borders = "">
+      <caption>
+        The vectors utilized in the cloning procedures and CRISPR-Cas9 genome editing techniques, including their specific roles and sources.  
+      </caption>
       <thead>
           <tr>
               <th>Vector Name</th>
@@ -106,6 +126,9 @@
   <h4>Table 3: Oligos used in cloning and CRISPR-Cas9</h4>
   <div class="lg:overflow-visible overflow-scroll">
   <table class = "font-jost" style = "width:100%" borders = "">
+      <caption>
+        A list of oligonucleotides used in cloning and CRISPR-Cas9 processes, featuring their sequences and intended purposes in the experiments
+      </caption>
       <thead>
           <tr>
               <th>Oligo name</th>
@@ -211,6 +234,9 @@
   <h4>Table 4: Apparatus used in Rational Design.</h4>
   <div class="lg:overflow-visible overflow-scroll">
     <table class = "font-jost" style = "width:100%" borders = "">
+      <caption>
+        Catalog of key apparatus employed in rational design experiments, outlining their specific uses in the analysis.
+      </caption>
       <thead>
           <tr>
               <th>Name</th>

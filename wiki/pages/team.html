@@ -36,10 +36,9 @@
                   class="p-4 lg:w-5/12 w-9/12 border-2 border-primary-dark bg-white rounded-md">
                   <h2>{{ member.name }}</h2>
                   <div class = "container">
-                    
                     {{ member.description }}
                     {% if member.picture != None %}
-                    <img class = "container-items"
+                    <img class = "side-by-side container-items"
                       alt="{{ member.name }}"
                       src="{{ cdn(member.picture) }}"
                       class="w-48 rounded-md"

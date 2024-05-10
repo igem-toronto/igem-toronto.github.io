@@ -1,0 +1,11 @@
+{% extends "layout/layout.html" %}
+  
+
+{% block content %}
+{{ heading("Sponsors") }}
+iGEM Toronto is grateful to be be supported by our sponsors.
+<div class="pt-5">
+    <img src="{{ url_for('static', filename='logo-snapgene.svg') }}" width="200px" alt="Snapgene" />
+</div>
+
+{% endblock %}

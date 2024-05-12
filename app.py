@@ -4,6 +4,7 @@ import csv, json
 import subprocess
 import mimetypes
 import os
+import atexit
 
 from flask import Flask, render_template, Response
 from flask_frozen import Freezer
@@ -66,10 +67,14 @@ MODE = os.getenv("mode")
 
 print("Mode: " + MODE)
 if MODE == "dev":
-    subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output, '--watch'])
+    print("Watching files to generate css")
+    proc = subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output, '--watch'])
+    atexit.register(proc.kill)
 else:
-    proc = subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output])
-    proc.communicate()
+    print("Generating css...", end="")
+    proc = subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output, "--minify"])
+    proc.wait()
+    print("DONE")
 
 @app.route("/modules/<path:module_path>")
 def modules(module_path: str):
@@ -82,7 +87,7 @@ def dist(filename: str):
     with open('dist/' + filename) as f:
         content = f.read()
         mime_type = mimetypes.guess_type(filename)[0]
-        mime_type = mime_type if mime_type is not None else "test/html"
+        mime_type = mime_type if mime_type is not None else "text/html"
         return Response(content, mimetype=mime_type)
 
 @app.route('/')
@@ -149,4 +154,4 @@ def pages(page):
 
 # Main Function, Runs at http://0.0.0.0:8080
 if __name__ == "__main__":
-    app.run(port=3000, debug=MODE=="dev")
+    app.run(port=3000, debug=MODE=="dev", extra_files=["navigation.json"])

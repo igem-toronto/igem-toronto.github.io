@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "build": "FLASK_APP=app.py flask freeze",
-    "start": "python app.py"
+    "build": "mode=prod FLASK_APP=app.py flask freeze",
+    "start": "mode=dev python app.py"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.2",

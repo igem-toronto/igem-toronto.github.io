@@ -2,6 +2,8 @@ from os import path
 from collections import defaultdict
 import csv, json
 import subprocess
+import mimetypes
+import os
 
 from flask import Flask, render_template, Response
 from flask_frozen import Freezer
@@ -57,28 +59,31 @@ def subpages_skeleton():
     
     return d
 
-tailwind_timestamp = None
-tailwind_cache = ""
 tailwind_input = 'static/input.css'
+tailwind_output = 'dist/output.css'
 
-@app.route('/dist/<filename>')
+MODE = os.getenv("mode")
+
+print("Mode: " + MODE)
+if MODE == "dev":
+    subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output, '--watch'])
+else:
+    proc = subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output])
+    proc.communicate()
+
+@app.route("/modules/<path:module_path>")
+def modules(module_path: str):
+    with open("node_modules/" + module_path) as f:
+        content = f.read()
+        return Response(content, mimetype='text/javascript') 
+
+@app.route('/dist/<path:filename>')
 def dist(filename: str):
-    global tailwind_cache, tailwind_timestamp, tailwind_input
-    if filename.startswith('alpinejs'):
-        with open('node_modules/alpinejs/dist/cdn.min.js') as f:
-            content = f.read()
-            return Response(content, mimetype='text/javasript')
-    elif filename.endswith('.css'):
-        current_timestamp = path.getmtime(tailwind_input)
-        if tailwind_timestamp is None or current_timestamp > tailwind_timestamp:
-            result = subprocess.run(["npx", "tailwindcss", "-i", tailwind_input, "--minify"],
-                text=True, capture_output=True)
-            tailwind_cache = result.stdout
-
-        tailwind_timestamp = current_timestamp
-        return Response(tailwind_cache, mimetype="text/css")
-    else:
-        return Response(status=404)
+    with open('dist/' + filename) as f:
+        content = f.read()
+        mime_type = mimetypes.guess_type(filename)[0]
+        mime_type = mime_type if mime_type is not None else "test/html"
+        return Response(content, mimetype=mime_type)
 
 @app.route('/')
 def home():
@@ -144,4 +149,4 @@ def pages(page):
 
 # Main Function, Runs at http://0.0.0.0:8080
 if __name__ == "__main__":
-    app.run(port=3000, debug=True)
+    app.run(port=3000, debug=MODE=="dev")

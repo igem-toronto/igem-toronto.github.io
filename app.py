@@ -16,7 +16,11 @@ cdn_url = "https://static.igem.wiki/teams/4615/wiki/"
 
 citation_loader = CitationLoader("bibtex.bib")
 
+def my_finalize(thing):
+    return thing if thing is not None else ''
+
 app = Flask(__name__, template_folder=template_folder)
+app.jinja_options['finalize'] = my_finalize
 app.url_map.charset = 'utf-8'
 #app.config['FREEZER_BASE_URL'] = environ.get('CI_PAGES_URL')
 app.config['FREEZER_DESTINATION'] = 'public'

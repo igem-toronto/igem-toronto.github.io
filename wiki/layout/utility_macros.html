@@ -1,12 +1,11 @@
 {% macro heading(text, show=True) -%}
-  <div class="hidden">{{ set_page(text) }}</div>
+  {{ set_page(text) }}
   {% if show %}
     <h1 class="ml-2 mb-8">{{ text }}</h1>
   {% endif %}
 {%- endmacro %}
 
 {% macro subheading(text, img="") -%}
-  <div class="hidden">
   {{ ensure_subpage() }}
   {{
     subpages[-1].subheadings.append({
@@ -14,7 +13,7 @@
       "key": subpages[-1].key + "-" + text.lower().replace(" ", "-"),
       "subsubheadings": []
     })
-  }}</div>
+  }}
 	<h2 id="{{ subpages[-1].subheadings[-1].key }}"
       class="flex items-center w-full">
     <div class="{{ 'w-1/2' if img != '' else '' }}">
@@ -29,11 +28,11 @@
 {%- endmacro %}
 
 {% macro subsubheading(text) -%}
-  <div class="hidden">{{ subpages[-1].subheadings[-1].subsubheadings.append({
+  {{ subpages[-1].subheadings[-1].subsubheadings.append({
       "text": text,
       "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")
     })
-  }}</div>
+  }}
 	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}">
 		{{text}}
 	</h3>
@@ -46,13 +45,13 @@
 {%- endmacro %}
 
 {% macro subpage(text, img="") -%}
-  <div class="hidden">{{ subpages.append({
+  {{ subpages.append({
       "heading": text,
       "key": text.lower().replace(" ", "-"),
       "img": img,
       "subheadings": []
     })
-  }}</div>
+  }}
 {%- endmacro %}
 
 {% macro cite(text) -%}

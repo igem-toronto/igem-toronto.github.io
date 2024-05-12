@@ -7,6 +7,7 @@ The static assets are in the `static` directory. The layout and templates are
 in the `wiki` directory, and the pages live in the `wiki > pages` directory.
 
     |__ static/             -> static assets (CSS and JavaScript files only)
+    |__ dist/               -> generated files during build
     |__ wiki/               -> Main directory for the pages and layouts
         |__ layout/         -> Directory for layout files
             |__ *.html      -> Actual layout files

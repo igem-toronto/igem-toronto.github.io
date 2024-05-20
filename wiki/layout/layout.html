@@ -79,14 +79,25 @@
 
             addEventListener('scroll', (e) => {
               const displaySubsubheadings = nodes.filter(n => n[0].startsWith(subpages[el.selectedSubpage].key))
-              for (let heading of displaySubsubheadings.reverse()) {
+              let index = 0
+              for (let heading of displaySubsubheadings) {
                 let boundingRect = heading[1].getBoundingClientRect()
-                if (boundingRect.bottom < window.innerHeight) {
+                let nextBoundingRect = displaySubsubheadings[index + 1][1]
+                nextBoundingRect = nextBoundingRect
+                  ? nextBoundingRect.getBoundingClientRect()
+                  : null
+                  
+                if (boundingRect.top > 0
+                    || (nextBoundingRect && nextBoundingRect.top > window.innerHeight)) {
                   el.scrolledHeading = heading[0]
-                  let subIndex = subpages[selectedSubpage].subheadings.findIndex(e => heading[0].startsWith(e.key))
+                  let subIndex = subpages[selectedSubpage]
+                    .subheadings
+                    .findIndex(e => heading[0].startsWith(e.key))
                   el.openNavHead = subIndex
                   break
                 }
+
+                index++
               }
             })
           }

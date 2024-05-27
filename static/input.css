@@ -95,13 +95,5 @@ h4 {
     
    }
 
-.container-image {
-    @apply flex lg:flex-row flex-col gap-x-4 items-center;
-    margin: 1%;
-    max-width: 300px;
-    padding-top: 10px;
-    height: auto;
-}
-
 
 

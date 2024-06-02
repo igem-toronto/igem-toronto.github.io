@@ -6,5 +6,8 @@
   "devDependencies": {
     "alpinejs": "^3.13.5",
     "tailwindcss": "^3.3.2"
+  },
+  "dependencies": {
+    "mathjax": "^3.2.2"
   }
 }

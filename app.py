@@ -82,9 +82,11 @@ else:
 
 @app.route("/modules/<path:module_path>")
 def modules(module_path: str):
-    with open("node_modules/" + module_path) as f:
+    with open("node_modules/" + module_path, "br") as f:
         content = f.read()
-        return Response(content, mimetype='text/javascript') 
+        mime_type = mimetypes.guess_type(module_path)[0]
+        mime_type = mime_type if mime_type is not None else "text/html"
+        return Response(content, mimetype=mime_type) 
 
 @app.route('/dist/<path:filename>')
 def dist(filename: str):

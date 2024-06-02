@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
     <script src="{{ url_for('modules', module_path = 'alpinejs/dist/cdn.min.js') }}" defer></script>
+    <script id="MathJax-script" src="{{ url_for('modules', module_path = 'mathjax/es5/tex-mml-chtml.js') }}"></script>
     <script type="module" src="{{ url_for('modules', module_path = '@google/model-viewer/dist/model-viewer.min.js') }}" defer></script>
   </head>
   {% block body %}

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 p {
-    @apply text-lg text-justify hyphens-auto font-jost my-4;
+    @apply text-lg text-justify hyphens-auto font-jost my-2;
 }
 
 h1 {
@@ -22,16 +22,24 @@ h4 {
     @apply underline-offset-4 underline text-lg font-jost;
 }
 
-.content-wrapper > div:not(.custom) {
-    @apply mt-2 mb-16
+div + h2 {
+    @apply mt-12;
 }
 
-.content-wrapper > div:not(.custom) > div:not(.custom) {
-    @apply mt-2 mb-8 lg:ml-2
+h1 + div {
+    @apply mt-2 mb-4 lg:ml-2
 }
 
-.content-wrapper > div:not(.custom) > div:not(.custom) > div:not(.custom) {
-    @apply mt-2 mb-8 lg:ml-2
+h2 + div {
+    @apply mt-2 mb-4 lg:ml-2
+}
+
+h3 + div {
+    @apply mt-2 mb-4 lg:ml-2
+}
+
+h4 + div {
+    @apply mt-2 mb-4 lg:ml-2
 }
 
 .rotate-y-180 {
@@ -70,19 +78,19 @@ h4 {
     @apply list-outside list-disc pl-6 font-jost text-lg;
 }
 
-.content-wrapper > div:not(.custom) .image {
+.content-wrapper > .image {
     @apply w-full h-auto px-8;
 }
 
-.content-wrapper > div:not(.custom) .image img {
+.content-wrapper > .image img {
     @apply w-full h-auto;
 }
 
-.content-wrapper > div:not(.custom) .side-by-side {
+.side-by-side {
     @apply flex lg:flex-row flex-col gap-x-4 items-center;
 }
 
-.content-wrapper > div:not(.custom) .side-by-side > * {
+.side-by-side > * {
     @apply flex-1;
 }
 

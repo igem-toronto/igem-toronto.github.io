@@ -5,3 +5,4 @@ __pycache__
 public
 node_modules
 static/output.css
+dist

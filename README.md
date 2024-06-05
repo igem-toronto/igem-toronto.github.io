@@ -7,6 +7,7 @@ The static assets are in the `static` directory. The layout and templates are
 in the `wiki` directory, and the pages live in the `wiki > pages` directory.
 
     |__ static/             -> static assets (CSS and JavaScript files only)
+    |__ dist/               -> generated files during build
     |__ wiki/               -> Main directory for the pages and layouts
         |__ layout/         -> Directory for layout files
             |__ *.html      -> Actual layout files
@@ -80,6 +81,40 @@ multiple times.
 These will create headings with the appropriate size and color. Subheading and subsubheading
 will appear in the page navigation bar, while heading and subsubsubheading will not.
 
+### Spacing
+To generate proper spacing, the top level in the content block must only consists of
+div elements and the various headings. More precisely, each heading should be followed
+by a different heading, or a single div holding the content immediately under the heading.
+This can be images, paragraphs, tables, etc.
+
+See an example:
+
+```html
+{{ heading('Lol') }}
+{{ subheading('This is a funny subheading') }}
+<div>
+    <p>
+        Intro Paragraph One
+    </p>
+     <p>
+        Intro Paragraph Two
+    </p>
+</div>
+{{ subsubheading('Detail One') }}
+<div>
+    <p>
+        Detail Paragraph
+    </p>
+</div>
+{{ subsubheading('Detail Two') }}
+<div>
+    <p>
+        Detail Paragraph
+    </p>
+</div>
+{{ subheading('Next Subheading) }}
+...
+```
 
 ### CDN
 All images, videos, and other static assets should be stored on the cdn. You can use the

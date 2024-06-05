@@ -97,3 +97,11 @@ h4 + div {
 *[x-cloak] {
     @apply hidden
 }
+
+.container {
+    display: flex;
+    
+   }
+
+
+

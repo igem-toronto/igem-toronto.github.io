@@ -11,6 +11,24 @@
   table, th, td {
     border: 1.5px solid;
   }
+
+  thead {
+    background-color: #285a06; 
+    color: white; 
+  }
+
+  tbody {
+    background-color: #dfffc9;
+    color: black;
+  }
+
+  caption { 
+    caption-side: bottom;
+    text-align: left;
+    margin-top: 10px;
+    color: black;
+    font-style: italic
+  }
   </style>
   {{ subheading("Background") }}
   {{ subsubheading("Negative impact of landfill gas to the environment") }}
@@ -72,6 +90,40 @@
       {{ img(cdn("description/desc-bacterium.svg")) }}
     </div>
   </div>
+  <div class="w-full">
+    <table>
+      <caption>
+        Techniques and functions involved in constructing improved methylotrophic strains.
+      </caption>
+      <thead>
+        <tr>
+          <th>Experimental Technique</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Overexpression</td>
+          <td>Introducing a recombinant plasmid into the chassis through cloning</td>
+        </tr>
+        <tr>
+          <td>CRISPR-Cas System Knockout</td>
+          <td>
+            Knocking out undesired genes through gene editing and pathway
+            engineering to optimize methylotrophic survival.
+            We intend to use different CRISPR Cas systems to knockout different
+            genes of interest.
+          </td>
+        </tr>
+        <tr>
+          <td>Adaptive Evolution</td>
+          <td>
+            Optimizing the fitness of the engineered strain by maintaining a stressor
+            in the growth environment (methanol).
+          </td>
+        </tr>
+      </tbody>
+    </table>
   {{ subsubheading("1. Separation of CH4 and CO2 from Landfill Gas with Hardware") }}
   {{ subsubsubheading("Why") }}
   <div>

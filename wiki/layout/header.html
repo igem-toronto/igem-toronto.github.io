@@ -1,7 +1,7 @@
 {% macro link(text, target) -%}
   <div class="hover:text-primary-light ease-in duration-100
               lg:py-0 lg:px-10
-              text-left py-2 flex items-center">
+              text-left py-2 flex items-center font-roboto">
     <a href="{{ url_for('pages', page=target + '.html') }}">{{ text }}</a>
   </div>
 {%- endmacro %}
@@ -14,7 +14,8 @@
       @click.away="if (expanded == '{{ text }}') expanded = ''"
       class=" cursor-pointer relative text-left py-2 flex lg:items-center
               lg:py-0 lg:flex-row
-              flex-col">
+              flex-col
+              font-roboto">
     <div class="
                 lg:px-10
               hover:text-primary-light ease-in duration-100 lg:text-center text-left">

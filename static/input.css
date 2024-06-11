@@ -11,15 +11,15 @@ h1 {
 }
 
 h2 {
-    @apply text-3xl lg:text-4xl font-montserrat font-bold;
+    @apply text-3xl lg:text-4xl font-roboto font-bold;
 }
 
 h3 {
-    @apply text-2xl uppercase py-4 font-archivo;
+    @apply text-2xl uppercase py-4 font-roboto;
 }
 
 h4 {
-    @apply underline-offset-4 underline text-lg font-jost;
+    @apply underline-offset-4 underline text-lg font-roboto;
 }
 
 .content-wrapper > div:not(.custom) {

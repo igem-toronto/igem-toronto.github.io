@@ -1,7 +1,7 @@
 {% macro heading(text, show=True) -%}
   <div class="hidden">{{ set_page(text) }}</div>
   {% if show %}
-    <h1 class="ml-2 mb-8">{{ text }}</h1>
+    <h1 class="ml-2 mb-8 font-roboto">{{ text }}</h1>
   {% endif %}
 {%- endmacro %}
 
@@ -83,11 +83,11 @@
 {% macro subpage_banner() -%}
   <div class="flex flex-col items-center gap-4 custom
               lg:pt-16 lg:pb-32
-              py-8">
-    <div class="text-gray-600 text-xl font-roboto">
+              py-8 font-roboto">
+    <div class="text-gray-600 text-xl">
       {{ pages[0] }}
     </div>
-    <div class="font-playfair-display
+    <div class="font-roboto
                 font-bold
                 lg:text-6xl
                 text-5xl">

@@ -9,7 +9,7 @@ module.exports = {
         'xs': '400px'
       },
       fontFamily: {
-        'jost': ['Jost', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
         'playfair-display': ['Playfair Display', 'serif'],
         'roboto': ['Roboto Mono', 'sans-serif'],
       },

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 p {
-    @apply text-lg text-justify hyphens-auto font-jost my-4;
+    @apply text-lg text-justify hyphens-auto font-inter my-4;
 }
 
 h1 {
@@ -67,7 +67,7 @@ h4 {
 }
 
 .content-wrapper > div:not(.custom) ul {
-    @apply list-outside list-disc pl-6 font-jost text-lg;
+    @apply list-outside list-disc pl-6 font-inter text-lg;
 }
 
 .content-wrapper > div:not(.custom) .image {

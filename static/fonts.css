@@ -1,8 +1,6 @@
 @font-face {
-    font-family: "Jost";
-    src: url("https://fonts.gstatic.com") format("truetype"); 
-    font-weight: 100;
-    font-style: normal;
+    font-family: "Inter";
+    src: url("Inter-VariableFont_slnt,wght.ttf") format("truetype"); 
     font-display: block;
 }
 

@@ -1,21 +1,9 @@
-image: python:3.12
-
-build:
-  stage: build
-  script:
-    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    - nvm install 20
-    - pip install --no-cache-dir -r dependencies.txt
-    - npm ci
-    - npm build
-  rules:
-    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+image: alpine:latest
 
 pages:
   stage: build
   script:
-    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    - nvm install 20
+    - apk add nodejs npm python3 py3-pip
     - pip install --no-cache-dir -r dependencies.txt
     - npm ci
     - npm build

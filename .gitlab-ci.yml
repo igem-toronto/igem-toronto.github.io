@@ -1,4 +1,4 @@
-image: python:3.11
+image: python:3.12
 
 build:
   stage: build
@@ -13,8 +13,10 @@ build:
 pages:
   stage: build
   script:
+    - apt-get install node
     - pip install --no-cache-dir -r dependencies.txt
-    - FLASK_APP=app.py flask freeze
+    - npm ci
+    - npm build
   artifacts:
     paths:
       - public

@@ -3,7 +3,8 @@ image: python:3.12
 build:
   stage: build
   script:
-    - apt-get install nodejs
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    - nvm install 20
     - pip install --no-cache-dir -r dependencies.txt
     - npm ci
     - npm build
@@ -13,7 +14,8 @@ build:
 pages:
   stage: build
   script:
-    - apt-get install nodejs
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    - nvm install 20
     - pip install --no-cache-dir -r dependencies.txt
     - npm ci
     - npm build

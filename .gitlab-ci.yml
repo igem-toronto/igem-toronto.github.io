@@ -3,7 +3,7 @@ image: python:3.12
 build:
   stage: build
   script:
-    - apt-get install node
+    - apt-get install nodejs
     - pip install --no-cache-dir -r dependencies.txt
     - npm ci
     - npm build
@@ -13,7 +13,7 @@ build:
 pages:
   stage: build
   script:
-    - apt-get install node
+    - apt-get install nodejs
     - pip install --no-cache-dir -r dependencies.txt
     - npm ci
     - npm build

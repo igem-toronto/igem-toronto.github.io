@@ -8,7 +8,7 @@ pages:
     - . venv/bin/activate
     - pip install --no-cache-dir -r dependencies.txt
     - npm ci
-    - npm build
+    - npm run build
   artifacts:
     paths:
       - public

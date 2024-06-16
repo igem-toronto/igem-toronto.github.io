@@ -1,29 +1,157 @@
-{% extends "layout.html" %}
-  
-{% block title %}Experiments{% endblock %}
-{% block lead %}Describe the research, experiments, and protocols you used in your iGEM project.{% endblock %}
+{% extends "layout/layout.html" %}
 
-{% block page_content %}
-
-<div class="row mt-4">
-  <div class="col-lg-8">
-    <h2>What should this page contain?</h2>
-    <hr>
-    <p>Describe the research, experiments, and protocols you used in your iGEM project. These should be detailed enough for another team to repeat your experiments.</p>
-    <p>If you made Parts this year, please remember to put all information, characterization, and measurement data on the Part's Main Page on the <a href="https://parts.igem.org/Main_Page">Registry</a>.</p>
+{% block content %}
+<div>
+  {{ subheading("Experimental Background")}}
+  <div>
+    {{ subsubheading("Overarching Rationale") }}
+    <p>
+      Landfill gas emissions are a growing problem, releasing tonnes of
+      methane and carbon dioxide into the atmosphere and surrounding
+      environment. This is of particular concern in Toronto, with there being a
+      large number of Indigenous communities located in close proximity to
+      landfill sites, and therefore receiving the brunt of the pollution. This
+      year, iGEM Toronto has been working to remedy the issue of landfill gas
+      pollution, by means of using synthetic biology to transform bacteria into
+      functional methylotrophs. Our experimentation over the past five months
+      has centred on improving methanol and other one-carbon compound (C1)
+      assimilation and reducing glucose dependency of our bacterial strains,
+      with specific attention to E. coli as our model organism. To achieve our
+      goal of shifting the metabolisms of bacteria from glucose to methanol
+      consumption, we have worked to optimize the metabolism of C1 substrates
+      such as formate or methanol by means of gene knock-outs, cell culturing
+      and transformation, quantification of metabolite uptake, and adaptive
+      laboratory evolution (ALE).
+    </p>
   </div>
-  <div class="col-lg-4">
-    <h2>Inspirations</h2>
-    <hr>
-    <ul>
-      <li><a href="https://2019.igem.org/Team:Nantes/Experiments">2019 Nantes</a></li>
-      <li><a href="https://2019.igem.org/Team:TU_Eindhoven/Experiments">2019 TU Eindhoven</a></li>
-      <li><a href="https://2019.igem.org/Team:Mingdao/Demonstrate">2019 Mingdao</a></li>
-      <li><a href="https://2020.igem.org/Team:Amsterdam/Experiments">2020 Amsterdam</a></li>
-      <li><a href="https://2020.igem.org/Team:NCTU_Formosa/Experiments">2020 NCTU Formosa</a></li>
-      <li><a href="https://2020.igem.org/Team:USAFA/Experiments">2020 USAFA</a></li>
-    </ul>
+  <div>
+    {{ subsubheading("Improving upon Existing Work") }}
+    <p>
+      To begin our experimentation, we needed a baseline to build upon; this
+      came in the form of Har et al.’s (2021) work on the ALE of E. coli strain
+      BW25113 ΔfrmA that was transformed with the goal of improved methanol
+      derived carbon metabolism, resulting in creation of E. coli T-B18. This
+      strain was specifically engineered to use C1 feedstock to synthesize
+      amino acids, and was determined to be an ideal model organism due to its
+      strong methylotrophy and ease of replicability. We were further inspired
+      by iGEM Wageningen University & Research’s 2021 project that focused on
+      the biofiltration of methane from cattle farms in the Netherlands by
+      means of engineering bacterial chassis including a different strain of
+      E. coli to improve methane oxidation. Learning from these two sources,
+      iGEM Toronto has bridged the gaps between the creation of methylotrophic
+      strains of E. coli and the identified need for a reduction in C1 emissions
+      by applying the optimization of C1 substrate uptake to the context of
+      common pollutants from landfills: methanol and formate. We have furthered
+      the development of methylotrophy by means of conducting genetic knock
+      outs and replacements within E. coli T-B18. 
+    </p>
   </div>
+  <div>
+    {{ subsubheading("Gene Choice") }}
+    <p>
+        Determining what genes should be manipulated within our baseline strain
+        began with the identification of our pathway of interest and its key
+        players; we focused on the reductive glycine pathway, RUMP cycle, and
+        glycolysis, and identified the genes tpiA, frdA, and mdh as targets of
+        engineering. The gene tpiA, as discussed in more depth below, codes for
+        triosephosphate isomerase, and serves to ensure that the RUMP cycle is
+        reversible - for the purposes of increasing this pathway in the
+        direction of methanol assimilation, we conducted a CRISPR-Cas9 knockout.
+        The gene frdA codes for one component of the Fumarate Reductase enzyme
+        complex, which was identified through Flux Balance Analysis (FBA) by
+        our Dry Lab team as being a strong candidate for knockout that would
+        improve methanol assimilation. Lastly, the overexpressed gene mdh for
+        methanol dehydrogenase was replaced as described below to optimize the
+        catalysis of methanol to formaldehyde, which is the first reaction in
+        the RUMP pathway.
+    </p>
+  </div>
+  <div>
+    {{ subsubheading("Quantification Choice/Troubleshooting & ALE Rationale") }}
+    <p>
+      To identify the level of methanol assimilation, we carried out steps for
+      quantifying the metabolites of our baseline and transformed metabolites.
+      To carry this out, we turned to using High Performance Liquid
+      Chromatography (HPLC) as a means of profiling the amount of methanol
+      present in cell culture before and after transformation. A secondary
+      quantification protocol using gas chromatography was also considered.
+      There were many considerations for our method of quantification,
+      including processing capacity, ease of quantification for volatile
+      metabolites, and specificity for cell cultures. To further demonstrate
+      an improvement in C1 substrate utilization, our experimental protocol
+      calls for ALE as a means to showcase the long-term shift of the bacterial
+      chassis towards complete methylotrophy. 
+    </p>
+  </div>
+</div>
+<div>
+  {{ subheading ("Plasmid curing of pETM6 from T-B18")}}
+  <div>
+    <p>
+        T-B18 (E. coli BW25113 ΔfrmA)[1] has the plasmid pETM6_Ptrc_BsMdh_BmHps_BmPhi[2]. T-B18 has Kanamycin (KAN) resistance inserted into the genome and pETM6 has Ampicillin (AMP) resistance. Because future CRISPR experiments require transforming 2 extra plasmids (pCas9 and pTargetF) into T-B18, we want to cure out pETM6 to reduce plasmid burden when doing CRISPR. Also, the mdh substitution requires T-B18 without pETM6_Ptrc_BsMdh_BmHps_BmPhi. Hence we will first cure pETM6 and create a glycerol stock of T-B18 ΔpETM6.
+    </p>
+  </div>
+    {{img(cdn("pictures/wl-plasmidcuring.png"),alt="Fig. 1: Plasmid Curing Workflow")}}
+</div>
+<div>
+    {{ subheading("Replacement of B. m Mdh with C. n Mdh in pETM6 ") }}
+    <div>
+      <p>
+          Mdh, encoding methanol dehydrogenase, is the first reaction in the RuMP cycle. This enzyme is responsible for catalyzing the conversion of methanol to formaldehyde, as it needs to be introduced heterogeneously into the engineered chassis, E. coli. According to multiple previous studies on engineered methylotrophs, mdh is considered as the bottleneck reaction of the pathway. In the paper that describes the T-B 18 strain, the overexpressed mdh gene is derived from B. stearothermophilus, as it has been proven to perform better than the conventionally used B. Methanolicus mdh in vivo in E. coli. However, in an endeavor to improve the conversion rate of methanol, we identified an mdh sequence that has superior Km parameters to increase the enzyme's specificity for methanol. This is also supported by the paper that generated the mdh-containing plasmid, which claims that more effective mdh models, such as the one generated by Liao et al. in 2016, exist. Liao et al. describes a high-throughput screening of mutagenized mdh models generated by directed evolution in an E. coli host. A superior mdh variant, CT4-1, is identified to possess high specificity towards methanol and high conversion efficiency, with a Km value of 21.6 ± 1.5 mM and a Km/Kcat of 9.3 M−1 s−1. This led the team to hypothesize that by substituting the original mdh expression vector with C. necator CT4-1 mdh, would result in an improvement in the overall methanol assimilation in our engineered strain.
+      </p>
+    </div>
+    {{img(cdn("pictures/wl-mdh.png"),alt="Fig. 2: Mdh Replacement Workflow")}}
+</div>
+<div>
+    {{ subheading(" CRISPR-Cas9 Knockout") }}
+    <div>
+        <p>
+            There are multiple genetic targets that could be subjected to knockout to increase the metabolic flux of methanol assimilation in Rump pathway. Specifically, we identified one target from Vorholt et al. 2020, that deletion of the triosephosphate isomerase (tpiA) gene leads to the increased theoretical flux of the Rump pathway. TpiA catalyzes the glycolysis pathway's reversible conversion between dihydroxyacetone phosphate (DHAP) & D-glyceraldehyde 3-phosphate (GAP). Deleting the tpiA gene would impede GAP derived from methanol, in which case it could only be generated from pyruvate. This increases the flux of DHAP formation from methanol, resulting in higher incorporation of methanol into Rump cycle intermediates. <br>
+            As expected, the ΔtpiA strain demonstrated methanol-dependent growth, agreeing to their in silico studies. The metabolic burden on the synthetic pathway is found to be low as well, with 6.5 % of the biomass derived from methanol. Furthermore, the computation predicts that as much as 40% of the methanol could be incorporated by Rump cycle with tpiA deletion. <br>
+            The team deems tpiA would be a good Knockout candidate for T-B18 strain for our case since numerous conditions from both papers are transferable. For example, they use the same starting strain E. coli BW25113 ΔfrmA, the engineering approaches include episomal overexpression of the essential Rump cycle genes (mdh, hps & phi), and both of the paper focused on improving the upstream methanol assimilation capability as their primary goals.        
+        </p>
+        {{img(cdn("pictures/wl-tpia-ko-fin.png"),alt="Fig. 3: Impact of tpiA KO")}}
+        <p>
+            We decided to use the CRISPR-Cas9 gene editing system to achieve tpiA knockout in our T-B18 E.coli as it is efficient, well established, and has high specificity compared to other methods. <br>
+            We will be using two-plasmid systems: pCas9 + pTarget for CRISPR Cas9 System. pCas contains cas9 gene with a native promoter, an arabinose-inducible sgRNA guiding Cas9 to the pMB1 replicon of pTarget, the lambda-Red recombination system to improve the editing efficiency, and the temperature-sensitive replication repA101(Ts) for self-curing. We have checked that the origin of replication of pCas9 is compatible with the pTarget, and the pTarget series contains the targeting sgRNA. The Donor DNA is purchased from IDT as a linear DNA fragment. 
+        </p>
+        <p>
+            The CRISPR-Cas9 genome editing designs for knockout of tpiA is based on a study conducted by Sheng Yang and colleagues in 2015 (Yang et al., 2015), necessitates a two-plasmid system. In the two-plasmid system, the Cas9 gene and its corresponding sgRNA, directing it to the tpiA region of E.Coli, were segregated into the pCas9 plasmid and a pTarget plasmid, respectively. The repair template donor DNA is provided as a separate fragment. <br>
+            The plasmid in which carries cas9 endonuclease gene was replaced from the original paper in order to adjust to the antibiotic resistance in our E.Coli strain. While the pTargetF plasmid consists of the sgRNA scaffold sequence, the N20 sequence of tpiA, and multiple restriction sites. The N20 sequences (CAAGTGATCATTCAGTACGG) of tpiA is incorporated in the backbone of pTargetF (Addgene #62226) using inverse PCR with primers (forward primer: gttttagagctagaaatagc, reverse primer: gctatttctagctctaaaacCCGTACTGAATGATCACTTGactagtattata). The repair donor template is 1000bp synthesized DNA that has 500bp homologous to both upstream and downstream of the tpiA region in the genome.
+        </p>
+        {{img(cdn("pictures/wl-tpiakoworkflow.png"),alt="Fig. 4: tpiA Knockout Experiment Workflow")}}
+    </div>
+</div>
+<div>
+  {{ subheading("Quantification") }}
+  <div>
+    <p>
+      In order to verify the efficacy of the methylotrophic traits of the engineering strain, the team conducted quantification using High-Performance Liquid Chromatography (HPLC). HPLC is an analytical technique that separates compounds in a chemical mixture based on pressure-driven flow. HPLC operations consist of a mobile phase and a column-packed stationary phase; various compounds in the mobile phase interact differently with the stationary phase and are hence separated due to elution in the column. The sample, in this case, the growth media, is placed in the mobile phase. Following the separation, a detector measures the relative intensity of a compound in the mobile phase and plots it accordingly on a chromatogram. The chromatogram is the resulting visual from this method, and for our experiment, it provides information on the methanol concentration present in the media post-growth. An HPLC measurement is taken at time zero (t0) prior to culture growth and then sampled consistently over the phases of the cell growth curve. A successful experiment would indicate a steady decline in the methanol concentration in the media which indicates that the bacterial strain assimilated the methanol, utilizing it as a metabolite and therefore demonstrating methylotrophic tendencies. 
+    </p>
+  </div>
+  {{img(cdn("pictures/wl-hplcworkflow.png"),alt="Fig. 5: HPLC Experiment Workflow")}}
+</div>
+<div>
+  {{ subheading("Adaptive Lab Evolution") }}
+    <div>
+      <p>
+        Our engineered-T-B18 strain, which is a methylotrophic E. coli strain derived from the wildtype strain T-B18 described by Antioniewics et al. 2021, has the potential to improve its methanol assimilation capability. To achieve this, we will use adaptive laboratory evolution (ALE) to apply evolutionary pressure to enhance a specific trait. The original paper that generated T-B18 focused on removing amino acid auxotrophy, while methanol was used to boost growth. However, our goal is to create a strain that relies on methanol alone, with minimal or no dependence on heterotrophic carbon sources such as glucose. 
+      </p>
+      <p>
+        Our ALE procedure will involve subjecting the strain to two stress factors in the culture media: higher methanol concentration and lower glucose concentration. We hypothesized that this will enable the strain to adapt and increase its methanol utilization efficiency, while decreasing its glucose intake dependency.
+      </p>
+      <p>
+        ALE is commonly conducted either through serial passaging or using a chemostat. Due to time and resource constraints, our team has opted for serial passaging in favor of its straightforwardness. Serial passing involves manually transferring culture to new media with gradually increasing levels of stress. In our case, given the growth rate of our strain, culture was transferred every two days to new media where the concentration of glucose decreased for each subsequent passage. The most common approach involves culturing and passaging of strains with flasks. This allows for larger volume, but is manually challenging due to the requirement of a large number of flasks given our need to pass multiple strains. The approach we decided on was to use 96 well culture plates with a multichannel pipette for transferring. This method would be more convenient to conduct, and allow us to run multiple populations in parallel, but it risks a smaller volume for ALE. 
+      </p>
+      <p>
+        As per the original paper, the serial transfer procedure is conducted as follows.Their engineered strain grew in rich media for 36 days with continuous passing. The strain was then subjected to minimal media (M9) containing threonine and supplemented with 250mM of methanol. The stressor for their experiment, threonine, was decreased in concentration from 10mM to 2mM in a period of 70 days. 
+      </p>
+      <p>
+        We adapted their methodology to our experiment. Our stressor will be decreasing glucose for each subsequent passage. Starting with regular M9 media with 4g/L of glucose, it was decreased by 0.36g/L each passage for a total of 10 passages to a final glucose concentration of 0.4g/L. 
+        To identify the strain that grew fastest, colonies were isolated through plating and cultured overnight in the same conditions. An OD600 reading was taken to identify the colonies that grew fastest. Sequencing was done on the fastest growing colony to identify the mutations that took place.
+      </p>
+    </div>
+    {{img(cdn("pictures/wl-ale.png"),alt="Fig.6 : ALE Experiment Workflow")}}
 </div>
 
 {% endblock %}

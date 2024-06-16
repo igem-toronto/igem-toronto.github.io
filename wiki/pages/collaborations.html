@@ -1,0 +1,40 @@
+{% extends "layout/layout.html" %}
+  
+
+{% block content %}
+{{ heading("Collaborations") }}
+iGEM Toronto is grateful to be invited to different conferences throughout the iGEM cycle to present our project and interact with professionals. Below listed the event that we attended.
+<div>
+    {{ subheading("Biozone CO2 Conference")}}
+    {{ img(cdn("hpphoto/biozone-co2-conference-0.jpg"),
+        alt="iGEM Toronto presenting at the CO2 Conference organized by Biozone at the University of Toronto in June 2023",
+        width="60%") }}
+</div>
+<div>
+    {{ subheading("Publishing on The Cannon")}}
+    {{ img(cdn("hpphoto/20231008-105900.jpg"),
+        alt="iGEM Toronto collaborated with The Cannon - the engineering magazine at the University of Toronto - to publish an article we wrote about landfill gas emissions on the Oct 2023 edition",
+        width="60%") }}
+</div>
+<div>
+    {{ subheading("Club's Fair")}}
+    {{ img(cdn("hpphoto/20230906-164712.jpg"),
+        width="60%") }}
+    {{ img(cdn("hpphoto/20230906-164626.jpg"),
+        alt="iGEM Toronto speaking to new UofT students at the Fall Club's Fair",
+        width="60%") }}
+    
+</div>
+<div>
+    {{ subheading("In Vitro Conference")}}
+    {{ img(cdn("hpphoto/20230827-154600.jpg"),
+    width="60%") }}
+    {{ img(cdn("hpphoto/20230827-154412.jpg"),
+        width="60%") }}  
+    {{ img(cdn("hpphoto/20230827-155857.jpg"),
+        alt="Organzed by iGEM MgGill, iGEM Toronto attended and presented our project and results in the In Vitro Conference in Aug 2023",
+        width="60%") }}
+       
+</div>
+
+{% endblock %}

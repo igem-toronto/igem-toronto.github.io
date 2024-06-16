@@ -1,19 +1,22 @@
-image: python:3.6
+image: python:3.12
 
 build:
   stage: build
   script:
+    - apt-get install node
     - pip install --no-cache-dir -r dependencies.txt
-    - FLASK_APP=app.py flask freeze
+    - npm ci
+    - npm build
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-
 
 pages:
   stage: build
   script:
+    - apt-get install node
     - pip install --no-cache-dir -r dependencies.txt
-    - FLASK_APP=app.py flask freeze
+    - npm ci
+    - npm build
   artifacts:
     paths:
       - public

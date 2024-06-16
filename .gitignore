@@ -3,3 +3,6 @@ venv
 .vscode
 __pycache__
 public
+node_modules
+static/output.css
+dist

@@ -1,23 +1,7 @@
-{% extends "layout.html" %}
+{% extends "layout/layout.html" %}
 
-{% block title %}Attributions{% endblock %}
-{% block lead %}In the iGEM Competition, we celebrate student effort and achievement. The Attributions form helps the judges differentiate between what students accomplished from how their external collaborators supported them. Therefore, teams must clearly explain on the standard Project Attributions form what work they have conducted by themselves and what has been done by others.{% endblock %}
-
-{% block page_content %}
-
-<div class="row mt-4">
-  <div class="col">
-    <div>
-      <p>Teams must use the standard Attributions form. To meet the attributions requirement, you must display the standard form on your Wiki by following the instructions here: <a href="https://competition.igem.org/deliverables/project-attribution">Project Attribution page</a>.    </p>
-    </div>
-    <div class="bd-callout bd-callout-info">
-      <h4>Bronze Medal Criterion #2</h4>
-      <p>Describe what work your team members did and what other people did for your project.</p>
-      <p>The form that has been embedded in an iframe in this page shows your team's Project Attribution form. This page must keep the form as it is.</p>
-      <p>If you use a different website framework, make sure to embed the right URL for your team's form.</p>
-    </div>
-  </div>
-</div>
+{% block content %}
+  {{ heading("Attributions") }}
 
 <!--
   ======================================================================
@@ -30,20 +14,18 @@
 <div class="row mt-4">
   <script type="text/javascript">
     // Listen to size change and update form height
-    window.addEventListener("message", function (e) {
-      if (e.origin === "https://teams.igem.org") {
-        const {type, data} = JSON.parse(e.data);
-        if (type === "igem-attribution-form") {
-          const element = document.getElementById("igem-attribution-form");
-          element.style.height = `${data + 100}px`;
-        }
+    window.addEventListener('message', function (e) {
+      const {type, data} = JSON.parse(e.data);
+      if (type === 'igem-attribution-form') {
+        const element = document.getElementById('igem-attribution-form')
+        element.style.height = data + 50 +'px'
       }
     });
   </script>
   <iframe
     style='width: 100%'
     id="igem-attribution-form"
-    src="https://teams.igem.org/wiki/5230/attributions">
+    src="https://attributions.igem.org?team=Toronto&year=2023"
   >
   </iframe>
   <!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->

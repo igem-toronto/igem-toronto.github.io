@@ -1,0 +1,138 @@
+{% macro link(text, target) -%}
+  <div class="hover:text-primary-light ease-in duration-100
+              lg:py-0 lg:px-10
+              text-left py-2 flex items-center">
+    <a href="{{ url_for('pages', page=target + '.html') }}">{{ text }}</a>
+  </div>
+{%- endmacro %}
+
+{% macro dropdown_links(text, sublinks, direction="down") -%}
+  <div
+      @click="expanded == '{{ text }}'
+              ? expanded = ''
+              : expanded = '{{ text }}'"
+      @click.away="if (expanded == '{{ text }}') expanded = ''"
+      class=" cursor-pointer relative text-left py-2 flex lg:items-center
+              lg:py-0 lg:flex-row
+              flex-col">
+    <div class="
+                lg:px-10
+              hover:text-primary-light ease-in duration-100 lg:text-center text-left">
+      {{ text }}
+    </div>
+    <div class=" w-full flex flex-col
+          lg:absolute lg:left-5 {{ 'lg:top-12' if direction == 'down' else '' }}
+          {{ 'justify-end' if direction == 'up' else '' }}
+          ease-in-out duration-300
+          static overflow-hidden"
+      :class="{ 'h-0': expanded != '{{ text }}',
+            'lg:h-88': expanded == '{{ text }}',
+            'lg:top-0': expanded != '{{ text }}' && {{ 'true' if direction == 'up' else 'false' }},
+            'lg:-top-88': expanded == '{{ text }}' && {{ 'true' if direction == 'up' else 'false' }} }"
+      x-cloak>
+      <div class="flex flex-col bg-opacity-80
+                lg:border-primary-dark lg:border-l-2 lg:bg-primary-extra-light">
+      {% for sublink in sublinks %}
+        <a  href="{{ sublink[1] if sublink[1].startswith('http') else url_for('pages', page=sublink[1] + '.html') }}"
+            class=" ease-in duration-100 p-2 text-lg lg:text-primary-dark text-font-light
+                    border-transparent border-l-4 hover:border-primary-dark">
+          <span>{{ sublink[0] }}</span>
+        </a>
+      {% endfor %}
+    </div>
+    </div>
+    
+  </div>
+{%- endmacro %}
+
+{% macro links(link_list, direction="down") -%}
+    {% for link_ in link_list %}
+      {% if "sublinks" in link_ %}
+        {{ dropdown_links(link_["text"],
+            link_["sublinks"],
+            direction=direction) }}
+      {% else %}
+        {{ link(link_["text"], link_["link"]) }}
+      {% endif %}
+    {% endfor %}
+{%- endmacro %}
+
+<div  x-data="{ extended: false }"
+      @click.away="extended = false"
+      class="
+          flex w-full bg-primary-dark items-center lg:justify-normal
+          justify-between">
+  <a  href="/"
+      class=" h-20 flex my-2 items-center
+              xl:mx-12
+              mx-4">
+    <img  src="{{ cdn('graphics/igem-toronto.png') }}"
+          alt="iGEM Toronto Logo"
+          class="h-20">
+  </a>
+  <nav class="p-4 gap-4 text-font-light text-2xl flex
+              ease-in duration-200
+              lg:flex-row lg:translate-y-0 lg:static lg:top-0 lg:bg-transparent lg:w-auto
+              flex-col absolute top-0 right-0 bg-primary-dark w-screen z-50"
+              :class="{ '-translate-y-full': !extended }" x-cloak>
+    <div  class="lg:hidden flex p-1 align-self-end flex-row-reverse cursor-pointer"
+          @click="extended = !extended">
+      <svg class="h-6" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 5 0 L 80 75 L 75 80 L 0 5 L 5 0" fill="white"/>
+        <path d="M 5 80 L 80 5 L 75 0 L 0 75 L 5 80" fill="white"/>
+      </svg>
+    </div>
+    <div  x-data="{ expanded: '' }"
+          class=" flex
+                  lg:flex-row
+                  flex-col">
+      {{ links(navigation) }}
+    </div>
+  </nav>
+  <div  class="lg:hidden flex p-5 cursor-pointer text-white"
+        @click="extended = !extended">
+    <svg class="h-10" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 10 16 L 70 16 L 70 24 L 10 24 L 10 16" fill="white"/>
+      <path d="M 10 36 L 70 36 L 70 44 L 10 44 L 10 36" fill="white"/>
+      <path d="M 10 56 L 70 56 L 70 64 L 10 64 L 10 56" fill="white"/>
+    </svg>
+  </div>
+</div>
+<div class="items-center justify-between bg-primary-dark text-white p-2 px-8
+            lg:hidden"
+      :class="{ 'flex': subpages.length > 0,
+                'hidden': subpages.length == 0 || (subpages.length === 1 && subpages[0].heading === '')
+              }"
+     @click="subpageSelectorExtended = !subpageSelectorExtended" x-cloak>
+  <div x-text="selectedSubpage >= 0 ? subpages[selectedSubpage].heading : ''">
+  </div>
+  <svg  viewBox="0 0 50 100"
+        class="h-8 rotate-90 ml-10 duration-200"
+        :class="{
+          'rotate-90': !subpageSelectorExtended,
+          '-rotate-90': subpageSelectorExtended
+        }">
+    <path d="M 10 0 L 50 50 L 10 100 L 0 90 L 35 50 L 0 10 L 10 0" fill="white"/>
+  </svg>
+</div>
+<ul class=" w-full bg-primary-dark items-center
+            justify-between overflow-hidden duration-200
+            xl:px-20
+            lg:px-10 lg:static lg:flex
+            px-8 absolute"
+    :class="{
+              'lg:max-h-96 lg:py-4': subpages.length > 0 && subpages[0].heading !== '',
+              'max-h-96 py-4': subpageSelectorExtended && subpages.length > 0 && subpages[0].heading !== '',
+              'max-h-0': !subpageSelectorExtended && subpages.length > 0 && subpages[0].heading !== '' 
+                      || subpages.length == 0 || subpages[0].heading === ''
+            }"
+      x-cloak>
+  <template x-for="(sub, index) in subpages">
+    <li class=" text-lg list-none cursor-pointer border-b-2 border-transparent hover:text-white duration-200"
+        x-text="sub.heading"
+        @click="selectSubpage(index); subpageSelectorExtended = false"
+        :class="{ 'text-white lg:border-white': selectedSubpage === index,
+                  'text-gray-400': selectedSubpage !== index }">
+    </li>
+  </template>
+</ul>

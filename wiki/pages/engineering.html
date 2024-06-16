@@ -1,20 +1,96 @@
-{% extends "layout.html" %}
+{% extends "layout/layout.html" %}
   
-{% block title %}Engineering Success{% endblock %}
-{% block lead %}Demonstrate engineering success in a technical aspect of your project by going through at least one iteration of the engineering design cycle. This achievement should be distinct from your Contribution for Bronze.{% endblock %}
 
-{% block page_content %}
+{% block content %}
+  {{ heading("Engineering Success") }}
+<p>
+  Several divisons within our team underwent the thorough and iterative process of engineering design and demonstrated successful results following key takeaways. 
+  In particular, the wet-lab divison was able to showcase this process effectively, during the plasmid curing experiment and Inverse PCR experiment for CRISPR.
+  <p><br /></p>
+  The team was able to condense the engineering design process into four simple steps: Design, Build, Test, and Learn. 
+  The process with two iterations is described below:
+<p><br /></p>
+<strong><u>Plasmid Curing Engineering Design Process:</u></strong>
+<p><br /></p>
+Objective: The primary objective of this project is to eliminate the pETM6 plasmid from the bacterial strain T-B18.
+<p><br /></p>
+<strong>Cycle 1: Temperature Curing</strong>
+<p><br /></p>
+<ol type = "a">
+  <li>1. Design: The initial phase of the project involved exploring temperature-based plasmid curing. We hypothesized that subjecting bacterial cells to elevated temperatures would induce stress on the cells, causing them to shed the pETM6 plasmid.</li>
+  <p><br /></p>
+  <li>2. Build: To initiate the experiment, a "baseline" culture of the T-B18 bacterial strain was established. The culture was grown under standard conditions, and subsequently, kanamycin was introduced to apply selective pressure.</li>
+  <p><br /></p>
+  <li>3. Test: We executed the experimental design by cultivating a portion of the baseline culture at an elevated temperature of 40°C. The objective was to observe whether this increased selective pressure would prompt the bacterial cells to eliminate the pETM6 plasmid. Unfortunately, this attempt was unsuccessful, as the bacterial cells still exhibited resistance to kanamycin.</li>
+  <p><br /></p>
+  <li>4. Learn: The initial temperature-based plasmid curing method did not yield the desired outcome. The T-B18 strain retained its resistance to kanamycin, indicating that the pETM6 plasmid was not effectively eliminated through this approach.</li>
+  <p><br /></p>
+</ol>
 
-<div class="row mt-4">
-  <div class="col">
-    <div class="bd-callout bd-callout-info">
-      <h4>Silver Medal Criterion #1</h4>
-      <p>Demonstrate engineering success in a part of your project by going through at least one iteration of the engineering design cycle. This achievement should be distinct from your Contribution for Bronze.</p>
-      <p>If you plan to show engineering success by creating a new Part that has been shown to work as expected, you must document your contribution on the Part's Main Page on the <a href="https://parts.igem.org/Main_Page">Registry</a> for your team to be eligible for this criteria.</p>
-      <hr>
-      <p>Please see the <a href="https://competition.igem.org/judging/medals">2024 Medals Page</a> for more information.</p>
-    </div>
-  </div>
-</div>
+<strong>Cycle 2: Antibiotic Curing (Rifampicin)</strong>
+<p><br /></p>
+<ol>
+  1. Design:
+  In response to the initial failure, we shifted our approach to antibiotic curing using rifampicin. Rifampicin functions by inhibiting bacterial RNA polymerase, which is crucial for transcription. Plasmid DNA replication is dependent on transcription; therefore, inhibiting this process can lead to plasmid loss.
+  <p><br /></p>
+  2. Build:
+  The project advanced to the rifampicin sensitivity test. Various dilutions of the T-B18 culture were prepared, each exposed to different concentrations of rifampicin, ranging from 0 ug/mL to 50 ug/mL. This laid the groundwork for subsequent tests.
+  <p><br /></p>
+  3. Test:
+  The rifampicin sensitivity test demonstrated significant promise. Under the highest concentration of rifampicin (50 ug/mL), no colonies grew, while the negative control with 0.0 ug/mL of rifampicin exhibited colony growth. Distinct colonies appeared on the plate exposed to 10 ug/mL of rifampicin, prompting us to proceed with a replica plate.
+  <p><br /></p>
+  4. Learn:
+  The rifampicin sensitivity test results indicated that T-B18 was sensitive to rifampicin at 50 ug/mL, validating the viability of rifampicin plasmid curing. Subsequent colony PCR, followed by gel electrophoresis of the PCR products, confirmed the loss of the pETM6 plasmid in one of the colonies from the kanamycin replica plate. This marked a significant success in our plasmid curing project, indicating that our intended objective had been achieved using rifampicin.
+  <p><br /></p>
+</ol>
+<b>Conclusion:</b>
+<p><br /></p>
+In summary, the engineering design process was executed in a two-cycle approach. While the initial attempt using temperature-based curing was unsuccessful, the shift to rifampicin antibiotic curing led to the successful elimination of the pETM6 plasmid. This iterative approach exemplifies our commitment to refining our methods and achieving our project objectives. Our team will now continue to build upon these findings and explore further applications for this successful plasmid curing approach.
+</p>
 
+
+<strong><u>Inverse PCR Engineering Design Process:</u></strong>
+<p><br /></p>
+Objective: The primary objective of this project is to construct the pTargetF plasmid with a specific sgRNA sequence for targeted gene knockout, following the two-plasmid CRISPR-Cas9 system.
+<p><br /></p>
+<strong>Cycle 1: Inverse PCR</strong>
+<p><br /></p>
+<ol type = "a">
+  <li>1. Design: The initial design was based on the methodology established by Yang et al. (2015) for the knockout of the tpiA gene using the CRISPR-Cas9 system. This design employed a two-plasmid system, where the Cas9 gene and its sgRNA were segregated into the pCas9 and pTarget plasmids, respectively.</li>
+  <p><br /></p>
+  {{img(cdn("pictures/ipdesign1.png"), alt = "Fig. 1: Using ChopChop to select top output.")}}
+  {{img(cdn("pictures/ipdesign2.png"), alt = "Fig. 2: Primer Design on SnapGene.")}}
+
+  <li>2. Build: To build the pTargetF plasmid, a specific sgRNA sequence was designed and primers, sgRNA_F_Old and sgRNA_R_Old, were prepared to insert the sgRNA sequence after the gRNA scaffold of the pTargetF plasmid.</li>
+  {{img(cdn("pictures/ipbuild1.png"), alt = "Table 1: Initial Primer Sequences.")}}
+  <p><br /></p>
+  <li>3. Test: The experimental setup involved utilizing inverse PCR to amplify the pTargetF plasmid. Phusion polymerase, known for its high fidelity, was used to ensure accurate DNA replication for long amplifications. A specific thermal cycling protocol was employed, and gel electrophoresis was performed to confirm amplification. Unfortunately, primer-dimer issues were encountered, as indicated by the presence of unintended bands on the gel.</li>
+  {{img(cdn("pictures/iptest1.png"), alt = "Table 2: Initial Thermal Cycling Protocol.")}}
+  <p><br /></p>
+  <li>4. Learn: The sample shows an obvious primer-dimer band at the bottom of the gel. The presence of primer dimer bands in the gel indicates that some of the primers have annealed to each other and amplified to form unintended products. Possible steps to address primer dimer issues include optimising primer concentrations, template concentration, and adjusting annealing temperatures. 
+  For primer concentrations, we tried out 10uM to 100uM. For template concentration, we tried repeated plasmid miniprep to ensure the nanodrop result is of higher concentration. For annealing temperature, we tried out from a range of 48C to 57C. None of the experiments yielded positive results. 
+  </li>
+  {{img(cdn("pictures/iplearn1.png"), alt = "Fig. 3: Gel Results showing clear Primer Dimer.")}}
+  <p><br /></p>
+</ol>
+
+<strong>Cycle 2:  Inverse PCR (Revised Design)</strong>
+<p><br /></p>
+<ol>
+  1. Design: Following the primer-dimer issues encountered in Cycle 1, the design was revisited. Input was sought from a colleague who had experience with the same CRISPR-Cas9 system and had achieved positive results. Based on this input, the primer design for inverse PCR was revised.
+  <p><br /></p>
+  2. Build: The revised primers, sgRNA_F and sgRNA_R, were designed to be used in inverse PCR for inserting the sgRNA sequence into pTargetF plasmid.
+  <p><br /></p>
+  {{img(cdn("pictures/ipbuild2.png"), alt = "Table 3: Revised Primer Sequences.")}}
+  3. Test: In the second cycle, a standardized PCR protocol provided by NEB was followed. Gel electrophoresis was conducted to confirm the successful amplification. Notably, the gel electrophoresis results showed a distinct band at approximately 2000bp, matching the expected size for the amplification of the pTargetF plasmid. Additionally, the nanodrop results indicated an acceptable DNA concentration and purity, facilitating future transformation steps.
+  <p><br /></p>
+  {{img(cdn("pictures/iptest2.png"), alt = "Table 4: Revised Thermocycling Protocol.")}}
+  4. Learn: The revised primer design in Cycle 2 effectively resolved the primer-dimer issues encountered in Cycle 1. The standardized PCR protocol and the revised primer design led to the successful amplification of the pTargetF plasmid, as confirmed by gel electrophoresis. Nanodrop result also indicates an acceptable concentration and DNA purity to enable future transformation steps.  This achievement allows for the mass production of pTargetF_tpiA as a stock.
+  <p><br /></p>
+  {{img(cdn("pictures/iplearn2.png"), alt = "Fig. 4: Gel Results showing successful Inverse PCR; from left to right: Ladder, PCR reaction 1, PCR reaction 2, positive primer design control, Phusion master mix control.")}}
+  {{img(cdn("pictures/iplearn3.png"), alt = "Table 5: Recorded Nanodrop concentrations.")}}
+</ol>
+<b>Conclusion:</b>
+<p><br /></p> In summary, the project to construct the pTargetF plasmid using inverse PCR underwent two cycles of the engineering design process. The initial cycle faced challenges related to primer-dimer formation, which were addressed by revising the primer design in the second cycle. This iterative approach allowed for the successful construction of the pTargetF plasmid, meeting the project's objective. The ability to mass-produce the pTargetF_tpiA plasmid as a stock is a significant milestone in this endeavour.
+</p>
 {% endblock %}

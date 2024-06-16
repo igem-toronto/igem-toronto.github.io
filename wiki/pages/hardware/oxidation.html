@@ -1,0 +1,201 @@
+{% extends "layout/subpage.html" %}
+
+{% block content %}
+<div>
+  <b><i><h1>Methane to Methanol Oxidation Reactor Modelling </h1></i></b><br>
+  <div>
+    {{ subheading("Summary") }} <br>
+    <p>
+      The methane to methanol oxidation step is done with a packed bed reactor containing a copper chabazite (zeolite)
+      catalyst {{cite('Sun_Wang_Wang_Xie_Guan_Li_2021')}}. The reactor has a single pass conversion of 0.07%. By using a recycle
+        stream with a ~50 recycle ratio, the effective conversion is 7.20%. Phase separation is used to separate
+        methanol from water, as a mixture of the two is normally miscible. Two different models were developed from
+        {{cite('Sun_Wang_Wang_Xie_Guan_Li_2021')}}: one on Aspen and one with Excel; the two differ mainly in their phase
+          separation techniques.
+    </p>
+  </div>
+  <div>
+    {{ subheading("Background") }} <br>
+    <p>
+      The methane to methanol oxidation step is generally done with two ways: an energy intensive two-step reaction
+      involving combustion into CO2 and using a water gas shift reaction to reduce the CO2 into methanol using
+      hydrogen, and a single step reaction with catalytic chemistry. The two-step reaction is generally done at the
+      scale of large plants, as large amounts of fuel are needed to sustain the high temperatures and pressures
+      {{cite('VANDAL201338')}} needed for the reaction. As our intended solution is to have a setup sited at
+        the landfill itself just like how a flare stack is situated within a landfill site, the scale of our solution
+        is incompatible with the two-step process, and thus we focus our attention on the catalytic process.
+        <br><br>
+        The conversion of methane to methanol has been called a “dream reaction” and the “holy grail of catalytic
+        chemistry” {{cite('mdpiRecentInsights')}}. Despite at least two decades of research, no process has achieved single pass
+          conversions above 1%, and especially without requiring significant amounts of expensive catalyst. The focus
+          of research on this area is mostly on improving catalyst selectivity, instead of yields, on a per-atom basis
+          using tools such as X-ray diffraction spectrometry. However, a promising set of catalysts has advanced to
+          the point where some researchers have attempted incorporating it as part of a process in a reactor.
+          <br><br>
+          One of the most promising approaches for direct methane to methanol conversion involves the use of
+          electrocatalysts, particularly copper-based catalysts. Copper-exchanged zeolites, for example, have shown
+          promising results in converting methane to methanol {{cite('mdpiRecentInsights')}}. The process typically involves
+            activating methane by catalysts on the anode, followed by the conversion to methanol through the attack of
+            electro-generated active oxygen species {{cite('mdpiRecentInsights')}}. However, even state-of-the-art approaches
+              have difficulty achieving industrial yields and are difficult to upscale {{cite('doi:10.1021/jacsau.2c00176')}}.
+                <br><br>
+                Our particular process uses a copper chabazite {{cite('Sun_Wang_Wang_Xie_Guan_Li_2021')}} catalyst with a ~2%
+                  yield and a 91% selectivity into methanol. The research incorporated a continuous flow packed bed
+                  microreactor in their research, which may be scaled up to an industrial packed bed reactor already
+                  used in petrochemical processes and hydrogen generation via steam reforming
+                  {{cite('VANDAL201338')}}. The low yield is due to an extreme methanol/oxygen molar ratio of
+                    2450 entering the reactor, which means that the conversion of methane is choked by the extremely
+                    small amounts of oxygen - the limiting reagent in this case - which is necessary to prevent
+                    methane from being oxidised outright to carbon dioxide.
+                    <br><br>
+                    To improve yields, we are able to use a recycle stream, where some of the reactor product is
+                    redirected back to the input to the reactor inlet. This will allow any unreacted methane to be
+                    given a second pass at the reactor. The recycle stream also serves to artificially maintain the
+                    large methane/oxygen ratio required to maintain the reactor's selectivity into methanol.
+                    <br><br>
+                    As methanol is miscible in water, we exploit their different boiling points to separate a mixture
+                    of the two. Methanol has a lower boiling point than water {{cite('FelderRousseau')}}; therefore, a mixture
+                      of methanol and water heated to a temperature that is between the boiling points of methanol and
+                      water will be concentrated in methanol. This type of separation is normally achieved with a
+                      distillation column; however, for simplicity and time we have used a heated flash drum to
+                      achieve the separation.
+                      <br><br>
+                      In modelling the oxidation, we hope to demonstrate that methanol can be produced for the
+                      bioreactor - however small - and to identify means of optimising methanol production. This
+                      effort will also display the plant design process for one particular landfill - at least its
+                      first stages - which may be extended towards developing a full bioprocess scheme for processing
+                      methane to valuable downstream chemicals, and to other landfills with different conditions as
+                      well.
+    </p>
+  </div>
+  <div>
+    {{ subheading("Methods") }} <br>
+    <p>
+      Relevant reaction yield and conversion data was extracted from {{cite('VANDAL201338')}} by hand.
+        Modelling was mainly carried out in the Aspen Plus software package, and an Excel model was created to verify
+        results. For both models, no heat is assumed lost to the surroundings, and no pressure loss is assumed in the
+        reactor. For the Aspen Plus model, the UNIQUAC thermodynamics package was used, and compressors were assumed
+        to be isentropic. For the Excel model, gases are assumed ideal and complete gas/liquid separation is achieved
+        except for one component where UNIQUAC input is used from Aspen Plus. Inlet compositions and flow rates were
+        based on London, Ontario's W12A landfill's landfill gas emissions. Different landfills will have different
+        landfill gas compositions and require potentially different reactor compositions.
+        <br><br>
+        Aspen Plus simulates chemical engineering processes; that is, we are able to specify reactors, distillation
+        columns, material inflows and connections, etc. and Aspen Plus will calculate a steady state solution - the
+        amount of material flowing through and energy being exchanged in each reactor, distillation column, and
+        component so that a mass balance is achieved. When we worked with Aspen Plus, we first designed on paper a
+        process flow that may potentially work, evaluated it in Aspen Plus, and iterated based on the simulation
+        output. The final process flow we settled on is included in the results section.
+        <br><br>
+        Excel can be used to calculate steady state solutions as well, but is more involved as the calculations and
+        formulae have to be typed individually. Heat and energy calculations were done with the ideal gas assumption.
+        To improve the model's fidelity, vapour-liquid phase equilibria in heat exchangers were modelled with Aspen
+        Plus using UNIQUAC, and the results were copied to Excel. As phase equilibria cannot be represented as
+        explicit functions easily, ternary and binary search was used over multiple calculation iterations to identify
+        a steady state solution.
+    </p>
+  </div>
+  <div>
+    {{ subheading("Results") }} <br>
+    {{subsubheading("Aspen model results")}}
+    {{img(cdn("pictures/hardwares/5-sub-sub.png"), alt="Process configuration used with the Aspen simulation package. See paragraph below for details.")}}
+    <p>Our proposed process consists of a methane inlet stream which is derived from the membrane outlet, as well as
+      an oxygen and water input stream. These input streams are mixed with recycle streams containing unreacted water
+      and methane, and some methanol. The reactor (large rounded cylinder) converts some of the methane into methanol.
+      Drum F1 separates the gaseous components from water and methanol. Drums F2 and F3 separate water from methanol
+      via phase separation by heating and cooling. The gas exiting F1 is mainly unreacted methane, of which 99% is
+      recycled back to the reactor and the remainder released. Most of the unreacted water exiting F2 in liquid form
+      is recycled back to the reactor.</p>
+    {{img(cdn("pictures/hardwares/7.png"), width="75%",
+      alt="Table showing inlet and outlet stream flows as simulated with the Aspen package.")}}
+    <p>The single pass conversion is 0.0112% and the overall conversion is 0.1%. The concentration of methane at the
+      outlet is ~4%.</p>
+    {{subsubheading("Excel model results")}}
+    {{img(cdn("pictures/hardwares/4-sub-sub.png"), 
+      alt="Process configuration used with a custom model built in Excel. See paragraph below for details.")}}
+    <p>
+      Our proposed process consists of a methane inlet stream which is derived from the membrane outlet, as well as an
+      oxygen and water input stream. These input streams are mixed with recycle streams containing unreacted water and
+      methane, and some methanol. The reactor (large rounded cylinder) converts some of the methane into methanol. A
+      condenser at 90C (blue circle with arrow pointing downwards) condenses most of the water from the gaseous
+      reactor outlet stream. Another condenser at 60C (green circle with arrow pointing downwards) condenses most of
+      the methanol from the resulting gas mixture. 99% of the remaining gas mixture is recycled while the remainder is
+      released.
+    </p>
+    {{img(cdn("pictures/hardwares/8.png"), width="75%",
+      alt="Table showing inlet and outlet stream flows as simulated on Excel.")}}
+    <p>The single pass methane conversion is 0.0796% and the overall conversion is 7.20%.</p>
+    {{subsubheading("Reactor dimensions")}}
+    {{img(cdn("pictures/hardwares/6-sub.png"), width="40%", alt="Oxidation packed bed reactor dimensions and construction details")}}
+    <p>Our packed bed reactor will be 0.2m in diameter, 5m in height, with 2360 kg catalyst contained inside. 49 of
+      these packed bed reactors will be required to handle the London, Ontario W12A landfill gas output.</p>
+  </div>
+  <div>
+    {{ subheading("Discussion") }} <br>
+    <p>
+      This process proves that production of methanol is possible from methane, but only at extremely low yields. The
+      main problem this process faces is poor catalyst performance, which displays extremely low methane conversions
+      (0.8 per mille) per reactor pass, despite being a recent development. To meaningfully upscale this process, we
+      would likely need a 100-fold increase in the single pass conversion. This is impossible to achieve with this
+      catalyst because oxygen is limiting; an extremely large ratio of methane to oxygen is needed to control the
+      reaction selectivity. As such, catalyst research towards developing a meaningful process in this field should be
+      directed at lessening this large methane/oxygen ratio, and we will keep an eye out for catalysts displaying this
+      improvement for the future.
+      <br><br>
+      To alleviate the poor catalyst performance, our team uses a large recycle stream, to ensure that the bulk of
+      unreacted methane gains a second pass through the reactor. However, a large recycle stream decreases stability,
+      and increases the time required to reach steady-state operational conditions. This process is therefore likely
+      difficult to manage in an actual plant setting.
+      <br><br>
+      Initially, Aspen Plus was selected to model this process. However, the process we designed required a specific
+      methane/oxygen ratio at the reactor inlet which Aspen Plus was not able to control easily. This is the main
+      rationale behind the creation of the Excel model, which we were able to customise in this way but lacks support
+      for phase equilibrium required in condenser and heater models. We adapted our Excel model with phase equilibrium
+      calculations from Aspen Plus, modelling the condensers and heaters on Aspen only while modelling the remainder
+      of the process on Excel.
+      <br><br>
+      As demonstrated by the Aspen model, the perfect phase separation that is assumed in Excel is unrealistic but
+      relatively accurate, as extremely small amounts of gas dissolved in the liquid phase and some methanol and water
+      ended up in the purge streams. The Excel model, however, displays better performance than the Aspen model,
+      because our team had more control over the model and this allowed us to configure the reactor so that more of
+      the limiting reagent reacted.
+      <br><br>
+      To customise the process several parameters may be changed in a chemical plant setting. The condenser
+      temperatures control the quality of the phase separation in the process. Methanol has a lower boiling point than
+      water. Increasing the condenser temperature increases the fraction of methanol that remains as a vapour - and
+      increases the amount of methanol exiting via the gas release streams - but increases the concentration of the
+      methanol exiting the process. This parameter may be varied to control the exit concentration of methanol.
+      <br><br>
+      The recycle split fraction determines how much of the gas exiting the reactor is recycled. This is controlled by
+      the various stream splitters in the process. Increasing the split fraction increases the amount of gas recycled.
+      This increases the overall yield and conversion of the process as less methane is wasted, but makes the system
+      more unstable and causes it to take longer to reach operational steady state. Ideally this parameter is kept as
+      low as possible, but it may be varied to modify how much methanol exits the process depending on requirements.
+      <br><br>
+      Noting the low yields of this process at its current state it is impractical for all landfill gas methane to be
+      processed this way. Some methane will still have to be burnt to ensure it is not released to the atmosphere. In
+      the absence of a better process, a possible implementation is to have the reactor and heaters be heated by the
+      combustion of methane. Once a stronger catalyst and a better process is found, hopefully no methane combustion
+      will not be required. Implementing this process will still be beneficial to the fight against climate change as
+      some methane is sunk into biomass instead of being emitted or turned into carbon dioxide.
+    </p>
+  </div>
+  <div>
+    {{ subheading("Next Steps") }} <br>
+    <p>
+      Our team has demonstrated a proof of concept for a process, however inefficient, that can be utilised to
+      synthesise methanol from methane as an aqueous solution. Our results were demonstrated by both Aspen Plus and
+      Excel models; however, the Excel model suggests greater performance because it was easier to customise. The main
+      constraint this process encounters is the highly inefficient catalyst, and further research should be directed
+      at identifying catalysts that do not require such a constraining oxygen/methane ratio.
+      <br><br>
+      Two major points of improvement may be made. The first is that, industrially, phase separations are done with
+      distillation columns instead of flash drums. Our advisors suggested that we could size a single distillation
+      column instead of the three condensers and heaters we use currently; not only will this save work, but the
+      separation quality may be improved. The second is that Aspen Plus is not open source software, and many of the
+      process engineering routines done with that software package may be replicated in Python for open source use.
+
+    </p>
+  </div>
+</div>
+{% endblock %}

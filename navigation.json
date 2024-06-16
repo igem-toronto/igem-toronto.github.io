@@ -1,0 +1,76 @@
+[
+  {
+    "text": "Team",
+    "sublinks": [
+      {
+        "text": "Introduction",
+        "link": "team"
+      },
+      {
+        "text": "Attributions"
+      }
+    ]
+  },
+  {
+    "text": "Project",
+    "sublinks": [
+      {
+        "text": "Description"
+      },
+      {
+        "text": "Engineering"
+      },
+      {
+        "text": "Experiments"
+      },
+      {
+        "text": "Contribution"
+      },
+      {
+        "text": "Notebook"
+      }
+    ]
+  },
+  {
+    "text": "Parts"
+  },
+  {
+    "text": "Results",
+    "sublinks": [
+      {
+        "text": "Wet Lab"
+      },
+      {
+        "text": "Software"
+      },
+      {
+        "text": "Model"
+      },
+      {
+        "text": "Hardware"
+      }
+    ]
+  },
+  {
+    "text": "Human Practices",
+    "sublinks": [
+      {
+        "text": "Human Practices"
+      },
+      {
+        "text": "Safety"
+      },
+      {
+        "text": "Entrepreneurship"
+      }
+    ]
+  },
+  {
+    "text": "Relations",
+    "sublinks": [
+      {
+        "text": "Sponsors"
+      }
+    ]
+  }
+]

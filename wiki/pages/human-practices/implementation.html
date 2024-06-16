@@ -1,0 +1,156 @@
+{% extends "layout/subpage.html" %}
+
+{% block content %}
+  {{ subpage_banner() }}
+  <div>
+    <p>
+      In order for our team to understand the implementation of our project
+      at landfill sites, and to also understand how current landfill sites
+      are regulated and how landfill gas is collected, our team visited a
+      local landfill site in London, Ontario. The embedded document at the
+      end of this section contains key information and takeaways from our
+      landfill site visit. 
+    </p>
+    <p>
+      Most importantly, the landfill site visit allowed our team to become more
+      informed regarding the next steps of our project and how we wanted to
+      continue our hardware team, entrepreneurship team, and human practices
+      teams’ directions. While this information is found in the embedded
+      document, key points and takeaways are summarised below to highlight the
+      importance the landfill site had on our project’s direction and knowledge. 
+    </p>
+    {{ pdf(cdn("human-practices/hp-landfill-site-visit.pdf")) }}
+  </div>
+  <div>
+    {{ subheading("Hardware") }}
+    <p>
+      The biggest research question our hardware team pursued was to
+      understand how our synthetic biology solution utilising methanotrophs
+      could be implemented in the field at landfill sites and create models
+      to scale the solution up such that it is capable of processing the
+      landfill gas from a landfill site realistically. To do so, the hardware
+      team asked 3 main questions at the landfill site to better understand
+      the constraints and necessary components required to implement our
+      hardware device, and had 1 key takeaway regarding our hardware device
+      and its effectiveness compared to other methods of getting rid of
+      landfill gas such as flaring.
+    </p>
+    <div>
+      {{ subsubheading("Questions & Answers") }}
+      <div>
+        {{ subsubsubheading("What size does our hardware solution have to be?") }}
+        <p>
+          Space is largely available at the landfill site, and placing anything
+          at the buffer area will not greatly impact the landfill’s future
+          plans or logistics. Therefore, our hardware solution is not
+          constrained by size, however the diameter of the pipe connecting the
+          landfill gas collection system has to match the pipe we use to our
+          hardware solution.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What is the volume of landfill gas produced and its trend?") }}
+        <p>
+          The landfill site tour guide informed us what capacity we would have
+          to match if we wanted to propose a system to treat landfill gas.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What is the budget for landfill sites when implementing a new landfill gas solution?") }}
+        <p>
+          We would have to match the cost or be more cost-effective than a new
+          incinerator for flaring.
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Key Takeaways") }}
+      <p>
+        Our preliminary results of the membrane separation and oxidation
+        model shows that the separation and conversion rates are low, with a
+        small amount of methane leaking out of our device. This could put our
+        solution in a disadvantageous position in comparison to our flaring
+        system, and therefore our team will have to ensure that there are no
+        leakages.
+      </p>
+    </div>
+  </div>
+  <div>
+    {{ subheading("Entrepreneurship") }}
+    <p>
+      The Entrepreneurship team gained valuable insight and new
+      considerations needed if this project were to become a start-up. These
+      considerations are further researched and investigated and can be found
+      in the Business Plan in the Entrepreneurship Page. 
+    </p>
+    <div>
+      {{ subsubheading("Questions & Answers") }}
+      <div>
+        {{ subsubsubheading("What is the competitiveness of our landfill gas solution?") }}
+        <p>
+          Synthetic biology as a potential solution for landfill gas
+          management is novel and unique in the market. Using bacteria to
+          assimilate methane and carbon dioxide could enable zero amount of
+          methane and carbon dioxide released to the atmosphere. iGEM Toronto
+          must continue to search for ways to improve the costs and
+          efficiencies of our hardware and chassis engineering design. The
+          cost analysis shows that a scaled up version of our solution is
+          more expensive than installing a new incinerator, and so iGEM
+          Toronto must continue to find additional value behind our solution
+          such that the landfill site authorities and/or the accelerator
+          programs can be persuaded.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What is the business model of existing landfills and their value chain propositions?") }}
+        <p>
+          Publicly owned landfills are not interested in turning a profit,
+          but private ones might, especially if we can add value to their
+          waste products.
+        </p>
+      </div>
+      <div>
+        {{ subsubsubheading("What is our target market?") }}
+        <p>
+          Our target market is not limited to just the smaller landfill sites,
+          but also large landfill sites with existing flaring infrastructure
+          could benefit from our project. Private landfill sites can also
+          potentially be a good target.
+        </p>
+      </div>
+    </div>
+    <div>
+      {{ subsubheading("Key Takeaways") }}
+      <p>
+        The Entrepreneurship team discovered key insight regarding the cost
+        and competitiveness of landfill gas solutions at landfills. Our
+        solution is novel in the field, however we may have to consider
+        additional benefits to our solution to persuade landfill sites to
+        implement our solution if a scaled up version of our solution is more
+        expensive than installing a new incinerator. Furthermore, the team
+        discovered potential future opportunities working with landfills in
+        general, such as leachate management or odour management, which is
+        potentially more profitable. 
+      </p>
+    </div>
+  </div>
+  <div>
+    {{ subheading("Human Practice") }}
+    <p>
+      Those working at the landfill site suggested that iGEM Toronto could
+      gain valuable feedback or consultations on the design and
+      implementation of our project from Government Entities:
+      <ul>
+        <li>
+          iGEM Toronto Human Practice team reached out to the <u>Green Party of Canada</u>.
+        </li>
+        <li>
+          iGEM Toronto Entrepreneurship team will visit <u>a government office
+          to inquire about the Environmental Protection Act</u>. 
+        </li>
+      </ul>
+    </p>
+  </div>
+
+  
+{% endblock %}

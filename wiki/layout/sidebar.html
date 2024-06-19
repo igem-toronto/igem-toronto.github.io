@@ -4,8 +4,6 @@
     function sideBar() {
       return {
         extended: false,
-        fixSideBar: false,
-        openNavHead: -1,
       }
     }
   </script>
@@ -24,9 +22,10 @@
             :key="subheading.key">
           <li class="mb-4 flex flex-col">
             <a @click="openNavHead = index" :href="`#${subheading.key}`"
-              class="text-primary-dark hover:text-accent-saturated-purple
+              class="hover:text-accent-saturated-purple
               text-xl ease-in duration-100"
-              x-text="subheading.text">
+              x-text="subheading.text"
+              :class="{ 'text-accent-saturated-purple': scrolledHeading == subheading.key, 'text-primary-dark': scrolledHeading != subheading.key  }"></a>
             </a>
             <ul class=" px-2 border-primary-dark
                         lg:border-l-2 lg:border-r-0
@@ -39,7 +38,11 @@
                     @click="extended = false">
                     <div class="text-md text-primary-dark
                         ease-in duration-100 hover:text-accent-saturated-purple
-                        text-left" x-text="subsubheading.text">
+                        text-left" x-text="subsubheading.text"
+                        :class="{
+                          'text-accent-saturated-purple': scrolledHeading == subsubheading.key,
+                          'text-primary-dark': scrolledHeading != subsubheading.key
+                        }">
                   </div>
                   </a>
                 </li>

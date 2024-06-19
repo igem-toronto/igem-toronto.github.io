@@ -10,7 +10,7 @@ module.exports = {
       },
       fontFamily: {
         'jost': ['Jost', 'sans-serif'],
-        'kaisei-decol': ['Kaisei Decol', 'serif'],
+        'playfair-display': ['Playfair Display', 'serif'],
         'montserrat': ['Montserrat', 'sans-serif'],
         'archivo': ['Archivo', 'sans-serif'],
       },

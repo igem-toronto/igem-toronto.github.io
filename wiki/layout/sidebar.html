@@ -24,7 +24,7 @@
             :key="subheading.key">
           <li class="mb-4 flex flex-col">
             <a @click="openNavHead = index" :href="`#${subheading.key}`"
-              class="text-slate-700 hover:text-accent-orange
+              class="text-primary-dark hover:text-accent-saturated-purple
               text-xl ease-in duration-100"
               x-text="subheading.text">
             </a>
@@ -37,8 +37,8 @@
                 <li>
                   <a :href="`#${subsubheading.key}`"
                     @click="extended = false">
-                    <div class="text-md text-slate-700
-                        ease-in duration-100 hover:text-primary-dark
+                    <div class="text-md text-primary-dark
+                        ease-in duration-100 hover:text-accent-saturated-purple
                         text-left" x-text="subsubheading.text">
                   </div>
                   </a>

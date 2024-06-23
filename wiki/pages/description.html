@@ -1,325 +1,412 @@
 {% extends "layout/layout.html" %}
-  
-{% block banner %}
-  <div class="mt-8">
-    {{ banner("Methanivore", "A Comprehensive Solution to Harness Landfill Gas Emissions") }}
-  </div>
-{% endblock %}
-
 {% block content %}
   <style>
+  table {
+    margin: 30pt 0;
+  }
   table, th, td {
     border: 1.5px solid;
   }
+
+  thead {
+    background-color: #285a06; 
+    color: white; 
+  }
+
+  tbody {
+    background-color: #dfffc9;
+    color: black;
+  }
+
+  caption { 
+    caption-side: bottom;
+    text-align: left;
+    margin-top: 10px;
+    color: black;
+    font-style: italic
+  }
   </style>
-  {{ subheading("Background") }}
-  {{ subsubheading("Negative impact of landfill gas to the environment") }}
+  {{ heading('Project Description') }}
   <div>
     <p>
-      Landfill gas consists of an approximately 1:1 ratio of methane
-      (CH4) to carbon dioxide (CO2). Methane in particular is responsible
-      for a greater degree of global warming compared to carbon dioxide,
-      and landfill sites contribute to 23% of nationwide annual greenhouse
-      gas emissions.
-    </p>
-    <p>
-      As of 2020, landfills contribute to 23% of national methane emissions,
-      of which 52% of the gas was used to generate low-carbon electricity,
-      17% to produce renewable natural gas and 30% was used at nearby facilities
-      {{ cite('reduce_waste_canada') }}. Through the Government of
-      Canada’s Strengthened Climate Plan - A Healthy Environment and a Healthy
-      Economy, the nation has planned to implement federal regulations to increase
-      the number of landfills that collect their methane, while exploring biosolids
-      and waste management infrastructure {{ cite('reduce_emissions_canada') }}.
-    </p>
-  </div>
-    
-  {{ subsubheading("How are landfill gasses processed today?") }}
-  <div>
-    <p>
-      Currently, the Green Lane Landfill collects landfill gas, predominantly
-      methane (CH4) and carbon dioxide (CO2), and directs it to a flaring system,
-      converting it into CO2 before its release into the atmosphere 
-      {{ cite('landfill_gas_generation_collection') }}, emitting millions
-      of cubic meters of CO2
-      {{ cite('landfill_gas_collection_use_destruction') }}.
-    </p>
-    {{ img(cdn("description/desc-landfill-gas-composition.svg"),
-      alt="Landfill Gas Composition",
-      width="60%") }}
-  </div>
-    
-  {{ subsubheading("First Nation impacted by the landfill sites") }}
-  <div>
-    <p>
-      A large number of Canada First Nation sites and Indigenous communities are
-      located in the vicinity of landfill sites, which produce biogas through
-      anaerobic decomposition.
+      We are building Biotic Pro, a pipeline to make probiotics that nullify antibiotic resistance.
     </p>
   </div>
 
-  {{ subheading("Our Product", img=cdn("description/desc-raccoon-walking-right-cropped.png")) }}
-  {{ subsubheading("A biological machine for methane capturing at landfill sites") }}
+  {{ subheading('Motivation') }}
+  {{ subsubheading('The rise of antibiotic resistance') }}
   <div>
     <p>
-      Our project aims to engineer bacteria capable of consuming methane and methane
-      derivatives, such as methanol, formate, and formaldehyde, and implement this system
-      in landfill sites.
-    </p>
-    <div class="side-by-side">
-      {{ img(cdn("description/desc-raccoon-alert.svg")) }}
-      {{ img(cdn("description/desc-gas-cloud.svg")) }}
-      {{ img(cdn("description/desc-bacterium.svg")) }}
-    </div>
-  </div>
-  {{ subsubheading("1. Separation of CH4 and CO2 from Landfill Gas with Hardware") }}
-  {{ subsubsubheading("Why") }}
-  <div>
-    <p>
-      Current solutions burn the methane acquired from landfill gas either directly
-      to the air or as a form of energy production, both of which are
-      carbon-dioxide emitting. The synthetic biology solution we pursue involves
-      the respiration of methanol formed from landfill gas methane. To do this, the
-      methane from landfill gas must be isolated and then oxidized to methanol.
-      This methanol will serve as a carbon feedstock into methylotrophic strain
-      bacteria. The bacteria that feed on the methanol must also be cultivated on
-      an industrial scale to effectively remove methane from the landfill gas ecosystem.
-    </p>
-  </div>
-  {{ subsubsubheading("Goal") }}
-  <div>
-    <p>
-      Our hardware team’s project aims to fill this gap by designing a separation
-      process for the landfill gas, a process for oxidizing the resultant methane gas,
-      and a fermenter to cultivate the methylotrophic bacteria at scale.
-    </p>
-  </div>
-  {{ subsubsubheading("Hardware Part 1: Separation") }}
-  <div>
-    <p>
-      The composition of landfill gas is approximately 50% methane, 45% carbon dioxide,
-      and 5% nitrogen. The separation is to take place across two stages; the first one
-      to remove carbon dioxide from the landfill gas mixture, and the second to
-      remove nitrogen from methane {{ cite('epa_welcome_agenda') }}.
-      For each stage, we plan on sizing the membranes
-      by building a model with MATLAB, and incorporating the results of the modeling
-      into Aspen Plus. We also hope to prototype the carbon dioxide removal separation
-      by building a downscaled model and demonstrating separation with nitrogen/carbon
-      dioxide mixtures.
-    </p>
-  </div>
-  {{ subsubsubheading("Hardware Part 2: Oxidation of methane to methanol") }}
-  <div>
-    <p>
-      The difficulty of this process is that methane is usually only completely
-      oxidized to carbon dioxide. Oxidizing to methanol is a more intricate process
-      that needs precise reaction control. We plan on accomplishing this with a
-      photochemical/electrochemical process with a catalyst. This process will be
-      modeled and sized with Aspen Plus.
-    </p>
-  </div>
-  <div class="side-by-side">
-    <div>
-      {{ subsubsubheading("Hardware Part 3: Fermenter Construction") }}
-      <div>
-        <p>
-          To design the fermenter, we needed to understand the context the fermenter
-          will be placed in: where, to what size, etc. We plan on organizing a site
-          visit to a landfill where we can learn to what scale we need to construct a
-          plant for the fermenter. We will design and size the fermenter with Aspen Plus.
-          We also hope to develop process controls for the fermenter to optimize bacteria
-          growth parameters such as feed flow, temperature, pH, and stirring.
-        </p>
-      </div>
-    </div>
-    {{ img(cdn("description/desc-fermenter.svg"), alt="A fermenter") }}
-  </div>
-  {{ subsubheading("2. Constructing Improved Methylotrophic Strains") }}
-  <div>
-    <p>
-      Developing a collection of methylotrophic microbes is essential for
-      fundamental research in this field. Through a variety of experimental
-      techniques, we aim to enhance the assimilation of single-carbon compounds
-      in our engineered strains:
-    </p>
-    <div class="w-full">
-      <table>
-        <thead>
-          <tr>
-            <th>Experimental Technique</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Overexpression</td>
-            <td>Introducing a recombinant plasmid into the chassis through cloning</td>
-          </tr>
-          <tr>
-            <td>CRISPR-Cas System Knockout</td>
-            <td>
-              Knocking out undesired genes through gene editing and pathway
-              engineering to optimize methylotrophic survival.
-              We intend to use different CRISPR Cas systems to knockout different
-              genes of interest.
-            </td>
-          </tr>
-          <tr>
-            <td>Adaptive Evolution</td>
-            <td>
-              Optimizing the fitness of the engineered strain by maintaining a stressor
-              in the growth environment (methanol).
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  {{ subsubsubheading("Our Strain of Interest: T-B18 E. coli") }}
-  <div>
-    <p>T-B18 E. coil is E. coli BW25113 with frmA knocked out. It harbors
-      pETM6_Ptrc_BsMdh_BmHps_BmPhi plasmid (Addgene plasmid #129104), and was
-      adaptively evolved to grow efficiently on threonine and perform significant
-      biosynthesis while employing methanol-derived carbon
-      {{ cite('ecoli_synthesis_amino_acids') }}
-      T-B18 was a gift
-      from Maciek R. Antoniewicz & Eleftherios Terry Papoutsakis
-      (Addgene plasmid # 159446)
+      Antibiotics are crucial in treating bacterial infections, and have prevented
+      millions of deaths since the discovery of penicillin in 1928 {{ cite('Adedeji_2016') }}.
+      However, misuse of these drugs in medicine and agriculture, combined with a dry antibiotic
+      pipeline {{ cite('Gupta_Nayak_2014') }}, has led to the generation of superbugs – namely,
+      bacteria that can withstand antibiotic treatment {{ cite('Strathdee_Hatfull_Mutalik_Schooley_2023') }}.
+      This, coupled with broader drug resistance from other microbes (viruses, protists, etc.),
+      constitutes a phenomenon called antimicrobial resistance (AMR), which represents one of the
+      most pressing global health challenges humanity currently faces. According to the World Health
+      Organization (WHO), AMR is projected to cause 10 million deaths per year by 2050, cost more
+      than $100 trillion in lost economic output, and drastically increase poverty rates
+      {{ cite('World_Health_Organization_2019') }}.
     </p>
     <p>
-      The RuMP pathway is an energetically favorable pathway that is compatible
-      with the industrial E. coli strains
-      [{{ citer.cite('ecoli_ribulose_monophosphate_cycle') }}, 
-      {{ citer.cite('synthetic_c1_reductive_glycine') }}];
-      T-B18 is an evolved E. coli
-      strain that assimilates methanol into its central carbon metabolism through
-      the RuMP pathway. Pathway modifications that enhance RuMP cycle output are
-      of key interest for maximizing biomass production.
+      Many organizations have developed watchlists for the most concerning superbug bacteria,
+      notably the ESKAPE pathogens {{ cite('Santaniello_Sansone_Fioretti_Menna_2020') }} and the
+      WHO’s critical priority pathogens list {{ cite('World_Health_Organization:_WHO_2017') }}.
+      In particular, pathogens like Carbapenem-resistant Enterobacteriaceae (CRE) and extensively
+      drug-resistant tuberculosis (XDR-TB) are at the forefront of antibacterial research.
     </p>
   </div>
-  {{ subsubsubheading("Our Strain of Interest: C1-G-S-EVO P. Putida") }}
-  <div>
-    <p>
-      The Reductive Glycine pathway (rGlyP) is a promising pathway for one carbon
-      compound assimilation, especially for it allows formatotrophic growth.
-      It requires only one ATP input and three reducing agents per linear pathway.
-      We contacted Prof. Claassens for P. Putida strain utilizing rGlyP,
-      who generously offered us strain C1-G-S-EVO described in the paper
-      {{ cite('cobrapy') }}.
-    </p>
-  </div>
-  {{ subheading("Metabolic Modelling and Simulation Software") }}
-  {{ subsubheading("Why are computational models important for metabolic engineering?") }}
-  <div>
-    <p>
-      Metabolism is a highly complex network of thousands of reactions, and it’s
-      impossible to take into account the impact of each gene, metabolite, enzyme,
-      or even culture media without a mathematical model.
 
-      In order to investigate our strains of interest (T-B18 and C1-G-S-EVO P. Putida),
-      we constructed genome-scale-metabolic models (GSMM) for those chassis.
-      They are generated from an annotated genome by expressing the metabolic
-      network of an organism as a list of mass balanced reactions, which is
-      represented as a so-called stoichiometric matrix. They also relate genes
-      with the proteins they code for and the reactions those proteins are
-      associated with. They helped satisfy two main purposes: describe the
-      metabolism - specifically, a steady-state approximation thereof - and
-      predict the state of a metabolic network in different scenarios. 
-    </p>
-  </div>
-  {{ subsubheading("How do we use metabolic models?") }}
+  {{ subsubheading('Current solutions fall short') }}
   <div>
     <p>
-      There are many mathematical analyses that can be performed on GSMMs;
-      the method we are using is called flux-balance analysis (FBA). 
+      Multiple treatment methods currently exist to tackle the pathogens above,
+      but all with limited efficacy:
+    </p>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Treatment
+          </th>
+          <th>
+            Limitations
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Stronger antibiotics
+          </td>
+          <td>
+            <ul>
+              <li>
+                Bacteria become resistant to antibiotics faster than we can produce them
+              </li>
+              <li>
+                Antibiotics that are too strong are harmful for patients
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Nano Particles
+          </td>
+          <td>
+            <ul>
+              <li>
+                Limited success demonstrated in vivo
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Antimicrobial peptides
+          </td>
+          <td>
+            <ul>
+              <li>
+                Hard to design and formulate
+              </li>
+              <li>
+                Often degraded in vivo
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Phage therapy
+          </td>
+          <td>
+            <ul>
+              <li>
+                Hard to find suitable phages for patient infections
+              </li>
+              <li>
+                Very complex infection dynamics
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p>
+      At iGEM Toronto, we are rethinking the way we approach treating drug-resistant pathogens.
+      Instead of directly attacking superbugs, we are leveraging generative AI to make
+      resistance-nullifying plasmids that healthy bacteria can transfer to them. This approach
+      is both highly targeted to single patient bacterial strains while being highly generalizable
+      to all types of resistance mechanisms.
+    </p>
+    <p>
+      To achieve this, we aim to create a proof of concept through a two part project:
+    </p>
+    <ol>
+      <li>
+        <p>
+          Develop the generative model and lab automation to create novel, working plasmids
+        </p>
+      </li>
+      <li>
+        <p>
+          Fine-tune the plasmid functionality to enhance their stability and make them target
+          antibiotic resistance pathways.
+        </p>
+      </li>
+    </ol>
+    <p>
+      To make this pipeline a reality requires an integrated effort from all of our sub teams.
     </p>
   </div>
-  {{ subsubheading("Setting flux constraints") }}
+  {{ subheading('Dry Lab') }}
   <div>
     <p>
-      For each reaction, the range of allowable fluxes is decided based on
-      biological data, the simulation target, and heuristics. A steady-state
-      assumption is also made that couples the reaction fluxes based on the
-      topology and stoichiometry of the GSMM network.
+      Dry lab generates whole plasmids using machine learning (ML). Through an in silico
+      validation pipeline, we then filter the sampled sequences by predicted viability
+      and deliver promising plasmid components to the wet lab. 
+    </p>
+    <p>
+      We aim to explore different sequence modelling approaches and, to scale to entire
+      plasmid sequences, we also pull from the recent literature on long-range ML architectures,
+      such as Mamba {{ cite('gu2024mamba') }} and Hyena {{ cite('poli2023hyena') }}.
+      Our preliminary experiments pursued diffusion-based approaches, which iteratively refine
+      random noise into coherent outputs
+      {{ cite('austin2023structured') }}{{ cite('hoogeboom2022autoregressive') }}{{ cite('ho2020denoising') }}.
+      We thought that they could naturally extend into geometric ML algorithms that respect
+      the circular nature of plasmids. Unfortunately, we found it too challenging to train
+      diffusion models, which we attribute to the noisier objective function, long sequences,
+      and limited compute.
+    </p>
+    <p>
+      Next, we investigated a nucleotide-level language modelling approach, where plasmids are
+      generated one nucleotide at a time in linear order. We train on plasmids curated from
+      the PLSDB database {{ cite('PLSDB') }}, (with plasmids of less than 10 kbp in length).
+      Batch-wide analysis focusing on metrics such as size distribution, GC content, and repeat
+      types has shown one batch to be promising, transitioning it to our in-silico validation
+      pipeline. Our future efforts will focus on implementing hybrid architectures and a custom
+      tokenizer to compress nucleotide inputs for training models. 
     </p>
   </div>
-  <div class="side-by-side">
-    {{ img(cdn("description/desc-gene-flow.svg")) }}
-    <div>
-      {{ subsubheading("Conducting Flux-Balance Analysis") }}
-      <div>
-        <p>
-          Flux-balance analysis (FBA) assigns each reaction a flux such that (A) the
-          flux constraints are obeyed and (B) a given objective function is optimized
-          (often set to be a predictor of cellular growth). We aim to use FBA and its
-          associated methods for the in silico discovery of genes that can be added,
-          overexpressed, or knocked out to improve methanol-dependent growth. 
-        </p>
-      </div>
-      {{ subsubsubheading("Insights from Flux-Balance Analysis") }}
-      <div>
-        <p>
-          FDA generates insights on:
-        </p>
-        <p>
-          <ul>
-            <li>Knockouts</li>
-            <li>Overexpression</li>
-            <li>Concentration of Growth Media and Supplements Required</li>
-          </ul>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="side-by-side">
-    <div>
-      {{ subsubheading("Knockouts") }}
-      <div>
-        <p>
-          Gene knockout simulations are performed by systematically removing each gene
-          from the model and re-optimizing the flux distribution using FBA. This
-          involves setting the fluxes associated with the reactions catalyzed by the
-          knockout gene to zero or adjusting them to account for the gene's absence.
-          The impact of each gene knockout on the objective function is assessed by
-          comparing the predicted flux distribution and the optimized objective
-          function value with those of the wild-type (unmodified) model. Genes whose
-          knockout results in a significant decrease in the objective function are
-          considered potential targets for further experimental validation.
-        </p>
-      </div>
-    </div>
-      {{ img(cdn("description/desc-gene-modding.svg")) }}
-  </div>
-  {{ subsubheading("Overexpression") }}
-    <div>
-      <p>
-        Overexpression simulations are performed with maximizing the production of a
-        target metabolite in mind. From the dry-lab perspective, we identified
-        potential overexpression targets using a framework called FSEOF, and are
-        trying to simulate overexpression in a constraint-based modeling python
-        package called COBRApy with an additional imported metabolic network design
-        package called StrainDesign
-        {{ cite('strain_design') }}.
-        In order to simulate overexpression in our
-        T-B18 model, we plan to follow the procedure outlined in slides 25-27 of
-        <a href="https://cnls.lanl.gov/external/qbio2018/Slides/FBA%202/qBio-FBA-lab-slides.pdf">
-          this powerpoint
-        </a>
-        , where we obtain the range of flux values (that exist in the solution space)
-        for reactions that we want to overexpress. Afterwards, we set the
-        ‘lower-bound’ attribute of a reaction to be the maximum value (in the range)
-        from the FVA analysis. The upper-bound can be set to some arbitrarily large
-        value (1000+). By doing this, we essentially constrain the model to high
-        fluxes for reactions of interest that we intend to overexpress. 
-      </p>
-  </div>
-  {{ subsubheading("Concentration of Growth Media and Supplements Required") }}
+
+  {{ subsubheading('In-Silico Validation') }}
   <div>
     <p>
-      From the simulation perspective, we define the growth medium as the fluxes of
-      exchange reactions between the bacteria and the environment. We can add
-      reactions, limit fluxes, and eliminate reactions to simulate different growth
-      media conditions. 
+      We aim to assess the validity of important plasmid components such as the ori,
+      toxin-antitoxin pairs, and antibiotic resistance genes in silico to filter initial
+      batches of sequences to a few viable results ready for wet lab testing. We have
+      currently constructed a pipeline for assessing oriV viability, with pipelines
+      for other components to follow.
+    </p>
+    <p>
+      Our oriV verification pipeline consists of the following:
+    </p>
+    <ol class="list-decimal lis-inside px-12">
+      <li>
+          Alignment: The most broadly used ori detection tool, Ori-Finder
+          {{ cite('Dong2022Ori') }} was found to be insufficient for our project,
+          as it lacked open source code and had a size limit for uploads, making
+          it unscalable. Thus, we aligned 10,000 generated sequences against DoriC
+          (the largest existing ori database) {{ cite('Dong2022DoriC') }} using
+          MMseqs2 (sequence search tool) {{ cite('soedinglabGitHub') }}. Oris were
+          filtered based on their alignment scores. 
+      </li>
+      <li>
+          Annotation: We curated a database of important ori components and motifs
+          from across literature and DoriC, found here: motif database. We searched
+          for DnaA boxes, AT-rich regions, iterons, and accessory motifs in generated
+          oris, as literature showed these components were important to ori viability
+          {{ cite('del1998Replication') }}. 
+      </li>
+      <li>
+          Replication machinery: We searched for appropriate replication machinery to
+          integrate our ori into the appropriate plasmid backbone.
+      </li>
+    </ol>
+    <p>
+      We are awaiting wet lab results to verify the ORIs in vitro.
     </p>
   </div>
+
+  {{ subheading('Wet Lab') }}
+  <div>
+    <p>
+      Artificial plasmids generated by machine learning models hold great
+      potential for addressing antibiotic resistance. The wet lab team is tasked with
+      validating these AI-generated sequences in vitro.
+    </p>
+  </div>
+
+  {{ subsubheading('Technology Rationale') }}
+  <div>
+    <p>
+      Our primary strategy to counter superbugs involves creating AI-generated
+      plasmids that can outcompete the natural plasmids carrying antibiotic
+      resistance genes. While all plasmids impose a metabolic burden on bacteria,
+      those harbouring genes conferring antibiotic resistance are strongly selected
+      for due to their survival advantage in the presence of antibiotics. Our goal
+      is to design AI-generated plasmids that provide an even stronger selective
+      advantage, causing bacteria to replace the resistance-carrying plasmids with
+      our engineered versions. 
+    </p>
+    <p>
+      When antibiotic pressure is removed, bacteria no longer have a selective reason
+      to retain plasmids carrying resistance genes, making them once again susceptible
+      to antibiotics. Our AI-generated plasmids function to aid the bacteria in
+      accelerating this process of discarding the plasmids carrying antibiotic
+      resistance by providing an even more favourable alternative. 
+    </p>
+    <p>
+      More favourable plasmids are less metabolically burdensome, easier to replicate,
+      and capable of directly competing with existing resistance plasmids. Our team will
+      tackle all three facets by designing plasmids with replication machinery that is
+      not only more efficient but fundamentally incompatible with target plasmid.
+      Incompatibility creates competition for host replication machinery, leaving the
+      target plasmid insufficient replication resources to sustain itself, effectively
+      neutralizing it. 
+    </p>
+  </div>
+
+  {{ subsubheading('Plasmid Design, Construction and Validation') }}
+  <div>
+    <p>
+      To validate the efficacy of AI-generated plasmids, the wet lab team will synthesize
+      these plasmids and test them in bacterial cultures. This process starts with first
+      confirming the functionality of these generated plasmids. The generated plasmid’s
+      origin of replication (oriV) are isolated, synthesized, and subsequently cloned
+      into a testing backbone and transformed for characterization.
+    </p>
+    <p>
+      To facilitate high-throughput, the testing backbone is engineered with Golden Gate
+      type IIS-restriction enzyme cut sites for transgene insertion. The functionality
+      of the AI-generated oriV will be assessed through growth assays, where the number
+      of colony-forming units (CFUs) in experimental populations will be compared to
+      negative control populations. A significant difference in CFUs in the experimental
+      group would indicate successful plasmid replication and functionality. 
+    </p>
+    <p>
+      Further validation of plasmid viability will be conducted by extracting plasmids
+      from transformed bacteria followed by sequencing, hence confirming the propagation
+      of the oriV and other essential components such as the toxin-antitoxin (TA) system. 
+    </p>
+  </div>
+
+  {{ subheading('Hardware') }}
+  <div>
+    <p>
+      Our dry lab-wet lab pipeline consists of exhaustively generating and testing candidate
+      AI-generated sequences for purpose and performance. As numerous and diverse plasmid
+      components are being generated and evaluated at any time, high throughput
+      experimentation workflows, tools, and best practices must be developed to support
+      team operations. This has the added benefit of expediting use of our dry lab-wet
+      lab pipeline by other researchers or in industry. The hardware team’s mandate is
+      to develop such workflows and tools.
+    </p>
+  </div>
+
+  {{ subsubheading('High throughput operations') }}
+  <div>
+    <p>
+      Sample storage and management is a perennially present problem across all kinds
+      of labs. Laboratories at the University of Toronto typically use HECHMET for
+      laboratory inventory management {{ cite('hechmet') }}, which is a barcode based
+      check-in/check-out system. Although this solution is optimised for generic chemicals,
+      it creates high overhead for small samples with short object life cycles. To enable
+      high throughput operations, we are developing a solution aimed at tackling managing
+      large numbers of samples, potentially across different locations.
+    </p>
+    <p>
+      The sample manager product system will consist of one or more holders for samples
+      with sensors and wireless communication capabilities, a server for data retention
+      and information transmission, and an application endpoint for data display and
+      check-in/check-out functionality. Wet lab team input and solutions used in the
+      manufacturing industry were incorporated. Cost and ease of use were considered
+      as part of the design process.
+    </p>
+    <p>
+      We based the product system based on a self-driving lab architecture described
+      in {{ cite('HelloWorldProtocol')}}. Although initially developed for a
+      different purpose, we are adapting the architecture mentioned to form a
+      readily extendable internet of things (IoT) framework for developing future
+      networked laboratory automation projects. Furthermore, data collected from usage
+      trends identified here may be fed into the Lean and Six Sigma process design
+      strategies, improving wet lab team parallelism while improving quality and
+      decreasing variability.
+    </p>
+  </div>
+
+  {{ subsubheading('High throughput tools') }}
+  <div>
+    <p>
+      Most assays done by the wet lab team will require some form of growth quantification.
+      Colony counting and OD600 assays are two such approaches. However, the former
+      requires significant repetitive effort and time, while the latter requires
+      specialised equipment in the form of a spectrophotometer/nephelometer
+      {{ cite('Diluphotometer') }}. Advancements in computer vision, however, have enabled
+      object detection models to succeed in the former task {{ cite('AGAR') }}.
+    </p>
+    <p>
+      We intend to implement and finetune a vision transformer model to perform colony
+      detection on petri dish plates. Furthermore, we plan to deploy the vision
+      transformer to a single chip computer, which will be housed on a benchtop stand
+      with a camera and related accessories. The whole assembly will be internet of
+      things (IoT) accessible. Considerations made by the team include cost, throughput,
+      ease of construction, and eventual open source availability.
+    </p>
+  </div>
+
+  {{ subheading('Human Practices') }}
+  <div>
+    <p>
+      Our objective is to comprehensively educate the public about antibiotic resistance
+      through a holistic approach that addresses all relevant sectors. To achieve this, we are
+      implementing a series of strategic actions. First, we are collaborating with schools to
+      educate children on this critical issue, developing age-appropriate programs to instill
+      awareness from an early age. In addition, we are conducting preliminary risk assessments
+      to understand the scope and impact of antibiotic resistance, guided by established
+      frameworks such as the TUCKER framework, the NASEM framework, and the FBI UNICRI framework.
+    </p>
+    <p>
+      Engaging with stakeholders, including both supporters and opponents, is another key
+      step in our strategy. We aim to discuss potential countermeasures and gather valuable
+      feedback and insights to enhance and refine our project. To ensure our approach is
+      well-rounded, we are also collecting detailed information about antibiotic resistance
+      in various sectors, such as healthcare, agriculture, and the environment. This
+      information will help us tailor our strategies and interventions more effectively.
+    </p>
+    <p>
+      To reach different demographics, we aim on creating a variety of educational materials,
+      including newspaper articles, blogs, and using social media. These resources will be
+      designed to be accessible and engaging, maximising public outreach and impact.
+      Furthermore, we are committed to continuously improving our initiatives by actively
+      seeking and incorporating feedback from stakeholders and the public. By following this
+      structured approach, we aim to comprehensively address antibiotic resistance and
+      effectively educate the public, leveraging collaboration, informed strategies, and
+      continuous engagement.
+    </p>
+  </div>
+
+  {{ subheading('Entrepreneurship') }}
+  <div>
+    <p>
+      Our objective is to create a go-to market stage company for our AI-powered discovery
+      engine that integrates our proprietary large language model (dry lab) with rapid in
+      vitro screening and clinical validation (wet lab). Our company will identify new
+      antibiotic-resistant strain killing mechanisms and leveraging existing antibiotics
+      to create therapies faster and more cost-effectively than competitors. 
+    </p>
+    <p>
+      We’re co-incubating with 2 independent incubators located in Canada and the UK.
+      These incubators have allowed us to refine our problem statement and understand
+      our value proposition. We’ve developed a rapid fire 3-minute pitch, a 6-minute
+      investor ready pitch, a robust business plan, and other deliverables necessary to
+      raise seed-stage capital and beyond.
+    </p>
+  </div>
+
 {% endblock %}

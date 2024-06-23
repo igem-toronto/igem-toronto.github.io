@@ -1,31 +1,5 @@
 {% extends "layout/layout.html" %}
 {% block content %}
-  <style>
-  table {
-    margin: 30pt 0;
-  }
-  table, th, td {
-    border: 1.5px solid;
-  }
-
-  thead {
-    background-color: #285a06; 
-    color: white; 
-  }
-
-  tbody {
-    background-color: #dfffc9;
-    color: black;
-  }
-
-  caption { 
-    caption-side: bottom;
-    text-align: left;
-    margin-top: 10px;
-    color: black;
-    font-style: italic
-  }
-  </style>
   {{ heading('Project Description') }}
   <div>
     <p>
@@ -64,79 +38,81 @@
       Multiple treatment methods currently exist to tackle the pathogens above,
       but all with limited efficacy:
     </p>
-  
-    <table>
-      <thead>
-        <tr>
-          <th>
-            Treatment
-          </th>
-          <th>
-            Limitations
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            Stronger antibiotics
-          </td>
-          <td>
-            <ul>
-              <li>
-                Bacteria become resistant to antibiotics faster than we can produce them
-              </li>
-              <li>
-                Antibiotics that are too strong are harmful for patients
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Nano Particles
-          </td>
-          <td>
-            <ul>
-              <li>
-                Limited success demonstrated in vivo
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Antimicrobial peptides
-          </td>
-          <td>
-            <ul>
-              <li>
-                Hard to design and formulate
-              </li>
-              <li>
-                Often degraded in vivo
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Phage therapy
-          </td>
-          <td>
-            <ul>
-              <li>
-                Hard to find suitable phages for patient infections
-              </li>
-              <li>
-                Very complex infection dynamics
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  
+
+    <div class="flex justify-center py-8 px-12">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Treatment
+            </th>
+            <th>
+              Limitations
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Stronger antibiotics
+            </td>
+            <td>
+              <ul>
+                <li>
+                  Bacteria become resistant to antibiotics faster than we can produce them
+                </li>
+                <li>
+                  Antibiotics that are too strong are harmful for patients
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Nano Particles
+            </td>
+            <td>
+              <ul>
+                <li>
+                  Limited success demonstrated in vivo
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Antimicrobial peptides
+            </td>
+            <td>
+              <ul>
+                <li>
+                  Hard to design and formulate
+                </li>
+                <li>
+                  Often degraded in vivo
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Phage therapy
+            </td>
+            <td>
+              <ul>
+                <li>
+                  Hard to find suitable phages for patient infections
+                </li>
+                <li>
+                  Very complex infection dynamics
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <p>
       At iGEM Toronto, we are rethinking the way we approach treating drug-resistant pathogens.
       Instead of directly attacking superbugs, we are leveraging generative AI to make
@@ -147,7 +123,7 @@
     <p>
       To achieve this, we aim to create a proof of concept through a two part project:
     </p>
-    <ol>
+    <ol class="list-decimal list-outside px-12">
       <li>
         <p>
           Develop the generative model and lab automation to create novel, working plasmids
@@ -169,15 +145,18 @@
     <p>
       Dry lab generates whole plasmids using machine learning (ML). Through an in silico
       validation pipeline, we then filter the sampled sequences by predicted viability
-      and deliver promising plasmid components to the wet lab. 
+      and deliver promising plasmid components to the wet lab.
     </p>
+  </div>
+  {{ subsubheading('Generating plasmids') }}
+  <div>
     <p>
       We aim to explore different sequence modelling approaches and, to scale to entire
       plasmid sequences, we also pull from the recent literature on long-range ML architectures,
       such as Mamba {{ cite('gu2024mamba') }} and Hyena {{ cite('poli2023hyena') }}.
       Our preliminary experiments pursued diffusion-based approaches, which iteratively refine
       random noise into coherent outputs
-      {{ cite('austin2023structured') }}{{ cite('hoogeboom2022autoregressive') }}{{ cite('ho2020denoising') }}.
+      {{ cite('austin2023structured,hoogeboom2022autoregressive,ho2020denoising') }}.
       We thought that they could naturally extend into geometric ML algorithms that respect
       the circular nature of plasmids. Unfortunately, we found it too challenging to train
       diffusion models, which we attribute to the noisier objective function, long sequences,
@@ -188,13 +167,13 @@
       generated one nucleotide at a time in linear order. We train on plasmids curated from
       the PLSDB database {{ cite('PLSDB') }}, (with plasmids of less than 10 kbp in length).
       Batch-wide analysis focusing on metrics such as size distribution, GC content, and repeat
-      types has shown one batch to be promising, transitioning it to our in-silico validation
+      types has shown one batch to be promising, transitioning it to our in silico validation
       pipeline. Our future efforts will focus on implementing hybrid architectures and a custom
-      tokenizer to compress nucleotide inputs for training models. 
+      tokenizer to compress nucleotide inputs for training models.
     </p>
   </div>
 
-  {{ subsubheading('In-Silico Validation') }}
+  {{ subsubheading('In silico validation') }}
   <div>
     <p>
       We aim to assess the validity of important plasmid components such as the ori,
@@ -214,14 +193,14 @@
           it unscalable. Thus, we aligned 10,000 generated sequences against DoriC
           (the largest existing ori database) {{ cite('Dong2022DoriC') }} using
           MMseqs2 (sequence search tool) {{ cite('soedinglabGitHub') }}. Oris were
-          filtered based on their alignment scores. 
+          filtered based on their alignment scores.
       </li>
       <li>
           Annotation: We curated a database of important ori components and motifs
           from across literature and DoriC, found here: motif database. We searched
           for DnaA boxes, AT-rich regions, iterons, and accessory motifs in generated
           oris, as literature showed these components were important to ori viability
-          {{ cite('del1998Replication') }}. 
+          {{ cite('del1998Replication') }}.
       </li>
       <li>
           Replication machinery: We searched for appropriate replication machinery to
@@ -242,7 +221,7 @@
     </p>
   </div>
 
-  {{ subsubheading('Technology Rationale') }}
+  {{ subsubheading('Technology rationale') }}
   <div>
     <p>
       Our primary strategy to counter superbugs involves creating AI-generated
@@ -252,14 +231,14 @@
       for due to their survival advantage in the presence of antibiotics. Our goal
       is to design AI-generated plasmids that provide an even stronger selective
       advantage, causing bacteria to replace the resistance-carrying plasmids with
-      our engineered versions. 
+      our engineered versions.
     </p>
     <p>
       When antibiotic pressure is removed, bacteria no longer have a selective reason
       to retain plasmids carrying resistance genes, making them once again susceptible
       to antibiotics. Our AI-generated plasmids function to aid the bacteria in
       accelerating this process of discarding the plasmids carrying antibiotic
-      resistance by providing an even more favourable alternative. 
+      resistance by providing an even more favourable alternative.
     </p>
     <p>
       More favourable plasmids are less metabolically burdensome, easier to replicate,
@@ -268,11 +247,11 @@
       not only more efficient but fundamentally incompatible with target plasmid.
       Incompatibility creates competition for host replication machinery, leaving the
       target plasmid insufficient replication resources to sustain itself, effectively
-      neutralizing it. 
+      neutralizing it.
     </p>
   </div>
 
-  {{ subsubheading('Plasmid Design, Construction and Validation') }}
+  {{ subsubheading('Plasmid design, construction, and validation') }}
   <div>
     <p>
       To validate the efficacy of AI-generated plasmids, the wet lab team will synthesize
@@ -287,12 +266,12 @@
       of the AI-generated oriV will be assessed through growth assays, where the number
       of colony-forming units (CFUs) in experimental populations will be compared to
       negative control populations. A significant difference in CFUs in the experimental
-      group would indicate successful plasmid replication and functionality. 
+      group would indicate successful plasmid replication and functionality.
     </p>
     <p>
       Further validation of plasmid viability will be conducted by extracting plasmids
       from transformed bacteria followed by sequencing, hence confirming the propagation
-      of the oriV and other essential components such as the toxin-antitoxin (TA) system. 
+      of the oriV and other essential components such as the toxin-antitoxin (TA) system.
     </p>
   </div>
 
@@ -398,7 +377,7 @@
       engine that integrates our proprietary large language model (dry lab) with rapid in
       vitro screening and clinical validation (wet lab). Our company will identify new
       antibiotic-resistant strain killing mechanisms and leveraging existing antibiotics
-      to create therapies faster and more cost-effectively than competitors. 
+      to create therapies faster and more cost-effectively than competitors.
     </p>
     <p>
       We’re co-incubating with 2 independent incubators located in Canada and the UK.

@@ -33,7 +33,10 @@ class CitationLoader:
             shell=True,
             cwd=os.path.join(os.path.dirname(os.path.realpath(__file__)), "static", "citations"))
         
-        soup = BeautifulSoup(proc.stdout.strip().replace("\n", ""), "html.parser")
+        content = proc.stdout.strip().replace("\n", "")
+        print(content)
+        
+        soup = BeautifulSoup(content, "html.parser")
         refs = soup.find_all("div", {"class": "csl-entry"})
 
         print(f"Loaded {len(refs)} citations")

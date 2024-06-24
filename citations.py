@@ -26,6 +26,7 @@ class CitationLoader:
         Open the bibtext file and use bibtextparser to parse it. Populate the
         citations dict.
         """
+        print("Starting pandoc build")
         proc = subprocess.run(
             "pandoc --csl=nature.csl --citeproc --wrap=none -f markdown -t html template.md",
             capture_output=True,
@@ -34,6 +35,7 @@ class CitationLoader:
             cwd=os.path.join(os.path.dirname(os.path.realpath(__file__)), "static", "citations"))
         
         content = proc.stdout.strip().replace("\n", "")
+        print("Content")
         print(content)
         
         soup = BeautifulSoup(content, "html.parser")

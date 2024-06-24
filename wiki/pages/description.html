@@ -156,7 +156,7 @@
       such as Mamba {{ cite('gu2024mamba') }} and Hyena {{ cite('poli2023hyena') }}.
       Our preliminary experiments pursued diffusion-based approaches, which iteratively refine
       random noise into coherent outputs
-      {{ cite('austin2023structured,hoogeboom2022autoregressive,ho2020denoising') }}.
+      {{ cite('austin2021structured,hoogeboom2022autoregressive,ho2020denoising') }}.
       We thought that they could naturally extend into geometric ML algorithms that respect
       the circular nature of plasmids. Unfortunately, we found it too challenging to train
       diffusion models, which we attribute to the noisier objective function, long sequences,
@@ -165,7 +165,7 @@
     <p>
       Next, we investigated a nucleotide-level language modelling approach, where plasmids are
       generated one nucleotide at a time in linear order. We train on plasmids curated from
-      the PLSDB database {{ cite('PLSDB') }}, (with plasmids of less than 10 kbp in length).
+      the PLSDB database {{ cite('plsdb') }}, (with plasmids of less than 10 kbp in length).
       Batch-wide analysis focusing on metrics such as size distribution, GC content, and repeat
       types has shown one batch to be promising, transitioning it to our in silico validation
       pipeline. Our future efforts will focus on implementing hybrid architectures and a custom
@@ -188,11 +188,11 @@
     <ol class="list-decimal lis-inside px-12">
       <li>
           Alignment: The most broadly used ori detection tool, Ori-Finder
-          {{ cite('Dong2022Ori') }} was found to be insufficient for our project,
+          {{ cite('dong2021ori') }} was found to be insufficient for our project,
           as it lacked open source code and had a size limit for uploads, making
           it unscalable. Thus, we aligned 10,000 generated sequences against DoriC
-          (the largest existing ori database) {{ cite('Dong2022DoriC') }} using
-          MMseqs2 (sequence search tool) {{ cite('soedinglabGitHub') }}. Oris were
+          (the largest existing ori database) {{ cite('dong2022doric') }} using
+          MMseqs2 (sequence search tool) {{ cite('mmseqs2') }}. Oris were
           filtered based on their alignment scores.
       </li>
       <li>

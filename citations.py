@@ -33,10 +33,12 @@ class CitationLoader:
             cwd="static/citations")
         
         soup = BeautifulSoup(proc.stdout.strip().replace("\n", ""), "html.parser")
-        self.soup = soup
+        refs = soup.find_all("div", {"class": "csl-entry"})
+
+        print(f"Loaded {len(refs)} citations")
 
         self.name_to_reference = dict()
-        for tag in soup.find_all("div", {"class": "csl-entry"}):
+        for tag in refs:
             assert tag["id"].startswith("ref-")
             name = tag["id"][4:]
 

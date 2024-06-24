@@ -3,7 +3,7 @@ image: alpine:latest
 pages:
   stage: build
   script:
-    - apk add nodejs npm python3 py3-pip
+    - apk add nodejs npm python3 py3-pip pandoc-cli
     - python3 -m venv venv
     - . venv/bin/activate
     - pip install --no-cache-dir -r dependencies.txt

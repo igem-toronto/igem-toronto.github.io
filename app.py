@@ -15,10 +15,6 @@ from citations import CitationLoader
 template_folder = path.abspath('./wiki')
 cdn_url = "https://static.igem.wiki/teams/4615/wiki/"
 
-citation_loader = CitationLoader()
-print("before wait")
-time.sleep(5)
-print("after wait")
 
 def my_finalize(thing):
     return thing if thing is not None else ''
@@ -83,6 +79,8 @@ else:
     proc = subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output, "--minify"])
     proc.wait()
     print("DONE")
+
+citation_loader = CitationLoader()
 
 @app.route("/modules/<path:module_path>")
 def modules(module_path: str):

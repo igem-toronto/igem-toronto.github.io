@@ -5,6 +5,7 @@ import subprocess
 import mimetypes
 import os
 import atexit
+import time
 
 from flask import Flask, render_template, Response
 from flask_frozen import Freezer
@@ -15,6 +16,9 @@ template_folder = path.abspath('./wiki')
 cdn_url = "https://static.igem.wiki/teams/4615/wiki/"
 
 citation_loader = CitationLoader()
+print("before wait")
+time.sleep(5)
+print("after wait")
 
 def my_finalize(thing):
     return thing if thing is not None else ''

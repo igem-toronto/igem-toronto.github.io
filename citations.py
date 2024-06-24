@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from bs4 import BeautifulSoup
 import subprocess
+import os
 
 
 class CitationLoader:
@@ -30,7 +31,7 @@ class CitationLoader:
             capture_output=True,
             text=True,
             shell=True,
-            cwd="static/citations")
+            cwd=os.path.join(os.path.dirname(os.path.realpath(__file__)), "static", "citations"))
         
         soup = BeautifulSoup(proc.stdout.strip().replace("\n", ""), "html.parser")
         refs = soup.find_all("div", {"class": "csl-entry"})

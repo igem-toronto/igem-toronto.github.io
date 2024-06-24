@@ -14,7 +14,7 @@ from citations import CitationLoader
 template_folder = path.abspath('./wiki')
 cdn_url = "https://static.igem.wiki/teams/4615/wiki/"
 
-citation_loader = CitationLoader("static/citations/references.html")
+citation_loader = CitationLoader()
 
 def my_finalize(thing):
     return thing if thing is not None else ''

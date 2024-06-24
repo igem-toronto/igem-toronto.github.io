@@ -8,6 +8,7 @@ Author: Henrik S. Zimmermann <henrik.zimmermann@utoronto.ca>
 from __future__ import annotations
 
 from bs4 import BeautifulSoup
+import subprocess
 
 
 class CitationLoader:
@@ -19,18 +20,23 @@ class CitationLoader:
     """
     name_to_reference: dict[str, dict[str, str]]
 
-    def __init__(self, filename) -> None:
+    def __init__(self) -> None:
         """
         Open the bibtext file and use bibtextparser to parse it. Populate the
         citations dict.
         """
-
-        with open(filename, "r") as f:
-            txt = f.read().strip().replace("\n", "")
-        soup = BeautifulSoup(txt, "html.parser")
+        proc = subprocess.run(
+            "pandoc --csl=nature.csl --citeproc --wrap=none -f markdown -t html template.md",
+            capture_output=True,
+            text=True,
+            shell=True,
+            cwd="static/citations")
+        
+        soup = BeautifulSoup(proc.stdout.strip().replace("\n", ""), "html.parser")
+        self.soup = soup
 
         self.name_to_reference = dict()
-        for tag in soup.find_all("div", {"role": "listitem"}):
+        for tag in soup.find_all("div", {"class": "csl-entry"}):
             assert tag["id"].startswith("ref-")
             name = tag["id"][4:]
 

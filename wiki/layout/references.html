@@ -1,38 +1,11 @@
 {# The template to generate the references list #}
 
+
 {{ subheading('References') }}
 <ol class="list-decimal list-outside px-12">
   {% for ref in citer.references() -%}
     <li class="text-sm text-left" id="{{ subpages[-1].key }}-citation-{{ loop.index }}">
-      {% if ref.ENTRYTYPE == 'misc' %}
-        {% if ref.author is defined %}
-        <span class="author">{{ ref.author }}</span>:
-        {% endif %}
-        {% if ref.title is defined %}
-        {{ ref.title }}.
-        {% endif %}
-        {% if ref.year is defined %}
-            ({{ ref.year }}).
-        {% else %}
-            (n.d.).
-        {% endif %}
-        {% if ref.url is defined %}
-            Retrieved from <a class="text-emerald-600" href="{{ ref.url }}">{{ ref.url }}</a>.
-        {% endif %}
-
-      {% elif ref.ENTRYTYPE == 'article' or ref.ENTRYTYPE == 'book' or ref.ENTRYTYPE == 'incollection' %}
-        <span class="author">{{ ref.author }}</span>
-        ({{ ref.year }}).
-        {% if ref.title is defined %}
-        {{ ref.title }}.
-        {% endif %}
-        {% if ref.journal is defined %}
-        {{ ref.journal}}, {{ ref.volume }}{% if ref.number is defined %}({{ ref.number }}){% endif %}, {{ ref.pages }}.
-        {% endif %}
-        {% if ref.doi is defined %}
-            doi: <a class="text-emerald-600" href="https://doi.org/{{ ref.doi }}">{{ ref.doi }}</a>.
-        {% endif %}
-      {% endif %}
+      {{ ref|safe }}
     </li>
   {%- endfor %}
 </ol>

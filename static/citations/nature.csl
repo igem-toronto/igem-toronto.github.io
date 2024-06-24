@@ -147,9 +147,8 @@
     </layout>
   </citation>
   <bibliography et-al-min="6" et-al-use-first="1" second-field-align="flush" entry-spacing="0" line-spacing="2">
-    <layout suffix=".">
-      <text variable="citation-number" suffix="."/>
-      <group delimiter=" ">
+    <layout>
+      <group delimiter=" " suffix=".">
         <text macro="author" suffix="."/>
         <text macro="title" suffix="."/>
         <choose>

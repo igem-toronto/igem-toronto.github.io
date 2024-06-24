@@ -14,7 +14,7 @@ from citations import CitationLoader
 template_folder = path.abspath('./wiki')
 cdn_url = "https://static.igem.wiki/teams/4615/wiki/"
 
-citation_loader = CitationLoader("bibtex.bib")
+citation_loader = CitationLoader()
 
 def my_finalize(thing):
     return thing if thing is not None else ''
@@ -61,7 +61,7 @@ def subpages_skeleton():
 
     d["citer"] = citation_loader.citer()
     d["reset_citer"] = d["citer"].reset
-    
+
     return d
 
 tailwind_input = 'static/input.css'
@@ -86,7 +86,7 @@ def modules(module_path: str):
         content = f.read()
         mime_type = mimetypes.guess_type(module_path)[0]
         mime_type = mime_type if mime_type is not None else "text/html"
-        return Response(content, mimetype=mime_type) 
+        return Response(content, mimetype=mime_type)
 
 @app.route('/dist/<path:filename>')
 def dist(filename: str):
@@ -138,7 +138,7 @@ def people():
                 member["priority"] = 10
             elif "lead" in lower_role:
                 member["priority"] = 5
-            
+
             group.append(member)
 
     for group in team_members.values():

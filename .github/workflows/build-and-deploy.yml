@@ -14,6 +14,7 @@ jobs:
 
       - name: Install and Build
         run: |
+          apt-get install pandoc
           npm ci
           pip install --no-cache-dir -r dependencies.txt
           npm run build

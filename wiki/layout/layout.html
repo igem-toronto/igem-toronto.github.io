@@ -14,7 +14,7 @@
         let subpagesDiv = document.getElementById('subpages-json');
         let subpages, selectedSubpage;
         let nodes = []
-        
+
         if (subpagesDiv) {
           let hash = window.location.hash;
           let possibleSubpage = 0;
@@ -86,7 +86,7 @@
                 nextBoundingRect = nextBoundingRect
                   ? nextBoundingRect.getBoundingClientRect()
                   : null
-                  
+
                 if (boundingRect.top > 0
                     || (nextBoundingRect && nextBoundingRect.top > window.innerHeight)) {
                   el.scrolledHeading = heading[0]
@@ -117,16 +117,18 @@
           <div class="content-wrapper mb-20">
             {% block content %}{% endblock %}
           </div>
-          {% block references %}
-            {% include 'layout/references.html' %}
-          {% endblock %}
+          {% if citer.references() %}
+            {% block references %}
+              {% include 'layout/references.html' %}
+            {% endblock %}
+          {% endif %}
         </div>
         {% include 'layout/sidebar.html' %}
       </div>
     </div>
     {% include 'layout/subpage-bottom-nav.html' %}
     {% include 'layout/footer.html' %}
-    
+
     <div id="subpages-json" class="hidden">{{ subpages|tojson }}</div>
   </body>
 {% endblock %}

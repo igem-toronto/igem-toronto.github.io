@@ -16,6 +16,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Create intermediate directories
+        run: mkdir -p dist
       
       - name: Generate pandoc files
         uses: docker://pandoc/core:latest
@@ -29,14 +32,16 @@ jobs:
             -t html
             static/citations/template.md -o dist/citations.html
 
-      - name: Install and Build
+      - name: Install
         run: |
           npm ci
           python3 -m venv venv
           . venv/bin/activate
           pip install --no-cache-dir -r dependencies.txt
           mkdir -p dist
-          npm run build
+      
+      - name: Build
+        run: npm run build
 
       - name: Archive artifact
         shell: sh

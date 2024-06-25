@@ -8,6 +8,7 @@ pages:
     - . venv/bin/activate
     - pip install --no-cache-dir -r dependencies.txt
     - npm ci
+    - pandoc --resource-path static/citations/ --csl=nature.csl --citeproc --wrap=none -f markdown -t html static/citations/template.md -o dist/citations.html
     - npm run build
   artifacts:
     paths:

@@ -80,7 +80,10 @@ else:
     proc.wait()
     print("DONE")
 
-citation_loader = CitationLoader()
+if MODE == "dev":
+    citation_loader = CitationLoader()
+else:
+    citation_loader = CitationLoader(file="dist/citations.html")
 
 @app.route("/modules/<path:module_path>")
 def modules(module_path: str):

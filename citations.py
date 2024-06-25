@@ -21,22 +21,25 @@ class CitationLoader:
     """
     name_to_reference: dict[str, dict[str, str]]
 
-    def __init__(self) -> None:
+    def __init__(self, file=None) -> None:
         """
         Open the bibtext file and use bibtextparser to parse it. Populate the
         citations dict.
         """
-        print("Starting pandoc build")
-        proc = subprocess.run(
-            "pandoc --csl=nature.csl --citeproc --wrap=none -f markdown -t html template.md",
-            capture_output=True,
-            text=True,
-            shell=True,
-            cwd=os.path.join(os.path.dirname(os.path.realpath(__file__)), "static", "citations"))
-        
-        content = proc.stdout.strip().replace("\n", "")
-        print("Content")
-        print(content)
+        if file is None:
+            proc = subprocess.run(
+                "pandoc --csl=nature.csl --citeproc --wrap=none -f markdown -t html template.md",
+                capture_output=True,
+                text=True,
+                shell=True,
+                cwd=os.path.join(os.path.dirname(os.path.realpath(__file__)), "static", "citations"))
+            
+            content = proc.stdout.strip().replace("\n", "")
+            print("Content")
+            print(content)
+        else:
+            with open(file) as f:
+                content = f.read().strip().replace("\n", "")
         
         soup = BeautifulSoup(content, "html.parser")
         refs = soup.find_all("div", {"class": "csl-entry"})

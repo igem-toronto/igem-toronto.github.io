@@ -32,16 +32,13 @@ jobs:
             -t html
             static/citations/template.md -o dist/citations.html
 
-      - name: Install
+      - name: Install and Build
         run: |
           npm ci
           python3 -m venv venv
           . venv/bin/activate
           pip install --no-cache-dir -r dependencies.txt
-          mkdir -p dist
-      
-      - name: Build
-        run: npm run build
+          npm run build
 
       - name: Archive artifact
         shell: sh

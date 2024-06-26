@@ -9,10 +9,9 @@ module.exports = {
         'xs': '400px'
       },
       fontFamily: {
-        'jost': ['Jost', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
         'playfair-display': ['Playfair Display', 'serif'],
-        'montserrat': ['Montserrat', 'sans-serif'],
-        'archivo': ['Archivo', 'sans-serif'],
+        'roboto': ['Roboto Mono', 'sans-serif'],
       },
       spacing: {
         '88': '22rem',

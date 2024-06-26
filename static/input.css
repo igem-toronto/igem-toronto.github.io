@@ -3,15 +3,16 @@
 @tailwind utilities;
 
 p {
-    @apply text-lg text-justify hyphens-auto font-jost my-2;
+    @apply text-base text-justify hyphens-auto font-inter my-2;
 }
 
 li {
-    @apply text-lg text-justify hyphens-auto font-jost;
+    @apply text-base text-justify hyphens-auto font-inter;
 }
 
+
 a {
-    @apply text-emerald-600;
+    @apply text-accent-saturated-purple;
 }
 
 h1 {
@@ -19,15 +20,15 @@ h1 {
 }
 
 h2 {
-    @apply text-3xl lg:text-4xl font-montserrat font-bold mb-2;
+    @apply text-3xl lg:text-4xl font-roboto font-bold mb-2;
 }
 
 h3 {
-    @apply text-2xl uppercase font-archivo;
+    @apply text-2xl font-roboto;
 }
 
 h4 {
-    @apply underline-offset-4 underline text-lg font-jost;
+    @apply underline-offset-4 underline text-base font-roboto;
 }
 
 div + h2 {
@@ -59,11 +60,11 @@ h4 + div {
 }
 
 .content-wrapper > div:not(.custom) table {
-    @apply table-auto text-lg font-jost;
+    @apply table-auto text-base font-inter;
 }
 
 .content-wrapper > div:not(.custom) table tbody {
-    @apply text-lg font-jost;
+    @apply text-base font-inter;
 }
 
 .content-wrapper > div:not(.custom) table thead tr th {
@@ -83,7 +84,11 @@ h4 + div {
 }
 
 .content-wrapper > div:not(.custom) ul {
-    @apply list-outside list-disc pl-6 font-jost text-lg;
+    @apply list-outside list-disc pl-6;
+}
+
+.content-wrapper > div:not(.custom) ol {
+    @apply list-decimal list-outside px-12
 }
 
 .content-wrapper > .image {

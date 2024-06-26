@@ -12,23 +12,23 @@
   <div>
     <p>
       Antibiotics are crucial in treating bacterial infections, and have prevented
-      millions of deaths since the discovery of penicillin in 1928 {{ cite('Adedeji_2016') }}.
+      millions of deaths since the discovery of penicillin in 1928 {{ cite('adedeji2016treasure') }}.
       However, misuse of these drugs in medicine and agriculture, combined with a dry antibiotic
-      pipeline {{ cite('Gupta_Nayak_2014') }}, has led to the generation of superbugs – namely,
-      bacteria that can withstand antibiotic treatment {{ cite('Strathdee_Hatfull_Mutalik_Schooley_2023') }}.
+      pipeline {{ cite('gupta2014dry') }}, has led to the generation of superbugs – namely,
+      bacteria that can withstand antibiotic treatment {{ cite('strathdee2023phage') }}.
       This, coupled with broader drug resistance from other microbes (viruses, protists, etc.),
       constitutes a phenomenon called antimicrobial resistance (AMR), which represents one of the
       most pressing global health challenges humanity currently faces. According to the World Health
       Organization (WHO), AMR is projected to cause 10 million deaths per year by 2050, cost more
       than $100 trillion in lost economic output, and drastically increase poverty rates
-      {{ cite('World_Health_Organization_2019') }}.
+      {{ cite('who2019') }}.
     </p>
     <p>
       Many organizations have developed watchlists for the most concerning superbug bacteria,
-      notably the ESKAPE pathogens {{ cite('Santaniello_Sansone_Fioretti_Menna_2020') }} and the
-      WHO’s critical priority pathogens list {{ cite('World_Health_Organization:_WHO_2017') }}.
-      In particular, pathogens like Carbapenem-resistant Enterobacteriaceae (CRE) and extensively
-      drug-resistant tuberculosis (XDR-TB) are at the forefront of antibacterial research.
+      notably the ESKAPE pathogens {{ cite('santaniello2020systematic') }} and the
+      WHO’s critical priority pathogens list {{ cite('who2017') }}.
+      In particular, pathogens like carbapenem-resistant <i>Enterobacteriaceae</i> and extensively
+      drug-resistant tuberculosis are at the forefront of antibacterial research.
     </p>
   </div>
 
@@ -69,7 +69,7 @@
           </tr>
           <tr>
             <td>
-              Nano Particles
+              Nanoparticles
             </td>
             <td>
               <ul>
@@ -115,7 +115,7 @@
 
     <p>
       At iGEM Toronto, we are rethinking the way we approach treating drug-resistant pathogens.
-      Instead of directly attacking superbugs, we are leveraging generative AI to make
+      Instead of directly attacking superbugs, we are leveraging generative artificial intelligence (AI) to make
       resistance-nullifying plasmids that healthy bacteria can transfer to them. This approach
       is both highly targeted to single patient bacterial strains while being highly generalizable
       to all types of resistance mechanisms.
@@ -132,7 +132,7 @@
       <li>
         <p>
           Fine-tune the plasmid functionality to enhance their stability and make them target
-          antibiotic resistance pathways.
+          antibiotic resistance pathways
         </p>
       </li>
     </ol>
@@ -165,7 +165,7 @@
     <p>
       Next, we investigated a nucleotide-level language modelling approach, where plasmids are
       generated one nucleotide at a time in linear order. We train on plasmids curated from
-      the PLSDB database {{ cite('plsdb') }}, (with plasmids of less than 10 kbp in length).
+      the PLSDB database {{ cite('plsdb') }} with plasmids of less than 10 kbp in length.
       Batch-wide analysis focusing on metrics such as size distribution, GC content, and repeat
       types has shown one batch to be promising, transitioning it to our in silico validation
       pipeline. Our future efforts will focus on implementing hybrid architectures and a custom
@@ -179,36 +179,35 @@
       We aim to assess the validity of important plasmid components such as the ori,
       toxin-antitoxin pairs, and antibiotic resistance genes in silico to filter initial
       batches of sequences to a few viable results ready for wet lab testing. We have
-      currently constructed a pipeline for assessing oriV viability, with pipelines
+      currently constructed a pipeline for assessing <i>oriV</i> viability, with pipelines
       for other components to follow.
     </p>
     <p>
-      Our oriV verification pipeline consists of the following:
+      Our <i>oriV</i> verification pipeline consists of the following:
     </p>
     <ol>
       <li>
-          Alignment: The most broadly used ori detection tool, Ori-Finder
+          Alignment: The most broadly used <i>ori</i> detection tool, Ori-Finder
           {{ cite('dong2021ori') }} was found to be insufficient for our project,
           as it lacked open source code and had a size limit for uploads, making
           it unscalable. Thus, we aligned 10,000 generated sequences against DoriC
-          (the largest existing ori database) {{ cite('dong2022doric') }} using
-          MMseqs2 (sequence search tool) {{ cite('mmseqs2') }}. Oris were
-          filtered based on their alignment scores.
+          {{ cite('dong2022doric') }} (the largest existing <i>ori</i> database) using
+          MMseqs2 {{ cite('mmseqs2') }}. Oris were filtered based on their alignment scores.
       </li>
       <li>
-          Annotation: We curated a database of important ori components and motifs
+          Annotation: We curated a database of important <i>ori</i> components and motifs
           from across literature and DoriC, found here: motif database. We searched
           for DnaA boxes, AT-rich regions, iterons, and accessory motifs in generated
-          oris, as literature showed these components were important to ori viability
+          oris, as literature showed these components were important to <i>ori</i> viability
           {{ cite('del1998replication') }}.
       </li>
       <li>
           Replication machinery: We searched for appropriate replication machinery to
-          integrate our ori into the appropriate plasmid backbone.
+          integrate our <i>ori</i> into the appropriate plasmid backbone.
       </li>
     </ol>
     <p>
-      We are awaiting wet lab results to verify the ORIs in vitro.
+      We are awaiting wet lab results to verify the <i>ori</i>s in vitro.
     </p>
   </div>
 
@@ -257,13 +256,13 @@
       To validate the efficacy of AI-generated plasmids, the wet lab team will synthesize
       these plasmids and test them in bacterial cultures. This process starts with first
       confirming the functionality of these generated plasmids. The generated plasmid’s
-      origin of replication (oriV) are isolated, synthesized, and subsequently cloned
+      origin of replication (<i>oriV</i>) are isolated, synthesized, and subsequently cloned
       into a testing backbone and transformed for characterization.
     </p>
     <p>
       To facilitate high-throughput, the testing backbone is engineered with Golden Gate
       type IIS-restriction enzyme cut sites for transgene insertion. The functionality
-      of the AI-generated oriV will be assessed through growth assays, where the number
+      of the AI-generated <i>oriV</i> will be assessed through growth assays, where the number
       of colony-forming units (CFUs) in experimental populations will be compared to
       negative control populations. A significant difference in CFUs in the experimental
       group would indicate successful plasmid replication and functionality.
@@ -271,7 +270,7 @@
     <p>
       Further validation of plasmid viability will be conducted by extracting plasmids
       from transformed bacteria followed by sequencing, hence confirming the propagation
-      of the oriV and other essential components such as the toxin-antitoxin (TA) system.
+      of the <i>oriV</i> and other essential components such as the toxin-antitoxin system.
     </p>
   </div>
 
@@ -309,9 +308,9 @@
     </p>
     <p>
       We based the product system based on a self-driving lab architecture described
-      in {{ cite('HelloWorldProtocol')}}. Although initially developed for a
+      in {{ cite('baird2023building')}}. Although initially developed for a
       different purpose, we are adapting the architecture mentioned to form a
-      readily extendable internet of things (IoT) framework for developing future
+      readily extendable internet of things framework for developing future
       networked laboratory automation projects. Furthermore, data collected from usage
       trends identified here may be fed into the Lean and Six Sigma process design
       strategies, improving wet lab team parallelism while improving quality and
@@ -325,16 +324,16 @@
       Most assays done by the wet lab team will require some form of growth quantification.
       Colony counting and OD600 assays are two such approaches. However, the former
       requires significant repetitive effort and time, while the latter requires
-      specialised equipment in the form of a spectrophotometer/nephelometer
-      {{ cite('Diluphotometer') }}. Advancements in computer vision, however, have enabled
-      object detection models to succeed in the former task {{ cite('AGAR') }}.
+      specialised equipment in the form of a spectrophotometer or nephelometer
+      {{ cite('implen2024od600') }}. Advancements in computer vision, however, have enabled
+      object detection models to succeed in the former task {{ cite('majchrowska2021agar') }}.
     </p>
     <p>
-      We intend to implement and finetune a vision transformer model to perform colony
+      We intend to implement and finetune a Vision Transformer model to perform colony
       detection on petri dish plates. Furthermore, we plan to deploy the vision
       transformer to a single chip computer, which will be housed on a benchtop stand
       with a camera and related accessories. The whole assembly will be internet of
-      things (IoT) accessible. Considerations made by the team include cost, throughput,
+      things accessible. Considerations made by the team include cost, throughput,
       ease of construction, and eventual open source availability.
     </p>
   </div>

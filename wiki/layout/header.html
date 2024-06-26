@@ -1,7 +1,7 @@
 {% macro link(text, target) -%}
   <div class="hover:text-accent-muted-purple ease-in duration-100
               lg:py-0 lg:px-10
-              text-left py-2 flex items-center font-roboto">
+              text-left py-2 flex items-center font-roboto-mono">
     <a href="{{ url_for('pages', page=target + '.html') }}">{{ text }}</a>
   </div>
 {%- endmacro %}
@@ -15,7 +15,7 @@
       class=" cursor-pointer relative text-left py-2 flex lg:items-center
               lg:py-0 lg:flex-row
               flex-col
-              font-roboto">
+              font-roboto-mono">
     <div class="
                 lg:px-10
               hover:text-accent-muted-purple ease-in duration-100 lg:text-center text-left">
@@ -35,14 +35,14 @@
                 lg:border-primary-dark lg:border-l-2 lg:bg-primary-extra-light">
       {% for sublink in sublinks %}
         <a  href="{{ sublink[1] if sublink[1].startswith('http') else url_for('pages', page=sublink[1] + '.html') }}"
-            class=" ease-in duration-100 p-2 text-lg lg:text-primary-dark text-font-light
+            class=" ease-in duration-100 p-2 text-base lg:text-primary-dark text-font-light
                     border-transparent border-l-4 hover:border-primary-dark">
           <span>{{ sublink[0] }}</span>
         </a>
       {% endfor %}
     </div>
     </div>
-    
+
   </div>
 {%- endmacro %}
 
@@ -71,7 +71,7 @@
           alt="iGEM Toronto Logo"
           class="h-20">
   </a>
-  <nav class="p-4 gap-4 text-font-light text-2xl flex
+  <nav class="p-4 gap-4 text-font-light text-base flex
               ease-in duration-200
               lg:flex-row lg:translate-y-0 lg:static lg:top-0 lg:bg-transparent lg:w-auto
               flex-col absolute top-0 right-0 bg-primary-dark w-screen z-50"
@@ -124,12 +124,12 @@
     :class="{
               'lg:max-h-96 lg:py-4': subpages.length > 0 && subpages[0].heading !== '',
               'max-h-96 py-4': subpageSelectorExtended && subpages.length > 0 && subpages[0].heading !== '',
-              'max-h-0': !subpageSelectorExtended && subpages.length > 0 && subpages[0].heading !== '' 
+              'max-h-0': !subpageSelectorExtended && subpages.length > 0 && subpages[0].heading !== ''
                       || subpages.length == 0 || subpages[0].heading === ''
             }"
       x-cloak>
   <template x-for="(sub, index) in subpages">
-    <li class=" text-lg list-none cursor-pointer border-b-2 border-transparent hover:text-white duration-200"
+    <li class=" text-base list-none cursor-pointer border-b-2 border-transparent hover:text-white duration-200"
         x-text="sub.heading"
         @click="selectSubpage(index); subpageSelectorExtended = false"
         :class="{ 'text-white lg:border-white': selectedSubpage === index,

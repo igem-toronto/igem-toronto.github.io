@@ -11,7 +11,8 @@ module.exports = {
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],
         'playfair-display': ['Playfair Display', 'serif'],
-        'roboto': ['Roboto Mono', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
+        'roboto-mono': ['Roboto Mono', 'sans-serif'],
       },
       spacing: {
         '88': '22rem',
@@ -33,4 +34,3 @@ module.exports = {
   },
   plugins: [],
 }
-

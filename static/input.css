@@ -40,19 +40,19 @@ div + h3 {
 }
 
 h1 + div {
-    @apply mt-2 mb-4 lg:ml-2
+    @apply mt-2 mb-4
 }
 
 h2 + div {
-    @apply mt-2 mb-4 lg:ml-2
+    @apply mt-2 mb-4
 }
 
 h3 + div {
-    @apply mt-2 mb-4 lg:ml-2
+    @apply mt-2 mb-4
 }
 
 h4 + div {
-    @apply mt-2 mb-4 lg:ml-2
+    @apply mt-2 mb-4
 }
 
 .rotate-y-180 {

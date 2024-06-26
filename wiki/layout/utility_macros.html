@@ -1,7 +1,7 @@
 {% macro heading(text, show=True) -%}
   {{ set_page(text) }}
   {% if show %}
-    <h1 class="lg:ml-2 mb-8 font-roboto">{{ text }}</h1>
+    <h1 class="mb-8 font-roboto">{{ text }}</h1>
   {% endif %}
 {%- endmacro %}
 
@@ -16,7 +16,7 @@
   }}
 	<h2 id="{{ subpages[-1].subheadings[-1].key }}"
       class="flex items-center w-full">
-    <div class="{{ 'w-1/2' if img != '' else '' }} lg:ml-2 mb-3">
+    <div class="{{ 'w-1/2' if img != '' else '' }} mb-3">
       {{text}}
     </div>
     {% if img != '' %}
@@ -33,13 +33,13 @@
       "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")[0:10]
     })
   }}
-	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}" class="lg:ml-2 mb-3">
+	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}" class="mb-3">
 		{{text}}
 	</h3>
 {%- endmacro %}
 
 {% macro subsubsubheading(text) -%}
-	<h4 class="lg:ml-2 mb-3">
+	<h4 class="mb-3">
 		{{text}}
 	</h4>
 {%- endmacro %}

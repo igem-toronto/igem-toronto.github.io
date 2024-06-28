@@ -1,23 +1,22 @@
 {% macro heading(text, show=True) -%}
-  <div class="hidden">{{ set_page(text) }}</div>
+  {{ set_page(text) }}
   {% if show %}
-    <h1 class="ml-2 mb-8 font-roboto">{{ text }}</h1>
+    <h1 class="lg:ml-2 mb-8 font-roboto">{{ text }}</h1>
   {% endif %}
 {%- endmacro %}
 
 {% macro subheading(text, img="") -%}
-  <div class="hidden">
   {{ ensure_subpage() }}
   {{
     subpages[-1].subheadings.append({
       "text": text,
-      "key": subpages[-1].key + "-" + text.lower().replace(" ", "-"),
+      "key": subpages[-1].key + "-" + text.lower().replace(" ", "-")[0:10],
       "subsubheadings": []
     })
-  }}</div>
+  }}
 	<h2 id="{{ subpages[-1].subheadings[-1].key }}"
       class="flex items-center w-full">
-    <div class="{{ 'w-1/2' if img != '' else '' }}">
+    <div class="{{ 'w-1/2' if img != '' else '' }} lg:ml-2 mb-3">
       {{text}}
     </div>
     {% if img != '' %}
@@ -29,38 +28,41 @@
 {%- endmacro %}
 
 {% macro subsubheading(text) -%}
-  <div class="hidden">{{ subpages[-1].subheadings[-1].subsubheadings.append({
+  {{ subpages[-1].subheadings[-1].subsubheadings.append({
       "text": text,
-      "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")
+      "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")[0:10]
     })
-  }}</div>
-	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}">
+  }}
+	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}" class="lg:ml-2 mb-3">
 		{{text}}
 	</h3>
 {%- endmacro %}
 
 {% macro subsubsubheading(text) -%}
-	<h4>
+	<h4 class="lg:ml-2 mb-3">
 		{{text}}
 	</h4>
 {%- endmacro %}
 
 {% macro subpage(text, img="") -%}
-  <div class="hidden">{{ subpages.append({
+  {{ subpages.append({
       "heading": text,
-      "key": text.lower().replace(" ", "-"),
+      "key": text.lower().replace(" ", "-")[0:10],
       "img": img,
       "subheadings": []
     })
-  }}</div>
+  }}
 {%- endmacro %}
 
-{% macro cite(text) -%}
-  {% set citation_number = citer.cite(text) -%}
-  <a  href="#{{ subpages[-1].key }}-citation-{{ citation_number }}"
-      class="text-primary-medium font-bold">
-    <sup>[{{ citation_number }}]</sup>
-  </a>
+{% macro cite(refs) -%}
+  [{% for text in refs.split(",") -%}
+    {% set citation_number = citer.cite(text) -%}
+    <a href="#{{ subpages[-1].key }}-citation-{{ citation_number }}"
+        class="text-emerald-600">
+      {{- citation_number -}}
+    </a>
+    {%- if loop.index0 < refs.count(",") %},{% endif -%}
+  {%- endfor %}]
 {%- endmacro %}
 
 {% macro banner(header, description) -%}
@@ -115,4 +117,3 @@
   <a href="{{ src }}">Download PDF</a>
 </iframe>
 {%- endmacro %}
-

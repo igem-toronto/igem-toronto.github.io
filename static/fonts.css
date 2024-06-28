@@ -150,21 +150,14 @@
 }
 
 @font-face {
-    font-family: "Montserrat";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/montserrat/montserrat-regular.ttf") format("truetype");
+    font-family: "Roboto Mono";
+    src: url("RobotoMono-VariableFont_wght.ttf") format("truetype");
     font-display: block;
 }
 
 @font-face {
-    font-family: "Montserrat";
+    font-family: "Roboto Mono";
     font-weight: 900;
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/montserrat/montserrat-bold.ttf") format("truetype");
-    font-display: block;
-}
-
-
-@font-face {
-    font-family: "Archivo";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/archivo/archivo-regular.ttf") format("truetype");
+    src: url("RobotoMono-VariableFont_wght.ttf") format("truetype");
     font-display: block;
 }

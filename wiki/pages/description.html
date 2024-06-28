@@ -1,12 +1,9 @@
 {% extends "layout/layout.html" %}
-{% block content %}
-  {{ heading('Project Description') }}
-  <div>
-    <p>
-      We are building Biotic Pro, a pipeline to make probiotics that nullify antibiotic resistance.
-    </p>
-  </div>
+{% block banner %}
+  {{ banner("Biotic Pro", "A Pipeline to Make Probiotics That Nullify Antibiotic Resistance") }}
+{% endblock %}
 
+{% block content %}
   {{ subheading('Motivation') }}
   {{ subsubheading('The rise of antibiotic resistance') }}
   <div>

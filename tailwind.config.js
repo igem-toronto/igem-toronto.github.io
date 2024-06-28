@@ -11,8 +11,7 @@ module.exports = {
       fontFamily: {
         'jost': ['Jost', 'sans-serif'],
         'playfair-display': ['Playfair Display', 'serif'],
-        'montserrat': ['Montserrat', 'sans-serif'],
-        'archivo': ['Archivo', 'sans-serif'],
+        'roboto': ['Roboto Mono', 'sans-serif'],
       },
       spacing: {
         '88': '22rem',

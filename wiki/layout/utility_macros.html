@@ -69,18 +69,19 @@
 {%- endmacro %}
 
 {% macro banner(header, description) -%}
-  <div class="flex bg-indigo-400
-  items-center gap-4 justify-center
-              lg:py-8 lg:px-24 lg:flex-row
+  <div class="flex bg-accent-muted-purple
+              items-center gap-x-12 gap-y-4 justify-center
+              lg:py-8 lg:px-32 lg:flex-row
               py-8 px-8
               flex-col
               font-roboto-mono
               ">
-    <div class="text-font-light lg:text-6xl text-5xl">
+    <div class="text-font-light font-roboto-mono
+                lg:text-6xl text-5xl lg:text-right text-center">
       {{ header }}
     </div>
     <div class="uppercase text-black
-                lg:text-4xl
+                lg:text-3xl lg:text-left text-center
                 text-2xl">
       {{ description }}
     </div>

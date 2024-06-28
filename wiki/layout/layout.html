@@ -109,11 +109,8 @@
         {% include 'layout/header.html' %}
         {% block banner %}{% endblock %}
       </div>
-      <div class="flex flex-row-reverse">
-        <div class="lg:w-3/12 w-0"></div>
-        <div class="px-4
-                    lg:w-6/12 lg:py-8
-                    w-full py-4">
+      <div class="flex flex-row-reverse place-content-center">
+        <div class="px-4 py-8 max-w-[80ch]">
           <div class="content-wrapper">
             {% block content %}{% endblock %}
           </div>
@@ -123,7 +120,9 @@
             {% endblock %}
           {% endif %}
         </div>
-        {% include 'layout/sidebar.html' %}
+        {% if add_sidebar is defined and add_sidebar %}
+          {% include 'layout/sidebar.html' %}
+        {% endif %}
       </div>
     </div>
     {% include 'layout/subpage-bottom-nav.html' %}

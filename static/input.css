@@ -88,7 +88,7 @@ h4 + div {
 }
 
 .content-wrapper > div:not(.custom) ol {
-    @apply list-decimal list-outside px-12
+    @apply list-decimal list-outside pl-8
 }
 
 .content-wrapper > .image {

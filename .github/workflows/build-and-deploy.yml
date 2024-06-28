@@ -12,9 +12,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Create intermediate directories
+        run: mkdir -p dist
+      
+      - name: Generate pandoc files
+        uses: docker://pandoc/core:latest
+        with:
+          args: >-
+            --resource-path static/citations/
+            --csl=nature.csl
+            --citeproc
+            --wrap=none
+            -f markdown
+            -t html
+            static/citations/template.md -o dist/citations.html
+
       - name: Install and Build
         run: |
           npm ci
+          python3 -m venv venv
+          . venv/bin/activate
           pip install --no-cache-dir -r dependencies.txt
           npm run build
 

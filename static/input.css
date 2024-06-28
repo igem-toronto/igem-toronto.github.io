@@ -7,7 +7,11 @@ p {
 }
 
 li {
-    @apply text-lg text-justify hyphens-auto font-jost;    
+    @apply text-lg text-justify hyphens-auto font-jost;
+}
+
+a {
+    @apply text-emerald-600;
 }
 
 h1 {
@@ -55,31 +59,27 @@ h4 + div {
 }
 
 .content-wrapper > div:not(.custom) table {
-    @apply bg-primary-medium text-font-light;
+    @apply table-auto text-lg font-jost;
 }
 
-.content-wrapper > div:not(.custom) table thead {
-    @apply sm:text-2xl text-lg uppercase;
-}
-
-.content-wrapper > div:not(.custom) table tbody tr td {
-    @apply p-4;
-}
-
-.content-wrapper > div:not(.custom) table tbody tr td:first-child {
-    @apply pl-8;
-}
-
-.content-wrapper > div:not(.custom) table tbody tr td:last-child {
-    @apply pr-8;
+.content-wrapper > div:not(.custom) table tbody {
+    @apply text-lg font-jost;
 }
 
 .content-wrapper > div:not(.custom) table thead tr th {
-    @apply p-6 text-left font-normal;
+    @apply p-2.5;
 }
 
-.content-wrapper > div:not(.custom) table tbody tr:last-child td {
-    @apply pb-12;
+.content-wrapper > div:not(.custom) table tbody tr td {
+    @apply p-2.5;
+}
+
+.content-wrapper > div:not(.custom) table thead {
+    @apply border-y-2 border-black;
+}
+
+.content-wrapper > div:not(.custom) table tbody tr:last-child {
+    @apply border-b-2 border-black;
 }
 
 .content-wrapper > div:not(.custom) ul {
@@ -105,3 +105,7 @@ h4 + div {
 *[x-cloak] {
     @apply hidden
 }
+
+.container {
+    display: flex;
+   }

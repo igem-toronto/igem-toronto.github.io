@@ -5,6 +5,7 @@ import subprocess
 import mimetypes
 import os
 import atexit
+import time
 
 from flask import Flask, render_template, Response
 from flask_frozen import Freezer
@@ -14,7 +15,6 @@ from citations import CitationLoader
 template_folder = path.abspath('./wiki')
 cdn_url = "https://static.igem.wiki/teams/4615/wiki/"
 
-citation_loader = CitationLoader("bibtex.bib")
 
 def my_finalize(thing):
     return thing if thing is not None else ''
@@ -61,7 +61,7 @@ def subpages_skeleton():
 
     d["citer"] = citation_loader.citer()
     d["reset_citer"] = d["citer"].reset
-    
+
     return d
 
 tailwind_input = 'static/input.css'
@@ -80,13 +80,18 @@ else:
     proc.wait()
     print("DONE")
 
+if MODE == "dev":
+    citation_loader = CitationLoader()
+else:
+    citation_loader = CitationLoader(file="dist/citations.html")
+
 @app.route("/modules/<path:module_path>")
 def modules(module_path: str):
     with open("node_modules/" + module_path, "br") as f:
         content = f.read()
         mime_type = mimetypes.guess_type(module_path)[0]
         mime_type = mime_type if mime_type is not None else "text/html"
-        return Response(content, mimetype=mime_type) 
+        return Response(content, mimetype=mime_type)
 
 @app.route('/dist/<path:filename>')
 def dist(filename: str):
@@ -138,7 +143,7 @@ def people():
                 member["priority"] = 10
             elif "lead" in lower_role:
                 member["priority"] = 5
-            
+
             group.append(member)
 
     for group in team_members.values():

@@ -32,6 +32,7 @@ in the `wiki` directory, and the pages live in the `wiki > pages` directory.
   * [Flask](https://palletsprojects.com/p/flask/): Python framework
   * [Frozen-Flask](https://pythonhosted.org/Frozen-Flask): Library that builds the wiki to be deployed as a static website
   * [NodeJS](https://nodejs.org/en): Node to bundle tailwindcss as the CSS framework. Use the LTS version
+  * [pandoc](https://pandoc.org/installing.html): pandoc to compile references
 
 ## Setup
 ```bash

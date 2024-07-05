@@ -3,19 +3,20 @@
 @tailwind utilities;
 
 p {
-    @apply text-lg text-justify hyphens-auto font-jost my-2;
+    @apply text-base text-justify hyphens-auto font-inter my-2;
 }
 
 li {
-    @apply text-lg text-justify hyphens-auto font-jost;
+    @apply text-base text-justify hyphens-auto font-inter;
 }
 
+
 a {
-    @apply text-emerald-600;
+    @apply text-accent-saturated-purple;
 }
 
 h1 {
-    @apply text-3xl lg:text-5xl;
+    @apply text-4xl lg:text-5xl;
 }
 
 h2 {
@@ -27,7 +28,7 @@ h3 {
 }
 
 h4 {
-    @apply underline-offset-4 underline text-lg font-roboto;
+    @apply underline-offset-4 underline text-base font-roboto;
 }
 
 div + h2 {
@@ -39,19 +40,19 @@ div + h3 {
 }
 
 h1 + div {
-    @apply mt-2 mb-4 lg:ml-2
+    @apply mt-2 mb-4
 }
 
 h2 + div {
-    @apply mt-2 mb-4 lg:ml-2
+    @apply mt-2 mb-4
 }
 
 h3 + div {
-    @apply mt-2 mb-4 lg:ml-2
+    @apply mt-2 mb-4
 }
 
 h4 + div {
-    @apply mt-2 mb-4 lg:ml-2
+    @apply mt-2 mb-4
 }
 
 .rotate-y-180 {
@@ -59,11 +60,11 @@ h4 + div {
 }
 
 .content-wrapper > div:not(.custom) table {
-    @apply table-auto text-lg font-jost;
+    @apply table-auto text-base font-inter;
 }
 
 .content-wrapper > div:not(.custom) table tbody {
-    @apply text-lg font-jost;
+    @apply text-base font-inter;
 }
 
 .content-wrapper > div:not(.custom) table thead tr th {
@@ -83,7 +84,11 @@ h4 + div {
 }
 
 .content-wrapper > div:not(.custom) ul {
-    @apply list-outside list-disc pl-6 font-jost text-lg;
+    @apply list-outside list-disc pl-6;
+}
+
+.content-wrapper > div:not(.custom) ol {
+    @apply list-decimal list-outside pl-8
 }
 
 .content-wrapper > .image {

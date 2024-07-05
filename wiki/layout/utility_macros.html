@@ -1,7 +1,11 @@
 {% macro heading(text, show=True) -%}
   {{ set_page(text) }}
   {% if show %}
-    <h1 class="lg:ml-2 mb-8 font-roboto">{{ text }}</h1>
+    <div class="inline-block mb-4">
+      <h1 class="font-bold font-roboto mb-4">{{ text }}</h1>
+      <hr class="h-1 border-none bg-accent-saturated-purple mb-1 -mr-8">
+      <hr class="h-1 w-8/12 border-none bg-accent-muted-purple">
+    </div>
   {% endif %}
 {%- endmacro %}
 
@@ -16,7 +20,7 @@
   }}
 	<h2 id="{{ subpages[-1].subheadings[-1].key }}"
       class="flex items-center w-full">
-    <div class="{{ 'w-1/2' if img != '' else '' }} lg:ml-2 mb-3">
+    <div class="{{ 'w-1/2' if img != '' else '' }} mb-3">
       {{text}}
     </div>
     {% if img != '' %}
@@ -33,13 +37,13 @@
       "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")[0:10]
     })
   }}
-	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}" class="lg:ml-2 mb-3">
+	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}" class="mb-3">
 		{{text}}
 	</h3>
 {%- endmacro %}
 
 {% macro subsubsubheading(text) -%}
-	<h4 class="lg:ml-2 mb-3">
+	<h4 class="mb-3">
 		{{text}}
 	</h4>
 {%- endmacro %}
@@ -57,8 +61,7 @@
 {% macro cite(refs) -%}
   [{% for text in refs.split(",") -%}
     {% set citation_number = citer.cite(text) -%}
-    <a href="#{{ subpages[-1].key }}-citation-{{ citation_number }}"
-        class="text-emerald-600">
+    <a href="#{{ subpages[-1].key }}-citation-{{ citation_number }}">
       {{- citation_number -}}
     </a>
     {%- if loop.index0 < refs.count(",") %},{% endif -%}
@@ -66,18 +69,19 @@
 {%- endmacro %}
 
 {% macro banner(header, description) -%}
-  <div class="flex bg-indigo-400
-  items-center gap-4 justify-center
-              lg:py-8 lg:px-24 lg:flex-row
+  <div class="flex bg-accent-muted-purple
+              items-center gap-x-12 gap-y-4 justify-center
+              lg:py-8 lg:px-32 lg:flex-row
               py-8 px-8
               flex-col
-              font-roboto
+              font-roboto-mono
               ">
-    <div class="text-font-light lg:text-6xl text-5xl">
+    <div class="text-font-light font-roboto-mono
+                lg:text-6xl text-5xl lg:text-right text-center">
       {{ header }}
     </div>
     <div class="uppercase text-black
-                lg:text-4xl
+                lg:text-3xl lg:text-left text-center
                 text-2xl">
       {{ description }}
     </div>
@@ -87,11 +91,11 @@
 {% macro subpage_banner() -%}
   <div class="flex flex-col items-center gap-4 custom
               lg:pt-16 lg:pb-32
-              py-8 font-roboto">
+              py-8 font-roboto-mono">
     <div class="text-gray-600 text-xl">
       {{ pages[0] }}
     </div>
-    <div class="font-roboto
+    <div class="font-roboto-mono
                 font-bold
                 lg:text-6xl
                 text-5xl">

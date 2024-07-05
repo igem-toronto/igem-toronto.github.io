@@ -2,7 +2,7 @@
 
 
 {{ subheading('References') }}
-<ol class="list-decimal list-outside px-12">
+<ol class="list-decimal list-outside pl-8">
   {% for ref in citer.references() -%}
     <li class="text-sm text-left" id="{{ subpages[-1].key }}-citation-{{ loop.index }}">
       {{ ref|safe }}

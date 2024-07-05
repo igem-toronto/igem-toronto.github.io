@@ -1,4 +1,6 @@
 {% extends "layout/layout.html" %}
+{% set add_sidebar = true %}
+
 {% block banner %}
   {{ banner("Biotic Pro", "A Pipeline to Make Probiotics That Nullify Antibiotic Resistance") }}
 {% endblock %}
@@ -36,7 +38,7 @@
       but all with limited efficacy:
     </p>
 
-    <div class="flex justify-center py-8 px-12">
+    <div class="flex justify-center py-8 px-4">
       <table>
         <thead>
           <tr>
@@ -120,7 +122,7 @@
     <p>
       To achieve this, we aim to create a proof of concept through a two part project:
     </p>
-    <ol class="list-decimal list-outside px-12">
+    <ol>
       <li>
         <p>
           Develop the generative model and lab automation to create novel, working plasmids
@@ -182,7 +184,7 @@
     <p>
       Our <i>oriV</i> verification pipeline consists of the following:
     </p>
-    <ol class="list-decimal lis-inside px-12">
+    <ol>
       <li>
           Alignment: The most broadly used <i>ori</i> detection tool, Ori-Finder
           {{ cite('dong2021ori') }} was found to be insufficient for our project,

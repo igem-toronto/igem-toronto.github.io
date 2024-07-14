@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Inter";
-    src: url("Inter-VariableFont_slnt,wght.ttf") format("truetype"); 
+    src: url("Inter-VariableFont_slnt,wght.ttf") format("truetype");
     font-display: block;
 }
 
@@ -157,5 +157,11 @@
     font-family: "Roboto Mono";
     font-weight: 900;
     src: url("RobotoMono-VariableFont_wght.ttf") format("truetype");
+    font-display: block;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("Roboto-Bold.ttf") format("truetype");
     font-display: block;
 }

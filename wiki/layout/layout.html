@@ -9,11 +9,12 @@
 {% block body %}
   <body class="w-full min-h-screen flex flex-col justify-between"
     x-data="globalData()">
-    <Script>
+    <script>
       function globalData() {
         let subpagesDiv = document.getElementById('subpages-json');
         let subpages, selectedSubpage;
-        
+        let nodes = []
+
         if (subpagesDiv) {
           let hash = window.location.hash;
           let possibleSubpage = 0;
@@ -32,17 +33,27 @@
           selectedSubpage = -1;
         }
 
+        for (let subpage of subpages) {
+          for (let subheading of subpage.subheadings) {
+            nodes.push([subheading.key, document.getElementById(subheading.key)])
+            for (let subsubheading of subheading.subsubheadings) {
+              nodes.push([subsubheading.key, document.getElementById(subsubheading.key)])
+            }
+          }
+        }
+
         let selectSubpage = (index) => {
           window.location.hash = subpages[index].key;
         };
 
         return {
+          openNavHead: -1,
           selectSubpage: selectSubpage,
+          scrolledHeading: "",
           subpages: subpages,
           selectedSubpage: selectedSubpage,
           subpageSelectorExtended: false,
           scrollToHash() {
-            console.log("Scrolling")
             if (window.location.hash.length > 1) {
               let el = document.getElementById(window.location.hash.slice(1));
               if (el) {
@@ -65,6 +76,30 @@
                 }
               }
             })
+
+            addEventListener('scroll', (e) => {
+              const displaySubsubheadings = nodes.filter(n => n[0].startsWith(subpages[el.selectedSubpage].key))
+              let index = 0
+              for (let heading of displaySubsubheadings) {
+                let boundingRect = heading[1].getBoundingClientRect()
+                let nextBoundingRect = displaySubsubheadings[index + 1][1]
+                nextBoundingRect = nextBoundingRect
+                  ? nextBoundingRect.getBoundingClientRect()
+                  : null
+
+                if (boundingRect.top > 0
+                    || (nextBoundingRect && nextBoundingRect.top > window.innerHeight)) {
+                  el.scrolledHeading = heading[0]
+                  let subIndex = subpages[selectedSubpage]
+                    .subheadings
+                    .findIndex(e => heading[0].startsWith(e.key))
+                  el.openNavHead = subIndex
+                  break
+                }
+
+                index++
+              }
+            })
           }
         }
       }
@@ -74,24 +109,25 @@
         {% include 'layout/header.html' %}
         {% block banner %}{% endblock %}
       </div>
-      <div class="flex flex-row-reverse">
-        <div class="lg:w-2/12 w-0"></div>
-        <div class="px-4
-                    lg:w-8/12 lg:py-8
-                    w-full py-4">
+      <div class="flex flex-row-reverse place-content-center">
+        <div class="px-4 py-8 max-w-[80ch]">
           <div class="content-wrapper">
             {% block content %}{% endblock %}
           </div>
-          {% block references %}
-            {% include 'layout/references.html' %}
-          {% endblock %}
+          {% if citer.references() %}
+            {% block references %}
+              {% include 'layout/references.html' %}
+            {% endblock %}
+          {% endif %}
         </div>
-        {% include 'layout/sidebar.html' %}
+        {% if add_sidebar is defined and add_sidebar %}
+          {% include 'layout/sidebar.html' %}
+        {% endif %}
       </div>
     </div>
     {% include 'layout/subpage-bottom-nav.html' %}
     {% include 'layout/footer.html' %}
-    
+
     <div id="subpages-json" class="hidden">{{ subpages|tojson }}</div>
   </body>
 {% endblock %}

@@ -3,45 +3,20 @@
 
 {% block body %}
   <body class="flex flex-col min-h-screen justify-between">
-    <div class="w-screen lg:hidden">
-      {% include 'layout/header.html' %}
-    </div>
-    <div class="flex lg:flex-row flex-col">
-      <div class="flex flex-col
-                lg:p-12 lg:w-5/12 lg:justify-around lg:h-screen
-                p-8 w-screen h-2/3">
-      <div class="w-full h-96">
-        <img  src="{{ cdn('graphics/raccoon-happy-wave-full-body.png') }}"
-              alt="Raccoon says hello"
-              class="h-full mx-auto">
+    {% include 'layout/header.html' %}
+    <div class="bg-primary-dark relative">
+      <div class="absolute right-12 top-0">
+        <img src="{{ new_cdn('assets/graphics/bacterium.svg') }}">
       </div>
-      <div class="justify-center flex">
-        <h2>
-          iGEM UToronto 2024
-        </h2>
+      <div class="w-full my-60 px-28 lg:px-4">
+        <h1 class="text-white lg:w-1/3 text-center m-auto">
+          Project Name
+        </h1>
+        <h4 class="text-white my-8 no-underline font-roboto-mono lg:w-1/4 text-center m-auto">
+          A new solution to - description of the project's application 
+        </h4>
       </div>
-    </div>
-    <div  class="hidden lg:flex grow flex-col items-center justify-between bg-primary-medium
-                lg:w-7/12 lg:h-screen lg:bg-cover lg:text-3xl
-                w-screen h-1/3 bg-cover text-xl"
-          x-data="{ expanded: '' }">
-      <div  class=" w-full flex justify-between bg-black bg-opacity-50 text-font-light
-                    xl:px-20 xl:py-5
-                    lg:py-2
-                    py-1
-                    px-10">
-        {{ links(navigation[:navigation|length // 2]) }}
-      </div>
-      <div
-        class="w-full h-full"></div>
-      <div  class="w-full flex justify-between bg-black bg-opacity-50 text-font-light
-                  lg:px-20 xl:py-5
-                  lg:py-2
-                  py-1
-                  px-10">
-        {{ links(navigation[navigation|length // 2:], direction="up") }}
-      </div>
-    </div>
+      <img class="w-full my-8" src="{{ new_cdn('assets/graphics/home-futuristic.png') }}">
     </div>
     
     {% include 'layout/footer.html' %}

@@ -14,6 +14,7 @@ from citations import CitationLoader
 
 template_folder = path.abspath('./wiki')
 cdn_url = "https://static.igem.wiki/teams/4615/wiki/"
+new_cdn_url = "https://static.igem.wiki/teams/5230/"
 
 
 def my_finalize(thing):
@@ -105,6 +106,7 @@ def dist(filename: str):
 def home():
     return render_template('pages/home.html',
                            cdn=lambda x: cdn_url + x,
+                           new_cdn=lambda x: new_cdn_url + x,
                            **subpages_skeleton(),
                            navigation=navigation)
 
@@ -151,6 +153,7 @@ def people():
 
     return render_template('pages/team.html',
                            cdn=lambda x: cdn_url + x,
+                           new_cdn=lambda x: new_cdn_url + x,
                            team_members=team_members,
                            **subpages_skeleton(),
                            navigation=navigation)
@@ -160,6 +163,7 @@ def pages(page):
     subpages = subpages_skeleton()
     return render_template("pages/" + page.lower(),
                         cdn=lambda x: cdn_url + x,
+                        new_cdn=lambda x: new_cdn_url + x,
                         **subpages,
                         navigation=navigation)
 

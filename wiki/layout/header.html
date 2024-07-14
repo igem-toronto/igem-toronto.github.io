@@ -1,8 +1,9 @@
 {% macro link(text, target) -%}
   <div class="hover:text-accent-muted-purple ease-in duration-100
+              text-2xl
               lg:py-0 lg:px-10
               text-left py-2 flex items-center font-roboto-mono">
-    <a href="{{ url_for('pages', page=target + '.html') }}">{{ text }}</a>
+    <a href="{{ url_for('pages', page=target + '.html') }}" class="hover:text-accent-muted-purple text-white">{{ text }}</a>
   </div>
 {%- endmacro %}
 
@@ -18,7 +19,7 @@
               font-roboto-mono">
     <div class="
                 lg:px-10
-              hover:text-accent-muted-purple ease-in duration-100 lg:text-center text-left">
+              hover:text-accent-muted-purple ease-in duration-100 lg:text-center text-left text-2xl">
       {{ text }}
     </div>
     <div class=" w-full flex flex-col
@@ -62,11 +63,11 @@
       @click.away="extended = false"
       class="
           flex w-full bg-primary-dark items-center justify-between">
-  <div class="flex-1 basis-0 min-w-20">
+  <div class="my-4 mx-8">
     <a  href="/">
       <img  src="{{ cdn('graphics/igem-toronto.png') }}"
             alt="iGEM Toronto Logo"
-            class="h-14 my-2 mx-2">
+            class="h-14">
     </a>
   </div>
   <nav class="p-4 gap-4 text-font-light text-base flex

@@ -2,6 +2,10 @@ from os import path
 from collections import defaultdict
 import csv, json
 import subprocess
+import mimetypes
+import os
+import atexit
+import time
 
 from flask import Flask, render_template, Response
 from flask_frozen import Freezer
@@ -10,10 +14,14 @@ from citations import CitationLoader
 
 template_folder = path.abspath('./wiki')
 cdn_url = "https://static.igem.wiki/teams/4615/wiki/"
+new_cdn_url = "https://static.igem.wiki/teams/5230/"
 
-citation_loader = CitationLoader("bibtex.bib")
+
+def my_finalize(thing):
+    return thing if thing is not None else ''
 
 app = Flask(__name__, template_folder=template_folder)
+app.jinja_options['finalize'] = my_finalize
 app.url_map.charset = 'utf-8'
 #app.config['FREEZER_BASE_URL'] = environ.get('CI_PAGES_URL')
 app.config['FREEZER_DESTINATION'] = 'public'
@@ -54,36 +62,51 @@ def subpages_skeleton():
 
     d["citer"] = citation_loader.citer()
     d["reset_citer"] = d["citer"].reset
-    
+
     return d
 
-tailwind_timestamp = None
-tailwind_cache = ""
 tailwind_input = 'static/input.css'
+tailwind_output = 'dist/output.css'
 
-@app.route('/dist/<filename>')
+MODE = os.getenv("mode")
+
+print("Mode: " + MODE)
+if MODE == "dev":
+    print("Watching files to generate css")
+    proc = subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output, '--watch'])
+    atexit.register(proc.kill)
+else:
+    print("Generating css...", end="")
+    proc = subprocess.Popen(["npx", "tailwindcss", "-i", tailwind_input, '-o', tailwind_output, "--minify"])
+    proc.wait()
+    print("DONE")
+
+if MODE == "dev":
+    citation_loader = CitationLoader()
+else:
+    citation_loader = CitationLoader(file="dist/citations.html")
+
+@app.route("/modules/<path:module_path>")
+def modules(module_path: str):
+    with open("node_modules/" + module_path, "br") as f:
+        content = f.read()
+        mime_type = mimetypes.guess_type(module_path)[0]
+        mime_type = mime_type if mime_type is not None else "text/html"
+        return Response(content, mimetype=mime_type)
+
+@app.route('/dist/<path:filename>')
 def dist(filename: str):
-    global tailwind_cache, tailwind_timestamp, tailwind_input
-    if filename.startswith('alpinejs'):
-        with open('node_modules/alpinejs/dist/cdn.min.js') as f:
-            content = f.read()
-            return Response(content, mimetype='text/javasript')
-    elif filename.endswith('.css'):
-        current_timestamp = path.getmtime(tailwind_input)
-        if tailwind_timestamp is None or current_timestamp > tailwind_timestamp:
-            result = subprocess.run(["npx", "tailwindcss", "-i", tailwind_input],
-                text=True, capture_output=True)
-            tailwind_cache = result.stdout
-
-        tailwind_timestamp = current_timestamp
-        return Response(tailwind_cache, mimetype="text/css")
-    else:
-        return Response(status=404)
+    with open('dist/' + filename) as f:
+        content = f.read()
+        mime_type = mimetypes.guess_type(filename)[0]
+        mime_type = mime_type if mime_type is not None else "text/html"
+        return Response(content, mimetype=mime_type)
 
 @app.route('/')
 def home():
     return render_template('pages/home.html',
                            cdn=lambda x: cdn_url + x,
+                           new_cdn=lambda x: new_cdn_url + x,
                            **subpages_skeleton(),
                            navigation=navigation)
 
@@ -122,7 +145,7 @@ def people():
                 member["priority"] = 10
             elif "lead" in lower_role:
                 member["priority"] = 5
-            
+
             group.append(member)
 
     for group in team_members.values():
@@ -130,6 +153,7 @@ def people():
 
     return render_template('pages/team.html',
                            cdn=lambda x: cdn_url + x,
+                           new_cdn=lambda x: new_cdn_url + x,
                            team_members=team_members,
                            **subpages_skeleton(),
                            navigation=navigation)
@@ -139,9 +163,10 @@ def pages(page):
     subpages = subpages_skeleton()
     return render_template("pages/" + page.lower(),
                         cdn=lambda x: cdn_url + x,
+                        new_cdn=lambda x: new_cdn_url + x,
                         **subpages,
                         navigation=navigation)
 
 # Main Function, Runs at http://0.0.0.0:8080
 if __name__ == "__main__":
-    app.run(port=3000, debug=True)
+    app.run(port=3000, debug=MODE=="dev", extra_files=["navigation.json"])

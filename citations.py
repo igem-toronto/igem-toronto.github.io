@@ -7,7 +7,9 @@ Author: Henrik S. Zimmermann <henrik.zimmermann@utoronto.ca>
 
 from __future__ import annotations
 
-import bibtexparser
+from bs4 import BeautifulSoup
+import subprocess
+import os
 
 
 class CitationLoader:
@@ -19,33 +21,53 @@ class CitationLoader:
     """
     name_to_reference: dict[str, dict[str, str]]
 
-    def __init__(self, filename="bibtex.bib") -> None:
+    def __init__(self, file=None) -> None:
         """
         Open the bibtext file and use bibtextparser to parse it. Populate the
         citations dict.
         """
-        with open(filename, "r") as f:
-            parser = bibtexparser.bparser.BibTexParser(ignore_nonstandard_types=False)
-            bib_database = parser.parse_file(f)
+        if file is None:
+            proc = subprocess.run(
+                "pandoc --csl=nature.csl --citeproc --wrap=none -f markdown -t html template.md",
+                capture_output=True,
+                text=True,
+                shell=True,
+                cwd=os.path.join(os.path.dirname(os.path.realpath(__file__)), "static", "citations"))
+            
+            content = proc.stdout.strip().replace("\n", "")
+            print("Content")
+            print(content)
+        else:
+            with open(file) as f:
+                content = f.read().strip().replace("\n", "")
+        
+        soup = BeautifulSoup(content, "html.parser")
+        refs = soup.find_all("div", {"class": "csl-entry"})
 
-        self.name_to_reference = {}
+        print(f"Loaded {len(refs)} citations")
 
-        for entry in bib_database.entries:
-            name = entry['ID']
-            self.name_to_reference[name] = entry
+        self.name_to_reference = dict()
+        for tag in refs:
+            assert tag["id"].startswith("ref-")
+            name = tag["id"][4:]
+
+            # A bit hacky, but this removes two outer dives
+            # <div ...><div ...>text</div></div> -> test
+            ref = "".join(map(str, tag.contents[0].contents))
+            self.name_to_reference[name] = ref
 
     def citer(self) -> Citer:
         """
         Return a citer associated with the loaded citations from this loader.
         """
         return Citer(self)
-    
+
     def __str__(self) -> str:
         """
         Return a string representation of the citations.
         """
         return str(self.name_to_reference)
-    
+
 
 class Citer:
     """
@@ -78,16 +100,16 @@ class Citer:
             self.citation_to_number[name] = number
 
         return self.citation_to_number[name]
-    
+
     def reset(self):
         """
         Reset the citer to start from the beginning.
         """
         self.citation_to_number = {}
-    
+
     def last_number(self) -> int:
         return len(self.citation_to_number)
-    
+
     def references(self) -> str:
         """
         Return the mentioned references sorted in citation order.
@@ -96,6 +118,5 @@ class Citer:
                                 key=lambda x: self.citation_to_number[x])
         sorted_citations = [self.citation_loader.name_to_reference[key]
                             for key in sorted_keys]
-        
+
         return sorted_citations
-    

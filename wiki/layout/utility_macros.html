@@ -14,7 +14,7 @@
   {{
     subpages[-1].subheadings.append({
       "text": text,
-      "key": subpages[-1].key + "-" + text.lower().replace(" ", "-")[0:10],
+      "key": subpages[-1].key + "-" + text.lower().replace(" ", "-"),
       "subsubheadings": []
     })
   }}
@@ -34,7 +34,7 @@
 {% macro subsubheading(text) -%}
   {{ subpages[-1].subheadings[-1].subsubheadings.append({
       "text": text,
-      "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")[0:10]
+      "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")
     })
   }}
 	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}" class="mb-3">
@@ -51,7 +51,7 @@
 {% macro subpage(text, img="") -%}
   {{ subpages.append({
       "heading": text,
-      "key": text.lower().replace(" ", "-")[0:10],
+      "key": text.lower().replace(" ", "-"),
       "img": img,
       "subheadings": []
     })

@@ -1,12 +1,6 @@
 {% extends 'layout/layout.html' %}
 
 {% block content %}
-<div>
-  {{ subheading("Team Toronto")}}
-  {{ img(cdn("hpphoto/img-3314.jpg"),
-      alt="Picture taken during one of the in person meetings",
-      width="60%") }}
-</div>
   <div class="custom">
     <script>
       function createPlaceholder(img) {
@@ -40,7 +34,7 @@
                   <div class="mt-4">
                     {% if member.linkedin.strip() != "" %}
                       <a href="{{ member.linkedin }}" target="_blank">
-                        <img alt="{{ member.name }}'s LinkedIn" src="{{ cdn('li-in-bug.png') }}" class="h-8 inline-block">
+                        <img alt="{{ member.name }}'s LinkedIn" src="{{ new_cdn('assets/graphics/li-in-bug.png') }}" class="h-8 inline-block">
                       </a>
                     {% endif %}
                     {% if member.website.strip() != "" %}
@@ -72,7 +66,7 @@
                   {% if member.picture != None %}
                     <img class = "container-image"
                       alt="{{ member.name }}"
-                      src="{{ cdn(member.picture) }}"
+                      src="{{ new_cdn(member.picture) }}"
                       class="w-48 rounded-md"
                       onerror="createPlaceholder(this)">
                   {% else %}
@@ -84,7 +78,7 @@
             {% if member.picture != None %}
               <img
                 alt="{{ member.name }}"
-                src="{{ cdn(member.picture) }}"
+                src="{{ new_cdn(member.picture) }}"
                 class="w-48 rounded-md"
                 onerror="createPlaceholder(this)">
             {% else %}
@@ -105,7 +99,7 @@
                       <a href="{{ member.linkedin }}">
                         <img
                           alt="{{ member.name }}'s LinkedIn"
-                          src="{{ cdn('li-in-bug.png') }}"
+                          src="{{ new_cdn('assets/graphics/li-in-bug.png') }}"
                           class="h-8">
                       </a>
                     {% endif %}

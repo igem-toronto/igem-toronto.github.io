@@ -1,3 +1,4 @@
 flask==3.0.3
 frozen-flask
 beautifulsoup4
+requests

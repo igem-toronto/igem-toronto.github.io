@@ -6,6 +6,7 @@ import mimetypes
 import os
 import atexit
 import time
+import requests
 
 from flask import Flask, render_template, Response
 from flask_frozen import Freezer
@@ -121,32 +122,34 @@ def people():
     team_members["Entrepreneurship"] = []
     team_members["Human Practices"] = []
     team_members["Wiki Team"] = []
-    with open("static/team.csv", newline="") as f:
-        reader = csv.reader(f)
-        for line in reader:
-            if line[0] == "Name" or line[0] == "":
-                continue
-            member = {}
-            member["name"] = line[0]
-            member["role"] = line[1]
-            member["description"] = line[2]
-            member["linkedin"] = line[4]
-            member["website"] = line[5]
-            member["email"] = line[6]
-            member["priority"] = 0
+    r = requests.get(
+        "https://docs.google.com/spreadsheets/d/15uTIHgv6K2rDe-HD5g0GGp6LOWPNmeOBPJnN0LYdax8/gviz/tq?tqx=out:csv")
 
-            image_key = line[0].split()[0].lower()
-            member["picture"] = image_key + ".png"
+    reader = csv.reader(r.text.split('\n'))
+    for line in reader:
+        if line[0] == "Name" or line[0] == "":
+            continue
+        member = {}
+        member["name"] = line[0]
+        member["role"] = line[1]
+        member["description"] = line[2]
+        member["linkedin"] = line[4]
+        member["website"] = line[5]
+        member["email"] = line[6]
+        member["priority"] = 0
 
-            lower_role =  member["role"].split(", ")[0].lower()
-            group = team_members[lower_role.replace("lead", "").replace("director", "").strip().title()]
+        image_key = line[0].split()[0].lower()
+        member["picture"] = "assets/pictures/team-intros/" + image_key + ".png"
 
-            if "director" in lower_role:
-                member["priority"] = 10
-            elif "lead" in lower_role:
-                member["priority"] = 5
+        lower_role =  member["role"].split(", ")[0].lower()
+        group = team_members[lower_role.replace("lead", "").replace("director", "").strip().title()]
 
-            group.append(member)
+        if "director" in lower_role:
+            member["priority"] = 10
+        elif "lead" in lower_role:
+            member["priority"] = 5
+
+        group.append(member)
 
     for group in team_members.values():
         group.sort(key=lambda x: x["priority"], reverse=True)

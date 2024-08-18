@@ -5,9 +5,6 @@
       {
         "text": "Introduction",
         "link": "team"
-      },
-      {
-        "text": "Attributions"
       }
     ]
   },
@@ -24,15 +21,15 @@
         "text": "Experiments"
       },
       {
-        "text": "Contribution"
+        "text": "Attributions"
       },
       {
         "text": "Notebook"
+      },
+      {
+        "text": "Parts"
       }
     ]
-  },
-  {
-    "text": "Parts"
   },
   {
     "text": "Results",
@@ -59,11 +56,11 @@
       },
       {
         "text": "Safety"
-      },
-      {
-        "text": "Entrepreneurship"
       }
     ]
+  },
+  {
+    "text": "Entrepreneurship"
   },
   {
     "text": "Relations",

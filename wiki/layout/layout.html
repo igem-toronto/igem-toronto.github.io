@@ -109,10 +109,13 @@
         {% include 'layout/header.html' %}
         {% block banner %}{% endblock %}
       </div>
+      <div class="w-full">
+        {% block full_page_content %}{% endblock %}
+      </div>
       <div class="flex flex-row-reverse place-content-center">
         <div class="px-4 py-8 max-w-[80ch]">
           <div class="content-wrapper">
-            {% block content %}{% endblock %}
+            {% block article_content %}{% endblock %}
           </div>
           {% if citer.references() %}
             {% block references %}

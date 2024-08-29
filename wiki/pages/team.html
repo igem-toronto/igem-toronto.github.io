@@ -1,7 +1,8 @@
 {% extends 'layout/layout.html' %}
 
-{% block content %}
-  <div class="custom">
+{% block full_page_content %}
+<div class="px-2">
+  <div class="lg:w-2/3 w-full m-auto">
     <script>
       function createPlaceholder(img) {
         var element = document.createElement("div");
@@ -153,4 +154,5 @@
     </div>
     {% endfor %}
   </div>
+</div>
 {% endblock %}

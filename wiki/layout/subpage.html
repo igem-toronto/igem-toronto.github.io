@@ -1,7 +1,7 @@
 
 <div x-show="selectedSubpage == {{ subpages|length }} - 1" class="custom content-wrapper" x-cloak>
   <div class="hidden">{{ reset_citer() }}</div>
-  {% block content %}{% endblock %}
+  {% block article_content %}{% endblock %}
   {% if citer.references() %}
     {% include 'layout/references.html' %}
   {% endif %}

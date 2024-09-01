@@ -1,42 +1,129 @@
 {% extends "layout/layout.html" %}
-  
 
-{% block article_content %}
-  {{ heading("Entrepreneurship") }}
-  
-  <p>Explore our Entrepreneurship Section and dive into each criterion for a concise overview. We encourage you to dive into our comprehensive business plan, where we demonstrate the feasibility, scalability, and innovation of our solution. Our plan includes a transparent and practical product development timeline, outlining the required resources and potential risks. We showcase our skills, capabilities, and the involvement of key stakeholders crucial for bringing our solution to the market. We assess both positive and negative long-term impacts of our solution and provide details about our customers and their unmet needs.</p>
-  <div x-data="{
-    selectedSummary: '',
-    summaries: [
-      'Customers & Unmet Needs',
-      'Solution is Possible, Scalable, and Inventive',
-      'Product Development, Milestones, Resources, and Risks',
-      'Skills, Capabilities, Stakeholders',
-      'Positive and Negative Long-Term Impacts'
-    ]}">
-    <div class="custom flex gap-8 flex-col lg:flex-row">
-      <template x-for="summary in summaries">
-        <button class="text-lg rounded-md border-2 border-primary-medium duration-200 p-2"
-                x-text="summary"
-                @click="selectedSummary = summary"
-                :class="{ 'bg-primary-medium text-font-light': selectedSummary === summary,
-                          'bg-white text-primary-medium': selectedSummary !== summary }">
-        </button>
-      </template>
-    </div>
-      
-    <div class="p-4 custom" x-show="selectedSummary == summaries[0]" x-cloak>
-      Text
-    </div>
-    <div class="p-4 custom" x-show="selectedSummary == summaries[1]" x-cloak>
-      Text
-    </div>
-    <div class="p-4 side-by-side" x-show="selectedSummary == summaries[2]" x-cloak>
-      Text
-    </div>
-    <div class="p-4 custom" x-show="selectedSummary == summaries[3]" x-cloak>
-      Text
+{% macro picture_link(text, picture_src) -%}
+  <div class="relative h-44 w-full lg:w-5/12 flex items-center justify-center">
+    <img class="absolute w-full h-full z-0" src="{{ picture_src }}">
+    <h2 class="z-10 text-white text-center">
+      {{ text }}
+    </h2>
   </div>
+{%- endmacro %}
 
+{% block full_page_content %}
+<div class="w-full px-8 lg:px-44 xl:px-96 py-20">
+  {{ heading("Entrepreneurship") }}
+
+  <h2 class="w-full text-center mb-16">
+    About Us
+  </h2>
+
+  <p>
+    Welcome to our Entrepreneurship Section. 
+  </p>
+  <p>
+    Here, you’ll find a detailed look into our comprehensive business plan,
+    demonstrating the feasibility, scalability, and innovation of our approach.
+    Our plan includes a transparent product development timeline, outlining the
+    required resources and potential risks. We highlight our team’s skills and
+    capabilities, along with the involvement of key stakeholders crucial for
+    bringing our solution to market. Additionally, we assess the long-term
+    impacts—both positive and negative—and provide insights into our target
+    customers and their unmet needs.
+  </p>
+</div>
+<img src="{{ new_cdn('entrepreneurship/tablet.png') }}" class="w-full">
+<div class="w-full px-8 lg:px-44 xl:px-96 py-20">
+  <div class="relative mb-8">
+    <div class="absolute z-0 hidden lg:block lg:-left-32 xl:-left-40 lg:-top-8">
+      <svg width="232" height="232" viewBox="0 0 232 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="106" cy="126" r="105.5" fill="white" stroke="#5C2BD5"/>
+        <circle cx="126" cy="106" r="106" fill="#E0DFFC"/>
+      </svg>
+    </div>
+    <div class="z-10 relative">
+      <h2>
+        The Problem
+      </h2>
+      <p>
+        As of now, the development of a phage therapy involves hundreds of repetitions of a
+        scientist preparing wet lab procedure, preparing reagents, culturing an antibiotic
+        resistant bacteria, isolating phage, co-incubating the phage and bacteria, and measuring
+        the phage’s parasitization of the bacteria. With each step being prone to failure, the
+        entire process is highly costly and takes months to complete.
+      </p>
+    </div>
+  </div>
+  <div class="flex items-center flex-col gap-12">
+    <p>
+      To address the need to expedite 
+      the pre-clinical phase of phage therapy,
+    </p>
+    <h2>
+      We created
+    </h2>
+  </div>
+</div>
+<div class="w-full px-8 lg:px-20 xl:px-96 py-20 bg-accent-muted-purple flex items-center flex-col">
+  <img class="mb-8" src="{{ new_cdn('assets/graphics/plasmid-ai-logo-text.png') }}">
+  <div class="flex lg:flex-row flex-col gap-y-8">
+    <div class="flex flex-col lg:flex-1 gap-y-8">
+      <div>
+        <h3>
+          Industry
+        </h3>
+        <p class="text-left">
+          Machine Learning & Biopharmaceuticals
+        </p>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex-1">
+          <h3>
+            Employees
+          </h3>
+          <p>
+            8
+          </p>
+        </div>
+        <div class="flex-1 border-l-2 border-black pl-4">
+          <h3>
+            Fundraising
+          </h3>
+          <p class="text-left">
+            Seeking Seed Round
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="lg:flex-1 lg:border-l-2 border-black lg:pl-4">
+      <h3>
+        General Information
+      </h3>
+      <p>
+        Plasmid.AI intends to utilize the power of large language models to expedite preclinical phage discovery.
+        By simulating phage-bacteria interactions in silico, our model would identify phage therapy candidates at
+        a fraction of time and resource-intensive wet lab work.
+      </p>
+    </div>
+  </div>
+</div>
+
+<h2 class="px-8 lg:px-24 mt-36">
+  Timeline
+</h2>
+<div class="w-full">
+  <img class="m-auto" src="{{ new_cdn('entrepreneurship/timeline.png') }}">
+</div>
+
+<h2 class="px-8 lg:px-24 mt-36 mb-16">
+  Documents
+</h2>
+<div class="w-full flex items-center">
+  <div class="flex flex-row flex-wrap gap-10 w-2/3 m-auto justify-around">
+    {{ picture_link("Business Plan", new_cdn("entrepreneurship/business-plan.png")) }}
+    {{ picture_link("Pitch Deck", new_cdn("entrepreneurship/pitch-deck.png")) }}
+    {{ picture_link("Cash Flow Projection", new_cdn("entrepreneurship/cash-flow-projection.png")) }}
+    {{ picture_link("One Pager", new_cdn("entrepreneurship/one-pager.png")) }}
+  </div>
+</div>
 
 {% endblock %}

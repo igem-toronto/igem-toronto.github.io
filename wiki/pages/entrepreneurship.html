@@ -1,4 +1,5 @@
 {% extends "layout/layout.html" %}
+{% set add_sidebar = true %}
 
 {% macro picture_link(text, picture_src) -%}
   <div class="relative h-44 w-full lg:w-5/12 flex items-center justify-center">
@@ -9,81 +10,77 @@
   </div>
 {%- endmacro %}
 
-{% block full_page_content %}
-<div class="w-full px-8 lg:px-44 xl:px-96 py-20">
+{% block article_content %}
   {{ heading("Entrepreneurship") }}
 
-  <!--<h2 class="w-full text-center mb-16">
-    About Us
-  </h2>-->
-
-  <p>
-    At the forefront of biotech innovation, our iGEM team has translated our developed foundational models into an actionable, groundbreaking startup with the potential to revolutionize the field. Through rigorous market and stakeholder research, coupled with extensive mentorship, we have pinpointed a transformative application positioned to create significant impact. Our entrepreneurial journey has been furthered by participation in two prestigious incubator programs: the University of Toronto's flagship incubator (NEST 2024 – Hatchery) and the iGEM Startups Venture Creation Labs. Achieving the "Go-to-Market" stage at UofT and securing an opportunity to present at the Bioinnovation Fair in Paris exemplify our progress. With a comprehensive business plan and 24-month cash flow projections crafted under the guidance of Toronto-based venture capitalists, our roadmap spans from pre-seed funding to Series B in a span of 10 years. By engaging deeply with both academic and industry leaders, we have honed our value proposition, ensuring that our innovations align closely with market needs and opportunities.
-  </p>
-  <p>
-    Here, you’ll find a detailed look into our comprehensive business plan,
-    demonstrating the feasibility, scalability, and innovation of our approach.
-    Our plan includes a transparent product development timeline, outlining the
-    required resources and potential risks. We highlight our team’s skills and
-    capabilities, along with the involvement of key stakeholders crucial for
-    bringing our solution to market. Additionally, we assess the long-term
-    impacts—both positive and negative—and provide insights into our target
-    customers and their unmet needs.
-  </p>
-</div>
+  <div>
+    <p>
+      At the forefront of biotech innovation, our iGEM team has translated our developed foundational models into an actionable, groundbreaking startup with the potential to revolutionize the field. Through rigorous market and stakeholder research, coupled with extensive mentorship, we have pinpointed a transformative application positioned to create significant impact. Our entrepreneurial journey has been furthered by participation in two prestigious incubator programs: the University of Toronto's flagship incubator (NEST 2024 – Hatchery) and the iGEM Startups Venture Creation Labs. Achieving the "Go-to-Market" stage at UofT and securing an opportunity to present at the Bioinnovation Fair in Paris exemplify our progress. With a comprehensive business plan and 24-month cash flow projections crafted under the guidance of Toronto-based venture capitalists, our roadmap spans from pre-seed funding to Series B in a span of 10 years. By engaging deeply with both academic and industry leaders, we have honed our value proposition, ensuring that our innovations align closely with market needs and opportunities.
+    </p>
+    <p>
+      Here, you’ll find a detailed look into our comprehensive business plan,
+      demonstrating the feasibility, scalability, and innovation of our approach.
+      Our plan includes a transparent product development timeline, outlining the
+      required resources and potential risks. We highlight our team’s skills and
+      capabilities, along with the involvement of key stakeholders crucial for
+      bringing our solution to market. Additionally, we assess the long-term
+      impacts—both positive and negative—and provide insights into our target
+      customers and their unmet needs.
+    </p>
+  </div>
 
 
-<h2>iGEM Entrepreneurship Criteria</h2>
-<b>Has the team discovered their first potential customers and identified any unmet needs not yet covered by other existing solutions?</b>
-<p>Description of Criteria 1</p>
-<b>Has the team shown that their solution is possible, scalable, and inventive?</b>
-<p>Description of Criteria 2</p>
-<b>Has the team presented logical product development plans with realistic milestones, timelines, resources, and risks?</b>
-<p>Description of Criteria 3</p>
-<b>Has the team outlined the skills, capabilities, and stakeholders required to be credible in developing their solution further?</b>
-<p>Founded in 2007, iGEM Toronto has completed over 15 projects and won numerous prizes at the iGEM Grand Jamboree. This year, the team has grown to encompass over 60 undergraduate students in various programs at University of Toronto. Divided into 7 subteams, iGEM Toronto has worked collectively from within and reached out to external organizations. After rounds of discussion and pivoting, we present our final solution to solve antibiotic resistance - Plasmid.AI.
+  {{ subheading("iGEM Entrepreneurship Criteria") }}
+  <div>
+    <b>Has the team discovered their first potential customers and identified any unmet needs not yet covered by other existing solutions?</b>
+    <p>Description of Criteria 1</p>
+    <b>Has the team shown that their solution is possible, scalable, and inventive?</b>
+    <p>Description of Criteria 2</p>
+    <b>Has the team presented logical product development plans with realistic milestones, timelines, resources, and risks?</b>
+    <p>Description of Criteria 3</p>
+    <b>Has the team outlined the skills, capabilities, and stakeholders required to be credible in developing their solution further?</b>
+    <p>Founded in 2007, iGEM Toronto has completed over 15 projects and won numerous prizes at the iGEM Grand Jamboree. This year, the team has grown to encompass over 60 undergraduate students in various programs at University of Toronto. Divided into 7 subteams, iGEM Toronto has worked collectively from within and reached out to external organizations. After rounds of discussion and pivoting, we present our final solution to solve antibiotic resistance - Plasmid.AI.
 
-  The entrepreneurship team is currently composed of members of different training backgrounds with expertise on life sciences, engineering and marketing. These skill sets are important in developing a practical and catered business solution. With great enthusiasm to turn our vision into reality, the entrepreneurship team has joined and completed the Venture Creation Labs (VCL) program hosted by iGEM Startups. Through the process, the team has conducted skill gap analysis, market analysis (using various frameworks including SWOT), formulated IP protection strategies etc to further understand our standing and shortcomings. Stephen Grant  with expertise in enterprise management of biotechnology companies.Our team successfully completed all stages of iGEM Startups’ rigorous program, and has been invited to the Startup Showcase at the 2024 iGEM Jamboree. 
-  
-  In addition, our team members were closely affiliated with the University of Toronto Entrepreneurship’s Hatchery. Having progressed through an intensive summer program (NEST 2024), the team has secured funding for Plasmid.AI and is selected for Go-to-Market stage to undergo further polishment and assessment. Such affiliation has provided the team with exposure to investors, venture capitalists and field experts in biotech startups, biotech patents and major law firms across the province. We were mentored by Tarang Khare - a biotechnology CEO working on epigenetic cancer detection,Tony Zhou - an AI researcher for NVIDIA, and ex-employee of AMD and Apple, Mark Smith - a partner at venture capital firm BDC (Business Development Bank of Canada).
-  
-  Lastly, the iGEM team is collaborating with the Garton Lab and the Lan Lab at University of Toronto. The Garton lab, experts in biosynthetic technology provides the team with guidance on dry lab validation techniques and computational data. The Lan Lab, experts in artificial intelligence and machine learning guides the team on technicality on the aforementioned models to be validated by wet lab. 
-  
-  With a strong standing in computational modeling from our partnerships and business networks, the team would have to enhance its wet lab efficiency and capabilities to validate our proof of concept generated in dry lab.
-  </p>
-<b>Has the team considered the positive and negative long-term impacts of their fully developed solution?</b>
-<p>Artificial intelligence is a cutting-edge technology that has gained great attention in the world for its potential and seemingly endless applications. Using artificial intelligence to design genetic codes has definite concerns in affecting evolution and may potentially be a force contributing to natural selection, in which we see increasing pressure for regulations and legislation on data collection, utilization and generation. Our Human Practices (HP) subteam has done a detailed analysis on the effects of a project on relevant stakeholders across biotech industries, ethical practices, healthcare industries and synthetic biology laboratories alike. In particular, through discussion with bioethicist Dr. Jim Shaw, McGill chemistry professor Dr. Karine Auclair, biosecurity expert Dr. Jonathan Herington and others, Plasmid.AI can incorporate feedback from the leaders in the industry to create a well-poised product. 
+      The entrepreneurship team is currently composed of members of different training backgrounds with expertise on life sciences, engineering and marketing. These skill sets are important in developing a practical and catered business solution. With great enthusiasm to turn our vision into reality, the entrepreneurship team has joined and completed the Venture Creation Labs (VCL) program hosted by iGEM Startups. Through the process, the team has conducted skill gap analysis, market analysis (using various frameworks including SWOT), formulated IP protection strategies etc to further understand our standing and shortcomings. Stephen Grant  with expertise in enterprise management of biotechnology companies.Our team successfully completed all stages of iGEM Startups’ rigorous program, and has been invited to the Startup Showcase at the 2024 iGEM Jamboree. 
+      
+      In addition, our team members were closely affiliated with the University of Toronto Entrepreneurship’s Hatchery. Having progressed through an intensive summer program (NEST 2024), the team has secured funding for Plasmid.AI and is selected for Go-to-Market stage to undergo further polishment and assessment. Such affiliation has provided the team with exposure to investors, venture capitalists and field experts in biotech startups, biotech patents and major law firms across the province. We were mentored by Tarang Khare - a biotechnology CEO working on epigenetic cancer detection,Tony Zhou - an AI researcher for NVIDIA, and ex-employee of AMD and Apple, Mark Smith - a partner at venture capital firm BDC (Business Development Bank of Canada).
+      
+      Lastly, the iGEM team is collaborating with the Garton Lab and the Lan Lab at University of Toronto. The Garton lab, experts in biosynthetic technology provides the team with guidance on dry lab validation techniques and computational data. The Lan Lab, experts in artificial intelligence and machine learning guides the team on technicality on the aforementioned models to be validated by wet lab. 
+      
+      With a strong standing in computational modeling from our partnerships and business networks, the team would have to enhance its wet lab efficiency and capabilities to validate our proof of concept generated in dry lab.
+      </p>
+    <b>Has the team considered the positive and negative long-term impacts of their fully developed solution?</b>
+    <p>Artificial intelligence is a cutting-edge technology that has gained great attention in the world for its potential and seemingly endless applications. Using artificial intelligence to design genetic codes has definite concerns in affecting evolution and may potentially be a force contributing to natural selection, in which we see increasing pressure for regulations and legislation on data collection, utilization and generation. Our Human Practices (HP) subteam has done a detailed analysis on the effects of a project on relevant stakeholders across biotech industries, ethical practices, healthcare industries and synthetic biology laboratories alike. In particular, through discussion with bioethicist Dr. Jim Shaw, McGill chemistry professor Dr. Karine Auclair, biosecurity expert Dr. Jonathan Herington and others, Plasmid.AI can incorporate feedback from the leaders in the industry to create a well-poised product. 
 
-  Our stance is to see artificial intelligence as a neutral tool that could both benefit or damage to society, depending on the intent of its user. With the growing stress from antimicrobial resistance, our team see it as an inevitable advancement to use artificial intelligence to create effective weapons against bacteria, and to save the lives of millions. For more information on our analysis on long-term and short term impacts of our fully developed solution, please visit the Human Practices section of our wiki.
-  </p>
-<br />
-<div class="section">
-  <h2>General Information</h2>
+      Our stance is to see artificial intelligence as a neutral tool that could both benefit or damage to society, depending on the intent of its user. With the growing stress from antimicrobial resistance, our team see it as an inevitable advancement to use artificial intelligence to create effective weapons against bacteria, and to save the lives of millions. For more information on our analysis on long-term and short term impacts of our fully developed solution, please visit the Human Practices section of our wiki.
+      </p>
+    <br />
+  </div>
+  {{ subheading('General Information') }}
   <p>
       Operator of an AI-powered preclinical in silico discovery platform intended to revolutionize phage therapy development through the use of AI to conduct in silico high-throughput phage-bacteria experiments. The company serves as the commercialization arm of iGEM Toronto and associated labs in the Institute of Biomedical Engineering at the University of Toronto.
   </p>
-</div>
 
-<div class="section">
-  <h2>Most Recent Status (as of September 7, 2024)</h2>
-  <p>
+  {{ subheading('Most Recent Status') }}
+  <div>
+    <p>
       The company has successfully completed UofT’s NEST 2024 incubator program and iGEM Startups’ pre-accelerator program. The company will present in Paris, France as part of iGEM Startups’ Showcase. The company has been selected to the “Go-to-Market” stage of UofT’s incubator, unlocking non-dilutive funding, legal, accounting, and other business development resources.
-  </p>
-  <p><strong>Employees:</strong> 5 (Entrepreneurship Team) As of 09-September-2024</p>
-</div>
+    </p>
+    <p><strong>Employees:</strong> 5 (Entrepreneurship Team) As of 09-September-2024</p>
+  </div>
 
-<div class="section">
-  <h2>Timeline</h2>
-  <ul>
-      <li>Website: <a href="http://www.plasmidai.com">www.plasmidai.com</a></li>
-      <li>Ownership Status: Privately Held (Backing)</li>
-      <li>Entity Type: Private Company</li>
-      <li>Financing Status: Non-dilutive funding, Bootstrap</li>
-      <li>Legal Name: Plasmid.AI</li>
-      <li>Year Founded: 2024</li>
-      <li>Business Status: Startup</li>
-  </ul>
-</div>
+  {{ subheading('Timeline') }}
+  <div>
+    <ul>
+        <li>Website: <a href="http://www.plasmidai.com">www.plasmidai.com</a></li>
+        <li>Ownership Status: Privately Held (Backing)</li>
+        <li>Entity Type: Private Company</li>
+        <li>Financing Status: Non-dilutive funding, Bootstrap</li>
+        <li>Legal Name: Plasmid.AI</li>
+        <li>Year Founded: 2024</li>
+        <li>Business Status: Startup</li>
+    </ul>
+  </div>
 
 <div class="section">
   <h2>Industries, Verticals & Keywords</h2>

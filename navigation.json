@@ -1,10 +1,13 @@
 [
   {
-    "text": "Our Team",
+    "text": "Team",
     "sublinks": [
       {
         "text": "Introduction",
         "link": "team"
+      },
+      {
+        "text": "Attributions"
       }
     ]
   },
@@ -18,23 +21,6 @@
         "text": "Engineering"
       },
       {
-        "text": "Experiments"
-      },
-      {
-        "text": "Attributions"
-      },
-      {
-        "text": "Notebook"
-      },
-      {
-        "text": "Parts"
-      }
-    ]
-  },
-  {
-    "text": "Results",
-    "sublinks": [
-      {
         "text": "Wet Lab"
       },
       {
@@ -45,19 +31,14 @@
       },
       {
         "text": "Hardware"
+      },
+      {
+        "text": "Finance"
       }
     ]
   },
   {
-    "text": "Human Practices",
-    "sublinks": [
-      {
-        "text": "Human Practices"
-      },
-      {
-        "text": "Safety"
-      }
-    ]
+    "text": "Human Practices"
   },
   {
     "text": "Entrepreneurship"

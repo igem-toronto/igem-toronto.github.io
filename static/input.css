@@ -3,35 +3,56 @@
 @tailwind utilities;
 
 p {
-    @apply text-lg text-justify hyphens-auto font-jost my-4;
+    @apply text-base text-justify hyphens-auto font-inter my-2;
+}
+
+li {
+    @apply text-base text-justify hyphens-auto font-inter;
+}
+
+
+a {
+    @apply text-accent-saturated-purple;
 }
 
 h1 {
-    @apply text-3xl lg:text-5xl;
+    @apply text-4xl lg:text-5xl;
 }
 
 h2 {
-    @apply text-3xl lg:text-4xl font-montserrat font-bold;
+    @apply text-3xl lg:text-4xl font-roboto font-bold mb-2;
 }
 
 h3 {
-    @apply text-2xl uppercase py-4 font-archivo;
+    @apply text-2xl font-roboto;
 }
 
 h4 {
-    @apply underline-offset-4 underline text-lg font-jost;
+    @apply underline-offset-4 underline text-base font-roboto;
 }
 
-.content-wrapper > div:not(.custom) {
-    @apply mt-2 mb-16
+div + h2 {
+    @apply mt-12;
 }
 
-.content-wrapper > div:not(.custom) > div:not(.custom) {
-    @apply mt-2 mb-8 lg:ml-2
+div + h3 {
+    @apply mt-8;
 }
 
-.content-wrapper > div:not(.custom) > div:not(.custom) > div:not(.custom) {
-    @apply mt-2 mb-8 lg:ml-2
+h1 + div {
+    @apply mt-2 mb-4
+}
+
+h2 + div {
+    @apply mt-2 mb-4
+}
+
+h3 + div {
+    @apply mt-2 mb-4
+}
+
+h4 + div {
+    @apply mt-2 mb-4
 }
 
 .rotate-y-180 {
@@ -39,50 +60,50 @@ h4 {
 }
 
 .content-wrapper > div:not(.custom) table {
-    @apply bg-primary-medium text-font-light;
+    @apply table-auto text-base font-inter;
 }
 
-.content-wrapper > div:not(.custom) table thead {
-    @apply sm:text-2xl text-lg uppercase;
-}
-
-.content-wrapper > div:not(.custom) table tbody tr td {
-    @apply p-4;
-}
-
-.content-wrapper > div:not(.custom) table tbody tr td:first-child {
-    @apply pl-8;
-}
-
-.content-wrapper > div:not(.custom) table tbody tr td:last-child {
-    @apply pr-8;
+.content-wrapper > div:not(.custom) table tbody {
+    @apply text-base font-inter;
 }
 
 .content-wrapper > div:not(.custom) table thead tr th {
-    @apply p-6 text-left font-normal;
+    @apply p-2.5;
 }
 
-.content-wrapper > div:not(.custom) table tbody tr:last-child td {
-    @apply pb-12;
+.content-wrapper > div:not(.custom) table tbody tr td {
+    @apply p-2.5;
+}
+
+.content-wrapper > div:not(.custom) table thead {
+    @apply border-y-2 border-black;
+}
+
+.content-wrapper > div:not(.custom) table tbody tr:last-child {
+    @apply border-b-2 border-black;
 }
 
 .content-wrapper > div:not(.custom) ul {
-    @apply list-outside list-disc pl-6 font-jost text-lg;
+    @apply list-outside list-disc pl-6;
 }
 
-.content-wrapper > div:not(.custom) .image {
+.content-wrapper > div:not(.custom) ol {
+    @apply list-decimal list-outside pl-8
+}
+
+.content-wrapper > .image {
     @apply w-full h-auto px-8;
 }
 
-.content-wrapper > div:not(.custom) .image img {
+.content-wrapper > .image img {
     @apply w-full h-auto;
 }
 
-.content-wrapper > div:not(.custom) .side-by-side {
+.side-by-side {
     @apply flex lg:flex-row flex-col gap-x-4 items-center;
 }
 
-.content-wrapper > div:not(.custom) .side-by-side > * {
+.side-by-side > * {
     @apply flex-1;
 }
 
@@ -92,19 +113,4 @@ h4 {
 
 .container {
     display: flex;
-    
    }
-
-.container-image {
-    @apply flex lg:flex-row flex-col gap-x-4 items-center;
-    margin: 1%;
-    max-width:300px;
-    padding-top: 10px;
-    height: auto;
-}
-
-.container-text {
-    padding-top: 10px;
-}
-
-

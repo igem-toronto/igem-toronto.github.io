@@ -1,57 +1,5 @@
 {% extends "layout/subpage.html" %}
 
-{% block content %}
-<div>
-  <b><i><h1>Methane-selective Gas Separation Prototyping</h1></i></b><br>
-    <div>
-    {{ subheading("Summary") }} <br>
-    <p>
-      A prototype to demonstrate the proof-of-concept for the gas phase separation was planned. The goal was to show
-      that the membrane was selective towards methane over carbon dioxide. Due to the hazards of using methane in a lab,
-      a mixture of nitrogen and carbon dioxide was to be fed into a system containing a polysulfone membrane acquired
-      from the Advanced Membranes Lab run by Professor Jay Werber. The nitrogen would act as a proxy for methane, as a
-      mixture of nitrogen and methane fed to a polysulfone membrane would behave similarly to a mixture of carbon
-      dioxide and methane fed to a cellulose acetate membrane (which was our original design).
-    </p>
-  </div>
-  <div>
-    {{ subheading("Introduction") }} <br>
-    <p>
-      The membrane model was designed after an existing single-gas membrane set-up, designed and assembled by a member
-      of Professor Werber's lab:
-    </p>
-    {{img(cdn("pictures/hardwares/12.png"), width="80%", 
-      alt="Piping and instrumentation diagram for gas separation setup used in the Advanced Membranes Lab.")}}
-    <p>
-      We planned to implement the system above for a binary mixture of gases, in order to replicate the landfill
-      situation as closely as possible. However, to quantify the separation we would have needed a device to measure the
-      composition of either carbon dioxide or methane in addition to the flow rate. We did not have ready access to a
-      gas chromatography machine, and hence there was no feasible way to obtain composition data.<br><br>
-      Thus, the working of our prototype had to be demonstrated by passing both gases individually, and then measuring
-      their inlet and outlet flow rates. The ratio of the flow rates would then signify the selectivity.<br><br>
-      Should we acquire access to a gas chromatography machine, we will perform tests with both gases flowing through
-      the system. We will use a pressure regulator on the gas cylinders to ensure that both gas inlets are at the same
-      pressure. Flow rates will be controlled by valves and bubble flowmeters. The membrane cell will receive two gas
-      streams. There will be two membrane outlets; one for the permeate and one for the retentate. Once steady state
-      operation has been achieved, we will use a bubble flowmeter at the outlet and a gas chromatogram at the permeate
-      outlet to quantify membrane separation. See the P&ID below for context.
-    </p>
-  </div>
-  <div>
-    {{ subheading("Prototype") }} <br>
-    <p>
-      A P&ID was developed for the prototype. Tubing and valves were to be purchased from McMaster-Carr, while the membrane-cell and flowmeter were to be obtained through Sigma-Aldrich. All pipes are 1.5cm in diameter.
-    </p>
-    {{img(cdn("pictures/hardwares/13.png"), width="80%",
-      alt="Piping and instrumentation diagram for the gas separation setup we intended to prototype with.")}}
-      {{ pdf(cdn('hardwares/order-2.pdf')) }}
-      {{ pdf(cdn('hardwares/order-sigma.pdf')) }}
-  </div>
-  <div>
-    {{ subheading("Conclusion/Future Step") }} <br>
-    <p>
-      Due to logistical snags, the prototype was not constructed. In particular, the hardware team was unable to obtain a site for  Our future steps are therefore to obtain the required materials and follow through with our initial plan.  
-    </p>
-  </div>
-</div>
+{% block article_content %}
+  Text
 {% endblock %}

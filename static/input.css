@@ -59,6 +59,10 @@ h4 + div {
     transform: rotateY(180deg);
 }
 
+.rotate-x-180 {
+    transform: rotateX(180deg);
+}
+
 table.default {
     @apply table-auto text-base font-inter;
 }

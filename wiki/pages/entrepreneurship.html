@@ -35,6 +35,17 @@
 </tr>
 {%- endmacro %}
 
+{% macro accordion_chevron(index) -%}
+<div class="w-[30px] h-[30px] mt-2 flex-shrink-0">
+  <svg viewBox="0 0 40 30"
+        class="ease-in duration-200"
+        :class="{ 'rotate-x-180': extended === {{ index }} }">
+    <path d="M 0 10 L 20 25 L 40 10 L 40 5 L 20 20 L 0 5" />
+  </svg>
+</div>
+{%- endmacro %}
+
+
 {% block banner %}
   {{ banner("Entrepreneurship") }}
 {% endblock %}
@@ -59,30 +70,126 @@
 
 
   {{ subheading("iGEM Entrepreneurship Criteria") }}
-  <div>
-    <b>Has the team discovered their first potential customers and identified any unmet needs not yet covered by other existing solutions?</b>
-    <p>Description of Criteria 1</p>
-    <b>Has the team shown that their solution is possible, scalable, and inventive?</b>
-    <p>Description of Criteria 2</p>
-    <b>Has the team presented logical product development plans with realistic milestones, timelines, resources, and risks?</b>
-    <p>Description of Criteria 3</p>
-    <b>Has the team outlined the skills, capabilities, and stakeholders required to be credible in developing their solution further?</b>
-    <p>Founded in 2007, iGEM Toronto has completed over 15 projects and won numerous prizes at the iGEM Grand Jamboree. This year, the team has grown to encompass over 60 undergraduate students in various programs at University of Toronto. Divided into 7 subteams, iGEM Toronto has worked collectively from within and reached out to external organizations. After rounds of discussion and pivoting, we present our final solution to solve antibiotic resistance - Plasmid.AI.
-
-      The entrepreneurship team is currently composed of members of different training backgrounds with expertise on life sciences, engineering and marketing. These skill sets are important in developing a practical and catered business solution. With great enthusiasm to turn our vision into reality, the entrepreneurship team has joined and completed the Venture Creation Labs (VCL) program hosted by iGEM Startups. Through the process, the team has conducted skill gap analysis, market analysis (using various frameworks including SWOT), formulated IP protection strategies etc to further understand our standing and shortcomings. Stephen Grant  with expertise in enterprise management of biotechnology companies.Our team successfully completed all stages of iGEM Startups’ rigorous program, and has been invited to the Startup Showcase at the 2024 iGEM Jamboree. 
-      
-      In addition, our team members were closely affiliated with the University of Toronto Entrepreneurship’s Hatchery. Having progressed through an intensive summer program (NEST 2024), the team has secured funding for Plasmid.AI and is selected for Go-to-Market stage to undergo further polishment and assessment. Such affiliation has provided the team with exposure to investors, venture capitalists and field experts in biotech startups, biotech patents and major law firms across the province. We were mentored by Tarang Khare - a biotechnology CEO working on epigenetic cancer detection,Tony Zhou - an AI researcher for NVIDIA, and ex-employee of AMD and Apple, Mark Smith - a partner at venture capital firm BDC (Business Development Bank of Canada).
-      
-      Lastly, the iGEM team is collaborating with the Garton Lab and the Lan Lab at University of Toronto. The Garton lab, experts in biosynthetic technology provides the team with guidance on dry lab validation techniques and computational data. The Lan Lab, experts in artificial intelligence and machine learning guides the team on technicality on the aforementioned models to be validated by wet lab. 
-      
-      With a strong standing in computational modeling from our partnerships and business networks, the team would have to enhance its wet lab efficiency and capabilities to validate our proof of concept generated in dry lab.
-      </p>
-    <b>Has the team considered the positive and negative long-term impacts of their fully developed solution?</b>
-    <p>Artificial intelligence is a cutting-edge technology that has gained great attention in the world for its potential and seemingly endless applications. Using artificial intelligence to design genetic codes has definite concerns in affecting evolution and may potentially be a force contributing to natural selection, in which we see increasing pressure for regulations and legislation on data collection, utilization and generation. Our Human Practices (HP) subteam has done a detailed analysis on the effects of a project on relevant stakeholders across biotech industries, ethical practices, healthcare industries and synthetic biology laboratories alike. In particular, through discussion with bioethicist Dr. Jim Shaw, McGill chemistry professor Dr. Karine Auclair, biosecurity expert Dr. Jonathan Herington and others, Plasmid.AI can incorporate feedback from the leaders in the industry to create a well-poised product. 
-
-      Our stance is to see artificial intelligence as a neutral tool that could both benefit or damage to society, depending on the intent of its user. With the growing stress from antimicrobial resistance, our team see it as an inevitable advancement to use artificial intelligence to create effective weapons against bacteria, and to save the lives of millions. For more information on our analysis on long-term and short term impacts of our fully developed solution, please visit the Human Practices section of our wiki.
-      </p>
-    <br />
+  <div x-data="{ extended: -1 }">
+    <div @click="extended === 0 ? extended = -1 : extended = 0" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team discovered their first potential customers
+          and identified any unmet needs not yet covered by other existing solutions?
+        </p>
+        {{ accordion_chevron(0) }}
+      </div>
+      <div x-show="extended === 0" class="px-2 pb-3">
+        Description of Criterium 1
+      </div>
+    </div>
+    <div @click="extended === 1 ? extended = -1 : extended = 1" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team shown that their solution is possible, scalable, and inventive?
+        </p>
+        {{ accordion_chevron(1) }}
+      </div>
+      <div x-show="extended === 1"  class="px-2 pb-3">
+        Description of Criterium 2
+      </div>
+    </div>
+    <div @click="extended === 2 ? extended = -1 : extended = 2" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team presented logical product development plans with realistic milestones,
+          timelines, resources, and risks?
+        </p>
+        {{ accordion_chevron(2) }}
+      </div>
+      <div x-show="extended === 2" class="px-2 pb-3">
+        Description of Criterium 3
+      </div>
+    </div>
+    <div @click="extended === 3 ? extended = -1 : extended = 3" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team outlined the skills, capabilities, and stakeholders required to be credible
+          in developing their solution further?
+        </p>
+        {{ accordion_chevron(3) }}
+      </div>
+      <div x-show="extended === 3"  class="px-2 pb-3">
+        <p>
+          Founded in 2007, iGEM Toronto has completed over 15 projects and won numerous prizes at the
+          iGEM Grand Jamboree. This year, the team has grown to encompass over 60 undergraduate students
+          in various programs at University of Toronto. Divided into 7 subteams, iGEM Toronto has worked
+          collectively from within and reached out to external organizations. After rounds of discussion
+          and pivoting, we present our final solution to solve antibiotic resistance - Plasmid.AI.
+        </p>
+        <p>
+          The entrepreneurship team is currently composed of members of different training backgrounds
+          with expertise on life sciences, engineering and marketing. These skill sets are important in
+          developing a practical and catered business solution. With great enthusiasm to turn our vision
+          into reality, the entrepreneurship team has joined and completed the Venture Creation Labs (VCL)
+          program hosted by iGEM Startups. Through the process, the team has conducted skill gap analysis,
+          market analysis (using various frameworks including SWOT), formulated IP protection strategies
+          etc to further understand our standing and shortcomings. Stephen Grant  with expertise in
+          enterprise management of biotechnology companies.Our team successfully completed all stages of
+          iGEM Startups’ rigorous program, and has been invited to the Startup Showcase at the 2024 iGEM
+          Jamboree. 
+        </p>
+        <p>
+          In addition, our team members were closely affiliated with the University of Toronto
+          Entrepreneurship’s Hatchery. Having progressed through an intensive summer program (NEST 2024),
+          the team has secured funding for Plasmid.AI and is selected for Go-to-Market stage to undergo
+          further polishment and assessment. Such affiliation has provided the team with exposure to
+          investors, venture capitalists and field experts in biotech startups, biotech patents and major
+          law firms across the province. We were mentored by Tarang Khare - a biotechnology CEO working
+          on epigenetic cancer detection,Tony Zhou - an AI researcher for NVIDIA, and ex-employee of AMD
+          and Apple, Mark Smith - a partner at venture capital firm BDC
+          (Business Development Bank of Canada).
+        </p>
+        <p>
+          Lastly, the iGEM team is collaborating with the Garton Lab and the Lan Lab at University of Toronto.
+          The Garton lab, experts in biosynthetic technology provides the team with guidance on dry lab
+          validation techniques and computational data. The Lan Lab, experts in artificial intelligence
+          and machine learning guides the team on technicality on the aforementioned models to be validated
+          by wet lab. 
+        </p>
+        <p>
+          With a strong standing in computational modeling from our partnerships and business networks,
+          the team would have to enhance its wet lab efficiency and capabilities to validate our proof
+          of concept generated in dry lab.
+        </p>
+      </div>
+    </div>
+    <div @click="extended === 4 ? extended = -1 : extended = 4" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team considered the positive and negative long-term impacts of their fully developed solution?
+        </p>
+        {{ accordion_chevron(4) }}
+      </div>
+      <div x-show="extended === 4" class="px-2 pb-3">
+        <p>
+          Artificial intelligence is a cutting-edge technology that has gained great attention in the
+          world for its potential and seemingly endless applications. Using artificial intelligence to
+          design genetic codes has definite concerns in affecting evolution and may potentially be a
+          force contributing to natural selection, in which we see increasing pressure for regulations
+          and legislation on data collection, utilization and generation. Our Human Practices (HP)
+          subteam has done a detailed analysis on the effects of a project on relevant stakeholders
+          across biotech industries, ethical practices, healthcare industries and synthetic biology
+          laboratories alike. In particular, through discussion with bioethicist Dr. Jim Shaw, McGill
+          chemistry professor Dr. Karine Auclair, biosecurity expert Dr. Jonathan Herington and others,
+          Plasmid.AI can incorporate feedback from the leaders in the industry to create a well-poised
+          product. 
+        </p>
+        <p>
+          Our stance is to see artificial intelligence as a neutral tool that could both benefit or
+          damage to society, depending on the intent of its user. With the growing stress from
+          antimicrobial resistance, our team see it as an inevitable advancement to use artificial
+          intelligence to create effective weapons against bacteria, and to save the lives of millions.
+          For more information on our analysis on long-term and short term impacts of our fully
+          developed solution, please visit the Human Practices section of our wiki.
+        </p>
+      </div>
+    </div>
   </div>
 
   {{ subheading('General Information') }}

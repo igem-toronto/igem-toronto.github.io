@@ -17,17 +17,18 @@
               left-0 top-0 py-10 w-screen h-screen text-left overflow-y-scroll font-roboto-mono"
       :class="{ '-translate-x-full': !extended }">
     <div class="px-3 lg:border-l-2 lg:border-gray-400 mt-8">
-      <ul class="flex flex-col gap-0">
+      <ul class="custom flex flex-col gap-0">
         <template x-for="(subheading, index) in (selectedSubpage >= 0 ? subpages[selectedSubpage].subheadings : [])"
             :key="subheading.key">
           <li class="mb-4 flex flex-col">
             <a @click="openNavHead = index" :href="`#${subheading.key}`"
               class="hover:text-accent-saturated-purple
-              text-base ease-in duration-100"
+              text-base ease-in duration-100 text-left"
               x-text="subheading.text"
               :class="{ 'text-accent-saturated-purple': scrolledHeading == subheading.key, 'text-gray-400': scrolledHeading != subheading.key  }"></a>
             </a>
-            <ul class=" px-2 border-gray-400
+            <ul class=" custom
+                        px-2 border-gray-400
                         lg:border-l-2 lg:border-r-0
                         border-l-2
                         flex flex-col gap-2"

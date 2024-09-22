@@ -59,35 +59,35 @@ h4 + div {
     transform: rotateY(180deg);
 }
 
-.content-wrapper > div:not(.custom) table {
+table.default {
     @apply table-auto text-base font-inter;
 }
 
-.content-wrapper > div:not(.custom) table tbody {
+table.default tbody {
     @apply text-base font-inter;
 }
 
-.content-wrapper > div:not(.custom) table thead tr th {
+table.default thead tr th {
     @apply p-2.5;
 }
 
-.content-wrapper > div:not(.custom) table tbody tr td {
+table.default tbody tr td {
     @apply p-2.5;
 }
 
-.content-wrapper > div:not(.custom) table thead {
+table.default thead {
     @apply border-y-2 border-black;
 }
 
-.content-wrapper > div:not(.custom) table tbody tr:last-child {
+table.default tbody tr:last-child {
     @apply border-b-2 border-black;
 }
 
-.content-wrapper > div:not(.custom) ul {
+ul:not(.custom) {
     @apply list-outside list-disc pl-6;
 }
 
-.content-wrapper > div:not(.custom) ol {
+ol:not(.custom) {
     @apply list-decimal list-outside pl-8
 }
 
@@ -128,5 +128,21 @@ table.entrepreneurship-team tr:nth-child(even) {
 }
 
 table.entrepreneurship-team td, table.entrepreneurship-team th {
+    @apply pl-4 pr-12 py-2;
+}
+
+table.entrepreneurship th {
+    @apply bg-accent-saturated-purple text-primary-light text-left;
+}
+
+table.entrepreneurship tr {
+    @apply px-4;
+}
+
+table.entrepreneurship tr:nth-child(even) {
+    @apply px-4 bg-slate-300;
+}
+
+table.entrepreneurship td, table.entrepreneurship th {
     @apply pl-4 pr-12 py-2;
 }

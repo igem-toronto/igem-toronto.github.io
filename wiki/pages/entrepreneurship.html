@@ -35,8 +35,12 @@
 </tr>
 {%- endmacro %}
 
+{% block banner %}
+  {{ banner("Entrepreneurship") }}
+{% endblock %}
+
 {% block article_content %}
-  {{ heading("Entrepreneurship") }}
+  {{ subheading("About Us") }}
   <div>
     <p>
       At the forefront of biotech innovation, our iGEM team has translated our developed foundational models into an actionable, groundbreaking startup with the potential to revolutionize the field. Through rigorous market and stakeholder research, coupled with extensive mentorship, we have pinpointed a transformative application positioned to create significant impact. Our entrepreneurial journey has been furthered by participation in two prestigious incubator programs: the University of Toronto's flagship incubator (NEST 2024 – Hatchery) and the iGEM Startups Venture Creation Labs. Achieving the "Go-to-Market" stage at UofT and securing an opportunity to present at the Bioinnovation Fair in Paris exemplify our progress. With a comprehensive business plan and 24-month cash flow projections crafted under the guidance of Toronto-based venture capitalists, our roadmap spans from pre-seed funding to Series B in a span of 10 years. By engaging deeply with both academic and industry leaders, we have honed our value proposition, ensuring that our innovations align closely with market needs and opportunities.
@@ -93,115 +97,133 @@
     <p>
       The company has successfully completed UofT’s NEST 2024 incubator program and iGEM Startups’ pre-accelerator program. The company will present in Paris, France as part of iGEM Startups’ Showcase. The company has been selected to the “Go-to-Market” stage of UofT’s incubator, unlocking non-dilutive funding, legal, accounting, and other business development resources.
     </p>
-    <p><strong>Employees:</strong> 5 (Entrepreneurship Team) As of 09-September-2024</p>
+    <p><strong>Employees:</strong> 5 (Entrepreneurship Team) As of September 9, 2024.</p>
   </div>
 
-  {{ subheading('Timeline') }}
-  <div class="flex lg:flex-row flex-col gap-y-8">
-    <div class="flex flex-col lg:flex-1 gap-y-8">
-      <div>
-        <h3>
-          Industry
-        </h3>
-        <p class="text-left">
-          Machine Learning & Biopharmaceuticals
-        </p>
-      </div>
-      <div class="flex flex-row">
-        <div class="flex-1">
+  <div class="w-full my-16 flex flex-col items-center bg-accent-light-purple">
+    <img  src="{{ new_cdn('assets/graphics/plasmid-ai-logo-text.png') }}"
+            alt="iGEM Toronto Logo"
+            class="h-20 my-16">
+    <div class="flex lg:flex-row flex-col gap-y-8 lg:w-[90%]">
+      <div class="flex flex-col lg:flex-2 gap-y-8">
+        <div>
           <h3>
-            Employees
-          </h3>
-          <p>
-            8
-          </p>
-        </div>
-        <div class="flex-1 border-l-2 border-black pl-4">
-          <h3>
-            Fundraising
+            Legal Name
           </h3>
           <p class="text-left">
-            Seeking Seed Round
+            Plasmid.AI
           </p>
+        </div>
+        <div>
+          <h3>
+            Industry
+          </h3>
+          <ul class="custom list-none">
+            <li>
+              Drug Discovery
+            </li>
+            <li>
+              Discovery Tools (Healthcare)
+            </li>
+            <li>
+              Biotechnology
+            </li>
+            <li>
+              Artificial Intelligence
+            </li>
+            <li>
+              Machine Learning 
+            </li>
+            <li>
+              Big Data
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="lg:flex-3 lg:border-l-2 border-black lg:pl-8">
+        <div class="flex h-full items-center">
+          <ul class="custom list-none">
+            <li><b class="text-lg">Website</b> <a href="http://www.plasmidai.com">www.plasmidai.com</a></li>
+            <li><b class="text-lg">Ownership Status</b> Privately Held (Backing)</li>
+            <li><b class="text-lg">Entity Type</b> Private Company</li>
+            <li><b class="text-lg">Financing Status</b> Non-dilutive funding, Bootstrap</li>
+            <li><b class="text-lg">Legal Name</b> Plasmid.AI</li>
+            <li><b class="text-lg">Year Founded</b> 2024</li>
+            <li><b class="text-lg">Business Status</b> Startup</li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="lg:flex-1 lg:border-l-2 border-black lg:pl-4">
-      <h3>
-        General Information
-      </h3>
+    <div class="bg-white flex gap-x-12 items-center p-4 my-16">
+      <h4>
+        Keywords
+      </h4>
       <p>
-        Plasmid.AI intends to utilize the power of large language models to expedite preclinical phage discovery.
-        By simulating phage-bacteria interactions in silico, our model would identify phage therapy candidates at
-        a fraction of time and resource-intensive wet lab work.
+        Machine Learning, Phage Therapy, Antimicrobial, Bacterial Resistance
       </p>
     </div>
-  </div>
-  <div>
-    <ul>
-        <li>Website: <a href="http://www.plasmidai.com">www.plasmidai.com</a></li>
-        <li>Ownership Status: Privately Held (Backing)</li>
-        <li>Entity Type: Private Company</li>
-        <li>Financing Status: Non-dilutive funding, Bootstrap</li>
-        <li>Legal Name: Plasmid.AI</li>
-        <li>Year Founded: 2024</li>
-        <li>Business Status: Startup</li>
-    </ul>
   </div>
 
   {{ subheading('Industries, Verticals & Keywords') }}
   <div>
-    <table>
+    <table class="entrepreneurship">
+      <thead>
         <tr>
-            <th>Primary Industry</th>
-            <th>Verticals</th>
-            <th>Keywords</th>
+          <th>Primary Industry</th>
+          <th>Verticals</th>
+          <th>Keywords</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Drug Discovery</td>
+          <td>Artificial Intelligence & Machine Learning</td>
+          <td>Machine Learning, Phage Therapy, Antimicrobial, Bacterial Resistance</td>
         </tr>
         <tr>
-            <td>Drug Discovery</td>
-            <td>Artificial Intelligence & Machine Learning</td>
-            <td>Machine Learning, Phage Therapy, Antimicrobial, Bacterial Resistance</td>
+          <td>Other Industries</td>
+          <td>Big Data, Discovery Tools (Healthcare), Biotechnology, Life Sciences</td>
+          <td></td>
         </tr>
-        <tr>
-            <td>Other Industries</td>
-            <td>Big Data, Discovery Tools (Healthcare), Biotechnology, Life Sciences</td>
-            <td></td>
-        </tr>
+      </tbody>
     </table>
   </div>
 
 
   {{ subheading('Deal History') }}
   <div>
-    <table>
-      <tr>
-        <th>Deal Type</th>
-        <th>Date</th>
-        <th>Amount Raised to Date</th>
-        <th>Status</th>
-        <th>Stage</th>
-      </tr>
-      <tr>
-        <td>Accelerator Round</td>
-        <td>August 30, 2024</td>
-        <td>$10,500</td>
-        <td>Complete</td>
-        <td>Pre-seed 1</td>
-      </tr>
-      <tr>
-        <td>Fundraising Round (Non-dilutive)</td>
-        <td>September 14, 2024</td>
-        <td>$16,531</td>
-        <td>Complete</td>
-        <td></td>
-      </tr>
+    <table class="entrepreneurship">
+      <thead>
+        <tr>
+          <th>Deal Type</th>
+          <th>Date</th>
+          <th>Amount Raised to Date</th>
+          <th>Status</th>
+          <th>Stage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Accelerator Round</td>
+          <td>August 30, 2024</td>
+          <td>$10,500</td>
+          <td>Complete</td>
+          <td>Pre-seed 1</td>
+        </tr>
+        <tr>
+          <td>Fundraising Round (Non-dilutive)</td>
+          <td>September 14, 2024</td>
+          <td>$16,531</td>
+          <td>Complete</td>
+          <td></td>
+        </tr>
+      </tbody>
     </table>
   </div>
-</div>
 
   {{ subheading('Investors/Donors') }}
   <div>
-    <table>
+    <table class="entrepreneurship">
       <tr>
         <th>Name</th>
         <th>Investor Type</th>
@@ -284,8 +306,8 @@
   </div>
 
   {{ subheading('Competitors') }}
-  <div>
-    <table>
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
       <thead>
         <tr>
           <th>Company</th>
@@ -355,8 +377,8 @@
 
 
   {{ subheading('Competitors in Detail') }}
-  <div>
-    <table>
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
       <thead>
         <tr>
           <th>Company</th>
@@ -434,7 +456,7 @@
     </table>
   </div>
 
-  {{ subheading('Our Team') }}
+  {{ subheading('Current Team') }}
   <div class="w-full">
     <table class="entrepreneurship-team">
       <thead>

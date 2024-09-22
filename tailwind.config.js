@@ -17,6 +17,10 @@ module.exports = {
       spacing: {
         '88': '22rem',
       },
+      flex: {
+        '2': '2 2 0%',
+        '3': '3 3 0%',
+      },
       colors: {
         'primary-extra-light': "white",
         'primary-light': "white",
@@ -27,6 +31,7 @@ module.exports = {
         'accent-orange': "#de601e",
         'accent-blue': "#559dbc",
         'accent-turquoise': '#028d81',
+        'accent-light-purple': '#e0dffc',
         'accent-muted-purple': '#9593D9',
         'accent-saturated-purple': '#6622CC'
       }

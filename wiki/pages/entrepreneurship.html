@@ -47,7 +47,9 @@
 
 
 {% block banner %}
-  {{ banner("Entrepreneurship") }}
+  <div class="hidden lg:block">
+    {{ banner("Entrepreneurship") }}
+  </div>
 {% endblock %}
 
 {% block article_content %}
@@ -67,7 +69,6 @@
       customers and their unmet needs.
     </p>
   </div>
-
 
   {{ subheading("iGEM Entrepreneurship Criteria") }}
   <div x-data="{ extended: -1 }">
@@ -207,10 +208,10 @@
     <p><strong>Employees:</strong> 5 (Entrepreneurship Team) As of September 9, 2024.</p>
   </div>
 
-  <div class="w-full my-16 flex flex-col items-center bg-accent-light-purple">
+  <div class="w-full p-8 my-16 flex flex-col items-center bg-accent-light-purple">
     <img  src="{{ new_cdn('assets/graphics/plasmid-ai-logo-text.png') }}"
             alt="iGEM Toronto Logo"
-            class="h-20 my-16">
+            class="lg:h-20 h-12 my-16">
     <div class="flex lg:flex-row flex-col gap-y-8 lg:w-[90%]">
       <div class="flex flex-col lg:flex-2 gap-y-8">
         <div>
@@ -272,7 +273,7 @@
   </div>
 
   {{ subheading('Industries, Verticals & Keywords') }}
-  <div>
+  <div class="w-full overflow-auto">
     <table class="entrepreneurship">
       <thead>
         <tr>
@@ -296,9 +297,9 @@
     </table>
   </div>
 
-
+  
   {{ subheading('Deal History') }}
-  <div>
+  <div class="w-full overflow-auto">
     <table class="entrepreneurship">
       <thead>
         <tr>
@@ -329,7 +330,7 @@
   </div>
 
   {{ subheading('Investors/Donors') }}
-  <div>
+  <div class="w-full overflow-auto">
     <table class="entrepreneurship">
       <tr>
         <th>Name</th>
@@ -408,7 +409,6 @@
         <td>2024</td>
         <td>No</td>
       </tr>
-        <!-- Repeat rows for other investors/donors as needed -->
     </table>
   </div>
 
@@ -563,9 +563,19 @@
     </table>
   </div>
 
+  {{ subheading('Documents') }}
+  <div class="w-full flex items-center">
+    <div class="flex flex-row flex-wrap gap-10 w-full m-auto justify-around">
+      {{ picture_link("Business Plan", new_cdn("entrepreneurship/business-plan.png")) }}
+      {{ picture_link("Pitch Deck", new_cdn("entrepreneurship/pitch-deck.png")) }}
+      {{ picture_link("Cash Flow Projection", new_cdn("entrepreneurship/cash-flow-projection.png")) }}
+      {{ picture_link("One Pager", new_cdn("entrepreneurship/one-pager.png")) }}
+    </div>
+  </div>
+
   {{ subheading('Current Team') }}
-  <div class="w-full">
-    <table class="entrepreneurship-team">
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
       <thead>
         <tr>
           <th>Name</th>
@@ -590,16 +600,35 @@
     </table>
   </div>
 
-<h2 class="px-8 lg:px-24 mt-36 mb-16">
-  Documents
-</h2>
-<div class="w-full flex items-center">
-  <div class="flex flex-row flex-wrap gap-10 w-2/3 m-auto justify-around">
-    {{ picture_link("Business Plan", new_cdn("entrepreneurship/business-plan.png")) }}
-    {{ picture_link("Pitch Deck", new_cdn("entrepreneurship/pitch-deck.png")) }}
-    {{ picture_link("Cash Flow Projection", new_cdn("entrepreneurship/cash-flow-projection.png")) }}
-    {{ picture_link("One Pager", new_cdn("entrepreneurship/one-pager.png")) }}
-  </div>
-</div>
+{% endblock %}
 
+{% block bottom_banner %}
+  <div class="flex flex-col lg:flex-row w-full justify-around items-center bg-accent-light-purple">
+    <div>
+      <img  src="{{ new_cdn('assets/graphics/plasmid-ai-logo-text.png') }}"
+            alt="iGEM Toronto Logo"
+            class="lg:h-20 h-12 my-16">
+    </div>
+    <div>
+      <p>
+        <b>
+          Santiago Plata Salazar
+        </b>
+      </p>
+      <p>
+        Co-Founder, CEO
+      </p>
+    </div>
+    <div class="p-4">
+      55 St George St. Room #036
+      <br>
+      Myhal Centre for Engineering Innovation & Entrepreneurship.
+      <br>
+      Toronto, ON. M5S 1A4
+      <br>
+      <br>
+
+      igem@g.skule.ca
+    </div>
+  </div>
 {% endblock %}

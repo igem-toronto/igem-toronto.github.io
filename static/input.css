@@ -115,24 +115,8 @@ ol:not(.custom) {
     @apply hidden
 }
 
-table.entrepreneurship-team {
-    @apply w-full;
-}
-
-table.entrepreneurship-team th {
-    @apply bg-accent-saturated-purple text-primary-light text-left;
-}
-
-table.entrepreneurship-team tr {
-    @apply px-4;
-}
-
-table.entrepreneurship-team tr:nth-child(even) {
-    @apply px-4 bg-slate-300;
-}
-
-table.entrepreneurship-team td, table.entrepreneurship-team th {
-    @apply pl-4 pr-12 py-2;
+table.entrepreneurship {
+    @apply w-full lg:block hidden;
 }
 
 table.entrepreneurship th {

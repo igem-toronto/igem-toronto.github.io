@@ -10,12 +10,66 @@
   </div>
 {%- endmacro %}
 
-{% block article_content %}
-  {{ heading("Entrepreneurship") }}
+{% macro team_member(name, position, email="", linkedin="") -%}
+<tr>
+  <td>{{ name }}</td>
+  <td>{{ position }}</td>
+  <td>
+    <div class="flex gap-4 items-center h-full">
+      {% if email != "" %}
+        <a href="mailto:{{ email }}" target="_blank">
+          <svg height="25" class="inline-block" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0 0 L 150 0 L 150 100 L 0 100" fill="black"/>
+            <path d="M 10 10 L 140 10 L 140 90 L 10 90 L 10 10" fill="white"/>
+            <path d="M 8 0 L 75 60 L 142 0 L 150 5 L 75 70 L 0 5 L 8 0" fill="black"/>
+          </svg>
+        </a>
+      {% endif %}
+      {% if linkedin != "" %}
+        <a href="{{ linkedin }}" target="_blank">
+          <img alt="{{ name }}'s LinkedIn" src="{{ new_cdn('assets/graphics/li-in-bug.png') }}" class="h-8 inline-block">
+        </a>
+      {% endif %}
+    </div>
+  </td>
+</tr>
+{%- endmacro %}
 
+{% macro accordion_chevron(index) -%}
+<div class="w-[30px] h-[30px] mt-2 flex-shrink-0">
+  <svg viewBox="0 0 40 30"
+        class="ease-in duration-200"
+        :class="{ 'rotate-x-180': extended === {{ index }} }">
+    <path d="M 0 10 L 20 25 L 40 10 L 40 5 L 20 20 L 0 5" />
+  </svg>
+</div>
+{%- endmacro %}
+
+
+{% block banner %}
+  <div class="hidden lg:block">
+    {{ banner("Entrepreneurship") }}
+  </div>
+{% endblock %}
+
+{% block article_content %}
+  {{ subheading("About Us") }}
   <div>
     <p>
-      At the forefront of biotech innovation, our iGEM team has translated our developed foundational models into an actionable, groundbreaking startup with the potential to revolutionize the field. Through rigorous market and stakeholder research, coupled with extensive mentorship, we have pinpointed a transformative application positioned to create significant impact. Our entrepreneurial journey has been furthered by participation in two prestigious incubator programs: the University of Toronto's flagship incubator (NEST 2024 – Hatchery) and the iGEM Startups Venture Creation Labs. Achieving the "Go-to-Market" stage at UofT and securing an opportunity to present at the Bioinnovation Fair in Paris exemplify our progress. With a comprehensive business plan and 24-month cash flow projections crafted under the guidance of Toronto-based venture capitalists, our roadmap spans from pre-seed funding to Series B in a span of 10 years. By engaging deeply with both academic and industry leaders, we have honed our value proposition, ensuring that our innovations align closely with market needs and opportunities.
+      At the forefront of biotech innovation, our iGEM team has translated our
+      developed foundational models into an actionable, groundbreaking startup with
+      the potential to revolutionize the field. Through rigorous market and stakeholder
+      research, coupled with extensive mentorship, we have pinpointed a transformative
+      application positioned to create significant impact. Our entrepreneurial journey
+      has been furthered by participation in two prestigious incubator programs: the
+      University of Toronto's flagship incubator (NEST 2024 – Hatchery) and the iGEM
+      Startups Venture Creation Labs. Achieving the "Go-to-Market" stage at UofT and
+      securing an opportunity to present at the Bioinnovation Fair in Paris exemplify
+      our progress. With a comprehensive business plan and 24-month cash flow projections
+      crafted under the guidance of Toronto-based venture capitalists, our roadmap spans
+      from pre-seed funding to Series B in a span of 10 years. By engaging deeply with
+      both academic and industry leaders, we have honed our value proposition, ensuring
+      that our innovations align closely with market needs and opportunities.
     </p>
     <p>
       Here, you’ll find a detailed look into our comprehensive business plan,
@@ -29,123 +83,281 @@
     </p>
   </div>
 
-
   {{ subheading("iGEM Entrepreneurship Criteria") }}
-  <div>
-    <b>Has the team discovered their first potential customers and identified any unmet needs not yet covered by other existing solutions?</b>
-    <p>Description of Criteria 1</p>
-    <b>Has the team shown that their solution is possible, scalable, and inventive?</b>
-    <p>Description of Criteria 2</p>
-    <b>Has the team presented logical product development plans with realistic milestones, timelines, resources, and risks?</b>
-    <p>Description of Criteria 3</p>
-    <b>Has the team outlined the skills, capabilities, and stakeholders required to be credible in developing their solution further?</b>
-    <p>Founded in 2007, iGEM Toronto has completed over 15 projects and won numerous prizes at the iGEM Grand Jamboree. This year, the team has grown to encompass over 60 undergraduate students in various programs at University of Toronto. Divided into 7 subteams, iGEM Toronto has worked collectively from within and reached out to external organizations. After rounds of discussion and pivoting, we present our final solution to solve antibiotic resistance - Plasmid.AI.
-
-      The entrepreneurship team is currently composed of members of different training backgrounds with expertise on life sciences, engineering and marketing. These skill sets are important in developing a practical and catered business solution. With great enthusiasm to turn our vision into reality, the entrepreneurship team has joined and completed the Venture Creation Labs (VCL) program hosted by iGEM Startups. Through the process, the team has conducted skill gap analysis, market analysis (using various frameworks including SWOT), formulated IP protection strategies etc to further understand our standing and shortcomings. Stephen Grant  with expertise in enterprise management of biotechnology companies.Our team successfully completed all stages of iGEM Startups’ rigorous program, and has been invited to the Startup Showcase at the 2024 iGEM Jamboree. 
-      
-      In addition, our team members were closely affiliated with the University of Toronto Entrepreneurship’s Hatchery. Having progressed through an intensive summer program (NEST 2024), the team has secured funding for Plasmid.AI and is selected for Go-to-Market stage to undergo further polishment and assessment. Such affiliation has provided the team with exposure to investors, venture capitalists and field experts in biotech startups, biotech patents and major law firms across the province. We were mentored by Tarang Khare - a biotechnology CEO working on epigenetic cancer detection,Tony Zhou - an AI researcher for NVIDIA, and ex-employee of AMD and Apple, Mark Smith - a partner at venture capital firm BDC (Business Development Bank of Canada).
-      
-      Lastly, the iGEM team is collaborating with the Garton Lab and the Lan Lab at University of Toronto. The Garton lab, experts in biosynthetic technology provides the team with guidance on dry lab validation techniques and computational data. The Lan Lab, experts in artificial intelligence and machine learning guides the team on technicality on the aforementioned models to be validated by wet lab. 
-      
-      With a strong standing in computational modeling from our partnerships and business networks, the team would have to enhance its wet lab efficiency and capabilities to validate our proof of concept generated in dry lab.
-      </p>
-    <b>Has the team considered the positive and negative long-term impacts of their fully developed solution?</b>
-    <p>Artificial intelligence is a cutting-edge technology that has gained great attention in the world for its potential and seemingly endless applications. Using artificial intelligence to design genetic codes has definite concerns in affecting evolution and may potentially be a force contributing to natural selection, in which we see increasing pressure for regulations and legislation on data collection, utilization and generation. Our Human Practices (HP) subteam has done a detailed analysis on the effects of a project on relevant stakeholders across biotech industries, ethical practices, healthcare industries and synthetic biology laboratories alike. In particular, through discussion with bioethicist Dr. Jim Shaw, McGill chemistry professor Dr. Karine Auclair, biosecurity expert Dr. Jonathan Herington and others, Plasmid.AI can incorporate feedback from the leaders in the industry to create a well-poised product. 
-
-      Our stance is to see artificial intelligence as a neutral tool that could both benefit or damage to society, depending on the intent of its user. With the growing stress from antimicrobial resistance, our team see it as an inevitable advancement to use artificial intelligence to create effective weapons against bacteria, and to save the lives of millions. For more information on our analysis on long-term and short term impacts of our fully developed solution, please visit the Human Practices section of our wiki.
-      </p>
-    <br />
+  <div x-data="{ extended: -1 }">
+    <div @click="extended === 0 ? extended = -1 : extended = 0" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team discovered their first potential customers
+          and identified any unmet needs not yet covered by other existing solutions?
+        </p>
+        {{ accordion_chevron(0) }}
+      </div>
+      <div x-show="extended === 0" class="px-2 pb-3">
+        Description of Criterium 1
+      </div>
+    </div>
+    <div @click="extended === 1 ? extended = -1 : extended = 1" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team shown that their solution is possible, scalable, and inventive?
+        </p>
+        {{ accordion_chevron(1) }}
+      </div>
+      <div x-show="extended === 1"  class="px-2 pb-3">
+        Description of Criterium 2
+      </div>
+    </div>
+    <div @click="extended === 2 ? extended = -1 : extended = 2" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team presented logical product development plans with realistic milestones,
+          timelines, resources, and risks?
+        </p>
+        {{ accordion_chevron(2) }}
+      </div>
+      <div x-show="extended === 2" class="px-2 pb-3">
+        Description of Criterium 3
+      </div>
+    </div>
+    <div @click="extended === 3 ? extended = -1 : extended = 3" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team outlined the skills, capabilities, and stakeholders required to be credible
+          in developing their solution further?
+        </p>
+        {{ accordion_chevron(3) }}
+      </div>
+      <div x-show="extended === 3"  class="px-2 pb-3">
+        <p>
+          Founded in 2007, iGEM Toronto has completed over 15 projects and won numerous prizes at the
+          iGEM Grand Jamboree. This year, the team has grown to encompass over 60 undergraduate students
+          in various programs at University of Toronto. Divided into 7 subteams, iGEM Toronto has worked
+          collectively from within and reached out to external organizations. After rounds of discussion
+          and pivoting, we present our final solution to solve antibiotic resistance - Plasmid.AI.
+        </p>
+        <p>
+          The entrepreneurship team is currently composed of members of different training backgrounds
+          with expertise on life sciences, engineering and marketing. These skill sets are important in
+          developing a practical and catered business solution. With great enthusiasm to turn our vision
+          into reality, the entrepreneurship team has joined and completed the Venture Creation Labs (VCL)
+          program hosted by iGEM Startups. Through the process, the team has conducted skill gap analysis,
+          market analysis (using various frameworks including SWOT), formulated IP protection strategies
+          etc to further understand our standing and shortcomings. Stephen Grant  with expertise in
+          enterprise management of biotechnology companies.Our team successfully completed all stages of
+          iGEM Startups’ rigorous program, and has been invited to the Startup Showcase at the 2024 iGEM
+          Jamboree. 
+        </p>
+        <p>
+          In addition, our team members were closely affiliated with the University of Toronto
+          Entrepreneurship’s Hatchery. Having progressed through an intensive summer program (NEST 2024),
+          the team has secured funding for Plasmid.AI and is selected for Go-to-Market stage to undergo
+          further polishment and assessment. Such affiliation has provided the team with exposure to
+          investors, venture capitalists and field experts in biotech startups, biotech patents and major
+          law firms across the province. We were mentored by Tarang Khare - a biotechnology CEO working
+          on epigenetic cancer detection,Tony Zhou - an AI researcher for NVIDIA, and ex-employee of AMD
+          and Apple, Mark Smith - a partner at venture capital firm BDC
+          (Business Development Bank of Canada).
+        </p>
+        <p>
+          Lastly, the iGEM team is collaborating with the Garton Lab and the Lan Lab at University of Toronto.
+          The Garton lab, experts in biosynthetic technology provides the team with guidance on dry lab
+          validation techniques and computational data. The Lan Lab, experts in artificial intelligence
+          and machine learning guides the team on technicality on the aforementioned models to be validated
+          by wet lab. 
+        </p>
+        <p>
+          With a strong standing in computational modeling from our partnerships and business networks,
+          the team would have to enhance its wet lab efficiency and capabilities to validate our proof
+          of concept generated in dry lab.
+        </p>
+      </div>
+    </div>
+    <div @click="extended === 4 ? extended = -1 : extended = 4" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
+      <div class="flex justify-between gap-x-4">
+        <p class="font-semibold">
+          Has the team considered the positive and negative long-term impacts of their fully developed solution?
+        </p>
+        {{ accordion_chevron(4) }}
+      </div>
+      <div x-show="extended === 4" class="px-2 pb-3">
+        <p>
+          Artificial intelligence is a cutting-edge technology that has gained great attention in the
+          world for its potential and seemingly endless applications. Using artificial intelligence to
+          design genetic codes has definite concerns in affecting evolution and may potentially be a
+          force contributing to natural selection, in which we see increasing pressure for regulations
+          and legislation on data collection, utilization and generation. Our Human Practices (HP)
+          subteam has done a detailed analysis on the effects of a project on relevant stakeholders
+          across biotech industries, ethical practices, healthcare industries and synthetic biology
+          laboratories alike. In particular, through discussion with bioethicist Dr. Jim Shaw, McGill
+          chemistry professor Dr. Karine Auclair, biosecurity expert Dr. Jonathan Herington and others,
+          Plasmid.AI can incorporate feedback from the leaders in the industry to create a well-poised
+          product. 
+        </p>
+        <p>
+          Our stance is to see artificial intelligence as a neutral tool that could both benefit or
+          damage to society, depending on the intent of its user. With the growing stress from
+          antimicrobial resistance, our team see it as an inevitable advancement to use artificial
+          intelligence to create effective weapons against bacteria, and to save the lives of millions.
+          For more information on our analysis on long-term and short term impacts of our fully
+          developed solution, please visit the Human Practices section of our wiki.
+        </p>
+      </div>
+    </div>
   </div>
+
   {{ subheading('General Information') }}
-  <p>
-      Operator of an AI-powered preclinical in silico discovery platform intended to revolutionize phage therapy development through the use of AI to conduct in silico high-throughput phage-bacteria experiments. The company serves as the commercialization arm of iGEM Toronto and associated labs in the Institute of Biomedical Engineering at the University of Toronto.
-  </p>
+  <div>
+    <p>
+      Operator of an AI-powered preclinical in silico discovery platform intended to
+      revolutionize phage therapy development through the use of AI to conduct in silico
+      high-throughput phage-bacteria experiments. The company serves as the commercialization
+      arm of iGEM Toronto and associated labs in the Institute of Biomedical Engineering at
+      the University of Toronto.
+    </p>
+  </div>
 
   {{ subheading('Most Recent Status') }}
   <div>
     <p>
-      The company has successfully completed UofT’s NEST 2024 incubator program and iGEM Startups’ pre-accelerator program. The company will present in Paris, France as part of iGEM Startups’ Showcase. The company has been selected to the “Go-to-Market” stage of UofT’s incubator, unlocking non-dilutive funding, legal, accounting, and other business development resources.
+      The company has successfully completed UofT’s NEST 2024 incubator program and iGEM Startups’
+      pre-accelerator program. The company will present in Paris, France as part of iGEM Startups’
+      Showcase. The company has been selected to the “Go-to-Market” stage of UofT’s incubator,
+      unlocking non-dilutive funding, legal, accounting, and other business development resources.
     </p>
-    <p><strong>Employees:</strong> 5 (Entrepreneurship Team) As of 09-September-2024</p>
+    <p><strong>Employees:</strong> 5 (Entrepreneurship Team) As of September 9, 2024.</p>
   </div>
 
-  {{ subheading('Timeline') }}
-  <div>
-    <ul>
-        <li>Website: <a href="http://www.plasmidai.com">www.plasmidai.com</a></li>
-        <li>Ownership Status: Privately Held (Backing)</li>
-        <li>Entity Type: Private Company</li>
-        <li>Financing Status: Non-dilutive funding, Bootstrap</li>
-        <li>Legal Name: Plasmid.AI</li>
-        <li>Year Founded: 2024</li>
-        <li>Business Status: Startup</li>
-    </ul>
+  <div class="w-full p-8 my-16 flex flex-col items-center bg-accent-light-purple">
+    <img  src="{{ new_cdn('assets/graphics/plasmid-ai-logo-text.png') }}"
+            alt="plasmid.AI Logo"
+            class="lg:h-20 h-12 my-16">
+    <div class="flex lg:flex-row flex-col gap-y-8 lg:w-[90%]">
+      <div class="flex flex-col lg:flex-2 gap-y-8">
+        <div>
+          <h3>
+            Legal Name
+          </h3>
+          <p class="text-left">
+            Plasmid.AI
+          </p>
+        </div>
+        <div>
+          <h3>
+            Industry
+          </h3>
+          <ul class="custom list-none">
+            <li>
+              Drug Discovery
+            </li>
+            <li>
+              Discovery Tools (Healthcare)
+            </li>
+            <li>
+              Biotechnology
+            </li>
+            <li>
+              Artificial Intelligence
+            </li>
+            <li>
+              Machine Learning 
+            </li>
+            <li>
+              Big Data
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="lg:flex-3 lg:border-l-2 border-black lg:pl-8">
+        <div class="flex h-full items-center">
+          <ul class="custom list-none">
+            <li><b class="text-lg">Website</b> <a href="http://www.plasmidai.com">www.plasmidai.com</a></li>
+            <li><b class="text-lg">Ownership Status</b> Privately Held (Backing)</li>
+            <li><b class="text-lg">Entity Type</b> Private Company</li>
+            <li><b class="text-lg">Financing Status</b> Non-dilutive funding, Bootstrap</li>
+            <li><b class="text-lg">Legal Name</b> Plasmid.AI</li>
+            <li><b class="text-lg">Year Founded</b> 2024</li>
+            <li><b class="text-lg">Business Status</b> Startup</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white flex gap-x-12 items-center p-4 my-16">
+      <h4>
+        Keywords
+      </h4>
+      <p>
+        Machine Learning, Phage Therapy, Antimicrobial, Bacterial Resistance
+      </p>
+    </div>
   </div>
 
-<div class="section">
-  <h2>Industries, Verticals & Keywords</h2>
-  <table>
-      <tr>
+  {{ subheading('Industries, Verticals & Keywords') }}
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
+      <thead>
+        <tr>
           <th>Primary Industry</th>
           <th>Verticals</th>
           <th>Keywords</th>
-      </tr>
-      <tr>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
           <td>Drug Discovery</td>
           <td>Artificial Intelligence & Machine Learning</td>
           <td>Machine Learning, Phage Therapy, Antimicrobial, Bacterial Resistance</td>
-      </tr>
-      <tr>
+        </tr>
+        <tr>
           <td>Other Industries</td>
           <td>Big Data, Discovery Tools (Healthcare), Biotechnology, Life Sciences</td>
           <td></td>
-      </tr>
-  </table>
-</div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="section contact-info">
-  <h2>Contact Information</h2>
-  <p><strong>Primary Contact:</strong> Santiago Plata Salazar, Co-Founder, Chief Executive Officer</p>
-  <p><strong>Primary Office:</strong> 55 St George St. Room #036, Myhal Centre for Engineering Innovation & Entrepreneurship. Toronto, ON. M5S 1A4</p>
-  <p><strong>Email:</strong> <a href="mailto:igem@g.skule.ca">igem@g.skule.ca</a></p>
-</div>
-
-<div class="section deal-history">
-  <h2>Deal History</h2>
-  <table>
-      <tr>
+  
+  {{ subheading('Deal History') }}
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
+      <thead>
+        <tr>
           <th>Deal Type</th>
           <th>Date</th>
           <th>Amount Raised to Date</th>
           <th>Status</th>
           <th>Stage</th>
-      </tr>
-      <tr>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
           <td>Accelerator Round</td>
           <td>August 30, 2024</td>
           <td>$10,500</td>
           <td>Complete</td>
           <td>Pre-seed 1</td>
-      </tr>
-      <tr>
+        </tr>
+        <tr>
           <td>Fundraising Round (Non-dilutive)</td>
           <td>September 14, 2024</td>
           <td>$16,531</td>
           <td>Complete</td>
           <td></td>
-      </tr>
-  </table>
-</div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="section">
-  <h2>Investors/Donors</h2>
-  <table>
+  {{ subheading('Investors/Donors') }}
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
       <tr>
-          <th>Name</th>
-          <th>Investor Type</th>
-          <th>Holding</th>
-          <th>Investor/Donation On</th>
-          <th>Board</th>
+        <th>Name</th>
+        <th>Investor Type</th>
+        <th>Holding</th>
+        <th>Investor/Donation On</th>
+        <th>Board</th>
       </tr>
       <tr>
           <td>University of Toronto Entrepreneurship Hatchery</td>
@@ -167,401 +379,294 @@
         <td>None</td>
         <td>2024</td>
         <td>No</td>
-    </tr>
-    <tr>
-      <td>University of Toronto Department of Human Biology (HMB)</td>
-      <td>Donor (non-dilutive)</td>
-      <td>None</td>
-      <td>2024</td>
-      <td>No</td>
-    </tr>
-    <tr>
-    <td>University of Toronto Department of Laboratory Medicine and Pathobiology (LMP)</td>
-    <td>Donor (non-dilutive)</td>
-    <td>None</td>
-    <td>2024</td>
-    <td>No</td>
-    </tr>
-    <tr>
-      <td>New England Biolab (NED)</td>
-      <td>Donor (non-dilutive)</td>
-      <td>None</td>
-      <td>2024</td>
-      <td>No</td>
-  </tr>
-  <tr>
-    <td>Luna Nanotech</td>
-    <td>Donor (non-dilutive)</td>
-    <td>None</td>
-    <td>2024</td>
-    <td>No</td>
-</tr>
-<tr>
-  <td>SnapGene</td>
-  <td>Donor (non-dilutive)</td>
-  <td>None</td>
-  <td>2024</td>
-  <td>No</td>
-</tr>
-<tr>
-  <td>University of Toronto Department of Cell and Systems Biology (CSB)</td>
-  <td>Donor (non-dilutive)</td>
-  <td>None</td>
-  <td>2024</td>
-  <td>No</td>
-</tr>
-<tr>
-  <td>University of Toronto Engineering Society (EngSoc)</td>
-  <td>Donor (non-dilutive)</td>
-  <td>None</td>
-  <td>2024</td>
-  <td>No</td>
-</tr>
-      <!-- Repeat rows for other investors/donors as needed -->
-  </table>
-</div>
+      </tr>
+      <tr>
+        <td>University of Toronto Department of Human Biology (HMB)</td>
+        <td>Donor (non-dilutive)</td>
+        <td>None</td>
+        <td>2024</td>
+        <td>No</td>
+      </tr>
+        <tr>
+        <td>University of Toronto Department of Laboratory Medicine and Pathobiology (LMP)</td>
+        <td>Donor (non-dilutive)</td>
+        <td>None</td>
+        <td>2024</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>New England Biolab (NED)</td>
+        <td>Donor (non-dilutive)</td>
+        <td>None</td>
+        <td>2024</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>Luna Nanotech</td>
+        <td>Donor (non-dilutive)</td>
+        <td>None</td>
+        <td>2024</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>SnapGene</td>
+        <td>Donor (non-dilutive)</td>
+        <td>None</td>
+        <td>2024</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>University of Toronto Department of Cell and Systems Biology (CSB)</td>
+        <td>Donor (non-dilutive)</td>
+        <td>None</td>
+        <td>2024</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>University of Toronto Engineering Society (EngSoc)</td>
+        <td>Donor (non-dilutive)</td>
+        <td>None</td>
+        <td>2024</td>
+        <td>No</td>
+      </tr>
+    </table>
+  </div>
 
-<h2>Competitors</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Company</th>
-      <th>Competitor</th>
-      <th>Financing Status</th>
-      <th>HQ Location</th>
-      <th>Primary Industry</th>
-      <th>Year Founded</th>
-      <th>Last Financing</th>
-      <th>Last Financing Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Seres Therapeutics</td>
-      <td>Yes</td>
-      <td>Formerly VC-backed</td>
-      <td>Cambridge, MA</td>
-      <td>Biotechnology</td>
-      <td>2010</td>
-      <td>Debt - General | 27-Apr-2023</td>
-      <td>$250.00M</td>
-    </tr>
-    <tr>
-      <td>Locus Biosciences</td>
-      <td>Yes</td>
-      <td>Venture Capital-backed</td>
-      <td>Morrisville, NC</td>
-      <td>Drug Discovery</td>
-      <td>2015</td>
-      <td>Later Stage VC</td>
-      <td>$9.00M</td>
-    </tr>
-    <tr>
-      <td>Armata Pharmaceuticals</td>
-      <td>Yes</td>
-      <td>Formerly VC-backed</td>
-      <td>Marina del Rey, CA</td>
-      <td>Drug Discovery</td>
-      <td>1989</td>
-      <td>General Corporate Purpose | 04-Mar-2024</td>
-      <td>$35.00M</td>
-    </tr>
-    <tr>
-      <td>Ardis Pharmaceuticals</td>
-      <td>Yes</td>
-      <td>Formerly VC-backed</td>
-      <td>Los Gatos, CA</td>
-      <td>Biotechnology</td>
-      <td>2003</td>
-      <td>2PO | 03-Aug-2023</td>
-      <td>$0.80M</td>
-    </tr>
-    <tr>
-      <td>Peptilogics</td>
-      <td>Yes</td>
-      <td>Venture Capital</td>
-      <td>Pittsburgh, PA</td>
-      <td>Drug Discovery</td>
-      <td>2013</td>
-      <td>Later Stage VC (Series B) | 30-Dec-2020</td>
-      <td>$35.78M</td>
-    </tr>
-  </tbody>
-</table>
-
-
-<h2>Description of Competitors</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Company</th>
-      <th>Description</th>
-      <th>Primary Industry</th>
-      <th>HQ Location</th>
-      <th>Employees</th>
-      <th>Total Raised</th>
-      <th>Post Valuation</th>
-      <th>Last Financing Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Plasmid.AI</td>
-      <td>Developer of AI-driven synthetic plasmid systems designed to target and neutralize antibiotic-resistant pathogens for more effective treatment of drug-resistant infections.</td>
-      <td>Biotechnology</td>
-      <td>Toronto, ON</td>
-      <td>6 (As of 2024)</td>
-      <td>$27.03K</td>
-      <td></td>
-      <td>NEST Uoft Hatchery</td>
-    </tr>
-    <tr>
-      <td>Seres Therapeutics</td>
-      <td>Developer of microbiome therapeutics intended to treat diseases resulting from functional deficiencies in the microbiome.</td>
-      <td>Biotechnology</td>
-      <td>Cambridge, MA</td>
-      <td>283 (As of 2024)</td>
-      <td>$940.77M</td>
-      <td>$681.01M (26-Jun-2015)</td>
-      <td>$250.00M Debt - General | 27-Apr-2023</td>
-    </tr>
-    <tr>
-      <td>Locus Biosciences</td>
-      <td>Developer of bacteriophage-based products designed to precisely remove pathogenic bacteria from the human body.</td>
-      <td>Drug Discovery</td>
-      <td>Morrisville, NC</td>
-      <td>57 (As of 2024)</td>
-      <td>$105.33M</td>
-      <td>$230.00M (18-May-2022)</td>
-      <td>$9.00M Later Stage VC</td>
-    </tr>
-    <tr>
-      <td>Armata Pharmaceuticals</td>
-      <td>Developer of pathogen-specific bacteriophage therapeutics designed for the treatment of antibiotic-resistant and difficult-to-treat bacterial infections.</td>
-      <td>Drug Discovery</td>
-      <td>Marina del Rey, CA</td>
-      <td>75 (As of 2022)</td>
-      <td>$232.00M</td>
-      <td>$45.00M (09-Feb-2022)</td>
-      <td>$35.00M General Corporate Purpose | 04-Mar-2024</td>
-    </tr>
-    <tr>
-      <td>Aridis Pharmaceuticals</td>
-      <td>Operator of a biopharmaceutical company focused on the development of novel, differentiated therapies for infectious diseases.</td>
-      <td>Biotechnology</td>
-      <td>Los Gatos, CA</td>
-      <td>37 (As of 2022)</td>
-      <td>$79.66M</td>
-      <td>$102.57M (14-Aug-2018)</td>
-      <td>$0.80M 2PO | 03-Aug-2023</td>
-    </tr>
-    <tr>
-      <td>Peptilogics</td>
-      <td>Developer of a therapeutic and drug discovery peptide platform designed to treat multidrug-resistant bacterial infections.</td>
-      <td>Drug Discovery</td>
-      <td>Pittsburgh, PA</td>
-      <td>22 (As of 2024)</td>
-      <td>$41.83M</td>
-      <td>$115.78M (30-Dec-2020)</td>
-      <td>$35.78M Later Stage VC (Series B) | 30-Dec-2020</td>
-    </tr>
-  </tbody>
-</table>
+  {{ subheading('Competitors') }}
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Competitor</th>
+          <th>Financing Status</th>
+          <th>HQ Location</th>
+          <th>Primary Industry</th>
+          <th>Year Founded</th>
+          <th>Last Financing</th>
+          <th>Last Financing Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Seres Therapeutics</td>
+          <td>Yes</td>
+          <td>Formerly VC-backed</td>
+          <td>Cambridge, MA</td>
+          <td>Biotechnology</td>
+          <td>2010</td>
+          <td>Debt - General | 27-Apr-2023</td>
+          <td>$250.00M</td>
+        </tr>
+        <tr>
+          <td>Locus Biosciences</td>
+          <td>Yes</td>
+          <td>Venture Capital-backed</td>
+          <td>Morrisville, NC</td>
+          <td>Drug Discovery</td>
+          <td>2015</td>
+          <td>Later Stage VC</td>
+          <td>$9.00M</td>
+        </tr>
+        <tr>
+          <td>Armata Pharmaceuticals</td>
+          <td>Yes</td>
+          <td>Formerly VC-backed</td>
+          <td>Marina del Rey, CA</td>
+          <td>Drug Discovery</td>
+          <td>1989</td>
+          <td>General Corporate Purpose | 04-Mar-2024</td>
+          <td>$35.00M</td>
+        </tr>
+        <tr>
+          <td>Ardis Pharmaceuticals</td>
+          <td>Yes</td>
+          <td>Formerly VC-backed</td>
+          <td>Los Gatos, CA</td>
+          <td>Biotechnology</td>
+          <td>2003</td>
+          <td>2PO | 03-Aug-2023</td>
+          <td>$0.80M</td>
+        </tr>
+        <tr>
+          <td>Peptilogics</td>
+          <td>Yes</td>
+          <td>Venture Capital</td>
+          <td>Pittsburgh, PA</td>
+          <td>Drug Discovery</td>
+          <td>2013</td>
+          <td>Later Stage VC (Series B) | 30-Dec-2020</td>
+          <td>$35.78M</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
-<h2>Our Team</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Board Seats</th>
-      <th>Office</th>
-      <th>Contact</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Dr. Michael Garton</td>
-      <td>Principal Investigator</td>
-      <td></td>
-      <td></td>
-      <td>Email: <a href="mailto:">Email</a>, LinkedIn: <a href="https://linkedin.com/in/michael-garton-31a53a69">linkedin.com/in/michael-garton-31a53a69</a></td>
-    </tr>
-    <tr>
-      <td>Santiago Plata Salazar</td>
-      <td>Chief Executive Officer (CEO)</td>
-      <td>CEO</td>
-      <td></td>
-      <td>Email: <a href="mailto:santiago.plata@mail.utoronto.ca">santiago.plata@mail.utoronto.ca</a>, LinkedIn: <a href="https://linkedin.com/in/santiagoplata">linkedin.com/in/santiagoplata</a></td>
-    </tr>
-    <tr>
-      <td>Kris Shivkumar</td>
-      <td>Chief Operating Officer (COO)</td>
-      <td>COO</td>
-      <td></td>
-      <td>LinkedIn: <a href="https://linkedin.com/in/kris-shivkumar">linkedin.com/in/kris-shivkumar</a></td>
-    </tr>
-    <tr>
-      <td>Ayalinch Jonathan</td>
-      <td>Chief Technology Officer (CTO)</td>
-      <td></td>
-      <td></td>
-      <td>Email: <a href="mailto:ayalinch.jonathan@mail.utoronto.ca">ayalinch.jonathan@mail.utoronto.ca</a>, LinkedIn: <a href="https://linkedin.com/in/ayalinch-jonathan">linkedin.com/in/ayalinch-jonathan</a></td>
-    </tr>
-    <tr>
-      <td>Lauren Altomare</td>
-      <td>Chief Information Officer (CIO)</td>
-      <td></td>
-      <td></td>
-      <td>Email: <a href="mailto:lauren.altomare@mail.utoronto.ca">lauren.altomare@mail.utoronto.ca</a>, LinkedIn: <a href="https://linkedin.com/in/lauren-altomare">linkedin.com/in/lauren-altomare</a></td>
-    </tr>
-    <tr>
-      <td>Jeff Chen</td>
-      <td>Chief Scientific Officer (CSO)</td>
-      <td></td>
-      <td></td>
-      <td>LinkedIn: <a href="https://linkedin.com/in/jeffjeffjeff">linkedin.com/in/jeffjeffjeff</a></td>
-    </tr>
-    <tr>
-      <td>Dorothy Cheung</td>
-      <td>Market Researcher</td>
-      <td></td>
-      <td></td>
-      <td>LinkedIn: <a href="https://linkedin.com/in/dorothy-cheung-uoft">linkedin.com/in/dorothy-cheung-uoft</a></td>
-    </tr>
-    <tr>
-      <td>Arya Sethi</td>
-      <td>Market Researcher</td>
-      <td></td>
-      <td></td>
-      <td>LinkedIn: <a href="https://linkedin.com/in/arya-sethi">linkedin.com/in/arya-sethi</a></td>
-    </tr>
-    <tr>
-      <td>Madhav Gupta</td>
-      <td>Market Researcher</td>
-      <td></td>
-      <td></td>
-      <td>LinkedIn: <a href="https://linkedin.com/in/madhav-gupta-93a2b326a">linkedin.com/in/madhav-gupta-93a2b326a</a></td>
-    </tr>
-    <tr>
-      <td>Carina Liu</td>
-      <td>Market Researcher</td>
-      <td></td>
-      <td></td>
-      <td>LinkedIn: <a href="https://linkedin.com/in/carina-liu-sijie">linkedin.com/in/carina-liu-sijie</a></td>
-    </tr>
-    <tr>
-      <td>Jenny Kwon</td>
-      <td>Creative Researcher</td>
-      <td></td>
-      <td></td>
-      <td>LinkedIn: <a href="https://linkedin.com/in/jenny-hoijin-kwon">linkedin.com/in/jenny-hoijin-kwon</a></td>
-    </tr>
-    <tr>
-      <td>Sarah Kim</td>
-      <td>Creative Researcher</td>
-      <td></td>
-      <td></td>
-      <td>Email: <a href="mailto:hanulahn.kim@mail.utoronto.ca">hanulahn.kim@mail.utoronto.ca</a>, LinkedIn: <a href="https://linkedin.com/in/sarah-hanul-kim">linkedin.com/in/sarah-hanul-kim</a></td>
-    </tr>
-  </tbody>
-</table>
+  {{ subheading('Competitors in Detail') }}
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Description</th>
+          <th>Primary Industry</th>
+          <th>HQ Location</th>
+          <th>Employees</th>
+          <th>Total Raised</th>
+          <th>Post Valuation</th>
+          <th>Last Financing Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Plasmid.AI</td>
+          <td>
+            Developer of AI-driven synthetic plasmid systems designed to target and neutralize
+            antibiotic-resistant pathogens for more effective treatment of drug-resistant infections.
+          </td>
+          <td>Biotechnology</td>
+          <td>Toronto, ON</td>
+          <td>6 (As of 2024)</td>
+          <td>$27.03K</td>
+          <td></td>
+          <td>NEST Uoft Hatchery</td>
+        </tr>
+        <tr>
+          <td>Seres Therapeutics</td>
+          <td>
+            Developer of microbiome therapeutics intended to treat diseases resulting from
+            functional deficiencies in the microbiome.
+          </td>
+          <td>Biotechnology</td>
+          <td>Cambridge, MA</td>
+          <td>283 (As of 2024)</td>
+          <td>$940.77M</td>
+          <td>$681.01M (26-Jun-2015)</td>
+          <td>$250.00M Debt - General | 27-Apr-2023</td>
+        </tr>
+        <tr>
+          <td>Locus Biosciences</td>
+          <td>
+            Developer of bacteriophage-based products designed to precisely remove
+            pathogenic bacteria from the human body.
+          </td>
+          <td>Drug Discovery</td>
+          <td>Morrisville, NC</td>
+          <td>57 (As of 2024)</td>
+          <td>$105.33M</td>
+          <td>$230.00M (18-May-2022)</td>
+          <td>$9.00M Later Stage VC</td>
+        </tr>
+        <tr>
+          <td>Armata Pharmaceuticals</td>
+          <td>
+            Developer of pathogen-specific bacteriophage therapeutics designed for the
+            treatment of antibiotic-resistant and difficult-to-treat bacterial infections.
+          </td>
+          <td>Drug Discovery</td>
+          <td>Marina del Rey, CA</td>
+          <td>75 (As of 2022)</td>
+          <td>$232.00M</td>
+          <td>$45.00M (09-Feb-2022)</td>
+          <td>$35.00M General Corporate Purpose | 04-Mar-2024</td>
+        </tr>
+        <tr>
+          <td>Aridis Pharmaceuticals</td>
+          <td>
+            Operator of a biopharmaceutical company focused on the development of novel,
+            differentiated therapies for infectious diseases.
+          </td>
+          <td>Biotechnology</td>
+          <td>Los Gatos, CA</td>
+          <td>37 (As of 2022)</td>
+          <td>$79.66M</td>
+          <td>$102.57M (14-Aug-2018)</td>
+          <td>$0.80M 2PO | 03-Aug-2023</td>
+        </tr>
+        <tr>
+          <td>Peptilogics</td>
+          <td>
+            Developer of a therapeutic and drug discovery peptide platform designed to treat
+            multidrug-resistant bacterial infections.
+          </td>
+          <td>Drug Discovery</td>
+          <td>Pittsburgh, PA</td>
+          <td>22 (As of 2024)</td>
+          <td>$41.83M</td>
+          <td>$115.78M (30-Dec-2020)</td>
+          <td>$35.78M Later Stage VC (Series B) | 30-Dec-2020</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-
-<!--<img src="{{ new_cdn('entrepreneurship/tablet.png') }}" class="w-full">-->
-<!--<div class="w-full px-8 lg:px-44 xl:px-96 py-20">
-  <div class="relative mb-8">
-    <div class="absolute z-0 hidden lg:block lg:-left-32 xl:-left-40 lg:-top-8">
-      <svg width="232" height="232" viewBox="0 0 232 232" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="106" cy="126" r="105.5" fill="white" stroke="#5C2BD5"/>
-        <circle cx="126" cy="106" r="106" fill="#E0DFFC"/>
-      </svg>
+  {{ subheading('Documents') }}
+  <div class="w-full flex items-center">
+    <div class="flex flex-row flex-wrap gap-10 w-full m-auto justify-around">
+      {{ picture_link("Business Plan", new_cdn("entrepreneurship/business-plan.png")) }}
+      {{ picture_link("Pitch Deck", new_cdn("entrepreneurship/pitch-deck.png")) }}
+      {{ picture_link("Cash Flow Projection", new_cdn("entrepreneurship/cash-flow-projection.png")) }}
+      {{ picture_link("One Pager", new_cdn("entrepreneurship/one-pager.png")) }}
     </div>
-    <div class="z-10 relative">
-      <h2>
-        The Problem
-      </h2>
+  </div>
+
+  {{ subheading('Current Team') }}
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ team_member("Dr. Michael Garton", "Principal Investigator", linkedin="https://linkedin.com/in/michael-garton-31a53a69") }}
+        {{ team_member("Santiago Plata Salazar", "Chief Executive Office (CEO)", email="santiago.plata@mail.utoronto.ca", linkedin="https://linkedin.com/in/santiagoplata" ) }}
+        {{ team_member("Kris Shivkumar", "Chief Operating Officer (COO)", linkedin="https://linkedin.com/in/kris-shivkumar") }}
+        {{ team_member("Ayalinch Jonathan", "Chief Technology Officer (CTO)", email="ayalinch.jonathan@mail.utoronto.ca", linkedin="https://linkedin.com/in/ayalinch-jonathan") }}
+        {{ team_member("Lauren Altomare", "Chief Information Officer (CIO)", email="lauren.altomare@mail.utoronto.ca", linkedin="https://linkedin.com/in/lauren-altomare") }}
+        {{ team_member("Jeff Chen", "Chief Scientific Officer (CSO)", linkedin="https://linkedin.com/in/jeffjeffjeff") }}
+        {{ team_member("Dorothy Cheung", "Market Researcher", linkedin="https://linkedin.com/in/dorothy-cheung-uoft") }}
+        {{ team_member("Arya Sethi", "Market Researcher", linkedin="https://linkedin.com/in/arya-sethi") }}
+        {{ team_member("Madhav Gupta", "Market Researcher", linkedin="https://linkedin.com/in/madhav-gupta-93a2b326a") }}
+        {{ team_member("Carina Liu", "Market Researcher", linkedin="https://linkedin.com/in/carina-liu-sijie") }}
+        {{ team_member("Jenny Kwon", "Creative Researcher", linkedin="https://linkedin.com/in/jenny-hoijin-kwon") }}
+        {{ team_member("Sarah Kim", "Creative Researcher", email="hanulahn.kim@mail.utoronto.ca", linkedin="https://linkedin.com/in/sarah-hanul-kim") }}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
+
+{% block bottom_banner %}
+  <div class="flex flex-col lg:flex-row w-full justify-around items-center bg-accent-light-purple">
+    <div>
+      <img  src="{{ new_cdn('assets/graphics/plasmid-ai-logo-text.png') }}"
+            alt="plasmid.AI Logo"
+            class="lg:h-20 h-12 my-16">
+    </div>
+    <div>
       <p>
-        As of now, the development of a phage therapy involves hundreds of repetitions of a
-        scientist preparing wet lab procedure, preparing reagents, culturing an antibiotic
-        resistant bacteria, isolating phage, co-incubating the phage and bacteria, and measuring
-        the phage’s parasitization of the bacteria. With each step being prone to failure, the
-        entire process is highly costly and takes months to complete.
+        <b>
+          Santiago Plata Salazar
+        </b>
+      </p>
+      <p>
+        Co-Founder, CEO
       </p>
     </div>
-  </div>
-  <div class="flex items-center flex-col gap-12">
-    <p>
-      To address the need to expedite 
-      the pre-clinical phase of phage therapy,
-    </p>
-    <h2>
-      We created
-    </h2>
-  </div>
-</div>
-<div class="w-full px-8 lg:px-20 xl:px-96 py-20 bg-accent-muted-purple flex items-center flex-col">
-  <img class="mb-8" src="{{ new_cdn('assets/graphics/plasmid-ai-logo-text.png') }}">
-  <div class="flex lg:flex-row flex-col gap-y-8">
-    <div class="flex flex-col lg:flex-1 gap-y-8">
-      <div>
-        <h3>
-          Industry
-        </h3>
-        <p class="text-left">
-          Machine Learning & Biopharmaceuticals
-        </p>
-      </div>
-      <div class="flex flex-row">
-        <div class="flex-1">
-          <h3>
-            Employees
-          </h3>
-          <p>
-            8
-          </p>
-        </div>
-        <div class="flex-1 border-l-2 border-black pl-4">
-          <h3>
-            Fundraising
-          </h3>
-          <p class="text-left">
-            Seeking Seed Round
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="lg:flex-1 lg:border-l-2 border-black lg:pl-4">
-      <h3>
-        General Information
-      </h3>
-      <p>
-        Plasmid.AI intends to utilize the power of large language models to expedite preclinical phage discovery.
-        By simulating phage-bacteria interactions in silico, our model would identify phage therapy candidates at
-        a fraction of time and resource-intensive wet lab work.
-      </p>
+    <div class="p-4">
+      55 St George St. Room #036
+      <br>
+      Myhal Centre for Engineering Innovation & Entrepreneurship.
+      <br>
+      Toronto, ON. M5S 1A4
+      <br>
+      <br>
+
+      igem@g.skule.ca
     </div>
   </div>
-</div>
-
-<h2 class="px-8 lg:px-24 mt-36">
-  Timeline
-</h2>
-<div class="w-full">
-  <img class="m-auto" src="{{ new_cdn('entrepreneurship/timeline.png') }}">
-</div>
-
-<h2 class="px-8 lg:px-24 mt-36 mb-16">
-  Documents
-</h2>
-<div class="w-full flex items-center">
-  <div class="flex flex-row flex-wrap gap-10 w-2/3 m-auto justify-around">
-    {{ picture_link("Business Plan", new_cdn("entrepreneurship/business-plan.png")) }}
-    {{ picture_link("Pitch Deck", new_cdn("entrepreneurship/pitch-deck.png")) }}
-    {{ picture_link("Cash Flow Projection", new_cdn("entrepreneurship/cash-flow-projection.png")) }}
-    {{ picture_link("One Pager", new_cdn("entrepreneurship/one-pager.png")) }}
-  </div>
-</div>-->
-
 {% endblock %}

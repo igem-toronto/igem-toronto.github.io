@@ -113,7 +113,7 @@
         {% block full_page_content %}{% endblock %}
       </div>
       <div class="flex flex-row-reverse place-content-center">
-        <div class="px-4 py-8 max-w-[80ch]">
+        <div class="px-4 py-8 max-w-[100ch]">
           <div class="content-wrapper">
             {% block article_content %}{% endblock %}
           </div>
@@ -129,6 +129,7 @@
       </div>
     </div>
     {% include 'layout/subpage-bottom-nav.html' %}
+    {% block bottom_banner %}{% endblock %}
     {% include 'layout/footer.html' %}
 
     <div id="subpages-json" class="hidden">{{ subpages|tojson }}</div>

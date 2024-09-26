@@ -10,11 +10,24 @@
     </div>
 
     {{ subheading('How do we accomplish this?') }}
-    {{ subsubheading('Budget Management') }}
-    <div>
+
+    <style>
+        .container {
+            display: flex; /* Makes the image and text align horizontally */
+            align-items: center; /* Aligns items vertically (centered) */
+        }
+        .container img {
+            margin-right: 10px; /* Adds space between the image and the text */
+        }
+    </style>
+    <div class="container">
+        {{ subsubheading('Budget Management') }}
         <img src="{{ new_cdn('finance-asset/budget-concept.jpg')}}" alt="iGEM Toronto finance team" style="width: 200px; height: 200px;" />
+    </div>
+    <div>
         <p>The team prepares, monitors, and updates the club’s annual budget. This includes estimating revenue, managing expenses, and making sure all work stays within its financial means.</p>
     </div>
+
     {{ subsubheading('Seeking Potential Sponsors') }}
     <div>
         <p>We take the lead in reaching out to companies for sponsorships and partnerships to secure financial support, resources, and valuable collaborations. Processes include identifying potential sponsors, creating proposals and outreach strategies, and finally building and nurturing relationships between our partners and iGEM Toronto.</p>

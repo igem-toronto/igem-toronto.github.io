@@ -11,6 +11,9 @@
 
     {{ subheading('How do we accomplish this?') }}
 
+    <!-- Line 14-29 is to insert an image next to the subtitle -->
+    <!-- between <style> creates a container box that includes both the image and the subheading to display them side by side -->
+    <!-- the <img/> inserts an image. {{new_cdn('finance-asset/')}} pulls an image from our finance-asset files, style sets the shape of the image displayed -->
     <style>
         .container {
             display: flex; /* Makes the image and text align horizontally */
@@ -22,8 +25,9 @@
     </style>
     <div class="container">
         {{ subsubheading('Budget Management') }}
-        <img src="{{ new_cdn('finance-asset/budget-concept.jpg')}}" alt="iGEM Toronto finance team" style="width: 200px; height: 200px;" />
+        <img src="{{ new_cdn('finance-asset/budget-concept.jpg')}}" alt="iGEM Toronto finance team" style="width: 100px; height: 100px; border-radius: 50%;" />
     </div>
+
     <div>
         <p>The team prepares, monitors, and updates the club’s annual budget. This includes estimating revenue, managing expenses, and making sure all work stays within its financial means.</p>
     </div>

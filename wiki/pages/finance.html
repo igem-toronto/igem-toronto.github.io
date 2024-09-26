@@ -38,7 +38,7 @@
         /* Style the button */
         .collapsible {
             background-color: #777;
-            color: white;
+            color: purple;
             cursor: pointer;
             padding: 10px;
             width: 100%;
@@ -59,6 +59,14 @@
     </style>
 
 
+    <!-- Increase margin between paragraphs -->
+    <style>
+        p {
+            margin-bottom: 30px; /* Adjust the value to increase or decrease the space */
+        }
+    </style>
+
+
 
     <!-- Line 28-31 creates the container box for this section -->
     <!-- the <img/> inserts an image. {{new_cdn('finance-asset/')}} pulls an image from our finance-asset files, style sets the shape of the image displayed -->
@@ -66,20 +74,13 @@
         <img src="{{ new_cdn('finance-asset/budget-concept.jpg')}}" alt="iGEM Toronto finance team" style="width: 100px; height: 100px; border-radius: 50%;" />
         {{ subsubheading('Budget Management') }}
     </div>
-
-    <button class="collapsible">Click to Expand</button>
+    
+    <button class="collapsible">See more</button>
     <div class="content">
-        <p>This is the content inside the collapsible window. You can add text, images, or any other HTML elements here.</p>
-    </div>
-
-    <div>
         <p>The team prepares, monitors, and updates the club’s annual budget. This includes estimating revenue, managing expenses, and making sure all work stays within its financial means.</p>
     </div>
-    <style>
-        p {
-            margin-bottom: 30px; /* Adjust the value to increase or decrease the space */
-        }
-    </style>
+
+    
 
     <div class="container">
         <img src="{{ new_cdn('finance-asset/sponsorship.webp')}}" alt="iGEM Toronto finance team" style="width: 100px; height: 100px; border-radius: 50%;" />

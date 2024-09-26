@@ -1,4 +1,5 @@
 {% extends "layout/layout.html" %}
+{% from 'layout/carousel.html' import carousel_navigation with context %}
 
 {% block article_content %}
   Text
@@ -42,28 +43,16 @@
     container.append(svg.node());
   </script>
 
-    <div x-data="{ galleryIndex: 0 }">
+    <div x-data="{ galleryIndex: 0 }"></div>
         <div x-show="galleryIndex === 0" class="w-full p-8 break-words">
-            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            Page A
         </div>
         <div x-show="galleryIndex === 1" class="w-full p-8 break-words">
-            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            B Side
         </div>
         <div x-show="galleryIndex === 2" class="w-full p-8 break-words">
-            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            C Section
         </div>
-        <div class="flex justify-between">
-            <button :class="{ 'opacity-10': galleryIndex === 0 }" @click="galleryIndex = Math.max(galleryIndex - 1, 0)"
-                class="rotate-180 text-2xl">
-                ➤
-            </button>
-            <div>
-                <span x-text="galleryIndex + 1"></span>/3
-            </div>
-            <button :class="{ 'opacity-10': galleryIndex === 2 }" @click="galleryIndex = Math.min(galleryIndex + 1, 2)"
-                class="text-2xl">
-                ➤
-            </button>
-        </div>
+        {{ carousel_navigation("galleryIndex", 3) }}
     </div>
 {% endblock %}

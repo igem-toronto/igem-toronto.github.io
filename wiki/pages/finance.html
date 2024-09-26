@@ -57,20 +57,6 @@
             background-color: #f1f1f1;
         }
     </style>
-    <!-- code the button? -->
-    <script>
-        const coll = document.querySelector('.collapsible');
-        const content = document.querySelector('.content');
-
-        coll.addEventListener('click', function() {
-            this.classList.toggle('active');
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    </script>
 
 
 
@@ -123,5 +109,22 @@
     <div>
         <p>We track and manage all expenditures, ensuring that funds are spent appropriately and according to our budget, additionally handling reimbursement requests for members who have made purchases on behalf of our club.</p>
     </div>
+
+    <script>
+        const coll = document.querySelector('.collapsible'); // Select the button
+        const content = document.querySelector('.content');   // Select the content div
+
+        coll.addEventListener('click', function() {
+            // Toggle the active class on the button (optional for styling)
+            this.classList.toggle('active');
+
+            // Check if content is already expanded or collapsed
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null; // Collapse the content
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px"; // Expand the content
+            }
+        });
+    </script>
 
 {% endblock %}

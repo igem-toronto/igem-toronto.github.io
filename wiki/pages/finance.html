@@ -72,11 +72,11 @@
     <!-- the <img/> inserts an image. {{new_cdn('finance-asset/')}} pulls an image from our finance-asset files, style sets the shape of the image displayed -->
     <div class="container">
         <img src="{{ new_cdn('finance-asset/budget-concept.jpg')}}" alt="iGEM Toronto finance team" style="width: 100px; height: 100px; border-radius: 50%;" />
-        <div style="margin: 0; padding: 0;">{{ subsubheading('Budget Management') }} </div>
+        {{ subsubheading('Budget Management') }} 
     </div>
 
-    <button class="collapsible" style="margin: 0; width: 100%; padding: 10px; border: none; background-color: #5C2BD5; color: white; cursor: pointer;">See more</button>
-     <div class="content" style = "max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; padding: 0;">
+    <button class="collapsible">See more</button>
+     <div class="content">
         <p>The team prepares, monitors, and updates the club’s annual budget. This includes estimating revenue, managing expenses, and making sure all work stays within its financial means.</p>
          margin-top: 0px;
          margin-bottom: 50px;

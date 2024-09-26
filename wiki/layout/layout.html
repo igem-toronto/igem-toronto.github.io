@@ -112,9 +112,9 @@
       <div class="w-full">
         {% block full_page_content %}{% endblock %}
       </div>
-      <div class="flex flex-row-reverse place-content-center">
-        <div class="px-4 py-8 max-w-[100ch]">
-          <div class="content-wrapper">
+      <div class="flex flex-row-reverse">
+        <div class="px-4 py-8 w-full">
+          <div class="content-wrapper max-w-[100ch] m-auto">
             {% block article_content %}{% endblock %}
           </div>
           {% if citer.references() %}

@@ -33,6 +33,45 @@
         }
     </style>
 
+    <!-- style the button for the collaspible window -->
+    <style>
+        /* Style the button */
+        .collapsible {
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+        }
+
+        /* Style the collapsible content */
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+    </style>
+    <!-- code the button? -->
+    <script>
+        const coll = document.querySelector('.collapsible');
+        const content = document.querySelector('.content');
+
+        coll.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    </script>
+
 
 
     <!-- Line 28-31 creates the container box for this section -->
@@ -40,6 +79,11 @@
     <div class="container">
         <img src="{{ new_cdn('finance-asset/budget-concept.jpg')}}" alt="iGEM Toronto finance team" style="width: 100px; height: 100px; border-radius: 50%;" />
         {{ subsubheading('Budget Management') }}
+    </div>
+
+    <button class="collapsible">Click to Expand</button>
+    <div class="content">
+        <p>This is the content inside the collapsible window. You can add text, images, or any other HTML elements here.</p>
     </div>
 
     <div>

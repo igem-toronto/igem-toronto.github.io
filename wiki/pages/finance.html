@@ -20,7 +20,7 @@
             background-color: lightpurple;
             padding: 20px;
             margin-bottom: 30px; /* Adds space between each div block */
-            border: 2px solid black;
+            
         }
         .container img {
             margin-right: 30px; /* Adds space between the image and the text */
@@ -72,7 +72,10 @@
     <!-- the <img/> inserts an image. {{new_cdn('finance-asset/')}} pulls an image from our finance-asset files, style sets the shape of the image displayed -->
     <div class="container">
         <img src="{{ new_cdn('finance-asset/budget-concept.jpg')}}" alt="iGEM Toronto finance team" style="width: 100px; height: 100px; border-radius: 50%;" />
-        {{ subsubheading('Budget Management') }} 
+        <div style="margin: 0;">
+            <h3 style="margin: 0; padding: 0;">'Budget Management'</h3>
+            <p style="margin: 5px 0;">The team prepares, monitors, and updates the club’s annual budget. This includes estimating revenue, managing expenses, and making sure all work stays within its financial means.</p>
+        </div>
     </div>
 
     <button class="collapsible">See more</button>

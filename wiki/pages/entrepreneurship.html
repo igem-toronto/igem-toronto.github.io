@@ -84,6 +84,7 @@
   </div>
 
   {{ subheading("iGEM Entrepreneurship Criteria") }}
+  <p>For your convenience, we've summarized our work within iGEM's entrepreneurship criteria. <b>However, we strongly recommend reviewing all of our deliverables for a holistic review.</b></p>
   <div x-data="{ extended: -1 }">
     <div @click="extended === 0 ? extended = -1 : extended = 0" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
       <div class="flex justify-between gap-x-4">
@@ -130,6 +131,7 @@
         <p><b>Series A:</b> Our plan to secure $15 million allows us to expand our Proof of Concept to other bacterial strains, aligning with the typical expansion plans for an early-stage biotech company. Given that we've made it to the "Go-to-market" stage at UofT's flagship incubator, we expect to be able to hit this milestone in the next 5-8 years.</p>
         <p><b>Series B:</b> Depending on the success of previous rounds, we aim to raise additional money as needed for the development of additional models tailored to specific bacterial strains. This long-term funding strategy allows us to maintain competitiveness by acquiring necessary R&D resources.</p>
         <p><b>Exit:</b> Our structure and long-term plan is to integrate into a company's existing pipeline. Once our MVP has been validated to work, we aim to exit via a Merger & Acqusition (M&A).</p>
+      <p>We've crafted a two year Gantt chart illustrating</p>
       </div>
     </div>
     <div @click="extended === 3 ? extended = -1 : extended = 3" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
@@ -587,7 +589,7 @@
 
   </div>
   {{ subheading('Business Plan')}}
-  <p>Crafted using the FEEL	&#8482; Methodology of Venture Creation</p>
+  <p>Crafted using the FEEL Methodology&#8482; of Venture Creation</p>
   {{ pdf("https://static.igem.wiki/teams/5230/entrepreneurship/plasmidaibusinessplan.pdf") }}
   {{ subheading('Current Team') }}
   <div class="w-full overflow-auto">

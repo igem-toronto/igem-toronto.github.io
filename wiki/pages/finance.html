@@ -2,6 +2,16 @@
 {% set add_sidebar = false %} <!-- Turns on/off the side navigation bar -->
 
 {% block article_content %}
+    <script>
+        function extendItem(id) {
+            const content = document.getElementById(id)
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null; // Collapse the content
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px"; // Expand the content
+            }
+        }
+    </script>
     {{ heading('iGEM Toronto Finance Team') }}
     <div>
         <p>A good finance team is the backbone of any organization, for profit or not.</p>
@@ -103,7 +113,7 @@
         <div style="margin: 0;">
             <h3 style="margin: 0; padding: 0;">Expense Tracking and Reimbursement</h3>
             <p style="margin: 5px 0;">We track and manage all expenditures, ensuring that funds are spent appropriately and according to our budget, additionally handling reimbursement requests for members who have made purchases on behalf of our club.</p>
-        </div>  
+        </div>
     </div>
 
     <div class="image-container" style="position: relative; display: inline-block; max-width: 200%;">
@@ -111,29 +121,14 @@
         <img src="{{ new_cdn('finance-asset/timeline.png')}}" style="width: 2000px !important; height: auto !important; ">
     
         <!-- Button positioned inside the image -->
-        <button class = "collapsible" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 10px 20px; background-color: #5C2BD5; color: white; border: none; cursor: pointer;">
-            More Info
-        </button>
-        <div class="content">
-            <p>We began by researching and identifying companies, organizations, and institutions whose mission and vision aligned with the focus of this year’s IGEM project. This alignment helped demonstrate to sponsors how their support could contribute meaningfully to advancing research in our field.</p>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <button onclick="extendItem('more-info-research')" style=" padding: 10px 20px; background-color: #5C2BD5; color: white; border: none; cursor: pointer;">
+                More Info
+            </button>
+            <div class="content" id="more-info-research">
+                <p>We began by researching and identifying companies, organizations, and institutions whose mission and vision aligned with the focus of this year’s IGEM project. This alignment helped demonstrate to sponsors how their support could contribute meaningfully to advancing research in our field.</p>
+            </div>
         </div>
     </div>
-
-    <script>
-        const coll = document.querySelector('.collapsible'); // Select the button
-        const content = document.querySelector('.content');   // Select the content div
-
-        coll.addEventListener('click', function() {
-            // Toggle the active class on the button (optional for styling)
-            this.classList.toggle('active');
-
-            // Check if content is already expanded or collapsed
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null; // Collapse the content
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px"; // Expand the content
-            }
-        });
-    </script>
 
 {% endblock %}

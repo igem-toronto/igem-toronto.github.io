@@ -120,13 +120,23 @@
         <!-- Image -->
         <img src="{{ new_cdn('finance-asset/timeline.png')}}" style="width: 2000px !important; height: auto !important; ">
     
-        <!-- Button positioned inside the image -->
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            <button onclick="extendItem('more-info-research')" style=" padding: 10px 20px; background-color: #5C2BD5; color: white; border: none; cursor: pointer;">
+        <!-- Phase 1 Button positioned inside the image -->
+        <div style="position: absolute; top: 25%; left: 75%; transform: translate(-50%, -50%);">
+            <button onclick="extendItem('more-info-identify')" style=" padding: 10px 20px; background-color: #5C2BD5; color: white; border: none; cursor: pointer;">
                 More Info
             </button>
-            <div class="content" id="more-info-research">
+            <div class="content" id="more-info-identify">
                 <p>We began by researching and identifying companies, organizations, and institutions whose mission and vision aligned with the focus of this year’s IGEM project. This alignment helped demonstrate to sponsors how their support could contribute meaningfully to advancing research in our field.</p>
+            </div>
+        </div>
+
+        <!-- Phase 2 Button positioned inside the image -->
+        <div style="position: absolute; top: 50%; left: 75%; transform: translate(-50%, -50%);">
+            <button onclick="extendItem('more-info-contact')" style=" padding: 10px 20px; background-color: #5C2BD5; color: white; border: none; cursor: pointer;">
+                More Info
+            </button>
+            <div class="content" id="more-info-contact">
+                <p>Once a list of potential sponsors was identified, we reached out through emails, presentations, and meetings. We crafted personalized communications that highlighted the mutual benefits of collaboration, ensuring sponsors understood the impact their contribution would have on our project.</p>
             </div>
         </div>
     </div>

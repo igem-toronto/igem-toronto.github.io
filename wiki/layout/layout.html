@@ -115,27 +115,27 @@
       }
     </script>
     <div>
-      <div id="full-width-header">
+      <div id="full-width-header" class="mb-12">
         {% include 'layout/header.html' %}
         {% block banner %}{% endblock %}
       </div>
       <div class="w-full">
         {% block full_page_content %}{% endblock %}
       </div>
-      <div class="flex flex-row-reverse">
-        <div class="px-4 py-8 w-full">
-          <div class="content-wrapper max-w-[100ch] m-auto">
-            {% block article_content %}{% endblock %}
-          </div>
+      <div class="flex flex-row-reverse w-full justify-center lg:gap-8">
+        <div class="content-wrapper lg:max-w-[100ch] px-4">
+          {% block article_content %}{% endblock %}
           {% if citer.references() %}
             {% block references %}
               {% include 'layout/references.html' %}
             {% endblock %}
           {% endif %}
         </div>
-        {% if add_sidebar is defined and add_sidebar %}
-          {% include 'layout/sidebar.html' %}
-        {% endif %}
+        <div class="flex lg:w-1/6">
+          {% if add_sidebar is defined and add_sidebar %}
+            {% include 'layout/sidebar.html' %}
+          {% endif %}
+        </div>
       </div>
     </div>
     {% include 'layout/subpage-bottom-nav.html' %}

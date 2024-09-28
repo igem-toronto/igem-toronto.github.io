@@ -110,6 +110,7 @@
       </div>
       <div x-show="extended === 1"  class="px-2 pb-3">
         <!-- Criteria Content Here-->
+
       </div>
     </div>
     <div @click="extended === 2 ? extended = -1 : extended = 2" class="bg-gray-200 rounded-lg p-2 my-3 cursor-pointer">
@@ -579,6 +580,11 @@
   <div class="w-full flex items-center">
     <div class="flex flex-row flex-wrap gap-10 w-full m-auto justify-around">
       {{ picture_link("Business Plan", new_cdn("entrepreneurship/business-plan.png")) }}
+      {% macro pdf(https://static.igem.wiki/teams/5230/entrepreneurship/plasmidaibusinessplan.pdf) -%}
+      <iframe src="{{ src }}" class="w-full h-96">
+        <a href="{{ src }}">Download PDF</a>
+      </iframe>
+{%- endmacro %}
       {{ picture_link("Pitch Deck", new_cdn("entrepreneurship/pitch-deck.png")) }}
       {{ picture_link("Cash Flow Projection", new_cdn("entrepreneurship/cash-flow-projection.png")) }}
       {{ picture_link("One Pager", new_cdn("entrepreneurship/one-pager.png")) }}

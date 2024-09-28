@@ -585,11 +585,7 @@
       {{ picture_link("One Pager", new_cdn("entrepreneurship/one-pager.png")) }}
     </div>
 
-    {% macro pdf("https://static.igem.wiki/teams/5230/entrepreneurship/plasmidaibusinessplan.pdf") -%}
-    <iframe src="{{ https://static.igem.wiki/teams/5230/entrepreneurship/plasmidaibusinessplan.pdf }}" class="w-full h-96">
-      <a href="{{ https://static.igem.wiki/teams/5230/entrepreneurship/plasmidaibusinessplan.pdf }}">Download PDF</a>
-    </iframe>
-    {%- endmacro %}
+    {{ pdf("https://static.igem.wiki/teams/5230/entrepreneurship/plasmidaibusinessplan.pdf") }}
   </div>
 
   {{ subheading('Current Team') }}

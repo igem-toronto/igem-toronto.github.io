@@ -115,13 +115,14 @@ def home():
 def people():
     team_members = defaultdict(list)
     team_members["Advisor"] = []
-    team_members["President"] = []
+    team_members["Co-President"] = []
     team_members["Wet Lab"] = []
     team_members["Dry Lab"] = []
     team_members["Hardware"] = []
     team_members["Entrepreneurship"] = []
     team_members["Human Practices"] = []
-    team_members["Wiki Team"] = []
+    team_members["Wiki"] = []
+    team_members["Outreach"] = []
     r = requests.get(
         "https://docs.google.com/spreadsheets/d/15uTIHgv6K2rDe-HD5g0GGp6LOWPNmeOBPJnN0LYdax8/gviz/tq?tqx=out:csv")
 
@@ -133,13 +134,13 @@ def people():
         member["name"] = line[0]
         member["role"] = line[1]
         member["description"] = line[2]
-        member["linkedin"] = line[4]
-        member["website"] = line[5]
-        member["email"] = line[6]
+        member["linkedin"] = line[3]
+        member["website"] = line[4]
+        member["email"] = line[5]
         member["priority"] = 0
 
         image_key = line[0].split()[0].lower()
-        member["picture"] = "assets/pictures/team-intros/" + image_key + ".png"
+        member["picture"] = "headshots/" + image_key + ".png"
 
         lower_role =  member["role"].split(", ")[0].lower()
         group = team_members[lower_role.replace("lead", "").replace("director", "").strip().title()]

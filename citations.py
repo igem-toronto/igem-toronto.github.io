@@ -35,8 +35,6 @@ class CitationLoader:
                 cwd=os.path.join(os.path.dirname(os.path.realpath(__file__)), "static", "citations"))
             
             content = proc.stdout.strip().replace("\n", "")
-            print("Content")
-            print(content)
         else:
             with open(file) as f:
                 content = f.read().strip().replace("\n", "")

@@ -23,7 +23,12 @@
     <script type="module" src="{{ url_for('modules', module_path = '@google/model-viewer/dist/model-viewer.min.js') }}" defer></script>
     <script>
       self.ModelViewerElement = self.ModelViewerElement || {}
-      self.ModelViewerElement.dracoDecoderLocation = "{{ url_for('static', filename='draco/') }}"
+      const FULL_URLS = [
+        "{{ url_for('static', filename='draco/draco_decoder.wasm') }}",
+        "{{ url_for('static', filename='draco/draco_wasm_wrapper.js') }}"
+      ]
+      const FOLDER_URL = FULL_URLS[0].slice(0, FULL_URLS[0].lastIndexOf('/') + 1)
+      self.ModelViewerElement.dracoDecoderLocation = FOLDER_URL
       </script>
   </head>
   {% block body %}

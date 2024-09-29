@@ -140,7 +140,7 @@ def people():
         member["priority"] = 0
 
         image_key = line[0].split()[0].lower()
-        member["picture"] = "assets/pictures/team-intros/" + image_key + ".png"
+        member["picture"] = "headshots/" + image_key + ".png"
 
         lower_role =  member["role"].split(", ")[0].lower()
         group = team_members[lower_role.replace("lead", "").replace("director", "").strip().title()]

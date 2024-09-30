@@ -118,8 +118,7 @@
         all our plasmids for testing of oriV sequences and antibiotic resistance genes (ARGs).
       </p>
       <div>
-        {{ img(new_cdn("https://static.igem.wiki/teams/5230/wetlab/gga-figure-1.webp"), 
-                        alt="Golden Gate Assembly method diagarm") }}
+        {{ img(new_cdn("wetlab/gga-figure-1.webp"), alt="Golden Gate Assembly method diagarm") }}
       <p>
         <b>Figure 1.</b> Golden Gate Assembly uses type IIS restriction enzymes, which have separate recognition 
         (yellow) and cut sites (green, purple, light pink). This allows for the creation of many possible unique 
@@ -135,7 +134,7 @@
         (Figure 3).
       </p>
       <div>
-        {{ img(new_cdn("https://static.igem.wiki/teams/5230/wetlab/moclo-system-figure-2.webp"), 
+        {{ img(new_cdn("wetlab/moclo-system-figure-2.webp"), 
                         alt="iGEM Toronto MoClo system overhangs and their assigned letters") }}
       <p>
         <b>Figure 2.</b> OriV and ARG MoClo system overhangs and their assigned letters. Overhang locations in 
@@ -143,7 +142,7 @@
       </p>
       </div>
       <div>
-        {{ img(new_cdn("https://static.igem.wiki/teams/5230/wetlab/type-b-oriv-assembly-figure-3.webp"), 
+        {{ img(new_cdn("wetlab/type-b-oriv-assembly-figure-3.webp"), 
                         alt="Type B oriV and sequences used to test generated oriV alignments") }}
       <p>
         <b>Figure 3.</b> Type B oriV and sequences used to test generated oriV alignments. Dry lab has been generating 
@@ -154,7 +153,7 @@
       </p>
       </div>
       <div>
-        {{ img(new_cdn("https://static.igem.wiki/teams/5230/wetlab/oriv-assembly-maps-figure-4.webp"), 
+        {{ img(new_cdn("wetlab/oriv-assembly-maps-figure-4.webp"), 
                         alt="Assemblies used to test generated oriV functionality") }}
       <p>
         <b>Figure 4.</b> The assemblies used to test generated oriV functionality, letters indicating the locations of 
@@ -165,7 +164,7 @@
       </p>
       </div>
       <div>
-        {{ img(new_cdn("https://static.igem.wiki/teams/5230/wetlab/arg-assembly-map-figure-5.webp"), 
+        {{ img(new_cdn("wetlab/arg-assembly-map-figure-5.webp"), 
                         alt="Assembly used to test generated ARG functionalit") }}
       <p>
         <b>Figure 5.</b> The assembly used to test generated ARG functionality, letters indicating the locations of 
@@ -215,21 +214,21 @@
   {{ subsubheading('Calendar') }}
     <div x-data="{ galleryIndex: 0 }">
         <div x-show="galleryIndex === 0" class="w-full p-8">
-            Page A
+            {{ img(new_cdn("wetlab/experiment-calendar-may.webp"), alt="Golden Gate Assembly method diagarm") }}
         </div>
         <div x-show="galleryIndex === 1" class="w-full p-8 break-words">
-            B Side
+            {{ img(new_cdn("experiment-calendar-june.webp"), alt="Golden Gate Assembly method diagarm") }}
         </div>
         <div x-show="galleryIndex === 2" class="w-full p-8 break-words">
-            C Section
+            {{ img(new_cdn("experiment-calendar-july.webp"), alt="Golden Gate Assembly method diagarm") }}
         </div>
-        <div x-show="galleryIndex === 2" class="w-full p-8 break-words">
-            D Section
+        <div x-show="galleryIndex === 3" class="w-full p-8 break-words">
+            {{ img(new_cdn("experiment-calendar-august.webp"), alt="Golden Gate Assembly method diagarm") }}
         </div>
-        <div x-show="galleryIndex === 2" class="w-full p-8 break-words">
-            E Section
+        <div x-show="galleryIndex === 4" class="w-full p-8 break-words">
+            {{ img(new_cdn("experiment-calendar-september.webp"), alt="Golden Gate Assembly method diagarm") }}
         </div>
-       {{ carousel_navigation("galleryIndex", 3) }}
+       {{ carousel_navigation("galleryIndex", 5) }}
     </div>
   {{ subheading('Results') }}
     <div>
@@ -404,6 +403,69 @@
       </div>
     </div>
   {{ subheading('Proof of concept') }}
+    <div>
+      <p>
+        <b>Positive Control</b><br>
+        The oriV from the pJUMP27-1A (BBa_J428326) vector was cloned into the eforRed/eforCP (BBa_J435099) backbone and 
+        transformed into E. coli DH5a, which generated visible colonies. This functioned as a positive control and 
+        confirmed that oriVs are modular.
+      </p>
+      <p>
+        <b>5 Functional Sequences</b><br>
+        After testing batch 1 of the AI-generated oriVs, we found no functional sequences as no visible colonies were 
+        seen. Upon testing batch 2 sequences, we found 5 functional sequences, summarized below: 
+      </p>
+      <p>
+        Batch 2 Sequence Testing Result Summary
+      </p>
+      <div class="w-full overflow-auto">
+        <table class="entrepreneurship">
+          <tr>
+            <th>Sequence ID</th>
+            <th>306</th>
+            <th>741</th>
+            <th>1670</th>
+            <th>4089</th>
+            <th>5276</th>
+            <th>5727</th>
+            <th>6769</th>
+            <th>9371</th>
+          </tr>
+          <tr>
+              <td>Visible colonies?</td>
+              <td style="background-color: #FF7F7F;">No</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td style="background-color: #FF7F7F;">No</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td style="background-color: #90ee90;">Yes</td>
+          </tr>
+          <tr>
+              <td>Verified by whole plasmid sequencing?</td>
+              <td>N/A</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td>N/A</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td style="background-color: #90ee90;">Yes</td>
+              <td style="background-color: #FF7F7F;">No</td>
+              <td style="background-color: #90ee90;">Yes</td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        The pColE1 wild-type oriV was also confirmed to be functional. The following is a whole plasmid sequencing 
+        result showing 100% alignment between the eforRed/eforCP + 9371 sequence in silico assembly and the isolated 
+        plasmid:
+      </p>
+      <p>
+        These results demonstrates our proof of concept, indicating that the AI model generated functional oriVs which 
+        allow the plasmids to replicate in vivo. Currently, we are testing batch 3 of the AI-generated sequences, which 
+        includes both oriVs and ARGs.
+      </p>
+    </div>
   {{ subheading('Safety') }}
   {{ subheading('Lab Spaces') }}
     <div>

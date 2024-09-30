@@ -1,6 +1,75 @@
 {% extends "layout/layout.html" %}
-  
+{% set add_sidebar = true %}
 
 {% block article_content %}
-  Text
+{{ heading("Software") }}
+
+<div>
+    <p>
+        We have published our trained models and pipeline for public use.
+    </p>
+</div>
+
+{{ subheading("Repository Setup") }}
+<div>
+    <p>
+        The plasmid-lm GitHub repository can be found at <a href="https://github.com/igem-toronto/plasmid-lm">(plasmid-ai)</a>.
+    </p>
+    <p>
+        Our iGEM GitLab submission (containing the same files) can be found at: <a href="https://gitlab.igem.org/2024/software-tools/utoronto">(plasmid-ai)</a>
+    </p>
+    <p>
+        Cloning the repository:
+    </p>
+    <pre><code>git clone https://github.com/igem-toronto/plasmid-lm</code></pre>
+    <p>
+        Downloading the dependencies:
+    </p>
+    <pre><code>conda env create -f environment.yml</code></pre>
+    <p>
+        The plasmid sequences which have been used for training can be downloaded with:
+    </p>
+    <pre><code>cd data 
+gdown "1iIsat00ST5vK-06BUstuTbJkfWKpV2lE" 
+gzip -d 240212_plasmid_seq_54646.fasta.gz
+mv 240212_plasmid_seq_54646.fasta plasmids.fasta</code></pre>
+</div>
+
+{{ subheading("Repository Structure") }}
+<div>
+    <p>
+        The repository's structure represents the development pipeline which was followed, including (1) the initial data collection, (2) the BPE tokenizer, (3) the training of our models (Mamba, MambaV2, Evo), (4) the generation process for three batches of plasmid sequences, and (5) the refinement of these sequences, through a validation process which notably identifies sequences of interest and refines the aforementioned generated plasmids.
+    </p>
+    <p>
+        The repository structure is split into three main folders.
+    </p>
+    <ol>
+        <li>The <strong>data/</strong> folder contains the tokenizers, as well as the scripts which can be used to run them.</li>
+        <li>The <strong>slurm/</strong> folder contains scripts necessary to interact with slurm on Compute Canada, which are a set of canadian GPU clusters.</li>
+        <li>The <strong>src/</strong> folder contains the codebase of the models, which was trained with Torch Lightning.
+            <ol>
+                <li><strong>src/datasets</strong> contains the Dataset and DataLoaders, two modules which help format and organize the data for training.
+                    <ul>
+                        <li>These data loaders include plasmid.py and replicon.py.</li>
+                        <li>The utils.py file contains the necessary script to enable the usage of the tokenizer.</li>
+                    </ul>
+                </li>
+                <li><strong>src/experimental</strong> contains the model itself. lit.py contains the LitLLM class, which is the main module of the torch lightning model where the sequence model and its training loop are defined.
+                    <ul>
+                        <li>To train a model, one may also use the train.py file which contains the essential code to train the first version (mamba v1) of the model</li>
+                        <li>Other files, such as callbacks.py, optimizers.py and sample.py serve to define different sets of hyperparameters within the model training.</li>
+                    </ul>
+                </li>
+                <li><strong>src/validation</strong> contains the non-exhaustive list of essential scripts which were used to refine and locate different regions of interest within the plasmid sequences.
+                    <ul>
+                        <li>batch-wide_analysis/mobsuite_analysis.py contains the code to perform holistic useful analysis to calculate metrics such as GC content in the batch.</li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+    </ol>
+    <p>
+        This repository represents the largest open source toolkit with scripts that can be used for every step of the plasmid sequencing pipeline.
+    </p>
+</div>
 {% endblock %}

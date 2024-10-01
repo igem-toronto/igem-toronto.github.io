@@ -1,0 +1,53 @@
+{% macro carousel_navigation(var, num_slides) -%}
+<div class="flex justify-around items-center">
+    <button
+        :class="{
+            'opacity-10': {{ var }} === 0,
+            'hover:opacity-40': {{ var }} !== 0
+        }"
+        @click="{{ var }} = Math.max({{ var }} - 1, 0)"
+        class="rotate-180 text-3xl duration-300">
+        ➤
+    </button>
+    <div class="flex gap-2">
+        <template x-for="i in {{ num_slides }}">
+            <button
+                class="h-3 w-3 rounded-full duration-200"
+                :class="{
+                    'bg-accent-muted-purple': {{ var }} + 1 !== i,
+                    'opacity-40': {{ var }} + 1 !== i,
+                    'bg-accent-saturated-purple': {{ var }} + 1 === i,
+                }"
+                @click="{{ var }} = i - 1"
+                ></button>
+        </template>
+    </div>
+    <button
+        :class="{
+            'opacity-10': {{ var }} + 1 === {{ num_slides }},
+            'hover:opacity-40': {{ var }} + 1 !== {{ num_slides }}
+        }"
+        @click="{{ var }} = Math.min({{ var }} + 1, {{ num_slides }} - 1)"
+        class="text-3xl duration-200">
+        ➤
+    </button>
+</div>
+{%- endmacro %}
+
+
+{#
+    Sample on how to use the carousel. You can just copy and past this and add more pages with div and increasing galleryIndex
+    <div x-data="{ galleryIndex: 0 }"></div>
+        <div x-show="galleryIndex === 0" class="w-full p-8">
+            Page A
+        </div>
+        <div x-show="galleryIndex === 1" class="w-full p-8 break-words">
+            B Side
+        </div>
+        <div x-show="galleryIndex === 2" class="w-full p-8 break-words">
+            C Section
+        </div>
+       {{ carousel_navigation("galleryIndex", 3) }}
+    </div>
+
+#}

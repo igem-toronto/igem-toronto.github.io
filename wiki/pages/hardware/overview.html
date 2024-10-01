@@ -22,6 +22,32 @@
   <p>
     sföjgakldfjö
   </p>
-  {{ img(cdn("assets/graphics/home-futuristic.png"), alt="An image") }}
 </div>
+
+  {{ subheading("Models") }}
+    <model-viewer
+      class="w-full min-h-96 my-8"
+      src="{{ url_for('static', filename = 'models/expanded.gltf') }}"
+      alt="Oxidation Chamber"
+      camera-controls
+      touch-action="pan-y"></model-viewer>
+  <model-viewer
+    class="w-full min-h-96 my-8"
+    src="{{ url_for('static', filename = 'models/top-plate.gltf') }}"
+    alt="Oxidation Chamber"
+    camera-controls
+    touch-action="pan-y"></model-viewer>
+  <model-viewer
+    class="w-full min-h-96 my-8"
+    src="{{ url_for('static', filename = 'models/top-rack.gltf') }}"
+    alt="Oxidation Chamber"
+    camera-controls
+    touch-action="pan-y"></model-viewer>
+  <model-viewer
+    class="w-full min-h-96 my-8"
+    src="{{ url_for('static', filename = 'models/vertical-plate.gltf') }}"
+    alt="Oxidation Chamber"
+    camera-controls
+    touch-action="pan-y"></model-viewer>
+
 {% endblock %}

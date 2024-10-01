@@ -1,18 +1,6 @@
 [
   {
-    "text": "Team",
-    "sublinks": [
-      {
-        "text": "Introduction",
-        "link": "team"
-      },
-      {
-        "text": "Attributions"
-      }
-    ]
-  },
-  {
-    "text": "Project",
+    "text": "Research",
     "sublinks": [
       {
         "text": "Description"
@@ -31,9 +19,35 @@
       },
       {
         "text": "Hardware"
-      },
+      }
+    ]
+  },
+  {
+    "text": "Support",
+    "sublinks": [
       {
         "text": "Finance"
+      },
+      {
+        "text": "Outreach"
+      },
+      {
+        "text": "Sponsors"
+      }
+    ]
+  },
+  {
+    "text": "Team",
+    "sublinks": [
+      {
+        "text": "Members",
+        "link": "team"
+      },
+      {
+        "text": "Attributions"
+      },
+      {
+        "text": "Contribution"
       }
     ]
   },
@@ -42,8 +56,5 @@
   },
   {
     "text": "Entrepreneurship"
-  },
-  {
-    "text": "Sponsors"
   }
 ]

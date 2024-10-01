@@ -1,36 +1,24 @@
 {% extends "layout/layout.html" %}
-
-{% block banner %}
-{{ banner('Sponsors', 'iGEM Toronto is grateful to be be supported by our sponsors') }}
-{% endblock %}
-
-{% block article_content %}
+{% block content %}
+{{ heading("Sponsors") }}
+iGEM Toronto is grateful to be be supported by our sponsors.
 <div class="flex items-center justify-center flex-wrap">
-    <div class="p-5 flex items-center flex-col">
-        <img src="{{ url_for('static', filename='logo-idt.png') }}" class="-my-10" width="300px" alt="Integrated DNA Technologies" />
-        <div class="p-1 my-2 w-48 rounded-md bg-yellow-500 text-sm text-center text-white">
-            Gold Tier
-        </div>
-    </div>
-    <div class="p-5 flex items-center flex-col">
-        <img src="{{ url_for('static', filename='logo-genscript.jpg') }}" width="300px" alt="Genscript" />
-        <div class="p-1 my-2 w-48 rounded-md bg-yellow-500 text-sm text-center text-white">
-            Gold Tier
-        </div>
-    </div>
-    <div class="p-5 flex items-center flex-col">
+    <div class="p-5">
         <img src="{{ url_for('static', filename='logo-snapgene.svg') }}" width="300px" alt="Snapgene" />
-        <div class="p-1 my-2 w-48 rounded-md bg-zinc-400 text-sm text-center text-white">
-            Silver Tier
-        </div>
     </div>
-    <div class="p-5 flex items-center flex-col">
+    <div class="p-5">
+        <img src="{{ url_for('static', filename='logo-genscript.jpg') }}" width="300px" alt="Genscript" />
+    </div>
+    <div class="p-5">
         <img src="{{ url_for('static', filename='logo-uoft-lmp.png') }}" width="300px" alt="University of Toronto - Laborator Medicine and Pathobiology" />
     </div>
-    <div class="p-5 flex items-center flex-col">
+    <div class="p-5">
         <img src="{{ url_for('static', filename='logo-luna_nanotech.webp') }}" width="300px" alt="Luna Nanotech" />
     </div>
-    <div class="p-5 flex items-center flex-col">
+    <div class="p-5">
+        <img src="{{ url_for('static', filename='logo-idt.png') }}" width="300px" alt="Integrated DNA Technologies" />
+    </div>
+    <div class="p-5">
         <img src="{{ url_for('static', filename='logo-assu.png') }}" width="300px" alt="ASSU" />
     </div>
 </div>

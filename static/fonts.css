@@ -1,167 +1,17 @@
 @font-face {
     font-family: "Inter";
-    src: url("Inter-VariableFont_slnt,wght.ttf") format("truetype");
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-100-italic.ttf") format("truetype");
-    font-weight: 100;
-    font-style: italic;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-200.ttf") format("truetype");
-    font-weight: 200;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-200-italic.ttf") format("truetype");
-    font-weight: 200;
-    font-style: italic;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-300.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-300-italic.ttf") format("truetype");
-    font-weight: 300;
-    font-style: italic;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-400.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-400-italic.ttf") format("truetype");
-    font-weight: 400;
-    font-style: italic;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-500.ttf") format("truetype");
-    font-weight: 500;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-500-italic.ttf") format("truetype");
-    font-weight: 500;
-    font-style: italic;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-600.ttf") format("truetype");
-    font-weight: 600;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-600-italic.ttf") format("truetype");
-    font-weight: 600;
-    font-style: italic;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-700.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-700-italic.ttf") format("truetype");
-    font-weight: 700;
-    font-style: italic;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-800.ttf") format("truetype");
-    font-weight: 800;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-800-italic.ttf") format("truetype");
-    font-weight: 800;
-    font-style: italic;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-900.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Jost";
-    src: url("https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-900-italic.ttf") format("truetype");
-    font-weight: 900;
-    font-style: italic;
-    font-display: block;
-}
-
-
-@font-face {
-    font-family: "Playfair Display";
-    src: url("PlayfairDisplay-Italic-VariableFont_wght.ttf") format("truetype");
+    src: url("fonts/Inter.ttf") format("truetype");
     font-display: block;
 }
 
 @font-face {
     font-family: "Roboto Mono";
-    src: url("RobotoMono-VariableFont_wght.ttf") format("truetype");
-    font-display: block;
-}
-
-@font-face {
-    font-family: "Roboto Mono";
-    font-weight: 900;
-    src: url("RobotoMono-VariableFont_wght.ttf") format("truetype");
+    src: url("fonts/RobotoMono.ttf") format("truetype");
     font-display: block;
 }
 
 @font-face {
     font-family: "Roboto";
-    src: url("Roboto-Bold.ttf") format("truetype");
+    src: url("fonts/Roboto.ttf") format("truetype");
     font-display: block;
 }

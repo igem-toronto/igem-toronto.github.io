@@ -1,5 +1,4 @@
 {% extends "layout/subpage.html" %}
-<!-- ARBEIT: add links to scripts in gitlab and to neighboring pages.-->
 {% block article_content %}
 <div>
   {{ heading("Lab Management") }}
@@ -63,7 +62,7 @@
         <br>
         <i>Integration</i>
         <br>
-        This product system is inherently complicated as it involves multiple remote devices that must act in concert to fulfill its purpose. The team drew inspiration from Git’s four-step check-in/check-out system to implement a conceptually similar check-in/out workflow. Integration over multiple devices was achieved through a set of protocols and contracts.
+        This product system is inherently complicated as it involves multiple remote devices that must act in concert to fulfill its purpose. The team drew inspiration from Git's four-step check-in/check-out system to implement a conceptually similar check-in/out workflow. Integration over multiple devices was achieved through a set of protocols and contracts.
         <br>
         Protocols are specific, large-scale tasks designed to be done in sequence and achieve a specific function. One example is registration, where new samples are keyed in and stored in a rack. Registering a sample follows a specific set of steps, the order of which all devices involved must know and participate in correctly.
         <br>
@@ -151,12 +150,12 @@
     {{ subsubheading("Methods") }}
     <div>
       <p>
-        For further information on developing the components, circuitry, microcontroller scripts, and GUI endpoint, refer to:
+        For further information on developing the components, circuitry, microcontroller scripts, and GUI endpoint, <b>in the sidebar</b> refer to:
       </p>
       <ul>
-        <li> neighboring page link for the CAD work, including stl files;</li>
-        <li> neighboring page link for the microcontroller scripts, including circuit diagrams;</li>
-        <li> neighboring page link for the GUI endpoint</li>
+        <li> CAD and circuitry for the CAD work, including stl file visualisations and circuit diagrams;</li>
+        <li> Microcontroller Programming for the microcontroller scripts, including circuit diagrams;</li>
+        <li> Graphical User Interface Design for the GUI endpoint.</li>
       </ul>
       
       <p>
@@ -359,7 +358,7 @@
       </ul>
       <div>Rack Well</div>
       </p>
-      <table>
+      <table class="entrepreneurship">
         <tbody>
           <tr>
             <td>_id</td>
@@ -379,7 +378,7 @@
       </table>
       <br>
       <p>RFID Chips</p>
-      <table>
+      <table class="entrepreneurship">
         <tbody>
           <tr>
             <td>_id</td>
@@ -610,7 +609,9 @@
         int milliseconds = 0;
         char curTime[30];
       
-        snprintf(curTime, sizeof(curTime), &quot;%04d-%02d-%02dT%02d:%02d:%02d.%03d+00:00&quot;, rtc.getYear(), rtc.getMonth(), rtc.getDay(), rtc.getHours(), rtc.getMinutes(), rtc.getSeconds(), milliseconds);
+        snprintf(curTime, sizeof(curTime), &quot;%04d-%02d-%02dT%02d:%02d:%02d.%03d+00:00&quot;,
+         rtc.getYear(), rtc.getMonth(), rtc.getDay(), rtc.getHours(),
+         rtc.getMinutes(), rtc.getSeconds(), milliseconds);
       
         DynamicJsonDocument payload_db(1024);
         payload_db[&quot;filter&quot;][&quot;RFID no&quot;] = RFID;
@@ -632,7 +633,7 @@
       <ol type="1" start="6">
         <li>Hardware Assembly</li>
       </ol>
-      <p>The wiring connections, including the connections between the microcontrollers, RFID reader, and RTC clock, are shown in the schematic in a neighboring page.</p>
+      <p>The wiring connections, including the connections between the microcontrollers, RFID reader, and RTC clock, are shown in the wiring diagram under CAD and circuitry (See sidebar).</p>
       <ol type="1" start="7">
         <li>Testing Procedures</li>
       </ol>

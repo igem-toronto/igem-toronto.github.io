@@ -29,23 +29,23 @@
         The combined product system consists of a rack with IR (infrared) proximity sensors, LEDs, and a wireless-enabled microcontroller (Arduino Uno Wifi Rev2), a RFID reader assembly with a wireless-enabled microcontroller (Arduino MKR Wifi 1010), an MQTT broker, a MongoDB database server, and a GUI endpoint. This architecture is adapted from {{cite('baird2023building')}}, which was originally intended for use in self-driving labs.
         <br><br>
         <i>Overall product system</i>
-        {{img(cdn("hardware/ screenshot-2024-08-25-195053.png")), width="80%"}}<br>
+        {{img(cdn("hardware/ screenshot-2024-08-25-195053.png"), width="80%")}}<br>
         Figure 1. Overall product system process diagram.
         <br><br>
         <i>Rack</i>
-        {{img(cdn("hardware/thumbnail-image0.jpg")), width="80%"}}
+        {{img(cdn("hardware/thumbnail-image0.jpg"), width="80%")}}
         Figure 2. Rack system fabricated by team.
         <br>
         The rack is a 3D-printed assembly augmented with electronics, including sensors and microcontrollers. IR sensors are used to detect the presence of tubes in wells. One IR sensor is required per rack well. The team used the GP2Y0A51SK0F IR sensor as it has a suitable detection range and can withstand temperatures of up to -20C. {{cite('Sharp_Electronics_2011')}} LEDs are used to cue users on which wells to pick up or drop samples in. The microcontroller, an Arduino Uno Wifi Rev2, was chosen because of its relatively large number of pins and its ability to communicate over enterprise networks. Most university networks are enterprise networks, requiring a username and password to log into. A 9V battery is required to power the Arduino.
         <br><br>
         <i>RFID reader</i><br>
-        {{img(cdn("hardware/thumbnail-image1.jpg")), width="80%"}}
+        {{img(cdn("hardware/thumbnail-image1.jpg"), width="80%")}}
         Figure 3. RFID reader system devised by team.
         <br>
         The RFID reader assembly is an MFRC522 MIFARE RFID reader (15.6 MHz) connected to an Arduino MKR Wifi 1010 {{cite('Arduino_2024')}}. In this case, a different Arduino is chosen due to its ability to communicate over enterprise networks, 3.3V logic (the RFID reader operates at 3.3V), built-in real time clock (RTC), and greater amount of RAM.
         <br><br>
         <i>GUI endpoint</i>
-        {{img(cdn("hardware/screenshot-2024-09-06-011740.png")), width="80%"}}
+        {{img(cdn("hardware/screenshot-2024-09-06-011740.png"), width="80%")}}
         <br>
         To provide a means of interacting with the product system, the team designed a GUI endpoint to enable user-friendly interaction with the product system. The GUI endpoint displays the state of all wells and racks, allows interaction with indicated racks, and displays information on each sample held in each well. Multiple GUI endpoints may be safely run at a time.
         <br><br>

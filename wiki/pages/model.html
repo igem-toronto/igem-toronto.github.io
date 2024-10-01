@@ -210,9 +210,7 @@
 <div>
     <p>
         Our natural bacterial plasmid dataset consists of 137,041 circular plasmid sequences derived from single
-        origins. The sequences were curated from public databases like PLSDB and IMG/PR {{
-        cite('Schmartz') }} {{
-        cite('Camargo')}}, and are filtered based on
+        origins. The sequences were curated from public databases like PLSDB and IMG/PR {{ cite('Schmartz') }} {{ cite('Camargo') }}, and are filtered based on
         plasmid topology (e.g., circular vs linear) and source type.
     </p>
 </div>
@@ -260,7 +258,7 @@
     </p>
     <p>
         Our training objective follows the next-token prediction paradigm, similar to language model training. In this
-        approach, the model learns to predict the next token in the sequence [cite ntp] given the preceding tokens. This
+        approach, the model learns to predict the next token in the sequence given the preceding tokens. This
         method enables the model to learn the underlying patterns and structures of plasmid sequences, capturing both
         local and global features of plasmid organization.
     </p>
@@ -286,8 +284,8 @@
     <p>
         This training approach enables our model to first capture general plasmid structures and then specialize in
         generating plasmids relevant to our specific research focus, striking a balance between generalizability and
-        specificity. This is the paradigm in many cutting-edge machine learning models such as AlphaFold {{
-        cite('AlphaFold_and_beyond_2023') }}. The fine-tuning process allows for targeted generation of plasmids with
+        specificity. This is the paradigm in many cutting-edge machine learning models such as AlphaFold
+        {{ cite('AlphaFold_and_beyond_2023') }}. The fine-tuning process allows for targeted generation of plasmids with
         desired characteristics,
         which demonstrates our model’s potential for genomics applications.
     </p>
@@ -303,8 +301,8 @@
     <p>
         During inference, we generate novel plasmid sequences through a carefully designed process. We initiate sequence
         generation with the CLS token, signaling the start of a new sequence. We then utilize nucleus sampling to
-        predict the next tokens within the sequence, ultimately generating many plasmid sequences in parallel {{
-        cite('Holtzman2020The') }}. This
+        predict the next tokens within the sequence, ultimately generating many plasmid sequences in parallel
+        {{ cite('Holtzman2020The') }}. This
         is the sampling method of choice for many large language models which can also control the diversity of
         generated samples, allowing us to trade off sample quality with diversity.
     </p>
@@ -344,8 +342,7 @@
 
     </p>
     <p>
-        Firstly, single-linkage clustering by MASH distance {{
-        cite('Ondov') }} was performed on all the generated
+        Firstly, single-linkage clustering by MASH distance {{ cite('Ondov') }} was performed on all the generated
         sequences. This
         revealed relations that exist within a batch of sequences. Next, to shed light on the relation between a batch
         and known plasmid sequences, we used BLAST to calculate the alignment score between sequences in our batch and
@@ -375,8 +372,8 @@
         Theta-replicating plasmids can be classified based on their replication initiation mechanisms. Of the many
         existing classes, this project mostly concerns Class A and Class B plasmids {{ cite('Lilly_Camps_2015')}}.
         <br>
-        Class A theta plasmids rely on plasmid-encoded Replication proteins (Rep proteins) to initiate replication {{
-        cite('Lilly_Camps_2015') }}.
+        Class A theta plasmids rely on plasmid-encoded Replication proteins (Rep proteins) to initiate replication
+        {{ cite('Lilly_Camps_2015') }}.
         The replication of Class A plasmids is complex and rep proteins are not well documented. In contrast, Class B
         theta plasmids undergo a simpler replication mechanism. They do not require any Rep proteins and instead rely on
         host machinery for their replication initiation. Since only RNA II and a P2 promoter are required, Class B
@@ -409,8 +406,8 @@
     <p>
         The first step in our generated sequence alignment pipeline was to align our generated sequences to an ori
         database and select those generated sequences with a high but less than 100% alignment to a wildtype ori from
-        the doriC {{ cite('Dong_Luo_Gao_2022') }} database. MMseqs2 {{ cite('Steinegger_Söding_2017') }} and BLAST+ {{
-        cite('Camacho_Coulouris_Avagyan_Ma_Papadopoulos_Bealer_Madden_2009') }} were used to align the sequences. These
+        the doriC {{ cite('Dong_Luo_Gao_2022') }} database. MMseqs2 {{ cite('Steinegger_Söding_2017') }} and BLAST+
+        {{ cite('Camacho_Coulouris_Avagyan_Ma_Papadopoulos_Bealer_Madden_2009') }} were used to align the sequences. These
         generated sequences were then passed into the annotation phase of our pipeline.
     </p>
 </div>
@@ -444,9 +441,8 @@
     <p>
         Typically, protein sequences are detected and validated in silico by comparing the distribution of generated
         sequences to natural controls using alignment-derived scores. We experimented with commonly used homology search
-        techniques such as BLAST and MmSeq2 against the 2023 Comprehensive Antibiotic Resistance Database (CARD) {{
-        cite('Alcock2022') }} to
-        search for antimicrobial resistance proteins (AMR). However, there were two problems with this approach. First,
+        techniques such as BLAST and MmSeq2 against the 2023 Comprehensive Antibiotic Resistance Database (CARD)
+        {{cite('Alcock2022') }} to search for antimicrobial resistance proteins (AMR). However, there were two problems with this approach. First,
         the homology alignment did not take into account the issue of overfitting commonly seen in generative models, in
         which the model produces sequences that mimic too closely those seen in the training set. Second, the relatively
         high threshold of 75% similarity matches would leave out potentially viable proteins that can attest to the
@@ -460,12 +456,11 @@
         threshold, a lower percentage of coverage to a reference length of 20% is applied, and the selected ORFs are
         extended by a flanking sequence of 100 bp length along the 5’ direction of the coding sequence. The cutoff of
         20% was chosen to benchmark our model against a current state-of-the-art large language protein generation
-        model, ProGen, as it is the lowest percentage sequence identity of ProGen’s generated proteins {{
-        cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et_al._2023') }}. This lower
+        model, ProGen, as it is the lowest percentage sequence identity of ProGen’s generated proteins
+        {{cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et_al._2023') }}. This lower
         score also allows for the inclusion of artificial sequences that diverge from natural sequences. Second, using
-        NCBI’s AMRFinderPlus database {{
-        cite('Feldgarden_Brover_Gonzalez-Escalona_Frye_Haendiges_Haft_Hoffmann_Pettengill_Prasad_Tillman_et_al._2021')
-        }}, we used BLAST against both the “core” and “plus” proteins collection, as well
+        NCBI’s AMRFinderPlus database
+        {{ cite('Feldgarden_Brover_Gonzalez-Escalona_Frye_Haendiges_Haft_Hoffmann_Pettengill_Prasad_Tillman_et_al._2021') }}, we used BLAST against both the “core” and “plus” proteins collection, as well
         as filtered for genes specific to E. coli to ensure consistency with plasmid design. The “core” and “plus”
         protein collection includes not only AMR, but also stress response factors (biocide, metal, heat resistance),
         virulence factors, antigens and porins. Overall, these design choices contribute to a protein validation
@@ -1007,11 +1002,11 @@
     <p>
         We initially explored using a diffusion model to facilitate plasmid generation. Diffusion models are a class of
         deep generative models which operate by iteratively adding noise to input data over many steps, and then
-        learning to denoise the corrupted data back into the original data {{ cite("pmlr-v37-sohl-dickstein15") }} {{
-        cite("NEURIPS2020_4c5bcfec")}}. In our context, this would allow the
+        learning to denoise the corrupted data back into the original data {{ cite("pmlr-v37-sohl-dickstein15") }}
+        {{ cite("NEURIPS2020_4c5bcfec")}}. In our context, this would allow the
         generation of a plasmid from random noise at inference time. In particular, we attempted an approach called
-        discrete diffusion, a type of diffusion model designed to operate on discrete data {{
-        cite('NEURIPS2021_958c5305') }} {{ cite('hoogeboom2022autoregressive') }}. However, we found that
+        discrete diffusion, a type of diffusion model designed to operate on discrete data
+        {{ cite('NEURIPS2021_958c5305') }} {{ cite('hoogeboom2022autoregressive') }}. However, we found that
         this type of modeling was not well-suited to our task and abandoned this line of work.
 
     </p>

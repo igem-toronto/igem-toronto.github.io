@@ -66,7 +66,7 @@
     for beta-lactamase and thus conferring Amp antibiotic resistance.
   </p>
   <p>
-    <u>Positive Control</u><br />
+    <b><u>Positive Control</u></b><br>
     The positive control served to validate the wet lab team’s experimental approach of cloning dry lab <i>oriV</i>s into
     functional backbones to test their functionality. Here, this control is carried out by cloning a known working <i>oriV</i>
     (pJump27) into eforRed/eforCP Biobrick K592012 using GGA. This would theoretically create a construct that confers
@@ -82,7 +82,7 @@
     using the Dry Lab-generated sequences.
   </p>
   <p>
-    <u>Negative Control</u><br />
+    <b><u>Negative Control</u></b><br>
     The negative controls are made by transforming competent E. <i>coli</i> cells with a functional plasmid lacking an <i>oriV</i>
     sequence. The negative control contains only a linear plasmid backbone without an ori, since it has not been cloned
     and annealed to anything. When assembled and plated onto Amp plates, these cells will theoretically die as they have
@@ -97,7 +97,7 @@
 {{ subsubheading('2. Cell Preparation') }}
 <div>
   <p>
-    <u>LB Amp agar plates</u><br>
+    <b><u>LB Amp agar plates</u></b><br>
     Before beginning transformations, it is important to prepare nutrient rich plates with the correct antibiotic
     conditions to ensure only E. <i>coli</i> DH5ɑ that have successfully taken up the designed plasmid with antibiotic
     resistance (i.e. successfully transformed) can grow. DH5ɑ competent E. <i>coli</i> cells were used for the transformation.
@@ -108,7 +108,7 @@
     up to room temperature to facilitate their growth.
   </p>
   <p>
-    <u>Competent Cells</u><br>
+    <b><u>Competent Cells</u></b><br>
     In our experiment, we used E <i>coli</i> DH5α cells due to their high efficiency in transformation and stable amplification
     {{ cite('Kostylev2015') }}. These cells were stored at -80°C and subsequently thawed on ice before use. To initiate
     the transformation, we added the assembled plasmid, containing the <i>oriV</i> drylab generated sequence with the eforCP
@@ -192,7 +192,8 @@
     We will be using double antibiotic plates, which includes CmR, our antibiotic selection marker, and Amp.
   </p>
 </div>
-{{ subheading('Experiments') }} {{ subsubheading('Preliminary experiments (Controls)') }}
+{{ subheading('Experiments') }} 
+{{ subsubheading('Preliminary experiments (Controls)') }}
 <div>
   <p>
     We began with validating our positive control experiment using the pSB1C3 device and the <i>oriV</i> from the pJUMP27-1A
@@ -233,17 +234,17 @@
 </div>
 {{ subheading('Results') }}
 <div>
+ {{ subsubheading('Controls') }}
   <p>
-    <u>Controls</u><br />
     We first began by assembling and validating our positive and negative controls. After switching over to the
     eforRed_eforCP vector, we amplified the positive control pJUMP27 insert and verified via agarose gel electrophoresis
     its correct size of 1.6 kb before purifying, transforming, and plating.
   </p>
-  <div style="margin: auto; width: 50%; height: auto;">
+  <div style="margin: auto; width: 20%; height: auto;">
     {{ img(new_cdn("wetlab/pjump27-gel.webp"), alt="") }}
   </div>
   <p>
-    <u>Batch 1</u>
+ {{ subsubheading('Batch 1') }}
   </p>
   <p>
     Unfortunately, numerous attempts at transforming the first batch of AI-generated sequences did not produce viable
@@ -259,7 +260,7 @@
     functional.
   </p>
   <p>
-    <u>Batch 2</u>
+ {{ subsubheading('Batch 2') }}
   </p>
   <p>
     After completing the required workflow to prepare the inserts, we introduced our second batch of plasmids into E.
@@ -457,8 +458,8 @@
 </div>
 {{ subheading('Proof of concept') }}
 <div>
+ {{ subsubheading('Positive Control') }}
   <p>
-    <b>Positive Control</b><br />
     The <i>oriV</i> from the pJUMP27-1A (BBa_J428326) vector was cloned into the eforRed/eforCP (BBa_J435099) backbone and
     transformed into E. <i>coli</i> DH5a, which generated visible colonies. This functioned as a positive control and confirmed
     that <i>oriV</i>s are modular.
@@ -466,8 +467,8 @@
   <div>
   {{ img(new_cdn("wetlab/screenshot-2024-10-01-at-08-39-57.webp"), alt="") }}
   </div>
+ {{ subsubheading('5 Functional Sequences') }}
   <p>
-    <b>5 Functional Sequences</b><br />
     After testing batch 1 of the AI-generated <i>oriV</i>s, we found no functional sequences as no visible colonies were seen.
     Upon testing batch 2 sequences, we found 5 functional sequences, summarized below:
   </p>

@@ -13,6 +13,127 @@
 {% block article_content %}
 {{ heading("Plasmid Generation using Machine Learning") }}
 
+<style>
+    .dna-gallery {
+        font-family: Arial, sans-serif;
+        max-width: 750px;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .dna-sequence {
+        background-color: white;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .sequence-id {
+        font-weight: bold;
+        color: #fff;
+        background-color: #a175ff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        display: block;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .sequence-content {
+        font-family: monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .gallery-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+
+    .gallery-button {
+        background-color: #e2deff;
+        border: none;
+        color: #9e6aff;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+    .gallery-button:hover {
+        background-color: #dbc5ff;
+    }
+
+    .gallery-button:disabled {
+        background-color: #e6e6e6;
+        color: #999;
+        cursor: not-allowed;
+    }
+</style>
+
+<script>
+    const batch1 = [
+        { id: "Seq6835", sequence: "TGGCGGCGAGAAACATCGGGCAGCGGTAAGCGCCATGCCCGTGATACCCGGAGGAGGGCCGGAAACCGCAAAGACATGCTTATGGCTGTTTATCTCCGGCACTGATGCCGCATGGTTAAGCCAGTATACACTCCGCTATCGCTACGTGACTGGGTCAGGGCTGCGCCCCGACACCCGCTAAAACCTGCTGACGCGCCCTGACGGGCTTGTCAGCTCCCGGCATCCGCTCACAGACAAGCTGTGACCGTCTCCGGGAGCTGCATGTGTCAGAGGTTTTCACCGTCATCCCCGAAACGTGCGAGGCAGCTGCGGTAAAGCTCATCGGCGTGGTCGTGAAGCGATTCACAAATATCGGCCTGTTCATCTGCGTCCAGTTCGTTGAGCTTCTCCAGCAGCGTTAATGTCTGGCTTCTGATAAAGCGGGCCATGTTAAGGGCGGTTTTTTCCTGTTTAGTCACTGATGCCTCCGTGTAAGGGGGATTTCTGTTCATGGGGTAATGATACCGATGAAACGCGAGAGGATGCTCACGATACGGGTTACTGATGATGAACATGCAC" },
+        { id: "Seq4507", sequence: "GCCAGTCCTGAAACGGAAACAGCACCTTCGGCAACCGCACCCGGTATCAGTCTGAAAGGAAAGGCGCCATCAAATAGTCCCGGGGAATAACCATTCCGACAGGTGGGGGTTTTCCATAGGCTCCGCCCCCCTGACAAGCATCACGAAATCTGACGCTCAAATCAGTGGTGGCGAAACCCGACAGGACTTAAAGATACCAGGCGTTTCCCCCTGGTGGCTCCCTCGTGCGCTCTCCTGTTCCTGCCTTTCGGTTTACCGGTGTCATTCCGCTGTTATGGCCGCGTTTATCTCATTCCACGCCTGACACTCAGTTCCGGGTAGGCAGTTCGCTCCAAGCTGGACTGTATGCACGAACCCCCCGTTCAGTCCGACTGCTGCGCCTAATCCGGTAAACAGATTAAGCGCACTCAGCGCAGTCAATACGATACCGAAAGTACCGCGCACCGCCGTGCAATTCAATGGCTGCTTCACGTTCTTCTTCAACCGGATTAA" },
+        { id: "Seq7890", sequence: "GACGAGAAGCGACACCCCTGGCGGATCCGGGCGACGGAGGAGTAAATTTCCCCCTCTTTCCTGCCAGAGCGGGATATCGTTTATGTCTCTTCAACAGGGCAAAAACAGACGCTCAAATCAGTGGTGGCGAAACCCGATGCGGCTTAAAGATACCAGGCGTTTCCCCCTGGTGGCTCCCTCGTGCGCTCTCCTGTTCCTGCCTTTCGGTTTACCGGTGTCATTCCGCTGTTATGGCCGCGTTTATCTCATTCCACGCCTGACACTCAGTTCCGGGTAGGCAGTTCGCTCCAAGCTGGACTGTATGCACGAACCCCCCGTTCAGTCCGACTGCTGCGCCTGTTCCGGTAACTATCGACTTGAGTCCAACCCGGAAAGACACGACAAAGCGCCACTGGCAGCAGCCACTGGTAACGCGGAAGAGAAATTATGGTGAAGAAAAAGAGTAAAGGCGATATCAGCGAGTTGGGGCATGGTGTTAACTCGCGAGTTTTTAGAGAAAATACCGTGAGCTG" },
+        { id: "Seq4091", sequence: "CGCCCTGTGAGGGGTTTTGACCCTTGTATGTCTGGTTGACCACTTCACACCCGAGGGGTCAATTCATCAGTCCGTTTGCCCCTCCCCCTCCCTGTGCTATTCCGGGTTGGACTCAAGATGATAGTTACCGGACAAGGCGCAGCAGTCGGACTGAACGGGGGGTTCGTGCATACAGTCCAGCTTGGAGCGAACTGCCTACCCGGAACTGAGTGTCAGGCGTGGAATGAGATAAACGCGGCCATAACAGCGGAATGACACCGGTAAACCGAAAGGCAGGAACAGGAGAGCGCACGAGGGAGCCACCAGGGGGAAACGCCTGGTATCTTTAAGTCCTGTCGGGTTTCGCCACCACTGATTTGAGCGTCAGATTTCGTGATGTGCAATGTGATGGAGTGGTAATTCCGGGTGCGGTAAGAAGGCAATGGTCTTTGGTTGTTTTTGCTACAGTGAGTTACGCCGGTAGAAAAGTTTGTTTCCG" },
+    ];
+    const batch2 = [
+        { id: "Seq741", sequence: "AAGGATCTTCTTGAGATCCTTTCTGTGGCGTCGTAATCTCTTGCTCTGTAAACGAAAAAACCGCCCTGCAAGGCGGTTTTTCGAAGGTTCTCAGAGCAGCAACTCTTTGAACCGTGGTAACTGGCTTACGAGGAGCGCAGTAACCAAATCTGTTCTTTCAGTTTAGCCTTAACAGGCGCATAACTTCAAGACTAACTCCTCTAAATCAGTTACCAGTGGCTGCTGCCAGTGGCGATAAGTCGTGTCTTTCCGGGTTGGACTCAAGATGATAGTTACCGGATAAGGCGCAGCAGTCGGACTGAACGGGGGGTTCGTGCATACAGTCCATCCAGGAGCGAACTGCCTTCGCGGAACTGAGTGTCAGGCGTGGAATGAGATAAACGCGGCCATAACAGCGGAATGACACCGGTAAACCGAAAGGCAGGAATGCGGGGGAGCACGAGGGAGCCACCAGGGGGAAACGCCTGGTATCTTTAAGCCGCATCGGGTTTCGCCACCACTGATTTGAGCGTCAGATTTCATGATGTTTGTCAGGGGGGCGGAGCCTATGGAAAAACGGCTTCGCCGCGGCCTTATCTCTTCCCTGTTAAGCTCCTTCCTGGTATCTCCCAGGAAATTTCCGCCCCGCCTGTAAGCCGGCACCGCTCGCCGCAGCCGAACGACCGAGCGCAGCGAGTCAGTGAGCGAGGAAGCGGAATATATCCTGTACTACATATCCTGCTGACGCGCTGGTGCCGCCTTTTTTCTCCTGCTACATG" },
+        { id: "Seq4089", sequence: "AATTTATAAAGGATCTTCTTGAGATCCTTTTTTTTCGCGCGTAATCTCTTGCCCTGTAAACGAAAAAACCACCCTGGCAGGTGGTTTTTCGAAGGTTAGGTAATCCTGGCAGATCCCCTAACCGTGGTAACAGTCTTGTGCGAGACATGTCACCAAATTTGTCCTTTCAGTGTAGCCTCACTAAGGCCGCCACTTCAAGAACTCTTGATACATCTCTCGCACATCCTGTTTACCAATGGCCGTTGCCAATGGCGATTAGTCGTGTCTTTCCGGGTTGGACTCAAGTTGATAGTTACCGGATAAGGCGCAGCGGTCGGACTGAACGGGGGGTTCGTGCATACAGTCCATCCTGGAGCGAACTGCCTTCCCGGAACTGAGTGTCAGGCGTGGAATGAGAAACCGCGGCCATAACAGCGGAGTGACACCGGTAAACCGAAAGGCAGGAATGCGGGGGAGCACGAGGGAGCCACCAGGGGGAAACGCCTGGTATCTTTAAGCCGCATCGGGTTTCGCCACCACTGATTTGAGCGTCAGATTTCGTGATGCTTGTCAGGGGGGCGGAGCCTATGGAAAAACGGCTTTGCCGTGGCCTTATGCCTTTTTCGCTAAGAACCTTCCTGGCATTCTCCAGGAAATTTCTGCTCTGTACGTAAGCCCGTACCGCTCGCCGCAGCCGAACGACCGAGCGCAGCGAGTCAGTGAGCGAGGAAGCGGAATATCTCCTGTATCACATATTCTGCTGACGCACCGATGCCGCCTTTTTCTCCTGCCACATGAAGCACTTAACTGACATCCGCATCCGTGCCAACATATTAAGCCAGTATACACTCCGCTAGCGCTGCGTGACTGGTCCGGCGCTGCGCCCGGAACCCG" },
+        { id: "Seq5276", sequence: "CTTCTTGAGATCCTTTTTATCTGCGCGTAATCTCTTGCCCTGTAAACGAAAAAACCACCCTGGCAGGTGGTTTTTCGAAGGTTAGGTAATCCTGGCAGATCCCCTAACCGTGGTAACAGTCTTGTGCGAGACATGTCACCAAATTTGTCCTTTCAGTGTAGCCTCACTAAGGCCGCCACTTCAAGAACTCTTGAGACATCTCTCGCACATCCTGTTTGCCAATGGCCGTTGCCAATGGCGATTAGTCGTGTCTTTCCGGGTTGGACTCAAGTTGATAGTTACCGGATAAGGCGCAGCGGTCGGACTGAACGGGGGGTTCGTGCATACAGTCCATCCTGGAGCGAACTGCCTTCCCGGAACTGAGTGTCAGGCGTGGAATGAGAAACCGCGGCCATAACAGCGGAGTGACACCGGTAAACCGAAAGGCAGGAATGCGGGGGAGCACGAGGGAGCCACCAGGGGGAAACGCCTGGTATCTTTAAGCCGCATCGGGTTTCGCCACCACTGATTTGAGCGTCAGATTCTGTGATGCTTGTCAGGGGGGCGGAGCCTATGGAAAAACGGCTTTGGCGCGGCCTTATGCTTTCTTCGTTAAGTATCTTCCTGGCATCCCCCAGGAAATTTCTGATCCATCCGTAAGCCCGTCCCGCTCGCCGCAGCCGAACGACCGAGCGGAGCGAGTCAGTGAGCGAGGAAGCGGAATATATTCTGTATCACATTTTCTCCTGACGCGTTTTCTTTCACTTTCTGCGCCTGTCTTATGTGGCATTAATGCTATGTGTTACTGCCATGCTACATCTTAAGCCAGTATACACTCCGCTAGTGCTCCGTGACTGGTCCGGCGCTGCGCCCGGAACCCGC" },
+        { id: "Seq5227", sequence: "TCTTCTTGAGATCCTTTTTATCTGCGCGTAATCTCTTGCCCTGTAAACGAAAAAACCACCCTGGCAGGTGGTTTTTCGAAGGTTAGGTAATCCTGGCAGATCCCCTAACCGTGGTAACAGTCTTGTGCGAGACATGTCACCAAATTTGTCCTTTCAGTGTAGCCTCACTAAGGCCGCCACTTCAAGAACTCTTGAGACATCTCTCGCACATCCTGTTTGCCAATGGCCGTTGCCAATGGCGATTAGTCGTGTCTTTCCGGGTTGGACTCAAGTTGATAGTTACCGGATAAGGCGCAGCGGTCGGACTGAACGGGGGGTTCGTGCATACAGTCCATCCTGGAGCGAACTGCCTTCCCGGAACTGAGTGTCAGGCGTGGAATGAGAAACCGCGGCCATAACAGCGGAGTGACACCGGTAAACCGAAAGGCAGGAATGCGGGGGAGCACGAGGGAGCCACCAGGGGGAAACGCCTGGTATCTTTAAGCCGCATCGGGTTTCGCCACCACTGATTTGAGCGTCAGATTCTGTGATGCTTGTCAGGGGGGCGGAGCCTATGGAAAAACGGCTTTGGCGCGGCCTTATGCTTTCTTCGTTAAGTATCTTCCTGGCATCCCCCAGGAAATTTCTGATCCATCCGTAAGCCCGTCCCGCTCGCCGCAGCCGAACGACCGAGCGGAGCGAGTCAGTGAGCGAGGAAGCGGAATATATTCTGTATCACATTTTCTCCTGACGCGTTTTCTTTCACTTTCTGCGCCTGTCTTATGTGGCATTAATGCTATGTGTTACTGCCATGCTACATCTTAAGCCAGTATACACTCCGCTAGTGCTCCGTGACTGGTCCGGCGCTGCGCCCGGAACCCGCC" },
+        { id: "Seq6769", sequence: "GGCTTTTGGCGGGTTTCGGGGCGCAGCCCTGAACCAGTCACGCAGCGCTAGCGGAGTGTATACTGGCTTACTATGTTGGCACGGATGAGGGTGTCAGTGAAGTGCTTCATGTGGCAGGAGAAAAAAGGCGGCACCGGTGCGTCAGCAGAATATGTGATACAGGATATATTCCGCTTCCTCGCTCACTGACTCGCTACGCTCGGTCGTTCGGCTGCGGCGAGCGGAAATGGCTTACGAACGGGGCGGAGATTTCCTGGAAGATGCCAGGAAGATACTTAACAGGGAAGCGATAGGGTCGCGGCGAAGCCGTTTTTCCATAGGCTCCGCCCCCCTGACAAGCATCACGAAATCTGACGCTCAAATCAGTGGTGGCGAAACCCGACAGGACTATAAAGATACCAGGCGTTTCCCCCTGGTGGCTCCCTCGTGCGCTCTCCTGTTCCTGCCTTTCGGTTTACCGGTGTCATTCCGCTGTTATGGCCGCGTTTATCTCATTCCACGCCTGACACTCAGTTCCGGGTAGGCAGTTCGCTCCAAGCTGGACTGTATGCACGAACCCCCCGTTCAGTCCGACTGCTGCGCCTGTTCCGGTAACTATCGACTTGAGTCCAACCCGGAAAGACACGACAAAGCGCCACTGGCAGCAGCCATGAGTAAAGGGGTGTACAAGATTTACTGAGTGAGAGTTCTTGAAGTATCAGCCTTAGAGAGGCTAAACTGGAATAACAGAATTTGGTTTCAGCGGTCTTGTACACCCTGTTACCACGGTTCAGAAGTTCCCCAACTTACTGAACCCTCGAAAAAACCGACTCCCCAGTCGGTTTTTTTCGTTT" },
+        { id: "Seq9371", sequence: "AAGGATTTCCTTGAGATCCTTTCTTTCTGCGCGTAATCTTTTTCCCTGTAAACAAAAAAACCACCGCTACCAACGGTGGTTCGTTTGCCGGAATTCAGAGCTACCAACTCTTTGTTCCGATGGTAACTGGCTTTCACGGAGCGCAGATACCTAAACTGTCCTTTCAGTGTAGCCGCACTCAGGCTTTCACTTCAAGAACTCTGTAGGCATTCTCTACAATCTCTGCTCCGTGAACCCAGTTACCAATGGCTACCGCCACTGGCGATTTGTCGTGTCTTTCCGGGTTGGACTCAAGTTGATAGTTACCGGAACGGGCGTGGTAGTCGGACTGAACGGGGGGTTCGTGCATACAGTCCATCCTGGAGCGAACTGCCTACCCGGAACCGAGTTTCAGGCGTGGAATGAGAAACCGCGGCCATAACAGCGGAATGACACCGGTAAACCGAAAGGCAGGAATGCGGGGGAGCACGAGGGAGCCACCAGGGGGAAACGCCTGGTATCTTTAAGCCGCATCGGGTTTCGCCACCGCTGATTTGAGCGTCATTTTCGTGATACTCGTCAGGGGGGCGGAGCCTATGGAAAAACG" },
+        { id: "Seq1670", sequence: "AGTGTTGTAAAAGTGATGTATGAACTGAAGGAGCGATGTAATTCTGTAGTCAGGAAGAATAACCCGTTCATGCAGGCATGAACGATACAGTGAGGAACGCTTTTTTTGTCACGATCTCCCCTTAACCTGCGTAAATCACCCTCCATGGTTGATTATTTTTCAACCTCAAAATGGTCATACACCATACGCAACCGCGATTTTCATCGCAATTGCATGAATTAAAAGGTAAAAACTGAAGTTCCCGTTTATTTATGTAATACGCAACGTATTACAACCACCTGTAATCACATGAAAATAAAGAAATAAGATGTAATACCGCGTATTACACGTACGCGGGTAAGCGAAAAAGCTATAACGCTTCCCGGCCGACAGGCGGCCCAAAATCCACCGGGGCGTGCAGGTTCTCTTCAGTAACCTGCGCCATTAAATCAAAAAGGTCATATTCGCCGGGAAGCTGCGTATCAGTCGAATCCAGTTGTTCATCATATTCAGATGGCATGGGGTGATATCCAGTAGCGGAGAGGTTGTTAGCGGGTTTCGGAGCGCAGCCCTGAACCAGTCACGTAGCGCTAGCGGAGTGTACAGTGGCTGAATATGTTACGGCGGAGTAGCACCTAATGAAAGTGCTTCATGTGACAGGGGAAAATGCAGCTACAGGGCGTAAGGGAGAAAATGGGAGTTACGGTGATATGACGCCTCCTCGCTCACTCGGTCGCTACGCTCCTGCCGTGAGGCTGCGGCGGGCGTTACCTGCTCACGAAT" },
+        { id: "Seq306", sequence: "GGACTGAACGGGGGGTTCGTGCATACAGTCCAGCTTGGAGCGAACTGCCTACCCGGAACTGAGTGTCAGGCGTGGAATGAGATAAACGCGGCCATAACAGCGGAATGACACCGGTAAACCGAAAGGCAGGAACAGGAGAGCGCACGAGGGAGCCGCCAGGGGGAAACGCCTGGTATCTTTATAGTCCTGTCGGGTTTCGCCACCACTGATTTGAGCGTCAGATTTCGTGATGCTTGTCAGGGGGGCGGAGCCTATGGAAAAACGGCTTCGCCGCGGCCCTATCGCTTCCCTGTTAAGTATCTTCCTGGCATCTTCCAGGAAATCTCCGCCCCGTTCGTAAGCCATTTCCGCTCGCCGCAGTCGAACGACCGAGCGTAGCGAGTCAGTGAGCGAGGAAGCGGAATATATCCTGTATCACATATTCTGCTGACGCTCCGGTGCCGCCTTTTTTCTCCTGCCACATGAAGCACTTTCCTGATACCCGCACTCATGCCAACATAGTAAGCCAGTATACACTCCGCTATCGCTACGTGACTGGGTCATGGCTGCGCCCCGACACCCGC" },
+    ];
+
+    function createDNAGallery(galleryId, sequences) {
+        let currentIndex = 0;
+
+        function updateSequence() {
+            const sequenceIdElement = document.getElementById(`sequence-id-${galleryId}`);
+            const sequenceContentElement = document.getElementById(`sequence-content-${galleryId}`);
+            const prevButton = document.getElementById(`prev-button-${galleryId}`);
+            const nextButton = document.getElementById(`next-button-${galleryId}`);
+
+            sequenceIdElement.textContent = sequences[currentIndex].id;
+            sequenceContentElement.textContent = sequences[currentIndex].sequence;
+
+            prevButton.disabled = currentIndex === 0;
+            nextButton.disabled = currentIndex === sequences.length - 1;
+        }
+
+        updateSequence();
+
+        return function (direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex >= sequences.length) currentIndex = sequences.length - 1;
+            updateSequence();
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        window.changeSequence1 = createDNAGallery(1, batch1);
+        window.changeSequence2 = createDNAGallery(2, batch2);
+    });
+</script>
+
+<br><br>
 {{ subheading("Abstract") }}
 <div>
     <p>
@@ -46,7 +167,7 @@
     </p>
     <p>
         Existing machine learning models, such as Evo, have demonstrated the potential for modelling and predicting
-        biological sequences {{ cite('Nguyen_Poli_Durrant_Thomas_Kang_Sullivan_Ng_Lewis_Patel_Lou_et al._2024') }}. This
+        biological sequences {{ cite('Nguyen_Poli_Durrant_Thomas_Kang_Sullivan_Ng_Lewis_Patel_Lou_et_al._2024') }}. This
         approach has been useful in identifying novel sequences with desired traits.
         However, these models often face limitations when tasked with producing plasmid sequences that need to fulfill
         highly specific biological roles or interface with complex cellular machinery, such as the origin of replication
@@ -166,8 +287,9 @@
     <p>
         This training approach enables our model to first capture general plasmid structures and then specialize in
         generating plasmids relevant to our specific research focus, striking a balance between generalizability and
-        specificity. This is the paradigm in many cutting-edge machine learning models such as AlphaFold [cite
-        alphafold]. The fine-tuning process allows for targeted generation of plasmids with desired characteristics,
+        specificity. This is the paradigm in many cutting-edge machine learning models such as AlphaFold {{
+        cite('AlphaFold_and_beyond_2023') }}. The fine-tuning process allows for targeted generation of plasmids with
+        desired characteristics,
         which demonstrates our model’s potential for genomics applications.
     </p>
     <br>
@@ -315,7 +437,7 @@
         functional proteins should also be functional. One significant challenge is the unannotated whole plasmid
         sequence on which the model was trained, meaning the model must be able to learn from a sample space not
         constrained to near known functional wildtype proteins, as well as not being provided with protein structural
-        priors {{ cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et al._2023') }}. Below are
+        priors {{ cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et_al._2023') }}. Below are
         some of the common concerns associated with generated protein sequences and the associated
         computational evaluation metrics we used to address these issues.
 
@@ -340,10 +462,10 @@
         extended by a flanking sequence of 100 bp length along the 5’ direction of the coding sequence. The cutoff of
         20% was chosen to benchmark our model against a current state-of-the-art large language protein generation
         model, ProGen, as it is the lowest percentage sequence identity of ProGen’s generated proteins {{
-        cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et al._2023') }}. This lower
+        cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et_al._2023') }}. This lower
         score also allows for the inclusion of artificial sequences that diverge from natural sequences. Second, using
         NCBI’s AMRFinderPlus database {{
-        cite('Feldgarden_Brover_Gonzalez-Escalona_Frye_Haendiges_Haft_Hoffmann_Pettengill_Prasad_Tillman_et al._2021')
+        cite('Feldgarden_Brover_Gonzalez-Escalona_Frye_Haendiges_Haft_Hoffmann_Pettengill_Prasad_Tillman_et_al._2021')
         }}, we used BLAST against both the “core” and “plus” proteins collection, as well
         as filtered for genes specific to E. coli to ensure consistency with plasmid design. The “core” and “plus”
         protein collection includes not only AMR, but also stress response factors (biocide, metal, heat resistance),
@@ -358,7 +480,7 @@
         protein folding and stability, or nonsense mutations causing stop codon formation and hinder expression. Thus,
         it is important to use structure-based tools for early detection of these issues and to avoid passing any unfit
         candidates to wet-lab validation as possible. In particular, we use the Transformer-based protein-folding
-        predictive model ESMFold {{ cite('Lin_Akin_Rao_Hie_Zhu_Lu_Smetanin_Verkuil_Kabeli_Shmueli_et al._2022' )}}, most
+        predictive model ESMFold {{ cite('Lin_Akin_Rao_Hie_Zhu_Lu_Smetanin_Verkuil_Kabeli_Shmueli_et_al._2022' )}}, most
         importantly for its ability to accurately predict structures for orphan
         proteins with limited sequence homologs. We used four metrics for assessing accuracy and reliability of
         predicted protein models: Predicted Local Distance Difference Test (plDDT), Predicted Aligned Error (PAE), Plot
@@ -404,7 +526,7 @@
         sequences that closely aligned to specific clusters of Rep proteins:
     </p>
     <div style="display: flex; justify-content: center; width: 100%;">
-        <img src="https://static.igem.wiki/teams/5230/drylab/rep1.png" />
+        <img src="https://static.igem.wiki/teams/5230/drylab/rep.png" />
     </div>
     <p>
         This encouraged us to dive deeper into the batch and select top sequences for in-vitro validation.
@@ -414,9 +536,16 @@
         oris were delivered to Wet Lab. Finally, one promising protein was also selected. None of the oris in this batch
         worked.
     </p>
-    <p>
-        GALLERY
-    </p>
+    <div id="dna-gallery-1" class="dna-gallery">
+        <div class="dna-sequence">
+            <div class="sequence-id">Sequence ID: <span id="sequence-id-1"></span></div>
+            <div class="sequence-content" id="sequence-content-1"></div>
+        </div>
+        <div class="gallery-controls">
+            <button class="gallery-button" id="prev-button-1" onclick="changeSequence1(-1)">Previous</button>
+            <button class="gallery-button" id="next-button-1" onclick="changeSequence1(1)">Next</button>
+        </div>
+    </div>
 </div>
 
 {{ subsubsubheading("Batch 2") }}
@@ -446,14 +575,21 @@
     <div style="display: flex; justify-content: center; width: 100%;">
         <img src="https://static.igem.wiki/teams/5230/drylab/rep22.png" />
     </div>
-    These encouraging in-silico results were matched by an equally encouraging in-vitro validation:
-    8 Class B oris and 5 proteins were selected from the validation pipeline. At least 6 oris from this batch have
-    shown promising results as of the time of writing.
-
-    </p>
     <p>
-        GALLERY AGAIN
+        These encouraging in-silico results were matched by an equally encouraging in-vitro validation:
+        8 Class B oris and 5 proteins were selected from the validation pipeline. At least 6 oris from this batch have
+        shown promising results as of the time of writing.
     </p>
+    <div id="dna-gallery-2" class="dna-gallery">
+        <div class="dna-sequence">
+            <div class="sequence-id">Sequence ID: <span id="sequence-id-2"></span></div>
+            <div class="sequence-content" id="sequence-content-2"></div>
+        </div>
+        <div class="gallery-controls">
+            <button class="gallery-button" id="prev-button-2" onclick="changeSequence2(-1)">Previous</button>
+            <button class="gallery-button" id="next-button-2" onclick="changeSequence2(1)">Next</button>
+        </div>
+    </div>
 </div>
 
 {{ subsubsubheading("Batch 3") }}
@@ -509,7 +645,7 @@
 
     </p>
     <div style="display: flex; justify-content: center; width: 100%;">
-        <img src="https://static.igem.wiki/teams/5230/drylab/table1.png" style="max-width: 90%; height: auto;" />
+        <img src="https://static.igem.wiki/teams/5230/drylab/table1.png" style="max-width: 100%; height: auto;" />
     </div>
     <br>
     <p>

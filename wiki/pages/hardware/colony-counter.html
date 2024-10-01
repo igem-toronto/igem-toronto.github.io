@@ -121,7 +121,7 @@
         <li>neighboring page link for the machine learning model.</li>
       </ul>
       <p>This section mainly deals with integrating the CAD work, circuitry, and the machine learning model, and assumes that all the prerequisites in the aforementioned individual pages are met. The scripts supplied in the aforementioned two pages already enable serial communication between the Raspberry Pi and the Arduino.
-      {{img(new_cdn("hardware/colony-counter-user-workflow.png"), width="80%")}}
+      {{img(new_cdn("hardware/colony-counter-fsm.png"), width="80%")}}
       Figure 1. Finite state machine of Arduino-Raspberry Pi system.
       
       <p>When initialized, the device will be in a state ready to accept a Petri dish with colonies.</p>
@@ -291,13 +291,24 @@
     </div>
     {{subsubheading('Product System')}}
     <div>
-      {{img(new_cdn(''))}}
-      {{img(new_cdn(''))}}
+      {{img(new_cdn('hardware/colony-counter-wiring.png'), width="80%")}}
+      <p>
+        Figure 1. Wiring diagram for the colony counter Arduino.
+      </p>
+      {{img(new_cdn('hardware/colony-counter-fsm.png'), width="80%")}}
       <p>The user interaction workflow can be summed up with the diagram above. Besides slotting the petri dish into the baseplate, the only user interaction is with the two buttons on the attached breadboard. The first button controls when to activate the DETR model and if to save the model output while the second button controls if the output should be discarded.</p>
       <p><i>CAD, design considerations</i></p>
       <p>To ensure modularity, the stands of this colony counter stand are identical to the lab management solution rack, and use similar fastenings. Refer to a neighboring file for details.</p>
       <p><i>CAD, final drawings</i></p>
-      <!-- stl file here -->
+      <p>
+        The top plate was specially designed to accommodate multiple pieces of electronics, including the camera and all single board computers. Here is a visualisation. Please consult a neighboring page for visualisation of the vertical supports used.
+      </p>
+        <model-viewer
+        class="w-full min-h-96 my-8"
+        src="{{ url_for('static', filename = 'models/top-plate.gltf') }}"
+        alt="Top colony counter plate"
+        camera-controls
+        touch-action="pan-y"></model-viewer>  
     </div>
     {{subsubheading('Methods')}}
     <div>

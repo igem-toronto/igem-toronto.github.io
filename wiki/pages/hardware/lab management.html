@@ -3,22 +3,22 @@
 {% block article_content %}
 <div>
   <b><i><h1> Rack Lab Manager </h1></i></b>
-  {{ subheading("Product System Overview") }} <br>
+  {{ subheading("Product System Overview") }} 
   <div>
-    {{ subsubheading("Abstract") }} <br>
+    {{ subsubheading("Abstract") }} 
     <p>
       This page outlines the overarching product system, materials needed, build and test procedures, and possible future next steps for the rack lab manager. To achieve high throughput, the team needs to be able manage samples as efficiently as possible. Current sample management solutions are inadequate as they lead to missing, misplaced, and mislabeled samples. We designed an internet-of-things augmented rack that allows wireless stock keeping over multiple racks at multiple locations. The product system consists of the racks themselves, RFID readers, graphical user interface (GUI) endpoints, and servers used for communication and synchronous data storage. How such a system would improve wet lab workflows from a process engineering perspective was investigated.
     </p>
-    {{ subsubheading("Introduction") }} <br>
+    {{ subsubheading("Introduction") }} 
     <div>
       <p>
-        <i>“…samples from 2019 in the 4th floor fridge…”</i><br>
-        <i>“Not having the date written on tubes”</i><br>
-        <i>“Taking too long to find the correct 1.5ml tubes”</i><br>
+        <i>“…samples from 2019 in the 4th floor fridge…”</i>
+        <i>“Not having the date written on tubes”</i>
+        <i>“Taking too long to find the correct 1.5ml tubes”</i>
         &emsp; — From the wet lab team
-        <br><br>
+        
         To increase throughput, the wet lab team must be able to focus on synthesizing and evaluating plasmids, not locating mislabeled samples. Current stock control methods, usually by labeling on the tubes and recording the location of said tube in a public spreadsheet, are inadequate. They differ from person to person introducing variability, omit important details such as time which are not conveniently acquired, and sometimes are outright forgotten. A more accurate form of stock control is required. Required key functions include ability to associate a sample with a potentially long description, automatically timestamp each sample, identify in which building or fridge a sample is, and enable a stock accounting system for samples.
-        <br><br>
+        
         The hardware team has used industry as an inspiration and designed a rack for storing samples on tubes. Said racks will have electronics for identifying the presence of a sample in rack wells, as well as other functionality to enable stock accounting. This is in line with industry solutions, where industrial racking is supplied with barcodes to enable stocks of goods to be tracked on a database. To address the need for a system that is functional across multiple locations, internet of things techniques were used. This is featured in the use of wireless microcontrollers, databases, and communication servers. Ergonomics and modularity were also considerations addressed in this product system’s architecture.
       </p>
     </div>
@@ -27,46 +27,46 @@
     <div>
       <p>
         The combined product system consists of a rack with IR (infrared) proximity sensors, LEDs, and a wireless-enabled microcontroller (Arduino Uno Wifi Rev2), a RFID reader assembly with a wireless-enabled microcontroller (Arduino MKR Wifi 1010), an MQTT broker, a MongoDB database server, and a GUI endpoint. This architecture is adapted from {{cite('baird2023building')}}, which was originally intended for use in self-driving labs.
-        <br><br>
+        
         <i>Overall product system</i>
-        {{img(cdn("hardware/ screenshot-2024-08-25-195053.png"), width="80%")}}<br>
+        {{img(new_cdn("hardware/ screenshot-2024-08-25-195053.png"), width="80%")}}
         Figure 1. Overall product system process diagram.
-        <br><br>
+        
         <i>Rack</i>
-        {{img(cdn("hardware/thumbnail-image0.jpg"), width="80%")}}
+        {{img(new_cdn("hardware/thumbnail-image0.jpg"), width="80%")}}
         Figure 2. Rack system fabricated by team.
-        <br>
+        
         The rack is a 3D-printed assembly augmented with electronics, including sensors and microcontrollers. IR sensors are used to detect the presence of tubes in wells. One IR sensor is required per rack well. The team used the GP2Y0A51SK0F IR sensor as it has a suitable detection range and can withstand temperatures of up to -20C. {{cite('Sharp_Electronics_2011')}} LEDs are used to cue users on which wells to pick up or drop samples in. The microcontroller, an Arduino Uno Wifi Rev2, was chosen because of its relatively large number of pins and its ability to communicate over enterprise networks. Most university networks are enterprise networks, requiring a username and password to log into. A 9V battery is required to power the Arduino.
-        <br><br>
-        <i>RFID reader</i><br>
-        {{img(cdn("hardware/thumbnail-image1.jpg"), width="80%")}}
+        
+        <i>RFID reader</i>
+        {{img(new_cdn("hardware/thumbnail-image1.jpg"), width="80%")}}
         Figure 3. RFID reader system devised by team.
-        <br>
+        
         The RFID reader assembly is an MFRC522 MIFARE RFID reader (15.6 MHz) connected to an Arduino MKR Wifi 1010 {{cite('Arduino_2024')}}. In this case, a different Arduino is chosen due to its ability to communicate over enterprise networks, 3.3V logic (the RFID reader operates at 3.3V), built-in real time clock (RTC), and greater amount of RAM.
-        <br><br>
+        
         <i>GUI endpoint</i>
-        {{img(cdn("hardware/screenshot-2024-09-06-011740.png"), width="80%")}}
-        <br>
+        {{img(new_cdn("hardware/screenshot-2024-09-06-011740.png"), width="80%")}}
+        
         To provide a means of interacting with the product system, the team designed a GUI endpoint to enable user-friendly interaction with the product system. The GUI endpoint displays the state of all wells and racks, allows interaction with indicated racks, and displays information on each sample held in each well. Multiple GUI endpoints may be safely run at a time.
-        <br><br>
+        
         <i>MQTT and MongoDB</i>
-        <br>
+        
         To provide a means of wireless storage and communications, an MQTT broker and a MongoDB server instance is used respectively.
-        <br>
+        
         MQTT enables wireless source-agnostic communication. Devices communicating over MQTT do not need to know the each other’s IP address; they only need to know the address of the MQTT broker. It is the wireless equivalent of a serial channel. The team used a HiveMQ MQTT broker instance {{cite('HiveMQ_2024')}}. Software libraries supporting communication over MQTT are available for both Python scripts and Arduino microcontrollers.
-        <br>
+        
         MongoDB provides database access functionality to all linked microcontrollers and GUI endpoints, allowing all GUI endpoints to access the same information and enable real-time database updates {{cite('MongoDB_2024')}}. Access to MongoDB is provided via Python API for the GUI endpoint and a REST API for microcontrollers.
-        <br>
+        
         Both services carry free plans allowing our team to build stock control systems at no costs incurred due to third party services.
-        <br><br>
+        
         <i>Integration</i>
-        <br>
+        
         This product system is inherently complicated as it involves multiple remote devices that must act in concert to fulfill its purpose. The team drew inspiration from Git’s four-step check-in/check-out system to implement a conceptually similar check-in/out workflow. Integration over multiple devices was achieved through a set of protocols and contracts.
-        <br>
+        
         Protocols are specific, large-scale tasks designed to be done in sequence and achieve a specific function. One example is registration, where new samples are keyed in and stored in a rack. Registering a sample follows a specific set of steps, the order of which all devices involved must know and participate in correctly.
-        <br>
+        
         Contracts are input/output agreements designed to help abstract technologies from members of the team. In this project, contracts are used to specify which MQTT messages should a device expect to input and output, and in which format, allowing GUI programmers to avoid having to re-learn Arduino syntax and vice versa.
-        <br>
+        
         Protocols and contracts also help increase modularity as interactions between multiple devices are consolidated in one place, allowing easier review and alteration.
       </p>
     </div>
@@ -140,7 +140,7 @@
         </tr>
       </tbody>
     </table>
-    <br>
+    
     {{ subsubheading("Methods") }}
     <div>
       <p>
@@ -151,28 +151,28 @@
         <li> neighboring page link for the microcontroller scripts, including circuit diagrams;</li>
         <li> neighboring page link for the GUI endpoint</li>
       </ul>
-      <br>
+      
       <p>
         This section mainly deals with integrating the CAD, microcontroller circuitry, and GUI endpoint, and assumes that all the prerequisites in the aforementioned individual pages are met.
-        <br>
+        
         The scripts supplied in the aforementioned three pages already enable wireless communication between each other through the MQTT broker. However, ensure that:
-        <br><br>
+        
       </p>
       <ul>
         <li>All devices are connected to WiFi, and for the microcontrollers, use the correct connection type (<code>WiFi.connect</code> or <code>WiFi.connectEnterprise</code>);</li>
         <li>All devices are connected to the same MQTT broker and the same MongoDB database;</li>
         <li>All RFID chips are numbered uniquely. To do this, write a unique number to the RFID chip at block 0, sector 2, 0th byte.</li>
       </ul>
-      <br>
+      
       <p>
         When initialized, the device will be in a state ready to have samples keyed in. 
       </p>
-      <br>
+      
     </div>
     {{ subsubheading("Testing, results, and next steps") }}
     <div>
       <p>
-        Unfortunately, we were not able to perform complete integrative testing with the entire product system and in an actual in-lab setting. Testing was done component-wise, and some integrative testing was completed, as follows. End user testing was never completed but planned. <br><br>
+        Unfortunately, we were not able to perform complete integrative testing with the entire product system and in an actual in-lab setting. Testing was done component-wise, and some integrative testing was completed, as follows. End user testing was never completed but planned. 
         <i>Component-wise testing</i>
         Component-wise testing was done via a black box model. Each component was tested for compliance with the protocols. Other components were simulated mainly through their MQTT and database interactions. A workflow of testing is as follows:
       </p>
@@ -182,19 +182,19 @@
         <li>Eavesdrop on all outgoing MQTT messages via a Python script.</li>
         <li>Depending on whether the component meets the intended behaviour, correct any scripts or circuitry involved, add traces in any scripts, and repeat.</li>
       </ol>
-      <br><br>
+      
       <p>
         Two relevant scripts for component-wise testing are the mqtt_publisher.py and the mqtt_listener.py, which allow arbitrary MQTT messages to be sent and eavesdropped on.
-        <br>
+        
         Component-wise testing was done over multiple levels, starting with the microcontroller only and gradually adding additional peripheral hardware such as sensors. Gradually, in our <i>integrative testing</i> stage, simulated inputs were replaced with other actual components.
-        <br><br>
+        
       </p>
       <i>End user testing</i>
-      <br>
+      
       <p>
         This testing aims to ensure the product system’s compatibility with the wet lab team’s practices. The whole product system would be provided to the wet lab team and any feedback collected. Emphasis would be laid on any points that the hardware team could not provide:
       </p>
-      <br>
+      
       <ul>
         <li>Performance in a typical laboratory environment</li>
         <li>Ease of use</li>
@@ -203,13 +203,13 @@
       <p>
         As this is a process engineering project, process engineering metrics will be used to measure the efficacy of the system, and identify actionable items moving forward:
       </p>
-      <br>
+      
       <ul>
         <li>Time needed to learn the system</li>
         <li>Frequency of deviations made from intended workflows</li>
         <li>Time saved or spent using the system relative to the previous state, where sample details were marked on the tube and potentially lost.</li>
       </ul>
-      <br><br>
+      
     </div>
     {{ subsubheading("Making your own modifications") }}
     <div>

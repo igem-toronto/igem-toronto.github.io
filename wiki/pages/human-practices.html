@@ -1,0 +1,24 @@
+{% extends "layout/layout.html" %}
+{% set add_sidebar = true %}
+
+{% block article_content %}
+{{ heading("Human Practices", show=False) }}
+
+{{ subpage("Overview") }}
+{% include 'pages/human-practices/human-practices.html' with context %}
+
+{{ subpage("Regulatory Practices", img=cdn("pictures/hp-centre-block.jpg")) }}
+{% include 'pages/human-practices/regulatory-practices.html' with context %}
+
+{{ subpage("Implementation", img=cdn("pictures/hp-landfill-site.jpg")) }}
+{% include 'pages/human-practices/implementation.html' %}
+
+{{ subpage("Integrated Human Practices", img=cdn("pictures/hp-molecules.jpg")) }}
+{% include 'pages/human-practices/stakeholders.html' %}
+
+{{ subpage("Synergy with Other Technologies", img=cdn("pictures/hp-shore.jpg")) }}
+{% include 'pages/human-practices/synergy-with-other-technologies.html' with context %}
+
+{% endblock %}
+
+{% block references %}{% endblock %}

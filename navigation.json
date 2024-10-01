@@ -1,26 +1,38 @@
 [
   {
-    "text": "Projects",
+    "text": "Research",
     "sublinks": [
       {
-        "text": "2023",
-        "link": "https://2023.igem.wiki/toronto/"
+        "text": "Description"
       },
       {
-        "text": "2022",
-        "link": "https://2022.igem.wiki/toronto/"
+        "text": "Engineering"
       },
       {
-        "text": "2019",
-        "link": "https://2019.igem.org/Team:Toronto/"
+        "text": "Wet Lab"
       },
       {
-        "text": "2018",
-        "link": "https://2018.igem.org/Team:Toronto/"
+        "text": "Software"
       },
       {
-        "text": "2017",
-        "link": "https://2017.igem.org/Team:Toronto/"
+        "text": "Model"
+      },
+      {
+        "text": "Hardware"
+      }
+    ]
+  },
+  {
+    "text": "Support",
+    "sublinks": [
+      {
+        "text": "Finance"
+      },
+      {
+        "text": "Outreach"
+      },
+      {
+        "text": "Sponsors"
       }
     ]
   },
@@ -28,12 +40,14 @@
     "text": "Team",
     "sublinks": [
       {
-        "text": "Divisions",
-        "link": "/divisions.html"
+        "text": "Members",
+        "link": "team"
       },
       {
-        "text": "People",
-        "link": "/people.html"
+        "text": "Attributions"
+      },
+      {
+        "text": "Contribution"
       }
     ]
   },

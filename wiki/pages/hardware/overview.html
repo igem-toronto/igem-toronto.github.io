@@ -1,0 +1,53 @@
+{% extends "layout/subpage.html" %}
+
+{% block article_content %}
+  {{ subheading("Hardware page") }}
+  {{ subsubheading("Heading 1") }}
+{{ subsubheading("Heading 5") }}
+<div>
+  <p>
+    akjgöoapdöskbvjldksafjbv.mc,
+    jdhjldfsgk
+  </p>
+  <p>
+    afölakc,mvc,.klaögb.fv
+  </p>
+  <p>
+    afgblfjgfnd
+  </p>
+</div>
+{{ subsubheading("Heading 2") }}
+{{ subsubheading("Heading 2") }}
+<div>
+  <p>
+    sföjgakldfjö
+  </p>
+</div>
+
+  {{ subheading("Models") }}
+    <model-viewer
+      class="w-full min-h-96 my-8"
+      src="{{ url_for('static', filename = 'models/expanded.gltf') }}"
+      alt="Oxidation Chamber"
+      camera-controls
+      touch-action="pan-y"></model-viewer>
+  <model-viewer
+    class="w-full min-h-96 my-8"
+    src="{{ url_for('static', filename = 'models/top-plate.gltf') }}"
+    alt="Oxidation Chamber"
+    camera-controls
+    touch-action="pan-y"></model-viewer>
+  <model-viewer
+    class="w-full min-h-96 my-8"
+    src="{{ url_for('static', filename = 'models/top-rack.gltf') }}"
+    alt="Oxidation Chamber"
+    camera-controls
+    touch-action="pan-y"></model-viewer>
+  <model-viewer
+    class="w-full min-h-96 my-8"
+    src="{{ url_for('static', filename = 'models/vertical-plate.gltf') }}"
+    alt="Oxidation Chamber"
+    camera-controls
+    touch-action="pan-y"></model-viewer>
+
+{% endblock %}

@@ -1,12 +1,15 @@
 {% macro heading(text, show=True) -%}
-  <div class="hidden">{{ set_page(text) }}</div>
+  {{ set_page(text) }}
   {% if show %}
-    <h1 class="ml-2 mb-8">{{ text }}</h1>
+    <div class="inline-block mb-4">
+      <h1 class="font-bold font-roboto mb-4">{{ text }}</h1>
+      <hr class="h-1 border-none bg-accent-saturated-purple mb-1 -mr-8">
+      <hr class="h-1 w-8/12 border-none bg-accent-muted-purple">
+    </div>
   {% endif %}
 {%- endmacro %}
 
 {% macro subheading(text, img="") -%}
-  <div class="hidden">
   {{ ensure_subpage() }}
   {{
     subpages[-1].subheadings.append({
@@ -14,10 +17,10 @@
       "key": subpages[-1].key + "-" + text.lower().replace(" ", "-"),
       "subsubheadings": []
     })
-  }}</div>
+  }}
 	<h2 id="{{ subpages[-1].subheadings[-1].key }}"
       class="flex items-center w-full">
-    <div class="{{ 'w-1/2' if img != '' else '' }}">
+    <div class="{{ 'w-1/2' if img != '' else '' }} mb-3">
       {{text}}
     </div>
     {% if img != '' %}
@@ -29,51 +32,56 @@
 {%- endmacro %}
 
 {% macro subsubheading(text) -%}
-  <div class="hidden">{{ subpages[-1].subheadings[-1].subsubheadings.append({
+  {{ subpages[-1].subheadings[-1].subsubheadings.append({
       "text": text,
       "key": subpages[-1].subheadings[-1].key + "-" + text.lower().replace(" ", "-")
     })
-  }}</div>
-	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}">
+  }}
+	<h3 id="{{ subpages[-1].subheadings[-1].subsubheadings[-1].key }}" class="mb-3">
 		{{text}}
 	</h3>
 {%- endmacro %}
 
 {% macro subsubsubheading(text) -%}
-	<h4>
+	<h4 class="mb-3">
 		{{text}}
 	</h4>
 {%- endmacro %}
 
 {% macro subpage(text, img="") -%}
-  <div class="hidden">{{ subpages.append({
+  {{ subpages.append({
       "heading": text,
       "key": text.lower().replace(" ", "-"),
       "img": img,
       "subheadings": []
     })
-  }}</div>
+  }}
 {%- endmacro %}
 
-{% macro cite(text) -%}
-  {% set citation_number = citer.cite(text) -%}
-  <a  href="#{{ subpages[-1].key }}-citation-{{ citation_number }}"
-      class="text-primary-medium font-bold">
-    <sup>[{{ citation_number }}]</sup>
-  </a>
+{% macro cite(refs) -%}
+  [{% for text in refs.split(",") -%}
+    {% set citation_number = citer.cite(text) -%}
+    <a href="#{{ subpages[-1].key }}-citation-{{ citation_number }}">
+      {{- citation_number -}}
+    </a>
+    {%- if loop.index0 < refs.count(",") %},{% endif -%}
+  {%- endfor %}]
 {%- endmacro %}
 
 {% macro banner(header, description) -%}
-  <div class="flex bg-primary-light items-center gap-4 justify-center
-              lg:py-8 lg:px-24 lg:flex-row
+  <div class="flex bg-accent-muted-purple
+              items-center gap-x-12 gap-y-4 justify-center
+              lg:py-8 lg:px-32 lg:flex-row
               py-8 px-8
               flex-col
+              font-roboto-mono
               ">
-    <div class="text-font-light lg:text-6xl text-5xl">
+    <div class="text-font-light font-roboto-mono
+                lg:text-6xl text-5xl lg:text-right text-center">
       {{ header }}
     </div>
-    <div class="uppercase text-primary-dark
-                lg:text-4xl
+    <div class="uppercase text-black
+                lg:text-3xl lg:text-left text-center
                 text-2xl">
       {{ description }}
     </div>
@@ -83,14 +91,15 @@
 {% macro subpage_banner() -%}
   <div class="flex flex-col items-center gap-4 custom
               lg:pt-16 lg:pb-32
-              py-8">
-    <div class="text-gray-600 text-xl font-archivo">
+              py-8 font-roboto-mono">
+    <div class="text-gray-600 text-xl">
       {{ pages[0] }}
     </div>
-    <div class="font-kaisei-decol
+    <div class="font-roboto-mono
                 font-bold
                 lg:text-6xl
-                text-5xl">
+                text-5xl
+                text-center">
       {{ subpages[-1].heading }}
     </div>
     <div class="w-72 h-0.5 bg-black m-8"></div>
@@ -109,8 +118,7 @@
 {%- endmacro %}
 
 {% macro pdf(src) -%}
-<iframe src="{{ src }}" class="w-full h-96">
+<iframe src="{{ src }}" class="w-full h-[50rem]">
   <a href="{{ src }}">Download PDF</a>
 </iframe>
 {%- endmacro %}
-

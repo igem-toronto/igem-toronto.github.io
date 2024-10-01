@@ -10,11 +10,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Create intermediate directories
+        run: mkdir -p dist
+      
+      - name: Generate pandoc files
+        uses: docker://pandoc/core:latest
+        with:
+          args: >-
+            --resource-path static/citations/
+            --csl=nature.csl
+            --citeproc
+            --wrap=none
+            -f markdown
+            -t html
+            static/citations/template.md -o dist/citations.html
 
       - name: Install and Build
         run: |
           npm ci
+          python3 -m venv venv
+          . venv/bin/activate
           pip install --no-cache-dir -r dependencies.txt
           npm run build
 
@@ -35,7 +57,7 @@ jobs:
           INPUT_PATH: ${{ inputs.path }}
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: ${{ runner.temp }}/artifact.tar
@@ -56,4 +78,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4

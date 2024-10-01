@@ -8,12 +8,29 @@
 
 {% block body %}
   <body class="w-full min-h-screen flex flex-col justify-between"
-    x-data="globalData()">
-    <Script>
+    x-data="globalData()" @hashchange.window="onHashChange($data, $nextTick)">
+    <script>
+      function getScrollPoint() {
+        return window.screen.availHeight / 4
+      }
+      function onHashChange($data, $nextTick) {
+        let hash = window.location.hash;
+        let possibleSubpage = 0;
+
+        if (hash.length > 1) {
+          possibleSubpage = $data.subpages.findIndex(s => hash.slice(1).startsWith(s.key));
+          if (possibleSubpage >= 0) {
+            $data.selectedSubpage = possibleSubpage;
+            $nextTick(() => $data.scrollToHash($data));
+            $data.sidebarExtended = false
+          }
+        }
+      }
       function globalData() {
         let subpagesDiv = document.getElementById('subpages-json');
         let subpages, selectedSubpage;
-        
+        let nodes = []
+
         if (subpagesDiv) {
           let hash = window.location.hash;
           let possibleSubpage = 0;
@@ -32,65 +49,99 @@
           selectedSubpage = -1;
         }
 
+        for (let subpage of subpages) {
+          for (let subheading of subpage.subheadings) {
+            nodes.push([subheading.key, document.getElementById(subheading.key)])
+            for (let subsubheading of subheading.subsubheadings) {
+              nodes.push([subsubheading.key, document.getElementById(subsubheading.key)])
+            }
+          }
+        }
+
         let selectSubpage = (index) => {
           window.location.hash = subpages[index].key;
         };
 
         return {
+          openNavHead: -1,
           selectSubpage: selectSubpage,
+          scrolledHeading: "",
           subpages: subpages,
           selectedSubpage: selectedSubpage,
           subpageSelectorExtended: false,
-          scrollToHash() {
-            console.log("Scrolling")
+          sidebarExtended: false,
+          scrollToHash(el) {
             if (window.location.hash.length > 1) {
-              let el = document.getElementById(window.location.hash.slice(1));
-              if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
+              let target = document.getElementById(window.location.hash.slice(1));
+              if (target) {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+                const targetY = target.getBoundingClientRect().top
+                const scrollY = scrollTop + targetY - getScrollPoint() + 10
+                window.scrollTo({ top: scrollY, behavior: 'smooth' })
               }
             }
           },
           init() {
-            let el = this;
+            let el = this
 
-            addEventListener('hashchange', (e) => {
-              let hash = window.location.hash;
-              let possibleSubpage = 0;
+            addEventListener('scroll', (e) => {
+              const el = this
 
-              if (hash.length > 1) {
-                possibleSubpage = subpages.findIndex(s => hash.slice(1).startsWith(s.key));
-                if (possibleSubpage >= 0) {
-                  el.selectedSubpage = possibleSubpage;
-                  el.$nextTick(el.scrollToHash);
+              const shownHeadings = nodes
+                .filter(n => n[0].startsWith(subpages[el.selectedSubpage].key))
+              const threshold = getScrollPoint()
+
+              let selectedHeading = nodes[0]
+
+              for (const heading of shownHeadings.slice(1)) {
+                const boundingRect = heading[1].getBoundingClientRect()
+                const headingY = boundingRect.y
+
+                if (headingY > threshold) {
+                  break
+                } else {
+                  selectedHeading = heading
                 }
               }
+
+              el.scrolledHeading = selectedHeading[0]
+              const subIndex = subpages[el.selectedSubpage]
+                .subheadings
+                .findIndex(e => selectedHeading[0].startsWith(e.key))
+              el.openNavHead = subIndex
             })
           }
         }
       }
     </script>
     <div>
-      <div id="full-width-header">
+      <div id="full-width-header" class="mb-12">
         {% include 'layout/header.html' %}
         {% block banner %}{% endblock %}
       </div>
-      <div class="flex flex-row-reverse">
-        <div class="lg:w-2/12 w-0"></div>
-        <div class="px-4
-                    lg:w-8/12 lg:py-8
-                    w-full py-4">
-          <div class="content-wrapper">
-            {% block content %}{% endblock %}
-          </div>
-          {% block references %}
-            {% include 'layout/references.html' %}
-          {% endblock %}
+      <div class="w-full">
+        {% block full_page_content %}{% endblock %}
+      </div>
+      <div class="flex flex-row-reverse w-full justify-center lg:gap-8">
+        <div class="content-wrapper lg:w-[100ch] px-4">
+          {% block article_content %}{% endblock %}
+          {% if citer.references() %}
+            {% block references %}
+              {% include 'layout/references.html' %}
+            {% endblock %}
+          {% endif %}
         </div>
-        {% include 'layout/sidebar.html' %}
+        <div class="flex lg:w-1/6">
+          {% if add_sidebar is defined and add_sidebar %}
+            {% include 'layout/sidebar.html' %}
+          {% endif %}
+        </div>
       </div>
     </div>
+    {% include 'layout/subpage-bottom-nav.html' %}
+    {% block bottom_banner %}{% endblock %}
     {% include 'layout/footer.html' %}
-    
+
     <div id="subpages-json" class="hidden">{{ subpages|tojson }}</div>
   </body>
 {% endblock %}

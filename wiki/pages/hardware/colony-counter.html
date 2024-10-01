@@ -1,0 +1,186 @@
+{% extends "layout/subpage.html" %}
+<!-- ARBEIT: add links to scripts in gitlab and to neighboring pages.-->
+{% block article_content %}
+<div>
+  {{ heading("Colony Counter") }}
+  {{ subheading("Product System Overview") }} 
+  <div>
+    {{ subsubheading("Abstract") }}
+    <div>
+      <p>This page outlines the overarching product system, materials needed, build and test procedures, and possible future next steps for the colony counter. The automated colony counter was built out of a need to minimize manual time in counting colonies on petri dishes and uses machine learning to achieve this automated computation. With a finetuned instance of DETR, the team realized a mAP of 0.038 with some overfitting. The physical hardware is relatively simple and consists of a Raspberry Pi to hold the camera and the machine learning model and an Arduino microcontroller to provide human/machine interfacing functionality.</p>
+      
+    </div>
+    {{ subsubheading("Introduction") }}
+    <div>
+      <p>In the team’s experience, counting colonies on a petri dish can take up to forty minutes per plate. Colony counting is an essential task for the growth assays the wet lab team requires. In particular, quantification of origin of replication efficacy demands quantifying growth assays through either repeated OD600 or colony count measurements, ideally as a time series. To achieve high throughput in wet lab operations, this bottleneck in measurement must be expedited as much as possible.</p>
+      
+      <p>Automated colony counting has been made possible through machine learning, as demonstrated by {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}. This task is a specific case of the object detection machine learning problem, made famous through datasets such as COCO {{cite('Lin_Maire_Belongie_Hays_Perona_Ramanan_Dollár_Zitnick_2014')}}. The aforementioned resource used a ResNet-50 based object detection model {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}. Our team plans on improving upon AGAR’s work by using the same dataset but a higher capacity model in the form of the DETR vision transformer [ref, DETR]. In keeping with the team’s focus on internet of things architectures, any product system the team creates will be modular and compatible with extensions towards wireless/remote operation as well as integration with other digital devices, enabling creators to quickly combine this system with other components and upscale.</p>
+      
+    </div>
+    {{ subsubheading("Architecture") }}
+    <div>
+      <p>The combined product system consists of a Raspberry Pi 5 single board computer with an Arduino microcontroller.</p>
+      
+      <p><i>Process diagram</i></p>
+      {{img(new_cdn("hardware/screenshot-2024-08-25-195112.png"), width="80%")}}
+      Figure 1. Overall product system process diagram.
+      
+      <i>Raspberry Pi</i>
+      <p>
+        Any full Raspberry Pi board above Pi 3 will suffice, with the caveat that it possess enough computing power for machine learning inference tasks. For demonstrative purposes, a Raspberry Pi 5 will be used in this literature. The Raspberry Pi 5 houses a fine-tuned DETR model, based on {{cite('Ma_Hia_Lin_Kulkarni_Slavkova_Sanchez_Han_Gelana_2024')}}. All inference is to be done on the Raspberry Pi 5. The Raspberry Pi 5 possesses a RAM of 8GB. The camera used is the High Quality Camera with a Wide Angle Lens from the original equipment manufacturer. The Arduino microcontroller is connected from the Raspberry Pi with a USB wire. The serial communication protocol is used. The Arduino microcontroller is powered by the Raspberry Pi this way.
+      </p>
+      
+      <i>Arduino microcontroller</i>
+      <p>
+        Any Arduino with the capability to communicate with the I2C communication protocol will suffice. For demonstrative purposes, an Arduino Uno Wifi Rev2 will be used in this discussion. The Arduino will house all human/machine interaction components so as to shield the Raspberry Pi from electrical disturbances. The Arduino will be equipped with two buttons and an LCD display to provide human/machine interaction capability.
+      </p>
+      
+      <i>Machine learning model</i>
+      <p>
+        The machine learning model used is DETR <ref>. Code from the MedSAM project from the Bowang lab at University of Toronto Mississauga was adapted by Chloe Nguyen Chau, a dry lab team member assisting the hardware team.
+      </p>
+      
+    </div>
+    {{ subsubheading("Bill of Materials") }}
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <td><b>Full name and description</b></td>
+            <td><b>Quantity</b></td>
+            <td><b>Remarks</b></td>
+          </tr>
+          <tr>
+            <td>Arduino Uno Wifi Rev2</td>
+            <td>1</td>
+            <td>Any other Arduino will do, though it must support I2C. The <code>SDA</code> and <code>SCK</code> pins (see wiring diagram) are located differently depending on the board.</td>
+          </tr>
+          <tr>
+            <td>16x2 LCD</td>
+            <td>1</td>
+            <td>Any LCD will work as long as it is compatible with the Hitachi HD44780 driver.</td>
+          </tr>
+          <tr>
+            <td>Push buttons</td>
+            <td>2</td>
+            <td>To change the state of the Arduino (finite state machine below)</td>
+          </tr>
+          <tr>
+            <td>USB-A to USB-B wire</td>
+            <td>1</td>
+            <td>To connect the Arduino to the Raspberry Pi.</td>
+          </tr>
+          <tr>
+            <td>Raspberry Pi 5</td>
+            <td>1</td>
+            <td>Above Pi 3, with enough computing power to support inference.</td>
+          </tr>
+          <tr>
+            <td>High Quality Camera</td>
+            <td>1</td>
+            <td>The lens is sold usually separately.</td>
+          </tr>
+          <tr>
+            <td>6mm Wide Angle Lens for the High Quality Camera</td>
+            <td>1</td>
+            <td>Any wide angle lens compatible with the High Quality Camera will do. Wide angle lenses are ideal for this case as a wide shot at short distances is required.</td>
+          </tr>
+          <tr>
+            <td>Standard-mini Raspberry Pi Camera Cable</td>
+            <td>1</td>
+            <td>Only for use with the Raspberry Pi 5. For other Pi models use the standard-standard camera cable, which is usually supplied with the camera.</td>
+          </tr>
+          <tr>
+            <td>Jumper wire</td>
+            <td>As needed</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>PLA/PETG filament</td>
+            <td>As needed</td>
+            <td>For 3D printing</td>
+          </tr>
+          <tr>
+            <td>M4 machine screws/bolts</td>
+            <td>As needed</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>M2.5 machine screws/bolts/inserts</td>
+            <td>As needed, 8 advised</td>
+            <td>To fasten the Arduino and the Raspberry Pi to 3D printed surfaces.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {{ subsubheading("Methods") }}
+    <div>
+      <p>For further information on developing the components, circuitry, and machine learning model, refer to:</p>
+      <ul>
+        <li>neighboring page link for the CAD work and circuitry;</li>
+        <li>neighboring page link for the machine learning model.</li>
+      </ul>
+      <p>This section mainly deals with integrating the CAD work, circuitry, and the machine learning model, and assumes that all the prerequisites in the aforementioned individual pages are met. The scripts supplied in the aforementioned two pages already enable serial communication between the Raspberry Pi and the Arduino.
+      {{img(new_cdn("hardware/colony-counter-user-workflow.png"), width="80%")}}
+      Figure 1. Finite state machine of Arduino-Raspberry Pi system.
+      
+      <p>When initialized, the device will be in a state ready to accept a Petri dish with colonies.</p>
+      
+    </div>
+    {{ subsubheading("Testing, results, and next steps") }}
+    <div>
+      <p>Unfortunately, we were not able to perform integrative testing with the hardware components and the machine learning model in an actual in-lab setting. Testing was done component-wise, as follows:</p>
+      
+      <i>Machine learning model</i>
+      <p>Our team obtained a mAP of 0.038 and a validation loss of 1.704 with the latest model generated. 50 epochs of training were used on ~5% of the entire AGAR {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}; dataset to speed up training given limited resources. Qualitatively, there are situations where the model is extremely successful:</p>
+      {{img(new_cdn("hardware/image.webp"), width="40%")}}
+      Figure 1. Highly successful colony labelling with virtually all colonies accounted for.
+      <p>There are also situations where the model is extremely underperforming:</p>
+      {{img(new_cdn("hardware/image-1.webp"), width="40%")}}
+      Figure 2. Pathological case of colony counting with colonies not detected.
+      <p>And, in the average case, the model has an average performance, producing a colony count that is directionally correct but more often than not undercounting:</p>
+      {{img(new_cdn("hardware/image-2.webp"), width="40%")}}
+      Figure 3. Average colony counting case with directionally correct counting but missing detection.
+      <p>This suggests to the team that in the limited time the team had to develop the model, the model is overfitting on the training dataset. In any future step, the team shall attempt to:</p>
+      <ul>
+        <li>Increase the size of the training and validation datasets;</li>
+        <li>Increase the number of epochs for training;</li>
+        <li>Increase the degree of variability in the training dataset, such as by rotating images;</li>
+        <li>Identify specific pathological cases (such as in the second image in this sequence), determine the root cause behind those cases, and mitigate their impact on training.</li>
+      </ul>
+      
+      <i>Physical hardware</i>
+      <p>The physical hardware component does not need substantial testing as the product system is limited to a single device. Functionality of the physical hardware component, with the finite state machine framework, was trivially shown in a typical testing/debugging test scenario.</p>
+      
+      <i>Integrative testing</i>
+      <p>Integrative testing was unfortunately not finished by the team, though the plan was to perform testing in two stages:</p>
+      
+      <i>Functionality testing</i>
+      <p>This testing aims to ensure the model’s functionality with the physical hardware component. The model would be loaded onto the script in the Raspberry Pi and the whole product system would be tested. Emphasis is laid on where the physical hardware interacts with the model:</p>
+      <ul>
+        <li>The transmission of the photograph taken by the camera to the model;</li>
+        <li>The transmission of a resulting colony count to the Arduino microcontroller.</li>
+      </ul>
+      
+      <i>End user testing</i>
+      <p>This testing aims to ensure the product system’s compatibility with the wet lab team’s practices. The whole product system would be provided to the wet lab team and any feedback collected. Emphasis would be laid on any points that the hardware team could not provide:</p>
+      <ul>
+        <li>Performance in a typical laboratory environment</li>
+        <li>Ease of use</li>
+        <li>Additional features relevant to improving wet lab’s workflow, tying into principles discussed in our process engineering improvements.</li>
+      </ul>
+      
+    </div>
+    {{ subsubheading("Making your own modifications") }}
+    <div> 
+      <p>Modularity is a key feature of our designs and for this specific project, damaged or customizable components may be swapped in or out without any loss to functionality provided they meet all the prerequisites above. The following restrictions apply:</p>
+      <ul>
+        <li>Most Arduino boards are 5V boards (only the small ones are 3.3V), while all Raspberry Pi boards are 3.3V. Note: <b>Do not connect the Arduino to the Raspberry Pi directly as this will damage the board. Use a USB connector or a logic level converter.</b></li>
+        <li>To integrate more sensors with this product system, integrate them with the Arduino instead of the Raspberry Pi. If you need more I2C pins, use a multiplexer coming out of the SDA/SCK pins. Alternatively, use a wireless connection.</li>
+        <li>To link this system to a GUI (graphical user interface), use the Raspberry Pi connect service and run the GUI on the Raspberry Pi computer itself. If the GUI needs to be run on a laptop computer, use a USB connection to the Raspberry Pi or use MQTT. Libraries such as tkinter or PyQT provide an easily accessible means of creating GUI windows on Python or C++.</li>
+      </ul>
+    </div>
+  </div>
+  <!-- more shit to come -->
+</div>
+{% endblock %}

@@ -2,5 +2,6 @@
 
 {% block article_content %}
   {{ subpage_banner() }}
-  Text
+  Text, xyz sdfasdfasdf
+
 {% endblock %}

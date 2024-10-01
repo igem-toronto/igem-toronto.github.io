@@ -2,13 +2,15 @@
 <!-- ARBEIT: add links to scripts in gitlab and to neighboring pages.-->
 {% block article_content %}
 <div>
-  <b><i><h1> Rack Lab Manager </h1></i></b>
+  {{ heading("Lab Management") }}
   {{ subheading("Product System Overview") }} 
   <div>
     {{ subsubheading("Abstract") }} 
-    <p>
-      This page outlines the overarching product system, materials needed, build and test procedures, and possible future next steps for the rack lab manager. To achieve high throughput, the team needs to be able manage samples as efficiently as possible. Current sample management solutions are inadequate as they lead to missing, misplaced, and mislabeled samples. We designed an internet-of-things augmented rack that allows wireless stock keeping over multiple racks at multiple locations. The product system consists of the racks themselves, RFID readers, graphical user interface (GUI) endpoints, and servers used for communication and synchronous data storage. How such a system would improve wet lab workflows from a process engineering perspective was investigated.
-    </p>
+    <div>
+      <p>
+        This page outlines the overarching product system, materials needed, build and test procedures, and possible future next steps for the rack lab manager. To achieve high throughput, the team needs to be able manage samples as efficiently as possible. Current sample management solutions are inadequate as they lead to missing, misplaced, and mislabeled samples. We designed an internet-of-things augmented rack that allows wireless stock keeping over multiple racks at multiple locations. The product system consists of the racks themselves, RFID readers, graphical user interface (GUI) endpoints, and servers used for communication and synchronous data storage. How such a system would improve wet lab workflows from a process engineering perspective was investigated.
+      </p>
+    </div>
     {{ subsubheading("Introduction") }} 
     <div>
       <p>
@@ -71,75 +73,80 @@
       </p>
     </div>
     {{ subsubheading("Bill of Materials ")}}
-    <table>
-      <tbody>
-        <tr>
-          <td><b>Full name and description</b></td>
-          <td><b>Quantity</b></td>
-          <td><b>Remarks</b></td>
-        </tr>
-        <tr>
-          <td>Arduino Uno Wifi Rev2</td>
-          <td>As many as there are racks</td>
-          <td>Alternatively, use an Arduino MKR Wifi 1010 or an Arduino Nano 33 IoT, all of which have the WiFiNINA library, which is used to communicate over enterprise networks. If this is not required, then any WiFi Arduino or ESP32 board will work. If more pins are needed for more sensors, use a multiplexer.</td>
-        </tr>
-        <tr>
-          <td>GP2Y0A51SK0F IR sensor</td>
-          <td>As many as there are rack wells</td>
-          <td>This sensor not only detects presence but also distance to the next object, which is essential as an empty rack well and a full rack well are both within the IR sensor’s range.</td>
-        </tr>
-        <tr>
-          <td>LED</td>
-          <td>As many as there are rack wells</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Arduino MKR Wifi 1010</td>
-          <td>As many as there are RFID assemblies</td>
-          <td>Alternatively, use an an Arduino Nano IoT 33, which has the WiFiNINA library and operates on 3.3V logic. If communicating over enterprise networks is not required, then any 3.3V Arduino or ESP32 will work.</td>
-        </tr>
-        <tr>
-          <td>MFRC522 RFID reader</td>
-          <td>As many as there are RFID assemblies</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Circular RFID chips</td>
-          <td>As many as there are rack wells</td>
-          <td>Used to uniquely identify each sample.</td>
-        </tr>
-        <tr>
-          <td>Crochet yarn</td>
-          <td>As needed</td>
-          <td>Used to secure RFID chips to sample tubes.</td>
-        </tr>
-        <tr>
-          <td>Jumper wire</td>
-          <td>As needed</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>PLA/PETG filament</td>
-          <td>As needed</td>
-          <td>For 3D printing</td>
-        </tr>
-        <tr>
-          <td>M4 machine screws/bolts</td>
-          <td>As needed</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>M2.5 machine screws/bolts/inserts</td>
-          <td>As needed, 8 advised</td>
-          <td>To fasten the Arduino and the Raspberry Pi to 3D printed surfaces.</td>
-        </tr>
-        <tr>
-          <td>Solder</td>
-          <td>As needed</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+
+      <table class="entrepreneurship">
+        <thead>
+          <tr>
+            <th>Full name and description</th>
+            <th>Quantity</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Arduino Uno Wifi Rev2</td>
+            <td>As many as there are racks</td>
+            <td>Alternatively, use an Arduino MKR Wifi 1010 or an Arduino Nano 33 IoT, all of which have the WiFiNINA library, which is used to communicate over enterprise networks. If this is not required, then any WiFi Arduino or ESP32 board will work. If more pins are needed for more sensors, use a multiplexer.</td>
+          </tr>
+          <tr>
+            <td>GP2Y0A51SK0F IR sensor</td>
+            <td>As many as there are rack wells</td>
+            <td>This sensor not only detects presence but also distance to the next object, which is essential as an empty rack well and a full rack well are both within the IR sensor’s range.</td>
+          </tr>
+          <tr>
+            <td>LED</td>
+            <td>As many as there are rack wells</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Arduino MKR Wifi 1010</td>
+            <td>As many as there are RFID assemblies</td>
+            <td>Alternatively, use an an Arduino Nano IoT 33, which has the WiFiNINA library and operates on 3.3V logic. If communicating over enterprise networks is not required, then any 3.3V Arduino or ESP32 will work.</td>
+          </tr>
+          <tr>
+            <td>MFRC522 RFID reader</td>
+            <td>As many as there are RFID assemblies</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Circular RFID chips</td>
+            <td>As many as there are rack wells</td>
+            <td>Used to uniquely identify each sample.</td>
+          </tr>
+          <tr>
+            <td>Crochet yarn</td>
+            <td>As needed</td>
+            <td>Used to secure RFID chips to sample tubes.</td>
+          </tr>
+          <tr>
+            <td>Jumper wire</td>
+            <td>As needed</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>PLA/PETG filament</td>
+            <td>As needed</td>
+            <td>For 3D printing</td>
+          </tr>
+          <tr>
+            <td>M4 machine screws/bolts</td>
+            <td>As needed</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>M2.5 machine screws/bolts/inserts</td>
+            <td>As needed, 8 advised</td>
+            <td>To fasten the Arduino and the Raspberry Pi to 3D printed surfaces.</td>
+          </tr>
+          <tr>
+            <td>Solder</td>
+            <td>As needed</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     
     {{ subsubheading("Methods") }}
     <div>

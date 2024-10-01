@@ -5,19 +5,22 @@
 {{ heading("Human Practices", show=False) }}
 
 {{ subpage("Overview") }}
-{% include 'pages/human-practices/human-practices.html' with context %}
+{% include 'pages/human-practices/human-practices.html' with context%}
 
-{{ subpage("Regulatory Practices", img=cdn("pictures/hp-centre-block.jpg")) }}
-{% include 'pages/human-practices/regulatory-practices.html' with context %}
+{{ subpage("Regulatory Framework", img=cdn("pictures/hp-centre-block.jpg")) }}
+{% include 'pages/human-practices/regulatory-framework.html' with context %}
 
-{{ subpage("Implementation", img=cdn("pictures/hp-landfill-site.jpg")) }}
-{% include 'pages/human-practices/implementation.html' %}
+{{ subpage("Synergy with Other Technologies", img=cdn("pictures/hp-landfill-site.jpg")) }}
+{% include 'pages/human-practices/synergy-with-other-technologies.html' %}
 
 {{ subpage("Integrated Human Practices", img=cdn("pictures/hp-molecules.jpg")) }}
-{% include 'pages/human-practices/stakeholders.html' %}
+{% include 'pages/human-practices/integrated-human-practices.html' %}
 
-{{ subpage("Synergy with Other Technologies", img=cdn("pictures/hp-shore.jpg")) }}
-{% include 'pages/human-practices/synergy-with-other-technologies.html' with context %}
+{{ subpage("Education", img=cdn("pictures/hp-molecules.jpg")) }}
+{% include 'pages/human-practices/education.html' %}
+
+{{ subpage("Sustainability", img=cdn("pictures/hp-shore.jpg")) }}
+{% include 'pages/human-practices/sustainability.html' with context %}
 
 {% endblock %}
 

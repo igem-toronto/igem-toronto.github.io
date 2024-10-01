@@ -1,7 +1,0 @@
-{% extends "layout/subpage.html" %}
-
-{% block article_content %}
-  {{ subpage_banner() }}
-  Text, xyz sdfasdfasdf
-
-{% endblock %}

@@ -1,5 +1,5 @@
 {% extends "layout/subpage.html" %}
-<!-- ARBEIT: add links to scripts in gitlab and to neighboring pages.-->
+<!-- ARBEIT: add links to scripts in gitlab and to neighboring pages. And Chloe's results!!!!-->
 {% block article_content %}
 <div>
   {{ heading("Colony Counter") }}
@@ -181,6 +181,128 @@
       </ul>
     </div>
   </div>
-  <!-- more shit to come -->
+  {{subheading("Model")}}
+  <div>
+    {{subsubheading("Abstract")}}
+    <div>
+      <p>The colony counter project utilizes a machine learning model, specifically a fine-tuned version of the Detection Transformer (DETR) model published by Nicolas Carion et al. {{cite('Carion_Massa_Synnaeve_Usunier_Kirillov_Zagoruyko_2020')}}, to automate the counting of bacterial or fungal colonies on petri dishes. The team utilized the Annotated Germs for Automated Recognition (AGAR) dataset that contains more than 18000 photos of different bacteria with labels of whether the petri dish was countable, the location of each of the bacteria, and the total numbers of them {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}. The goal of this machine learning model is to eliminate the need for manual counting, streamlining laboratory workflows and improving measurement efficiency, which includes: </p>
+      <ol type="1" start="1">
+        <li> Using the photo taken to accurately locate the location of each colony like objects </li>
+        <li> Counting the number of such objects </li>
+        <li>Returning to the user the number of colonies available. </li>
+      </ol>
+      <p>The model is currently under construction as the team is still in progress of finalizing the training, and the next step of assessing the model accuracy is to acquire photos from Wet Lab to test it on actual data collected the team. </p>
+    </div>
+    {{subsubheading("Introduction")}}
+    <div>
+      <p>Manual colony counting on petri dishes is time-consuming and error-prone. The colony counter project seeks to automate this process using machine learning, specifically by applying object detection techniques to colony identification. Leveraging the DETR model, the system is designed to detect bacterial or fungal colonies in petri dish images and provide an accurate count, streamlining laboratory operations and reducing human error.</p>
+    </div>
+    {{subsubheading("Prerequisites")}}
+    <div>
+      <p>The machine learning system requires several components:</p>
+      <ul>
+        <li><b>Dataset:</b> The AGAR dataset for training, which contains annotated petri dish images. {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}</li>
+        <li><b>Software:</b> The DETR model implemented using PyTorch, as well as standard machine learning libraries for training and inference. The following Python libraries are required: </li>
+        <ul>
+          <li><code>torch</code> and <code>torchvision</code>: For building and running the DETR model/code </li>
+          <li><code>matplotlib</code>: For visualizing results</li>
+          <li><code>numpy</code>: For numerical computations</li>
+          <li><code>pandas</code>: For data manipulation</li>
+          <li><code>scikit-learn</code>: For evaluation metrics like mAP</li>
+          <li><code>cython</code>: For compiling C extensions for faster computation</li>
+          <li><code>albumentations</code>: For data augmentation</li>
+          <li><code>transformers</code>: For using transformer models</li>
+          <li><code>timm</code>: PyTorch Image Models for working with pre-trained models</li>
+          <li><code>monai</code>: For medical imaging deep learning, which can be used for image processing and transformations</li>
+          <li><code>imantics</code>: For handling COCO-style annotations</li>
+          <li><code>pycocotools</code>: For working with the COCO dataset format and evaluation metrics</li>
+        </ul>
+      </ul>
+    </div>
+    {{subsubheading("Product System")}}
+    <div>
+      <p>The core component of this project is a fine-tuned DETR model, which is trained to detect and count bacterial colonies on petri dishes. Consult the full scripts here: &lt;link to github script&gt;</p>
+      <i>Machine learning model</i>
+      <ul>
+        <li><b>DETR Architecture: </b>The Detection Transformer (DETR) is a transformer-based model for object detection, introduced by Carion et al . DETR consists of two main components: a CNN backbone and a transformer-based encoder-decoder structure. The CNN backbone (ResNet-50) extracts feature maps from the input image, which are then passed through the transformer. The transformer encoder has 6 multiple layers of self-attention and feed-forward layers, allowing it to model global dependencies between image features. The decoder part has a similar structure, using learned object queries to predict bounding boxes and class labels for the detected objects. For this colony counter project, the CNN backbone was frozen during fine-tuning, meaning its weights were not updated to save on computational resources and avoid overfitting on limited data. Only the transformer layers and the final detection heads were fine-tuned to learn the specific task of bacterial colony detection and counting.</li>
+        <li><b>Training Dataset:</b> The model is trained on the AGAR dataset, which contains over 18,000 images of petri dishes, annotated with colony locations and counts. This large dataset provides a robust foundation for training the model to detect colonies in a variety of conditions.</li>
+      </ul>
+      <i>Training and Performance</i>
+      <ul>
+        <li><b>Current Status:</b> The model is still undergoing training, with early results showing that it can detect colonies with moderate accuracy (for up to 300 colonies per image). Training has been limited to 50 epochs on approximately 5% of the AGAR dataset due to resource constraints. </li>
+        <li><b>Challenges:</b> The model is currently exhibiting signs of overfitting, meaning it performs well on the training set but struggles to generalize to new data. Future improvements will focus on expanding the training dataset and increasing variability to improve generalization.</li>
+      </ul>
+      <i>Inference Process</i>
+      <p>Once trained, the DETR model will be used to perform inference on new petri dish images. The process involves:</p>
+      <ol type="1" start="1">
+        <li><b>Input Image:</b> A high-resolution image of the petri dish is provided to the model.</li>
+        <li><b>Detection:</b> The model identifies bacterial or fungal colonies in the image, treating each colony as an object.</li>
+        <li><b>Counting:</b> The total number of detected colonies is counted, and the result is returned to the user or the script at large.</li>
+      </ol>
+    </div>
+    {{subsubheading("Methods")}}
+    <div>
+      <i>Model Training</i>
+      <p>The DETR model is fine-tuned on the AGAR dataset using supervised learning techniques. The dataset provides labeled images with colony locations and counts, allowing the model to learn to detect and count colonies effectively.</p>
+      <ul>
+        <li><b>Data Preprocessing:</b> Images from the AGAR dataset are first preprocessed, including resizing to a uniform scale. The preprocessing pipeline includes converting images to a format suitable for the transformer-based DETR architecture, where a fixed-size input is essential for consistent object detection results. </li>
+        <li><b>Data Augmentation:</b> To improve model generalization, data augmentation techniques such as image rotation and scaling are applied to the training set that was taken from the portion of the AGAR dataset utilized. Augmentation ensures that the model can robustly detect colonies in diverse settings and angles, as colony appearance may vary slightly due to experimental setup variations.</li>
+        <li><b>Training Configuration:</b> The fine-tuning of the DETR model is performed with a limited portion of the AGAR dataset. The training process involves optimizing both the detection and counting tasks by leveraging a combination of loss functions:
+          <ul>
+            <li><b>Bounding Box Regression Loss: </b>This helps the model learn the exact location and size of the colonies on the petri dishes.</li>
+            <li><b>Classification Loss: </b>This component ensures that the model correctly identifies colonies as distinct objects from the background.</li>
+          </ul>
+        </li>
+        <li><b>Batching &amp; Gradient Accumulation:</b> During training, batch sizes are configured to fit within the memory limits of the available GPU using ComputeCanada. Gradient accumulation is applied over several batches when the batch size is limited by memory, allowing the model to effectively train on larger datasets despite hardware limitations.</li>
+        <li><b>Loss Function:</b> The model uses a combination of bounding box regression and classification loss to learn the location of the colonies.</li>
+        <li><b>Validation: </b>A portion of the AGAR dataset is set aside for validation to track the model&#x27;s performance on unseen data during training. Validation metrics like mean Average Precision (mAP) and validation loss are used to evaluate the accuracy of the model in detecting and counting colonies.</li>
+      </ul>
+      <i>Model Evaluation</i>
+      <ul>
+        <li><b>Validation Set:</b> A portion of the AGAR dataset is held out for validation, allowing the team to monitor the model’s performance during training. The primary evaluation metric is mAP, which measures the accuracy of the model's object detection capabilities.</li>
+        <li><b>Challenges:</b> Current validation results show a mAP of 0.038 and a validation loss of 1.704, indicating room for improvement in both accuracy and generalization. Increasing the dataset size and improving data variability are key future steps.</li>
+      </ul>
+      <i>Testing and Next Steps</i>
+      <p>The model is currently in the final stages of training. Once training is complete, the following steps will be taken:</p>
+      <ul>
+        <li><b>Real-World Testing:</b> The model will be tested on actual petri dish images from our wet lab team to assess its performance on data that is not processed in AGAR but actual data that it could be facing in daily operations. </li>
+        <li><b>Refinement:</b> Based on the test results, the model will be fine-tuned further, with a focus on improving generalization and reducing overfitting. </li>
+        <li><b>Future Improvements:</b> Potential improvements include increasing the training dataset size, applying more advanced augmentation techniques, and addressing specific cases where the model underperforms.</li>
+      </ul>
+    </div>
+  </div>
+  {{subheading('CAD and circuitry')}}
+  <div>
+    {{subsubheading('Abstract')}}
+    <div>
+      <p>A colony counter stand was built to accommodate the colony counter by supporting the electronics assemblies and provide a consistent environment for pictures of colonies to be taken with. The colony counter stand was fabricated with similar methods to the rack lab manager, including similar 3D printing settings and fastenings. The Arduino and the Raspberry Pi used in the assembly operate as a finite state machine to ease usage.</p>
+    </div>
+    {{subsubheading('Introduction')}}
+    <div>
+      <h2>Introduction</h2><p>Naturally, where there is a colony counter, there is a need to obtain pictures for the counter. Although this is fulfilled by our use of the camera, there is still a need to take high quality pictures consistently under even lighting, as well as to provide a sufficiently secure support for any electronics. We designed a stand for the colony counter in a similar vein to the &lt;link: lab management rack&gt; to allow secure placement of devices.</p>
+    </div>
+    {{subsubheading('Prerequisites')}}
+    <div>
+      <ul>
+        <li>CAD software, prior CAD knowlege, and a 3D printer.</li>
+        <li>An Arduino board, and wiring knowledge.</li>
+        <li>Some Python knowledge, including use of the pyserial library.</li>
+      </ul>
+    </div>
+    {{subsubheading('Product System')}}
+    <div>
+      {{img(new_cdn(''))}}
+      {{img(new_cdn(''))}}
+      <p>The user interaction workflow can be summed up with the diagram above. Besides slotting the petri dish into the baseplate, the only user interaction is with the two buttons on the attached breadboard. The first button controls when to activate the DETR model and if to save the model output while the second button controls if the output should be discarded.</p>
+      <p><i>CAD, design considerations</i></p>
+      <p>To ensure modularity, the stands of this colony counter stand are identical to the lab management solution rack, and use similar fastenings. Refer to a neighboring file for details.</p>
+      <p><i>CAD, final drawings</i></p>
+      <!-- stl file here -->
+    </div>
+    {{subsubheading('Methods')}}
+    <div>
+      <p>As the colony counter stand and the lab management rack were fabricated with similar conditions, consult the methods section of the neighboring page for a full description.</p>
+    </div>
+  </div>
 </div>
 {% endblock %}

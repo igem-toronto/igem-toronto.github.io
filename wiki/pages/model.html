@@ -46,7 +46,8 @@
     </p>
     <p>
         Existing machine learning models, such as Evo, have demonstrated the potential for modelling and predicting
-        biological sequences []. This approach has been useful in identifying novel sequences with desired traits.
+        biological sequences {{ cite('Nguyen_Poli_Durrant_Thomas_Kang_Sullivan_Ng_Lewis_Patel_Lou_et al._2024') }}. This
+        approach has been useful in identifying novel sequences with desired traits.
         However, these models often face limitations when tasked with producing plasmid sequences that need to fulfill
         highly specific biological roles or interface with complex cellular machinery, such as the origin of replication
         (ori) regions, protein-binding motifs, and promoter elements.
@@ -88,7 +89,10 @@
 <div>
     <p>
         Our natural bacterial plasmid dataset consists of 137,041 circular plasmid sequences derived from single
-        origins. The sequences were curated from public databases like PLSDB and IMG/PR [][], and are filtered based on
+        origins. The sequences were curated from public databases like PLSDB and IMG/PR {{
+        cite('Schmartz_Hartung_Hirsch_Kern_Fehlmann_Müller_Keller_2021')}} {{
+        cite('Camargo_Call_Roux_Nayfach_Huntemann_Palaniappan_Ratner_Chu_Mukherjeep_Reddy_et
+        al._2024')}}, and are filtered based on
         plasmid topology (e.g., circular vs linear) and source type.
     </p>
 </div>
@@ -113,7 +117,8 @@
     </p>
     <p>
         We use a sophisticated tokenization strategy called Byte Pair Encoding (BPE) trained on our dataset of plasmid
-        sequences, inspired by the success of DNABERT-2 []. This tokenizer identifies and encodes frequently occurring
+        sequences, inspired by the success of DNABERT-2 {{ cite('zhou2024dnabert')}}. This tokenizer identifies and
+        encodes frequently occurring
         subsequences, effectively compressing repetitive DNA patterns common in plasmids. After tokenizing a raw
         nucleotide sequence, each token represents a short nucleotide sequence (e.g. AAT) in the tokenizer’s dictionary.
         The use of BPE is crucial for managing long plasmids within computational constraints, allowing us to fit
@@ -125,7 +130,8 @@
 <div>
     <p>
         For our model architecture, we use the Mamba2 model, a recent state-space model (SSM) architecture which has
-        demonstrated success in long-sequence modelling tasks []. This choice was driven by Mamba's ability to handle
+        demonstrated success in long-sequence modelling tasks {{ cite('dao2024transformers') }} {{
+        cite('gu2024mamba') }}. This choice was driven by Mamba's ability to handle
         long plasmid sequences efficiently, making it well-suited for plasmid data. The Mamba architecture employs a
         state space model with a selection mechanism, allowing more controlled propagation of information between
         layers. The computational complexity of the forward pass is linear in the sequence length, which is superior to
@@ -176,7 +182,8 @@
     <p>
         During inference, we generate novel plasmid sequences through a carefully designed process. We initiate sequence
         generation with the CLS token, signaling the start of a new sequence. We then utilize nucleus sampling to
-        predict the next tokens within the sequence, ultimately generating many plasmid sequences in parallel []. This
+        predict the next tokens within the sequence, ultimately generating many plasmid sequences in parallel {{
+        cite('Holtzman2020The') }}. This
         is the sampling method of choice for many large language models which can also control the diversity of
         generated samples, allowing us to trade off sample quality with diversity.
     </p>
@@ -209,13 +216,16 @@
         We performed a holistic assessment of the quality of each batch of sequences before starting a sequence by
         sequence validation pipeline. This was done both at a batch-wide level and individual sequence level. At the
         batch-wide level, we leveraged existing tools for genetic sequence clustering and annotation, particularly
-        MOBsuite []., to gain deeper insight into the potential biological significance of the changes between and
+        MOBsuite {{ cite('Robertson_Nash_2018') }}., to gain deeper insight into the potential biological significance
+        of the changes between and
         within batches. We examined whether the sequences in a given batch formed clusters, aligned well against known
         motifs, and had circular contigs (which are good criteria for predicting putative novel plasmids).
 
     </p>
     <p>
-        Firstly, single-linkage clustering by MASH distance[] was performed on all the generated sequences. This
+        Firstly, single-linkage clustering by MASH distance {{
+        cite('Ondov_Treangen_Melsted_Mallonee_Bergman_Koren_Phillippy_2016') }} was performed on all the generated
+        sequences. This
         revealed relations that exist within a batch of sequences. Next, to shed light on the relation between a batch
         and known plasmid sequences, we used BLAST to calculate the alignment score between sequences in our batch and
         known sequences of replicons, relaxase proteins and repetitive elements. We also filter by coverage and identity
@@ -232,20 +242,23 @@
         <strong>Ori features and motifs </strong><br>
         Oris require a complex and interdependent set of machinery to be present to replicate. Some of the most
         important regions or motifs are: Rep protein sites (Class A), AT-rich regions, DnaA boxes, and dam methylation
-        sequence iteron (directly repeated sequences) containing regions [] []. The AT-rich region particularly is the
-        most universally conserved structural element in both prokaryotic and eukaryotic replicons []. We compiled a
+        sequence iteron (directly repeated sequences) containing regions {{ cite('Rajewska_Wegrzyn_Konieczny_2012') }}
+        {{ cite('Rajewska_Wegrzyn_Konieczny_2012') }}. The AT-rich region particularly is the
+        most universally conserved structural element in both prokaryotic and eukaryotic replicons {{
+        cite('Rajewska_Wegrzyn_Konieczny_2012') }}. We compiled a
         database of major motifs found across the literature for these ori features.
 
     </p>
     <p>
         <strong>Class A vs Class B plasmids – Classification Pipeline Overview and Results </strong><br>
         Theta-replicating plasmids can be classified based on their replication initiation mechanisms. Of the many
-        existing classes, this project mostly concerns Class A and Class B plasmids [].
+        existing classes, this project mostly concerns Class A and Class B plasmids {{ cite('Lilly_Camps_2015')}}.
         <br>
-        Class A theta plasmids rely on plasmid-encoded Replication proteins (Rep proteins) to initiate replication [].
+        Class A theta plasmids rely on plasmid-encoded Replication proteins (Rep proteins) to initiate replication {{
+        cite('Lilly_Camps_2015') }}.
         The replication of Class A plasmids is complex and rep proteins are not well documented. In contrast, Class B
         theta plasmids undergo a simpler replication mechanism. They do not require any Rep proteins and instead rely on
-        host machinery for their replication initiation []. Since only RNA II and a P2 promoter are required, Class B
+        host machinery for their replication initiation. Since only RNA II and a P2 promoter are required, Class B
         replication is easier to validate computationally as fewer sequence alignments can be used for identification.
         <br>
         Despite these known differences between Class A and Class B plasmids, there is no existing method in the
@@ -270,13 +283,14 @@
     </p>
 </div>
 
-{{ subsubsubheading("Ori Alignment ") }}
+{{ subsubsubheading("Ori Alignment Pipeline") }}
 <div>
     <p>
         The first step in our generated sequence alignment pipeline was to align our generated sequences to an ori
         database and select those generated sequences with a high but less than 100% alignment to a wildtype ori from
-        the doriC [] database. MMseqs2 [] and BLAST+ [] were used to align the sequences. These generated sequences were
-        then passed into the annotation phase of our pipeline.
+        the doriC {{ cite('Dong_Luo_Gao_2022') }} database. MMseqs2 {{ cite('Steinegger_Söding_2017') }} and BLAST+ {{
+        cite('Camacho_Coulouris_Avagyan_Ma_Papadopoulos_Bealer_Madden_2009') }} were used to align the sequences. These
+        generated sequences were then passed into the annotation phase of our pipeline.
     </p>
 </div>
 
@@ -285,8 +299,9 @@
     <p>
         We compiled a database of major motifs found across literature for important ori features.
         To identify replication proteins corresponding to each ori, we first found motifs within the generated plasmid
-        ori sequences and then determined if any replication proteins binded to these motifs. For motif discovery, we
-        used MEME Suite 5.5.5's MEME tool []. To identify class B plasmids, sequences were both put through our class B
+        ori sequences and then determined if any replication proteins bind to these motifs. For motif discovery, we
+        used MEME Suite 5.5.5's MEME tool {{ cite('Bailey_Johnson_Grant_Noble_2015') }}. To identify class B plasmids,
+        sequences were both put through our class B
         alignment pipeline (discussed in “Key Ori Features and Classes”) and manually examined. Sequences that aligned
         to known class B plasmids were prioritized.
     </p>
@@ -300,14 +315,16 @@
         functional proteins should also be functional. One significant challenge is the unannotated whole plasmid
         sequence on which the model was trained, meaning the model must be able to learn from a sample space not
         constrained to near known functional wildtype proteins, as well as not being provided with protein structural
-        priors []. Below are some of the common concerns associated with generated protein sequences and the associated
+        priors {{ cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et al._2023') }}. Below are
+        some of the common concerns associated with generated protein sequences and the associated
         computational evaluation metrics we used to address these issues.
 
     </p>
     <p>
         Typically, protein sequences are detected and validated in silico by comparing the distribution of generated
         sequences to natural controls using alignment-derived scores. We experimented with commonly used homology search
-        techniques such as BLAST and MmSeq2 against the 2023 Comprehensive Antibiotic Resistance Database (CARD) to
+        techniques such as BLAST and MmSeq2 against the 2023 Comprehensive Antibiotic Resistance Database (CARD) {{
+        cite('Alcock2022') }} to
         search for antimicrobial resistance proteins (AMR). However, there were two problems with this approach. First,
         the homology alignment did not take into account the issue of overfitting commonly seen in generative models, in
         which the model produces sequences that mimic too closely those seen in the training set. Second, the relatively
@@ -322,9 +339,12 @@
         threshold, a lower percentage of coverage to a reference length of 20% is applied, and the selected ORFs are
         extended by a flanking sequence of 100 bp length along the 5’ direction of the coding sequence. The cutoff of
         20% was chosen to benchmark our model against a current state-of-the-art large language protein generation
-        model, ProGen, as it is the lowest percentage sequence identity of ProGen’s generated proteins []. This lower
+        model, ProGen, as it is the lowest percentage sequence identity of ProGen’s generated proteins {{
+        cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et al._2023') }}. This lower
         score also allows for the inclusion of artificial sequences that diverge from natural sequences. Second, using
-        NCBI’s AMRFinderPlus database [], we used BLAST against both the “core” and “plus” proteins collection, as well
+        NCBI’s AMRFinderPlus database {{
+        cite('Feldgarden_Brover_Gonzalez-Escalona_Frye_Haendiges_Haft_Hoffmann_Pettengill_Prasad_Tillman_et al._2021')
+        }}, we used BLAST against both the “core” and “plus” proteins collection, as well
         as filtered for genes specific to E. coli to ensure consistency with plasmid design. The “core” and “plus”
         protein collection includes not only AMR, but also stress response factors (biocide, metal, heat resistance),
         virulence factors, antigens and porins. Overall, these design choices contribute to a protein validation
@@ -338,7 +358,8 @@
         protein folding and stability, or nonsense mutations causing stop codon formation and hinder expression. Thus,
         it is important to use structure-based tools for early detection of these issues and to avoid passing any unfit
         candidates to wet-lab validation as possible. In particular, we use the Transformer-based protein-folding
-        predictive model ESMFold [], most importantly for its ability to accurately predict structures for orphan
+        predictive model ESMFold {{ cite('Lin_Akin_Rao_Hie_Zhu_Lu_Smetanin_Verkuil_Kabeli_Shmueli_et al._2022' )}}, most
+        importantly for its ability to accurately predict structures for orphan
         proteins with limited sequence homologs. We used four metrics for assessing accuracy and reliability of
         predicted protein models: Predicted Local Distance Difference Test (plDDT), Predicted Aligned Error (PAE), Plot
         of Contacts from Structure Module, and the predicted template modeling score (pTM-score). Overall, regions with
@@ -628,7 +649,8 @@
     <p>
         There is limited data available on relevant motifs. Particularly, protein binding motifs are difficult to
         annotate. MEME only discovers motifs but it does not determine if any of the discovered motifs are known binding
-        sites. We can use MEME Suite’s FIMO tool [] to scan the sequences for occurrences of the discovered motifs and
+        sites. We can use MEME Suite’s FIMO tool {{ cite('Bailey2015' )}} to scan the sequences for occurrences of the
+        discovered motifs and
         compare them against known binding site databases to identify potential binding sites; however, this requires
         supplying a sequence of known binding site motifs. Currently, we are unable to find a database of replication
         protein binding motifs. To overcome this limitation, in the current pipeline, we prioritize features that are
@@ -710,18 +732,151 @@
 {{ subsubheading("Training Architecture") }}
 <div>
     <p>
-        NON
+        The training architecture for the plasmid generation model leverages the Mamba2 state-space model (SSM) to
+        handle
+        the long-range dependencies in plasmid sequences. This section details the model structure, hyperparameters, and
+        training strategy used to generate biologically relevant plasmids.
+    </p>
+    <br>
+    {{ subsubsubheading("Model Architecture") }}
+    <table style="width: 100%; margin-bottom: 15px; border: 1px solid #ddd; border-collapse: collapse;">
+        <tr style="background-color: #dbcfff;">
+            <th style="border: 1px solid #ddd; padding: 8px;">Component</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Base Architecture</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Mamba2 state-space model (SSM)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Number of Layers</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">22</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Hidden Dimension</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">512</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">SSM Configuration</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                <ul style="margin: 0;">
+                    <li><strong>Layer:</strong> Mamba2</li>
+                    <li><strong>d_state:</strong> 64</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Normalization Type</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">LayerNorm</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Residual Computation</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">FP32</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Fused Add Norm</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Enabled</td>
+        </tr>
+    </table>
+    <br>
+    {{ subsubsubheading("Hyperparameters") }}
+    <table style="width: 100%; margin-bottom: 15px; border: 1px solid #ddd; border-collapse: collapse;">
+        <tr style="background-color: #dbcfff;">
+            <th style="border: 1px solid #ddd; padding: 8px;">Hyperparameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Value</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Optimizer</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">AdamW</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Betas</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">(0.9, 0.95)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Weight Decay</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">0.1</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Learning Rate Scheduler</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">10% Linear Warmup, 90% Cosine Decay</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Scheduler Span</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">100,000 steps</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Minimum Learning Rate</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">1e-4</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Maximum Learning Rate</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">4e-3</td>
+        </tr>
+    </table>
+    <br>
+    {{ subsubsubheading("Hardware and Training Configuration") }}
+    <table style="width: 100%; margin-bottom: 15px; border: 1px solid #ddd; border-collapse: collapse;">
+        <tr style="background-color: #dbcfff;">
+            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Nodes</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">GPUs</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">2 per node (NVIDIA A100 - 40GB)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Memory</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">40 GB</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Precision</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Mixed (bf16)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">CPUs</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">12 (6 per task)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">SLURM Configuration</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                <ul style="margin: 0;">
+                    <li><strong>Scheduler:</strong> SLURM</li>
+                    <li><strong>Time:</strong> 36 hours</li>
+                    <li><strong>Checkpointing:</strong> Enabled</li>
+                    <li><strong>Job Output:</strong> Logs directory</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <br>
+    {{ subsubsubheading("Sampling and Inference Strategy") }}
+    <p>
+        The model uses a combination of advanced sampling techniques to control sequence quality:
+    <ul style="margin: 0; padding-left: 20px;">
+        <li><strong>Top-k Sampling:</strong> Retains the top k most probable tokens (disabled by default).</li>
+        <li><strong>Top-p Sampling:</strong> Uses nucleus sampling to maintain a cumulative probability of 0.9.</li>
+        <li><strong>Repetition Penalty:</strong> Applies penalties to repeated tokens to reduce redundancy.</li>
+        <li><strong>Temperature:</strong> Set to 1.0 to control randomness during sampling.</li>
+    </ul>
     </p>
 </div>
+
 
 {{ subsubheading("Diffusion Model ") }}
 <div>
     <p>
         We initially explored using a diffusion model to facilitate plasmid generation. Diffusion models are a class of
         deep generative models which operate by iteratively adding noise to input data over many steps, and then
-        learning to denoise the corrupted data back into the original data []. In our context, this would allow the
+        learning to denoise the corrupted data back into the original data {{ cite("pmlr-v37-sohl-dickstein15") }} {{
+        cite("NEURIPS2020_4c5bcfec")}}. In our context, this would allow the
         generation of a plasmid from random noise at inference time. In particular, we attempted an approach called
-        discrete diffusion, a type of diffusion model designed to operate on discrete data []. However, we found that
+        discrete diffusion, a type of diffusion model designed to operate on discrete data {{
+        cite('NEURIPS2021_958c5305') }} {{ cite('hoogeboom2022autoregressive') }}. However, we found that
         this type of modeling was not well-suited to our task and abandoned this line of work.
 
     </p>
@@ -773,17 +928,5 @@
     </ul>
     </p>
 </div>
-
-<!-- {{ subsubheading("Detailed Protein Results For Batch 3") }}
-<div>
-    <p>
-        The selected generated proteins below are listed in descending order of (1) predicted template modelign score
-        (pTM) and Predicted Local Distance Difference Test (plDDT) score.
-
-    </p>
-    <p>
-        TABLE
-    </p>
-</div> -->
 
 {% endblock %}

@@ -1,18 +1,6 @@
 [
   {
-    "text": "Our Team",
-    "sublinks": [
-      {
-        "text": "Introduction",
-        "link": "team"
-      },
-      {
-        "text": "Attributions"
-      }
-    ]
-  },
-  {
-    "text": "Project",
+    "text": "Research",
     "sublinks": [
       {
         "text": "Description"
@@ -20,23 +8,6 @@
       {
         "text": "Engineering"
       },
-      {
-        "text": "Experiments"
-      },
-      {
-        "text": "Contribution"
-      },
-      {
-        "text": "Notebook"
-      }
-    ]
-  },
-  {
-    "text": "Parts"
-  },
-  {
-    "text": "Results",
-    "sublinks": [
       {
         "text": "Wet Lab"
       },
@@ -52,25 +23,38 @@
     ]
   },
   {
-    "text": "Human Practices",
+    "text": "Support",
     "sublinks": [
       {
-        "text": "Human Practices"
+        "text": "Finance"
       },
       {
-        "text": "Safety"
+        "text": "Outreach"
       },
-      {
-        "text": "Entrepreneurship"
-      }
-    ]
-  },
-  {
-    "text": "Relations",
-    "sublinks": [
       {
         "text": "Sponsors"
       }
     ]
+  },
+  {
+    "text": "Team",
+    "sublinks": [
+      {
+        "text": "Members",
+        "link": "team"
+      },
+      {
+        "text": "Attributions"
+      },
+      {
+        "text": "Contribution"
+      }
+    ]
+  },
+  {
+    "text": "Human Practices"
+  },
+  {
+    "text": "Entrepreneurship"
   }
 ]

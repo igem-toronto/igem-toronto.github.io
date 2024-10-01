@@ -1,22 +1,160 @@
 {% extends 'layout/core.html' %}
 {% from 'layout/header.html' import links with context %}
 
+{% macro hover_in() -%}
+  onscroll -scroll:opacity-0 duration-500 relative -scroll:top-16 scroll:top-0
+{%- endmacro %}
+
 {% block body %}
-  <body class="flex flex-col min-h-screen justify-between">
+  <body class="flex flex-col min-h-screen justify-between bg-primary-dark">
     {% include 'layout/header.html' %}
     <div class="bg-primary-dark relative">
       <div class="absolute right-12 top-0">
         <img src="{{ new_cdn('assets/graphics/bacterium.svg') }}">
       </div>
-      <div class="w-full my-60 px-28 lg:px-4">
-        <h1 class="text-white lg:w-1/3 text-center m-auto">
-          Project Name
-        </h1>
-        <h4 class="text-white my-8 no-underline font-roboto-mono lg:w-1/4 text-center m-auto">
-          A new solution to - description of the project's application 
+      <div class="w-full my-60 px-28 lg:px-4 flex items-center flex-col">
+        <img src="{{ new_cdn('assets/graphics/plasmid-ai-logo-text.png') }}">
+        <h4 class="text-white text-2xl my-8 no-underline font-roboto-mono text-center m-auto">
+          An intelligent platform to
+          <span class="text-accent-saturated-purple">
+            write new life
+          </span>
         </h4>
       </div>
-      <img class="w-full my-8" src="{{ new_cdn('assets/graphics/home-futuristic.png') }}">
+      <img class="w-full my-8 {{ hover_in() }}" src="{{ new_cdn('assets/graphics/bacterium-v2.png') }}">
+    </div>
+
+    <div class="w-full my-20 lg:px-36 px-8">
+      <h1 class="text-font-light {{ hover_in() }}">
+        Generating new DNA using AI
+      </h1>
+      <p class="text-font-light font-roboto-mono {{ hover_in() }}">
+        At iGEM Toronto, our project aims to use generative machine learning to write new,
+        functional DNA sequences that form the template of novel organisms - specifically,
+        new, custom bacteria and phages with controllable phenotypes.
+      </p>
+      <p class="text-font-light font-roboto-mono {{ hover_in() }}">
+        To made headway towards this complex task, we are starting with the simplest
+        proof-of-concept: generating novel plasmid parts.
+      </p>
+      <div class="relative">
+        <img class="w-full mt-24 {{ hover_in() }}" src="{{ new_cdn('assets/graphics/ai-to-plasmid.png') }}">
+        <h2 class="lg:block hidden text-font-light font-roboto-mono absolute delay-1000 onscroll -scroll:right-216 scroll:right-44 top-64 duration-1000">
+          AI to Plasmid
+        </h2>
+      </div>
+    </div>
+
+    <div class="w-full my-20 lg:px-36 px-8">
+      <h1 class="text-font-light {{ hover_in() }}">
+        Plasmids with an impact
+      </h1>
+      <p class="text-font-light font-roboto-mono {{ hover_in() }}">
+        We are employing a two-pronged approach to make new plasmid parts while creating a positive social impact.
+      </p>
+      <div class="flex lg:flex-row flex-col w-full justify-center gap-14">
+        <div class="flex-1 flex items-center flex-col {{ hover_in() }}">
+          <div class="w-80 h-80 flex items-center justify-center">
+            <img src="{{ new_cdn('assets/graphics/dna-wheel.png') }}">
+          </div>
+          <div class="lg:lg:px-24 px-8 px-8">
+            <p class="text-font-light font-roboto-mono font-semibold text-center">
+              1. Generative AI & Lab Automation
+            </p>
+            <p class="text-font-light font-roboto-mono text-center">
+              Utilizing AI models, we are generating novel plasmid sequences. These are designed
+              in silico and validated through a comprehensive in silico and in vitro validation
+              pipeline. We are also developing hardware tools to automate this process.
+            </p>
+          </div>
+        </div>
+        <div class="flex-1 flex items-center flex-col {{ hover_in() }}">
+          <div class="w-80 h-80 flex items-center justify-center">
+            <img src="{{ new_cdn('assets/graphics/plasmid-simplified.png') }}">
+          </div>
+          <div class="lg:lg:px-24 px-8 px-8">
+            <p class="text-font-light font-roboto-mono font-semibold text-center">
+              2. Groundwork for Social Impact
+            </p>
+            <p class="text-font-light font-roboto-mono text-center">
+              Through human practices and entrepreneurship, we are honing in on antibiotic resistance
+              as our first project application and primary commercialization effort. Through these
+              endeavors, we are setting forth a path for Plasmid.AI to positively impact communities
+              globally.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="w-full my-8 {{ hover_in() }}" src="{{ new_cdn('assets/graphics/bacterium-v2.png') }}">
+
+    <div class="w-full my-20 lg:px-36 px-8">
+      <h1 class="text-font-light mb-16 {{ hover_in() }}">
+        Our Pipeline
+      </h1>
+      <div class="flex flex-col lg:gap-36 gap-20">
+        <div class="flex lg:flex-row-reverse flex-col items-center {{ hover_in() }} gap-y-8">
+          <div class="lg:px-24 px-8 flex-1">
+            <p class="text-font-light font-roboto-mono font-semibold text-center">
+              In silico generation and validation
+            </p>
+            <p class="text-font-light font-roboto-mono text-center">
+              Novel tokenizer and Mamba2 DNA sequence model generates whole plasmids
+              using plasmid dataset. These plasmids are then extensivley validated in silico.
+            </p>
+          </div>
+          <div class="flex-1">
+            <img class="w-full" src="{{ new_cdn('assets/graphics/bacterium-v2.png') }}">
+          </div>
+        </div>
+        <div class="flex lg:flex-row flex-col items-center {{ hover_in() }} gap-y-8">
+          <div class="lg:px-24 px-8 flex-1">
+            <p class="text-font-light font-roboto-mono font-semibold text-center">
+              In vitro wet lab validation
+            </p>
+            <p class="text-font-light font-roboto-mono text-center">
+              The best plasmid parts in silico are put to the test experimentally in the
+              wet lab, where they are assessed for functionality.
+            </p>
+          </div>
+          <div class="flex-1">
+            <img class="w-full" src="{{ new_cdn('assets/graphics/bacterium-v2.png') }}">
+          </div>
+        </div>
+        <div class="flex lg:flex-row-reverse flex-col items-center {{ hover_in() }} gap-y-8">
+          <div class="lg:px-24 px-8 flex-1">
+            <p class="text-font-light font-roboto-mono font-semibold text-center">
+              IoT tools for high-throughput and lab automation
+            </p>
+            <p class="text-font-light font-roboto-mono text-center">
+              Modular Internet-of-Things tools, such as colony counters, fridge management
+              systems, and Lean Six Sigma workflows are developed to increase the
+              throughput of the Plasmid.AI pipeline.
+            </p>
+          </div>
+          <div class="flex-1">
+            <img class="w-full" src="{{ new_cdn('assets/graphics/bacterium-v2.png') }}">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full my-8 lg:px-36 px-8">
+      <p class="text-font-light font-roboto-mono {{ hover_in() }}">
+        Our ultimate goal is refine our proof-of-concept into a platform that can generate,
+        validate, and test entire bacterial and phage genomes, each with fine-tuned
+        functionality that can be used in a myriad of applications; in particular,
+        to solve antibiotic resistance.
+      </p>
+    </div>
+
+    <div class="w-full my-20 lg:px-36 px-8">
+      <h1 class="text-font-light {{ hover_in() }}">
+        Explore Our Work
+      </h1>
+
+      <div class="w-full h-96 bg-slate-300 {{ hover_in() }}">
+      </div>
     </div>
     
     {% include 'layout/footer.html' %}

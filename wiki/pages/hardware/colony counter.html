@@ -22,7 +22,7 @@
       <p>The combined product system consists of a Raspberry Pi 5 single board computer with an Arduino microcontroller.</p>
       <br><br>
       <p><i>Process diagram</i></p>
-      {{img(cdn("hardware/screenshot-2024-08-25-195112.png")), width="80%"}}<br>
+      {{img(cdn("hardware/screenshot-2024-08-25-195112.png"), width="80%")}}<br>
       Figure 1. Overall product system process diagram.
       <br><br>
       <i>Raspberry Pi</i>
@@ -121,7 +121,7 @@
         <li>neighboring page link for the machine learning model.</li>
       </ul>
       <p>This section mainly deals with integrating the CAD work, circuitry, and the machine learning model, and assumes that all the prerequisites in the aforementioned individual pages are met. The scripts supplied in the aforementioned two pages already enable serial communication between the Raspberry Pi and the Arduino.
-      {{img(cdn("hardware/colony-counter-user-workflow.png")), width="80%"}}<br>
+      {{img(cdn("hardware/colony-counter-user-workflow.png"), width="80%")}}<br>
       Figure 1. Finite state machine of Arduino-Raspberry Pi system.
       <br><br>
       <p>When initialized, the device will be in a state ready to accept a Petri dish with colonies.</p>
@@ -133,13 +133,13 @@
       <br>
       <i>Machine learning model</i>
       <p>Our team obtained a mAP of 0.038 and a validation loss of 1.704 with the latest model generated. 50 epochs of training were used on ~5% of the entire AGAR {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}; dataset to speed up training given limited resources. Qualitatively, there are situations where the model is extremely successful:</p>
-      {{img(cdn("hardware/image.webp")), width="40%"}}<br>
+      {{img(cdn("hardware/image.webp"), width="40%")}}<br>
       Figure 1. Highly successful colony labelling with virtually all colonies accounted for.<br><br>
       <p>There are also situations where the model is extremely underperforming:</p>
-      {{img(cdn("hardware/image-1.webp")), width="40"}}<br>
+      {{img(cdn("hardware/image-1.webp"), width="40%")}}<br>
       Figure 2. Pathological case of colony counting with colonies not detected.<br><br>
       <p>And, in the average case, the model has an average performance, producing a colony count that is directionally correct but more often than not undercounting:</p>
-      {{img(cdn("hardware/image-2.webp")), width="40%"}}<br>
+      {{img(cdn("hardware/image-2.webp"), width="40%")}}<br>
       Figure 3. Average colony counting case with directionally correct counting but missing detection.<br><br>
       <p>This suggests to the team that in the limited time the team had to develop the model, the model is overfitting on the training dataset. In any future step, the team shall attempt to:</p>
       <ul>

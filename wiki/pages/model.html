@@ -199,9 +199,11 @@
             proteins. This dual approach aims to iteratively refine our generative models, ultimately enhancing their
             accuracy and applicability for synthetic biology research.</li>
     </ul>
-    <div style="width: 100%; display: flex; justify-content: center;">
-        <img src="https://static.igem.wiki/teams/5230/drylab/igemigempipeline.jpg" />
+    <br>
+    <div style="display: flex; justify-content: center;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/igemigempipeline.jpg" style="max-width: 80%; height: auto;" />
     </div>
+    <br>
 </div>
 
 {{ subheading("Methods") }}
@@ -315,7 +317,7 @@
     <div style="display: flex; justify-content: center; width: 100%;">
         <img src="https://static.igem.wiki/teams/5230/drylab/inference.png" />
     </div>
-    <br><br>
+    <br><br><br>
 </div>
 
 {{ subsubheading("Model In Silico Validation Pipeline") }}
@@ -423,6 +425,7 @@
         alignment pipeline (discussed in “Key Ori Features and Classes”) and manually examined. Sequences that aligned
         to known class B plasmids were prioritized.
     </p>
+    <br>
 </div>
 
 {{ subsubheading("Protein Validation - Antimicrobial Resistance") }}
@@ -490,6 +493,7 @@
         purposes.
 
     </p>
+    <br>
 </div>
 
 {{ subsubheading("Ori Batch Results") }}
@@ -497,8 +501,8 @@
     <p>
         Three major batches of sequences were generated and validated. Other batches (such as attempts with diffusion
         models) were produced but did not show sufficient promise to make it to the validation pipeline.
-
     </p>
+    <br>
 </div>
 
 {{ subsubsubheading("Batch 1") }}
@@ -510,7 +514,7 @@
         in generating biologically plausible plasmids. The batch-wide analysis pipeline produced the following results:
     </p>
     <div style="display: flex; justify-content: center; width: 100%;">
-        <img src="https://static.igem.wiki/teams/5230/drylab/bacth1batch1.png" />
+        <img src="https://static.igem.wiki/teams/5230/drylab/batch1batch1.png" />
     </div>
     <p>
         The sequence size of this batch showed wide variation. Its GC content distribution is slightly skewed towards
@@ -540,6 +544,7 @@
             <button class="gallery-button" id="next-button-1" onclick="changeSequence1(1)">Next</button>
         </div>
     </div>
+    <br>
 </div>
 
 {{ subsubsubheading("Batch 2") }}
@@ -584,6 +589,7 @@
             <button class="gallery-button" id="next-button-2" onclick="changeSequence2(1)">Next</button>
         </div>
     </div>
+    <br>
 </div>
 
 {{ subsubsubheading("Batch 3") }}
@@ -616,6 +622,7 @@
     <p>
         9 oris were selected for experimental validation. These oris have not been fully tested in vitro yet.
     </p>
+    <br>
 </div>
 
 {{ subsubheading("Protein Selection") }}
@@ -716,7 +723,7 @@
         <img src="https://static.igem.wiki/teams/5230/drylab/seq1712.gif"
             style="width: 120%; height: 120%; margin: -10% 0 -10% -10%; object-fit: cover;" />
     </div>
-    <br>
+    <br><br>
 </div>
 
 {{ subsubheading("Most Valuable Plasmid") }}
@@ -757,57 +764,60 @@
 
 {{ subsubheading("Limitations") }}
 <div>
-    <p>
-        <strong>Limited Data For Model Training</strong>
-    </p>
-    <p>
-        The scarcity and complexity of plasmid sequence data present significant challenges for machine learning models
-        like our Mamba2. Plasmids are typically long sequences, but relatively few have been fully sequenced, resulting
-        in a limited dataset for training. Moreover, their modular nature, consisting of various functional elements
-        combined in different ways, further complicates the learning process. To address these limitations, we
-        implemented several data augmentation techniques. We employed random circular permutations to simulate the
-        circular nature of plasmids and to increase sequence diversity. Additionally, we included sub plasmid sequences
-        of varying lengths, effectively breaking down the complex structures into more manageable segments. These
-        strategies not only expanded our training dataset but also helped our model better capture the modular and
-        circular characteristics of plasmids, improving its ability to generate biologically plausible sequences despite
-        the initial data constraints.
-
-    </p>
-    <p>
-        <strong>Motif Annotation and Discovery</strong>
-    </p>
-    <p>
-        There is limited data available on relevant motifs. Particularly, protein binding motifs are difficult to
-        annotate. MEME only discovers motifs but it does not determine if any of the discovered motifs are known binding
-        sites. We can use MEME Suite’s FIMO tool {{ cite('Bailey2015' )}} to scan the sequences for occurrences of the
-        discovered motifs and
-        compare them against known binding site databases to identify potential binding sites; however, this requires
-        supplying a sequence of known binding site motifs. Currently, we are unable to find a database of replication
-        protein binding motifs. To overcome this limitation, in the current pipeline, we prioritize features that are
-        more likely to be conserved, such as RNA II molecules, AT-rich regions, etc.
-
-    </p>
-    <p>
-        <strong>Complex ori Machinery</strong>
-    </p>
-    <p>
-        The ori is an intricate and interdependent network of smaller, essential components, all of which must be both
-        present and functionally matched for successful plasmid replication. Because wildtype plasmids already possess
-        these configurations, much of the intricacies involved in how these elements interact remain poorly studied. The
-        challenge lies in the relational nature of these components—each element is not just independently necessary but
-        must also coordinate with others in a specific spatial and temporal context. This complexity makes it difficult
-        to experimentally disentangle the contributions of individual motifs, further compounded by a lack of
-        comprehensive datasets that characterize these interactions in diverse bacterial systems.
-    </p>
-    <p>
-        The relational challenge is especially problematic when attempting to generate or engineer new plasmid oris
-        through computational models. The necessity for these components to be contextually correct, not just
-        individually present, creates difficulties in ensuring functional replication in synthetic constructs. Despite
-        these challenges, understanding and replicating these complex interdependencies is key to designing new plasmids
-        with predictable behavior, and more research is needed to systematically explore how these components co-evolve
-        and function together.
-
-    </p>
+    {{ subsubsubheading("Limited Data For Model Training") }}
+    <div>
+        <p>
+            The scarcity and complexity of plasmid sequence data present significant challenges for machine learning models
+            like our Mamba2. Plasmids are typically long sequences, but relatively few have been fully sequenced, resulting
+            in a limited dataset for training. Moreover, their modular nature, consisting of various functional elements
+            combined in different ways, further complicates the learning process. To address these limitations, we
+            implemented several data augmentation techniques. We employed random circular permutations to simulate the
+            circular nature of plasmids and to increase sequence diversity. Additionally, we included sub plasmid sequences
+            of varying lengths, effectively breaking down the complex structures into more manageable segments. These
+            strategies not only expanded our training dataset but also helped our model better capture the modular and
+            circular characteristics of plasmids, improving its ability to generate biologically plausible sequences despite
+            the initial data constraints.
+    
+        </p>
+    </div>
+    {{ subsubsubheading("Motif Annotation and Discovery") }}
+    <div>
+        <p>
+            There is limited data available on relevant motifs. Particularly, protein binding motifs are difficult to
+            annotate. MEME only discovers motifs but it does not determine if any of the discovered motifs are known binding
+            sites. We can use MEME Suite’s FIMO tool {{ cite('Bailey2015' )}} to scan the sequences for occurrences of the
+            discovered motifs and
+            compare them against known binding site databases to identify potential binding sites; however, this requires
+            supplying a sequence of known binding site motifs. Currently, we are unable to find a database of replication
+            protein binding motifs. To overcome this limitation, in the current pipeline, we prioritize features that are
+            more likely to be conserved, such as RNA II molecules, AT-rich regions, etc.
+    
+        </p>
+    </div>
+    {{ subsubsubheading("Complex ori Machinery") }}
+    <div>
+        <p>
+            The ori is an intricate and interdependent network of smaller, essential components, all of which must be both
+            present and functionally matched for successful plasmid replication. Because wildtype plasmids already possess
+            these configurations, much of the intricacies involved in how these elements interact remain poorly studied. The
+            challenge lies in the relational nature of these components—each element is not just independently necessary but
+            must also coordinate with others in a specific spatial and temporal context. This complexity makes it difficult
+            to experimentally disentangle the contributions of individual motifs, further compounded by a lack of
+            comprehensive datasets that characterize these interactions in diverse bacterial systems.
+        </p>
+    </div>
+    {{ subsubsubheading("Relational Challenge") }}
+    <div>
+        <p>
+            The relational challenge is especially problematic when attempting to generate or engineer new plasmid oris
+            through computational models. The necessity for these components to be contextually correct, not just
+            individually present, creates difficulties in ensuring functional replication in synthetic constructs. Despite
+            these challenges, understanding and replicating these complex interdependencies is key to designing new plasmids
+            with predictable behavior, and more research is needed to systematically explore how these components co-evolve
+            and function together.
+    
+        </p>
+    </div>
 </div>
 
 {{ subsubheading("Next Steps") }}
@@ -855,11 +865,12 @@
         a strong foundational solution for generating novel bioloigcally relevant plasmids.
 
     </p>
+    <br>
 </div>
 
 {{ subheading("Appendix") }}
 
-{{ subsubheading("Training Architecture") }}
+{{ subsubheading("Training Details") }}
 <div>
     <p>
         The training architecture for the plasmid generation model leverages the Mamba2 state-space model (SSM) to

@@ -1,0 +1,126 @@
+{% extends "layout/subpage.html" %}
+
+{% block article_content %}
+<div>
+  <b><i><h1> Process Engineering </h1></i></b>
+  {{ subheading("Introduction") }} <br>
+  <div>
+    <p>
+      <i>“Did not have enough LB agar for 30 plates”</i>
+      &emsp; — From the weet lab team
+      <br><br>
+      Fundamentally, a lab is a small-scale factory - and in any factory, there is a process. Any problem that involves the throughput a lab is facing is, fundamentally, a process engineering problem. In the manufacturing industry, philosophies such as Lean {{cite('Vorne_Industries')}} and Six Sigma {{cite('GoLeanSixSigma.com_2024')}} have been applied for decades. Implementing and adapting these philosophies to the lab environment will be relevant to our team’s mission of improving wet lab throughput, and eventually, removing the occurrences of comments like the one quoted above.
+      <br>
+      Lean is a philosophy that is used to minimize waste. The idea of lean manufacturing comes from how automobile manufacturers stock up on as little consumables as possible to minimize the amount of space a factory needs to store said consumables, as well as the complexity involved in stock accounting.
+      <br>
+      Six sigma is a philosophy that is used to maximize throughput and minimize variation. The term comes from limiting process variabilities to less than six standard deviations from the mean. The whole philosophy is centered around a five component data collection - process improvement - standardisation cycle known as DMAIC:
+      <br>
+      <ul>
+        <li>Data (D) is collected from the process and turned into metrics (M);</li>
+        <li>Metrics are analyzed (A) and used to drive process improvements (I) in terms of additional protocols and equipment improvements;</li>
+        <li>Said improvements are controlled (C) so they are continuously executed over the long term.</li>
+      </ul>
+      <br>
+      The work done for process engineering is by nature continuous and ongoing. Although there are no results as the hardware team unfortunately did not have time to close the between analysis and improvement, there are key areas of improvement we would have liked to target had we had more time. This page will discuss how process engineering techniques may be applied to a wet lab setting.
+    </p>
+  </div>
+  {{ subheading("Prerequisites") }} <br>
+  <div>
+    <ul>
+      <li>A knowledge of current and situational wet lab practices.</li>
+      <li>An understanding of DMAIC and some Lean and Six Sigma concepts. See appendix A for some resources.</li>
+    </ul>
+    <br>
+  </div>
+  {{ subheading("Methods") }} <br>
+  <div>
+    <p>
+      Our hardware team focused on implementing the DMAIC infrastructure to understand better where improvements may be made for wet lab’s processes. As little to no data is being collected and analyzed to identify process improvements, our team made inroads to identify where process improvements could be made.
+      <br>
+      Our wet lab team already compiles deviations from standard protocols on a weekly basis in a slideshow format which is meant for people to digest on-the-spot. However, this goes against the goal of having the control in DMAIC, which is to ensure resulting changes are long-term. To enable converting the data into actionable metrics, we focused on treating these weekly deviations and identifying patterns. This was enabled through our deviation tracker:
+      <br>
+      {{pdf(new_cdn('hardware/weekly-trend-compilation.pdf'))}}
+      <br><br>
+      The deviation tracker’s format allowed the hardware team, and eventually the wet lab team, to itemize deviations, categorize them based on a brief on their root cause, identify the downstream impact with the hopes of mitigating problems, and identify any changes to current standard practices that ought to be followed up with. This document is one step towards a more robust data collection (D) and measurement (M).
+      <br>
+      The next step that the team followed on after deviation tracking is analyzing (A) the deviations done, as shown in this report sample:
+      <br>
+      {{pdf(new_cdn('hardware/deviation-trend-report.pdf'))}}
+      <br><br>
+      The intent behind this report is to show a summary of deviations in as concise of a form factor as possible without losing the potential to identify future actions. As shown in the report:
+      <br>
+      <ul>
+        <li>There is a substantial decrease in deviations in one particular week;</li>
+        <li>There is a clear majority of “experimental errors”, which refer to wrong measurements, inaccurate materials or experimenter’s negligence.</li>
+      </ul>
+      <br><br>
+      Two actions that may lead to process improvements (I) may thus be:
+      <br>
+      <ol type="1" start="1">
+        <li>Investigating what went differently in the week with less deviations - Was there less activity? Was there more or less people on shift, or which particular people? Was a certain piece of equipment or consumable available or unavailable?</li>
+        <li>Identifying engineering solutions towards mitigating human error, such as engineered mistake prevention {{cite('ASQ')}}, or reinforcing member training.</li>
+      </ol>
+      <br><br>
+      The immediate next steps are to perform the investigation in (1) and narrow down the specific human errors involved and identify solutions towards preventing them in (2).
+    </p>
+  </div>
+  {{ subheading("Appendix - Process engineering resources") }} <br>
+  <div>
+    <p>
+      <b>DISCLAIMER: iGEM Toronto includes links to external sites here as an informational aide and does not endorse the product systems or services offered by these sites.</b>
+      <ol type="1" start="1">
+        <li>Six Sigma</li>
+      </ol>
+      <ul>
+        <li>Widely used in project management</li>
+        <li><b>Use: reduce errors, minimize variation, and increase efficiency</b></li>
+        <li>Based on statistics!
+          <ul>
+            <li>Define - scope and breakdown into tangible actionable items</li>
+            <li>Measure - baseline data collection of the current process</li>
+            <li>Analyze - Pareto charts, root cause analysis (more later), defects and discrepancies</li>
+            <li>Improve - plans to improve, isolate variables until a true obstacle is found</li>
+            <li>Control - new standard project</li>
+          </ul>
+        </li>
+        <li>Useful sources:
+          <ul>
+            <li><a href="https://mantec.org/six-sigma-benefit-manufacturers/#:~:text=The%20Core%20Six%20Sigma%20Process,Improve%20and%20Control%20(DMAIC)">https://mantec.org/six-sigma-benefit-manufacturers/#:~:text=The%20Core%20Six%20Sigma%20Process,Improve%20and%20Control%20(DMAIC)</a>.</li>
+            <li><a href="https://www.investopedia.com/terms/l/lean-six-sigma.asp#:~:text=It%20strives%20to%20eliminate%20the,waste%20and%20should%20be%20eliminated">https://www.investopedia.com/terms/l/lean-six-sigma.asp#:~:text=It%20strives%20to%20eliminate%20the,waste%20and%20should%20be%20eliminated</a>.</li>
+          </ul>
+        </li>
+      </ul>
+      <ol type="1" start="2">
+        <li>Root cause analysis:</li>
+      </ol>
+      <ul>
+        <li>Define the problem (what?)</li>
+        <li>Collect data (what?)</li>
+        <li>Determine potential cause factors (why?)</li>
+        <li>Determine the root of the problem identified (how?)</li>
+        <li>Prioritize each problem (how much? when?)</li>
+        <li>Implement solutions and recommendations</li><li>Useful sources:
+          <ul>
+            <li><a href="https://businessmap.io/lean-management/lean-manufacturing/root-cause-analysis/perform">https://businessmap.io/lean-management/lean-manufacturing/root-cause-analysis/perform</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ol type="1" start="3">
+        <li>Pareto Charts</li>
+      </ol>
+      <ul>
+        <li>Cause analysis tool</li>
+        <li><b>Uses: frequency, how many problems, visual and communication processes</b></li>
+        <li>Decide on categories to group items, what you want to measure, and how long are you measuring</li>
+        <li>Scale each bar against each other and give them percentages</li>
+        <li>Makes projections easier → pivot charts</li>
+        <li>Useful sources:
+          <ul>
+            <li><a href="https://asq.org/quality-resources/pareto">https://asq.org/quality-resources/pareto</a></li>
+          </ul>
+        </li>
+      </ul>
+    </p>    
+  </div>
+</div>
+{% endblock %}

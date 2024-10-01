@@ -12,7 +12,9 @@
         <li><strong>Enhanced Precision and Efficiency:</strong> Artificial plasmid genomes can be designed with specific sequences that facilitate the use of CRISPR-Cas9 for targeted gene editing. By incorporating guide RNA sequences directly into plasmids, researchers can streamline the process of introducing precise genetic modifications. This synergy can lead to more efficient and accurate gene editing, reducing off-target effects and increasing the success rate of desired genetic alterations [1,2].</li>
         
         <li><strong>Comprehensive Genetic Analysis:</strong> Next-generation sequencing (NGS) can be used to analyze the outcomes of CRISPR-Cas9 edits and artificial plasmid modifications. By sequencing the entire genome or specific regions of interest, researchers can verify the accuracy of genetic edits and identify any unintended changes. This comprehensive analysis ensures that the modifications are as intended and helps in understanding the broader impact of genetic interventions [3,4].</li>
-        
+
+      {{ img(new_cdn("human-practices/screenshot-2024-10-01-at-12-52-58-am.png"),alt="Figure 1: Next Generation Sequencing Machine GenomicTestingCooperative/AFP via Getty Images", width="50%") }}
+
         <li><strong>Automated DNA Synthesis:</strong> Automated DNA synthesis can rapidly produce large quantities of custom-designed plasmids and other genetic constructs. This capability is crucial for scaling up experiments and applications that require multiple genetic modifications. The combination of automated synthesis with CRISPR-Cas9 and NGS allows for high-throughput genetic engineering, enabling large-scale studies and applications in fields such as synthetic biology and gene therapy [5,6].</li>
     </ul>
 
@@ -22,6 +24,11 @@
         
         <li><strong>Ethical and Safety Concerns:</strong> The powerful capabilities of these combined technologies raise ethical and safety concerns. The potential for unintended genetic changes, ecological impacts, and misuse of genetic engineering tools necessitates stringent regulatory oversight and ethical considerations. Ensuring responsible use and addressing public concerns are critical to the successful integration of these technologies [8,9].</li>
     </ul>
+
+
+      {{ img(new_cdn("human-practices/screenshot-2024-10-01-at-12-57-21-am.png"),alt="Figure 2: CRISPR Gene Editing
+PHILIPPE LOPEZ/AFP via Getty Images
+", width="50%") }}
 
     {{subsubheading("Synergy Potential")}}
     <p>The integration of traditional and modern genetic technologies has the potential to transform genetic research and its applications. By harnessing the unique advantages of each technology, researchers can attain unparalleled precision, efficiency, and scalability in genetic engineering. For example, artificial plasmid genomes can act as flexible platforms for CRISPR-Cas9 editing, while next-generation sequencing (NGS) offers comprehensive insights into genetic outcomes [9]. Additionally, automated DNA synthesis speeds up the creation of custom genetic constructs, facilitating rapid iteration and innovation in genetic research [10]. The integration of traditional and modern genetic technologies not only enhances the capabilities of genetic research but also paves the way for groundbreaking advancements in medicine, agriculture, and biotechnology. As aforementioned, this collaborative approach holds the promise of addressing complex genetic challenges and unlocking new possibilities for improving human health and the environment.</p>

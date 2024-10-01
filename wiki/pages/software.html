@@ -2,32 +2,81 @@
 {% set add_sidebar = true %}
 
 {% block article_content %}
-{{ heading("Software") }}
+{{ heading("Plasmid.ai") }}
 
 <div>
     <p>
-        We have published our trained models and pipeline for public use.
+        Plasmid.ai is the largest open-source toolkit for developing plasmid foundation models. Created by the iGEM Toronto team, this project aims to revolutionize the field of synthetic biology by leveraging machine learning to generate novel plasmids.
+    </p>
+</div>
+
+{{ subheading("Overview") }}
+<div>
+    <p>
+        Plasmid.ai provides a comprehensive set of tools and models for the analysis, design, and generation of plasmids. By utilizing state-of-the-art machine learning techniques, this project enables researchers and synthetic biologists to explore new possibilities in plasmid engineering and design.
+    </p>
+</div>
+
+{{ subheading("Installation") }}
+<div>
+    <p>To install Plasmid.ai, you can either use pip or clone the repository for development access.</p>
+    <h4>Using pip</h4>
+    <pre><code>pip install plasmidai</code></pre>
+    <br>
+    <h4>Using git</h4>
+    <p>For development or to access the latest features, you can clone the repository:</p>
+    <pre><code>git clone https://github.com/igem-toronto/plasmidai.git
+cd plasmidai
+pip install -e .
+</code></pre>
+</div>
+
+{{ subheading("Repository Structure") }}
+<div>
+    <p>
+        The Plasmid.ai project is organized into several key components, as outlined below:
+    </p>
+    <ul>
+        <li><strong>data/</strong>: Contains datasets and scripts for data processing.
+            <ul>
+                <li><strong>scripts/</strong>: Helper scripts for data manipulation.</li>
+                <li><strong>tokenizers/</strong>: Custom tokenizers for plasmid sequences.</li>
+            </ul>
+        </li>
+        <li><strong>datasets/</strong>: Modules for loading and preprocessing plasmid datasets.</li>
+        <li><strong>experimental/</strong>: Cutting-edge features and models in development.
+            <ul>
+                <li><strong>callbacks.py</strong>: Custom callbacks for model training.</li>
+                <li><strong>lit.py</strong>: Lightning modules for PyTorch Lightning integration.</li>
+                <li><strong>optimizers.py</strong>: Custom optimizers for training plasmid models.</li>
+                <li><strong>sample.py</strong>: Functions for sampling from trained models.</li>
+                <li><strong>train.py</strong>: Training pipelines for plasmid models.</li>
+            </ul>
+        </li>
+        <li><strong>utils.py</strong>: Utility functions used across the project.</li>
+        <li><strong>paths.py</strong>: Path configurations for the project.</li>
+    </ul>
+    <p>
+        This structure represents a clear development pipeline that facilitates data processing, training, and refining of plasmid models.
     </p>
 </div>
 
 {{ subheading("Repository Setup") }}
 <div>
+    <p>The Plasmid.ai GitHub repository can be found at <a href="https://github.com/igem-toronto/plasmidai">(plasmidai)</a>.</p>
     <p>
-        The plasmid-lm GitHub repository can be found at <a href="https://github.com/igem-toronto/plasmid-lm">(plasmid-ai)</a>.
+        Our iGEM GitLab submission (containing the same files) can be found at: <a href="https://gitlab.igem.org/2024/software-tools/utoronto">(plasmidai)</a>
     </p>
     <p>
-        Our iGEM GitLab submission (containing the same files) can be found at: <a href="https://gitlab.igem.org/2024/software-tools/utoronto">(plasmid-ai)</a>
+        To clone the repository:
     </p>
+    <pre><code>git clone https://github.com/igem-toronto/plasmidai.git</code></pre>
     <p>
-        Cloning the repository:
-    </p>
-    <pre><code>git clone https://github.com/igem-toronto/plasmid-lm</code></pre>
-    <p>
-        Downloading the dependencies:
+        To set up the environment, install dependencies with:
     </p>
     <pre><code>conda env create -f environment.yml</code></pre>
     <p>
-        The plasmid sequences which have been used for training can be downloaded with:
+        The plasmid sequences used for training can be downloaded with:
     </p>
     <pre><code>cd data 
 gdown "1iIsat00ST5vK-06BUstuTbJkfWKpV2lE" 
@@ -35,41 +84,18 @@ gzip -d 240212_plasmid_seq_54646.fasta.gz
 mv 240212_plasmid_seq_54646.fasta plasmids.fasta</code></pre>
 </div>
 
-{{ subheading("Repository Structure") }}
+{{ subheading("Contributing") }}
 <div>
     <p>
-        The repository's structure represents the development pipeline which was followed, including (1) the initial data collection, (2) the BPE tokenizer, (3) the training of our models (Mamba, MambaV2, Evo), (4) the generation process for three batches of plasmid sequences, and (5) the refinement of these sequences, through a validation process which notably identifies sequences of interest and refines the aforementioned generated plasmids.
-    </p>
-    <p>
-        The repository structure is split into three main folders.
-    </p>
-    <ol>
-        <li>The <strong>data/</strong> folder contains the tokenizers, as well as the scripts which can be used to run them.</li>
-        <li>The <strong>slurm/</strong> folder contains scripts necessary to interact with slurm on Compute Canada, which are a set of canadian GPU clusters.</li>
-        <li>The <strong>src/</strong> folder contains the codebase of the models, which was trained with Torch Lightning.
-            <ol>
-                <li><strong>src/datasets</strong> contains the Dataset and DataLoaders, two modules which help format and organize the data for training.
-                    <ul>
-                        <li>These data loaders include plasmid.py and replicon.py.</li>
-                        <li>The utils.py file contains the necessary script to enable the usage of the tokenizer.</li>
-                    </ul>
-                </li>
-                <li><strong>src/experimental</strong> contains the model itself. lit.py contains the LitLLM class, which is the main module of the torch lightning model where the sequence model and its training loop are defined.
-                    <ul>
-                        <li>To train a model, one may also use the train.py file which contains the essential code to train the first version (mamba v1) of the model</li>
-                        <li>Other files, such as callbacks.py, optimizers.py and sample.py serve to define different sets of hyperparameters within the model training.</li>
-                    </ul>
-                </li>
-                <li><strong>src/validation</strong> contains the non-exhaustive list of essential scripts which were used to refine and locate different regions of interest within the plasmid sequences.
-                    <ul>
-                        <li>batch-wide_analysis/mobsuite_analysis.py contains the code to perform holistic useful analysis to calculate metrics such as GC content in the batch.</li>
-                    </ul>
-                </li>
-            </ol>
-        </li>
-    </ol>
-    <p>
-        This repository represents the largest open source toolkit with scripts that can be used for every step of the plasmid sequencing pipeline.
+        We welcome contributions from the community! If you would like to contribute, please check out the repository on <a href="https://github.com/igem-toronto/plasmidai">(GitHub)</a> and follow the contributing guidelines.
     </p>
 </div>
+
+{{ subheading("License") }}
+<div>
+    <p>
+        Plasmid.ai is licensed under the MIT License. For more details, please refer to the <a href="https://github.com/igem-toronto/plasmidai/blob/main/LICENSE">(license file)</a> in the repository.
+    </p>
+</div>
+
 {% endblock %}

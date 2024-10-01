@@ -210,7 +210,7 @@
 <div>
     <p>
         Our natural bacterial plasmid dataset consists of 137,041 circular plasmid sequences derived from single
-        origins. The sequences were curated from public databases like PLSDB and IMG/PR {{ cite('Schmartz') }} {{ cite('Camargo') }}, and are filtered based on
+        origins. The sequences were curated from public databases like PLSDB and IMG/PR {{ cite('Schmartz,Camargo') }}, and are filtered based on
         plasmid topology (e.g., circular vs linear) and source type.
     </p>
 </div>
@@ -248,8 +248,7 @@
 <div>
     <p>
         For our model architecture, we use the Mamba2 model, a recent state-space model (SSM) architecture which has
-        demonstrated success in long-sequence modelling tasks {{ cite('dao2024transformers') }} {{
-        cite('gu2024mamba') }}. This choice was driven by Mamba's ability to handle
+        demonstrated success in long-sequence modelling tasks {{ cite('dao2024transformers,gu2024mamba') }}. This choice was driven by Mamba's ability to handle
         long plasmid sequences efficiently, making it well-suited for plasmid data. The Mamba architecture employs a
         state space model with a selection mechanism, allowing more controlled propagation of information between
         layers. The computational complexity of the forward pass is linear in the sequence length, which is superior to
@@ -360,8 +359,7 @@
         <strong>Ori features and motifs </strong><br>
         Oris require a complex and interdependent set of machinery to be present to replicate. Some of the most
         important regions or motifs are: Rep protein sites (Class A), AT-rich regions, DnaA boxes, and dam methylation
-        sequence iteron (directly repeated sequences) containing regions {{ cite('Rajewska_Wegrzyn_Konieczny_2012') }}
-        {{ cite('Rajewska_Wegrzyn_Konieczny_2012') }}. The AT-rich region particularly is the
+        sequence iteron (directly repeated sequences) containing regions {{ cite('Rajewska_Wegrzyn_Konieczny_2012,Rajewska_Wegrzyn_Konieczny_2012') }}. The AT-rich region particularly is the
         most universally conserved structural element in both prokaryotic and eukaryotic replicons {{
         cite('Rajewska_Wegrzyn_Konieczny_2012') }}. We compiled a
         database of major motifs found across the literature for these ori features.
@@ -1002,11 +1000,10 @@
     <p>
         We initially explored using a diffusion model to facilitate plasmid generation. Diffusion models are a class of
         deep generative models which operate by iteratively adding noise to input data over many steps, and then
-        learning to denoise the corrupted data back into the original data {{ cite("pmlr-v37-sohl-dickstein15") }}
-        {{ cite("NEURIPS2020_4c5bcfec")}}. In our context, this would allow the
+        learning to denoise the corrupted data back into the original data {{ cite("pmlr-v37-sohl-dickstein15,NEURIPS2020_4c5bcfec")}}. In our context, this would allow the
         generation of a plasmid from random noise at inference time. In particular, we attempted an approach called
         discrete diffusion, a type of diffusion model designed to operate on discrete data
-        {{ cite('NEURIPS2021_958c5305') }} {{ cite('hoogeboom2022autoregressive') }}. However, we found that
+        {{ cite('NEURIPS2021_958c5305,hoogeboom2022autoregressive') }}. However, we found that
         this type of modeling was not well-suited to our task and abandoned this line of work.
 
     </p>

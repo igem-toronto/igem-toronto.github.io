@@ -5,9 +5,12 @@
   <div class="lg:w-2/3 w-full m-auto">
     <script>
       function createPlaceholder(img) {
-        var element = document.createElement("div");
-        element.classList.add("w-48", "h-64", "bg-gray-200", "rounded-md");
-        img.replaceWith(element);
+        const element = document.createElement("div")
+        const imgElement = document.createElement("img")
+        imgElement.src = "{{ new_cdn('headshots/plasmid-placeholder.png') }}"
+        element.classList.add("w-48", "h-64", "bg-slate-700", "rounded-md", "p-8", "flex", "items-center", "justify-center")
+        element.appendChild(imgElement)
+        img.replaceWith(element)
       }
     </script>
     {% for group in team_members.keys() %}

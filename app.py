@@ -114,7 +114,6 @@ def home():
 @app.route("/team.html")
 def people():
     team_members = defaultdict(list)
-    team_members["Advisor"] = []
     team_members["Co-Presidents"] = []
     team_members["Wet Lab"] = []
     team_members["Dry Lab"] = []
@@ -123,10 +122,12 @@ def people():
     team_members["Human Practices"] = []
     team_members["Wiki"] = []
     team_members["Outreach"] = []
-    r = requests.get(
-        "https://docs.google.com/spreadsheets/d/15uTIHgv6K2rDe-HD5g0GGp6LOWPNmeOBPJnN0LYdax8/gviz/tq?tqx=out:csv")
+    team_members["Advisor"] = []
+    
+    with open("static/team.csv") as f:
+        text = f.read()
 
-    reader = csv.reader(r.text.split('\n'))
+    reader = csv.reader(text.split('\n'))
     for line in reader:
         if line[0] == "Name" or line[0] == "":
             continue
@@ -139,7 +140,9 @@ def people():
         member["email"] = line[5]
         member["priority"] = 0
 
-        image_key = line[0].split()[0].lower()
+        image_key = line[7].strip()
+        if image_key == "":
+            image_key = line[0].split()[0].lower()
         member["picture"] = "headshots/" + image_key + ".png"
 
         lower_role =  member["role"].split(", ")[0].lower()

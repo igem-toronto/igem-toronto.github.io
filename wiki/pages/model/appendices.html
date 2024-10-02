@@ -1,0 +1,205 @@
+{% extends "layout/subpage.html" %}
+
+{% block article_content %}
+{{heading("Model")}}
+{{ subheading("Appendix") }}
+
+{{ subsubheading("Training Details") }}
+<div>
+    <p>
+        The training architecture for the plasmid generation model leverages the Mamba2 state-space model (SSM) to
+        handle
+        the long-range dependencies in plasmid sequences. This section details the model structure, hyperparameters, and
+        training strategy used to generate biologically relevant plasmids.
+    </p>
+    <br>
+    {{ subsubsubheading("Model Architecture") }}
+    <table style="width: 100%; margin-bottom: 15px; border: 1px solid #ddd; border-collapse: collapse;">
+        <tr style="background-color: #dbcfff;">
+            <th style="border: 1px solid #ddd; padding: 8px;">Component</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Base Architecture</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Mamba2 state-space model (SSM)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Number of Layers</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">22</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Hidden Dimension</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">512</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">SSM Configuration</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                <ul style="margin: 0;">
+                    <li><strong>Layer:</strong> Mamba2</li>
+                    <li><strong>d_state:</strong> 64</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Normalization Type</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">LayerNorm</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Residual Computation</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">FP32</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Fused Add Norm</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Enabled</td>
+        </tr>
+    </table>
+    <br>
+    {{ subsubsubheading("Hyperparameters") }}
+    <table style="width: 100%; margin-bottom: 15px; border: 1px solid #ddd; border-collapse: collapse;">
+        <tr style="background-color: #dbcfff;">
+            <th style="border: 1px solid #ddd; padding: 8px;">Hyperparameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Value</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Optimizer</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">AdamW</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Betas</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">(0.9, 0.95)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Weight Decay</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">0.1</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Learning Rate Scheduler</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">10% Linear Warmup, 90% Cosine Decay</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Scheduler Span</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">100,000 steps</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Minimum Learning Rate</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">1e-4</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Maximum Learning Rate</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">4e-3</td>
+        </tr>
+    </table>
+    <br>
+    {{ subsubsubheading("Hardware and Training Configuration") }}
+    <table style="width: 100%; margin-bottom: 15px; border: 1px solid #ddd; border-collapse: collapse;">
+        <tr style="background-color: #dbcfff;">
+            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Nodes</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">1</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">GPUs</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">2 per node (NVIDIA A100 - 40GB)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Memory</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">40 GB</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Precision</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Mixed (bf16)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">CPUs</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">12 (6 per task)</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">SLURM Configuration</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                <ul style="margin: 0;">
+                    <li><strong>Scheduler:</strong> SLURM</li>
+                    <li><strong>Time:</strong> 36 hours</li>
+                    <li><strong>Checkpointing:</strong> Enabled</li>
+                    <li><strong>Job Output:</strong> Logs directory</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <br>
+    {{ subsubsubheading("Sampling and Inference Strategy") }}
+    <p>
+        The model uses a combination of advanced sampling techniques to control sequence quality:
+    <ul style="margin: 0; padding-left: 20px;">
+        <li><strong>Top-k Sampling:</strong> Retains the top k most probable tokens (disabled by default).</li>
+        <li><strong>Top-p Sampling:</strong> Uses nucleus sampling to maintain a cumulative probability of 0.9.</li>
+        <li><strong>Repetition Penalty:</strong> Applies penalties to repeated tokens to reduce redundancy.</li>
+        <li><strong>Temperature:</strong> Set to 1.0 to control randomness during sampling.</li>
+    </ul>
+    </p>
+</div>
+
+
+{{ subsubheading("Diffusion Model ") }}
+<div>
+    <p>
+        We initially explored using a diffusion model to facilitate plasmid generation. Diffusion models are a class of
+        deep generative models which operate by iteratively adding noise to input data over many steps, and then
+        learning to denoise the corrupted data back into the original data {{ cite("pmlr-v37-sohl-dickstein15,NEURIPS2020_4c5bcfec")}}. In our context, this would allow the
+        generation of a plasmid from random noise at inference time. In particular, we attempted an approach called
+        discrete diffusion, a type of diffusion model designed to operate on discrete data
+        {{ cite('NEURIPS2021_958c5305,hoogeboom2022autoregressive') }}. However, we found that
+        this type of modeling was not well-suited to our task and abandoned this line of work.
+
+    </p>
+</div>
+
+
+{{ subsubheading("Protein Validation Metrics") }}
+<div>
+    <p>
+        Below we outlined four metrics based on ESMFold output for assessing accuracy and reliability of predicted
+        protein models.
+
+    <ul>
+        <li>
+            Predicted Local Distance Difference Test (plDDT) score is a per-residue confidence metric ranging from 0 to
+            100,
+            reflecting the model's confidence in the positioning of each amino acid. Higher pLDDT scores indicate
+            greater
+            confidence; for instance, residues with scores above 90 are considered highly reliable and well-resolved,
+            while
+            those below 50 suggest low confidence and may correspond to disordered or flexible regions.
+        </li>
+        <li>
+            Predicted Aligned Error (PAE) provides insight into the expected positional error between pairs of residues
+            in
+            the predicted structure. It estimates the uncertainty in the relative positioning of different regions
+            within
+            the protein. For example, a low PAE between two domains suggests a confident prediction of their spatial
+            relationship, whereas a high PAE indicates potential variability, signaling that these domains might adopt
+            multiple conformations or are flexible relative to each other.
+        </li>
+        <li>
+            Plot of Contacts from Structure Module refer to predicted interactions between amino acid residues based on
+            their proximity in the three-dimensional structure. Analyzing these contacts helps validate key
+            intra-protein
+            interactions essential for structural integrity and function. For instance, if a predicted active site shows
+            consistent contact patterns between catalytic residues, it reinforces confidence in the model's functional
+            relevance. Conversely, missing expected contacts might suggest regions where the model is less reliable or
+            where
+            alternative conformations exist.
+        </li>
+        <li>
+            The predicted template modeling score (pTM-score) is a metric for assessing the similarity of protein
+            structures. A score of 1.0 indicates a perfect match. Scores above 0.7 indicate that proteins share the same
+            backbone structure. Scores above 0.9 indicate that the proteins are functionally interchangeable for
+            downstream
+            use.
+        </li>
+    </ul>
+    </p>
+</div>
+{% endblock %}

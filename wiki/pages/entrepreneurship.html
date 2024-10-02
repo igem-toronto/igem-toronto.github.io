@@ -16,18 +16,14 @@
   <td>{{ position }}</td>
   <td>
     <div class="flex gap-4 items-center h-full">
-      {% if email != "" %}
-        <a href="mailto:{{ email }}" target="_blank">
-          <svg height="25" class="inline-block" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0 0 L 150 0 L 150 100 L 0 100" fill="black"/>
-            <path d="M 10 10 L 140 10 L 140 90 L 10 90 L 10 10" fill="white"/>
-            <path d="M 8 0 L 75 60 L 142 0 L 150 5 L 75 70 L 0 5 L 8 0" fill="black"/>
-          </svg>
-        </a>
-      {% endif %}
       {% if linkedin != "" %}
         <a href="{{ linkedin }}" target="_blank">
-          <img alt="{{ name }}'s LinkedIn" src="{{ new_cdn('assets/graphics/li-in-bug.png') }}" class="h-8 inline-block">
+          <i alt="{{ name }}'s LinkedIn" class="fa-brands fa-2xl fa-linkedin text-primary-dark hover:text-accent-saturated-purple"></i>
+        </a>
+      {% endif %}
+      {% if email != "" %}
+        <a href="mailto:{{ email }}" target="_blank">
+          <i class="fa-solid fa-envelope fa-2xl text-primary-dark hover:text-accent-saturated-purple"></i>
         </a>
       {% endif %}
     </div>
@@ -45,14 +41,8 @@
 </div>
 {%- endmacro %}
 
-
-{% block banner %}
-  <div class="hidden lg:block">
-    {{ banner("Entrepreneurship") }}
-  </div>
-{% endblock %}
-
 {% block article_content %}
+  {{ heading("Entrepreneurship") }}
   {{ subheading("About Us") }}
   <div>
     <p>
@@ -214,7 +204,7 @@
   {{ pdf("https://static.igem.wiki/teams/5230/entrepreneurship/cashflowprojectionsplasmidai.pdf") }}<br />
   {{ subheading('Our 2024 Demo Day Pitch') }}
   <p>Our 6-minute investor ready pitch crafted under direct mentorship from UofT's flagship incubator, the Hatchery.</p>
-  <iframe title="UToronto: Plasmid.AI Demo Day Pitch for iGEM Toronto (2024) [English]" width="560" height="315" src="https://video.igem.org/videos/embed/2ed26680-8e29-432b-9eaf-dacccd57ba78" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+  <iframe class="w-full min-h-[480px]" title="UToronto: Plasmid.AI Demo Day Pitch for iGEM Toronto (2024) [English]" src="https://video.igem.org/videos/embed/2ed26680-8e29-432b-9eaf-dacccd57ba78" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
   {{ subheading('Advisory Board')}}
   <p>Our scientific & susiness advisory board members helping us stay on track. Their experience in venture capital, biotech leadership, academia, and AI has allowed us to navigate a complex, cutting-edge application of our foundational models.</p>
   <img src="https://static.igem.wiki/teams/5230/entrepreneurship/advisoryboardplasmidai2.png" /><br />
@@ -518,7 +508,6 @@
   </div>
 
 
-  {{ subheading('Competitors in Detail') }}
   <div class="w-full overflow-auto">
     <table class="entrepreneurship">
       <thead>
@@ -652,7 +641,12 @@
       </tbody>
     </table>
   </div>
-
+  {{subheading('Appendix')}}
+  <p>Below is our appendix that describes our journey from iGEM Startup's VCL, a pivot due to weak product-market fit, to our current approach</p>
+  <p>Appendix (Part 1)</p>
+  {{pdf('https://static.igem.wiki/teams/5230/entrepreneurship/appendix-part1-plasmidai.pdf')}}
+  <p>Appendix (Part 2)</p>
+  {{pdf('https://static.igem.wiki/teams/5230/entrepreneurship/appendix-part2-plasmidai.pdf')}}
 {% endblock %}
 
 {% block bottom_banner %}

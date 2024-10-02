@@ -1,7 +1,7 @@
 {% extends "layout/subpage.html" %}
 
 {% block article_content %}
-  {{ subpage_banner() }}
+  {{ heading("Education") }}
   {{subheading("Seminar")}}
 <div>
   {{ img(new_cdn("human-practices/seminar-photo.png"), width="50%") }}
@@ -28,7 +28,7 @@ In the weeks leading up to the seminar, our combined efforts paid off as we succ
 </div>
 
 
-  {{subheading("Collaboration With SCC")}}
+  {{subheading("Collaboration With The Science Communications Club")}}
 <div class="side-by-side">
 <p>
 In our ongoing efforts to raise awareness about antibiotic resistance, we collaborated with the University of Toronto Science Communication Club [SCC] to create an informative article on the topic. This article addresses critical aspects of antibiotic resistance, including what it is, how it spreads, and effective prevention strategies.
@@ -45,10 +45,13 @@ In our ongoing efforts to raise awareness about antibiotic resistance, we collab
       </p>
   
     <p>
-  While the article is still in progress as illustrators are working on it, we look forward to sharing the draft below. Through this collaboration, we hope to engage a wider audience and foster a deeper understanding of antibiotic resistance and its implications for public health. Together, we are committed to enhancing the dialogue around this critical issue and empowering individuals with the knowledge they need to take action
+  While the article is still in progress as illustrators are working on it, we look forward to sharing the draft below. Through this collaboration, we hope to engage a wider audience and foster a deeper understanding of antibiotic resistance and its implications for public health. Together, we are committed to enhancing the dialogue around this critical issue and empowering individuals with the knowledge they need to take action.
   </p>
   
 </div>
+
+{{ pdf("https://static.igem.wiki/teams/5230/human-practices/antibiotic-resistance-is-the-process-wherein-resistance-to-antibacterial-treatments-is-conferred-in-bacteria-through-incomplete-or-incorrect-use-of-these-treatments.pdf") }}
+
 
 
 {% endblock %}

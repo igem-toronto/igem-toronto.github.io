@@ -3,34 +3,26 @@
               pt-10 pb-4 bg-primary-dark text-font-light
               lg:px-96
               px-5">
-  <div class="flex w-full gap-4 justify-center">
-    <div class="flex gap-8 items-center">
-      <a href="/">
+  <div class="flex w-full justify-center">
+    <div class="flex gap-4 items-center">
+      <a href="https://igem.skule.ca">
         <img  src="{{ cdn('graphics/igem-toronto.png') }}"
               alt="iGEM Toronto Logo"
-              class="h-40 w-40" />
+              class="h-12 w-12" />
       </a>
-      <div class="grid justify-items-center gap-6">
-        <a href="https://www.instagram.com/igemtoronto/">
-          <img  alt="Instagram"
-                src="{{ url_for('static', filename='instagram_white.png') }}"
-                class="h-16 w-16" />
-        </a>
-        <a href="mailto:igem@g.skule.ca">
-          <svg height="40" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0 0 L 150 0 L 150 100 L 0 100" fill="white"/>
-            <path d="M 10 10 L 140 10 L 140 90 L 10 90 L 10 10" fill="#0E0D0F"/>
-            <path d="M 8 0 L 75 60 L 142 0 L 150 5 L 75 70 L 0 5 L 8 0" fill="white"/>
-          </svg>
-        </a>
-      </div>
+      <a href="https://www.instagram.com/igemtoronto/">
+        <i alt="Instagram" class="fa-brands fa-instagram fa-3x text-white hover:text-accent-muted-purple"></i>
+      </a>
+      <a href="mailto:igem@g.skule.ca">
+        <i class="fa-solid fa-envelope fa-3x text-white hover:text-accent-muted-purple"></i>
+      </a>
     </div>
   </div>
-  <div class="flex justify-center m-8">
+  <div class="flex justify-center mt-2 mb-8">
     <div class="flex">
       This work is licensed under&nbsp;
       <a
-        class="items-center flex"
+        class="items-center flex text-accent-muted-purple"
         href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1"
         target="_blank"
         rel="license noopener noreferrer">

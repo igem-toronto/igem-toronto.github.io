@@ -1,0 +1,77 @@
+{% extends "layout/subpage.html" %}
+
+{% block article_content %}
+{{heading("Model")}}
+{{ subheading("Abstract") }}
+<div>
+    <p>
+        Plasmids are essential vectors in synthetic biology, facilitating the delivery of genetic material in bacterial
+        systems. However, the generation of novel plasmid sequences with targeted functionalities presents a significant
+        challenge, and no experimentally validated models exist for reliably designing biologically viable, de novo
+        plasmids. We present a novel plasmid generation pipeline that integrates machine learning with experimental
+        validation to produce functional plasmid sequences. Utilizing a custom Byte Pair Encoding tokenizer and the
+        Mamba2 state-space model architecture, our model efficiently handles the long and complex nature of plasmid DNA.
+        The model was trained in two phases: pre-training on a comprehensive dataset of over 137,000 plasmid sequences,
+        followed by fine-tuning on specific target sequences. We generated and validated plasmid sequences in silico
+        using sequence alignment tools and motif discovery techniques to identify valid origins of replication (oris)
+        and antimicrobial proteins. In vitro experiments demonstrated that several generated plasmids successfully
+        replicated in bacterial systems, confirming the functionality of the synthesized oris. We also identified
+        promising antimicrobial proteins that are currently being tested.
+    </p>
+</div>
+
+{{ subheading("Background and Objectives") }}
+<div>
+    <p>
+        Plasmids are central to a wide array of biological applications. Their versatility in bacterial systems makes
+        them an ideal vehicle for genetic material delivery. However, while researchers can manipulate and modify
+        existing plasmids to accomplish useful functions, the generation of completely novel synthetic plasmid sequences
+        with specific, targeted functionalities remains an open challenge.
+    </p>
+    <p>
+        Currently, no experimentally validated models exist that can reliably generate de novo plasmid sequences that
+        are biologically viable and functionally relevant. While sequence modelling tools have advanced considerably in
+        recent years, we still lack a robust model to account for complex plasmid architecture.
+    </p>
+    <p>
+        Existing machine learning models, such as Evo, have demonstrated the potential for modelling and predicting
+        biological sequences {{ cite('Nguyen') }}. This
+        approach has been useful in identifying novel sequences with desired traits.
+        However, these models often face limitations when tasked with producing plasmid sequences that need to fulfill
+        highly specific biological roles or interface with complex cellular machinery, such as the origin of replication
+        (ori) regions, protein-binding motifs, and promoter elements.
+    </p>
+    <p>
+        Another limitation of current models is the lack of experimental wet lab validation. Most sequence generation
+        models rely heavily on in silico metrics such as alignment scores and predicted structural features. While these
+        methods are useful for narrowing down candidate sequences from initial model outputs, they do not guarantee that
+        the generated plasmids will perform as expected in wet lab experiments. Consequently, the gap between
+        computationally predicted sequences and experimentally confirmed plasmids remains wide. This underscores the
+        need for a comprehensive pipeline that integrates computational generation, in silico validation, and rigorous
+        in vitro experimental testing to iteratively refine models and ensure that generated plasmids are biologically
+        relevant and functional. Given these challenges, the development of a model that can reliably generate plasmid
+        sequences with experimentally validated potential for targeted functions remains an unmet need in the sequence
+        model space.
+    </p>
+    <p>
+        <br>
+        <strong>To meet this need and achieve project goals, our model has the following objectives:</strong>
+    </p>
+    <ul>
+        <li>Curate comprehensive and diverse datasets of plasmid sequences and motifs that are crucial for plasmid
+            functionality, including ori sequences, promoter regions, and protein-binding motifs.</li>
+        <li>Leverage these datasets to generate complete plasmid sequences using state-of-the-art machine learning
+            models.</li>
+        <li>Validate these computationally generated plasmids through both in silico methods, such as sequence alignment
+            and motif discovery, and in vitro wet lab testing. Specifically, identify promising oris and antimicrobial
+            proteins. This dual approach aims to iteratively refine our generative models, ultimately enhancing their
+            accuracy and applicability for synthetic biology research.</li>
+    </ul>
+    <br>
+    <div style="display: flex; justify-content: center;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/igemigempipeline.jpg" style="max-width: 80%; height: auto;" />
+    </div>
+    <br>
+</div>
+
+{% endblock %}

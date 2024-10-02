@@ -1,6 +1,159 @@
 {% extends "layout/layout.html" %}
-  
+{% set add_sidebar = true %}
 
 {% block article_content %}
-  Text
+{{ heading("Engineering Cycle for OriV Creation") }}
+
+<div>
+  <p>
+    The engineering cycle is a crucial aspect of our team’s journey towards the de novo synthesis of plasmid components.
+    Multiple sub-teams worked together in constant feedback to facilitate optimal designing, building, and testing of
+    components and workflows, as well as learning from each project iteration.
+  </p>
+  <p>
+    Below, we detail the iterative process the dry lab and wet lab teams took to create and validate novel oriVs,
+    highlighting various feedback loops that cumulatively resulted in a thorough design-build-test-learn (DBTL) cycle.
+  </p>
+  <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <img src="https://static.igem.wiki/teams/5230/drylab/eng.png" style="max-width: 70%; height: auto;" />
+    <figcaption style="text-align: center; margin-top: 10px;"><strong>Fig 1.</strong> DBTL cycle for oriV creation and validation, including feedback loops.</figcaption>
+  </div>
+  <br>
+</div>
+
+{{ subheading("Generating and Validating Novel OriVs") }}
+
+{{ subsubheading("Batch 1") }}
+
+{{ subsubsubheading("Design") }}
+<div>
+  <p>
+    The first batch of plasmids was designed using a Mamba model trained on a smaller dataset of less than 50,000
+    plasmids. This initial model used nucleotide-level tokenization.
+  </p>
+  <p>
+    We also designed and used our preliminary validation pipeline, which did not distinguish between different classes
+    of oriVs.
+  </p>
+</div>
+
+{{ subsubsubheading("Build") }}
+<div>
+  <p>
+    A simple assay was developed to test these plasmids. Using golden gate assembly, the generated oriVs were cloned
+    into a plasmid with an antibiotic resistance gene (ampicillin).
+  </p>
+</div>
+
+{{ subsubsubheading("Test") }}
+<div>
+  <p>
+    The plasmids assembled with the generated sequences were transformed and plated. Other than the positive control, no
+    colonies were observed, indicating that the Batch 1 sequences are non-functional.
+  </p>
+</div>
+
+{{ subsubsubheading("Learn") }}
+<div>
+  <p>
+    Our nucleotide-level tokenization limited our ability to capture longer-range dependencies in the plasmid sequences,
+    which resulted in worse-quality sequences. This was affirmed by the fact that none of the sequences worked in the
+    lab. We learned that a tokenizer to compactly process the training dataset could be highly beneficial. We also
+    learned that Class B plasmids were much easier to test experimentally than Class A, which showed that we needed to
+    design an improved validation pipeline.
+  </p>
+  <br>
+</div>
+
+{{ subsubheading("Batch 2") }}
+
+{{ subsubsubheading("Design") }}
+<div>
+  <p>
+    For the second batch, we designed our model with the Mamba2 architecture and implemented a novel Byte Pair Encoding
+    (BPE) tokenizer. This allowed us to scale the context length to encompass more nucleotides effectively. We also
+    significantly expanded our training dataset. Additionally, we introduced data augmentation techniques, including
+    random circular permutations and the inclusion of sub-plasmid sequences of varying lengths.
+  </p>
+  <p>
+    We developed a new strategy for classifying Class A vs Class B oriVs based on the learnings in Batch 1 by pursuing
+    further alignment against common Class B elements.
+  </p>
+</div>
+
+{{ subsubsubheading("Build") }}
+<div>
+  <p>
+    In the same fashion as Batch 1, the generated oriV sequences were assembled into a plasmid with the ampicillin
+    resistance gene. No changes were made to the plasmid design this round.
+  </p>
+</div>
+
+{{ subsubsubheading("Test") }}
+<div>
+  <p>
+    After transformation into E. coli and plating, five samples had functional oriVs. The samples were validated by
+    whole plasmid sequencing (741, 4089, 5276, 5727, 9371). Interestingly, one of the samples, 6769, produced colonies,
+    albeit very small. Sequencing failed to read this sample, meaning that we can't make any conclusions. After
+    reviewing the sequence, it was found that the ori sequences lacked a promoter driving the critical RNAII component.
+    The formation of the colonies could have been due to the ampicillin gene promoter leaking over to drive the ori
+    sequence.
+  </p>
+</div>
+
+{{ subsubsubheading("Learn") }}
+<div>
+  <p>
+    Four sequences produced successful results in the lab. Thus, we learned that our new model design and augmentations
+    helped the model better capture the circular nature of plasmids and their modular structure. By selecting a few
+    specific Class B wild-type plasmids as our references, we increased the throughput of the model successfully.
+  </p>
+  <p>
+    As for the wet lab validation, the plasmid was redesigned to assemble the oriV sequence to be running in the
+    opposite direction as the ampicillin resistance gene. This ensures expression of the oriV components is not due to a
+    leaky terminator.
+  </p>
+  <br>
+</div>
+
+{{ subsubheading("Batch 3") }}
+
+{{ subsubsubheading("Design") }}
+<div>
+  <p>
+    We focused on exploring the model's capability to generate plasmids with specific, user-defined characteristics. As
+    an initial experiment in this direction, we attempted to condition the model to produce plasmids with a target
+    length of approximately 2048 base pairs.
+  </p>
+  <p>
+    We also expanded our validation pipeline to improve its protein identification capabilities. By relaxing our
+    threshold for alignment, we allowed for more diverse families of proteins to get identified and reduced the
+    possibility of solely selecting overfitted proteins.
+  </p>
+</div>
+
+{{ subsubsubheading("Build") }}
+<div>
+  <p>
+    This iteration of plasmids was designed to assemble the antibiotic resistance gene to be expressed in the opposite
+    orientation as the oriV sequence. This ensures that the promoter of the resistance gene cannot lead to oriV
+    expression.
+  </p>
+</div>
+
+{{ subsubsubheading("Test") }}
+<div>
+  <p>
+    The experiments are currently in progress.
+  </p>
+</div>
+
+{{ subsubsubheading("Learn") }}
+<div>
+  <p>
+    We saw improvements in overfitting, particularly in proteins, as half of the selected predicted proteins are only
+    ~50% in comparison to wild-type proteins.
+  </p>
+</div>
+
 {% endblock %}

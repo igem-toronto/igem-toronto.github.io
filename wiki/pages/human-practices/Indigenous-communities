@@ -2,7 +2,6 @@
 
 {% block article_content %}
   {{ subpage_banner() }}
-
 {{subheading("Indigenous Community Impact Assessment")}}
 
 {{subsubheading("Introduction")}}
@@ -30,4 +29,9 @@
     <li>Jeong D, Nguyen HNT, Tyndall M, Schreiber YS. (2020). Antibiotic use among twelve Canadian First Nations communities: a retrospective chart review of skin and soft tissue infections. BMC Infect Dis, 20(118):1-8. doi:10.1186/s12879-020-4842-1.</li>
     <li>Mitevska E, Wong B, Surewaard BGJ, Jenne CN. (2021). The prevalence, risk, and management of methicillin-resistant Staphylococcus aureus infection in diverse populations across Canada: a systematic review. Pathogens, 10(393):1-22. doi:10.3390/pathogens10030393.</li>
 </ol>
+
+
+
+
+
 {% endblock %}

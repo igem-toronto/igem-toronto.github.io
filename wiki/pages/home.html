@@ -1,5 +1,7 @@
 {% extends 'layout/core.html' %}
 {% from 'layout/header.html' import links with context %}
+{% from 'layout/utility_macros.html' import heading, subheading, subsubheading,
+  subsubsubheading, cite, banner, img, subpage, subpage_banner, pdf, arrow_button with context %}
 
 {% macro hover_in() -%}
   onscroll -scroll:opacity-0 duration-500 relative -scroll:top-16 scroll:top-0
@@ -148,13 +150,8 @@
       </p>
     </div>
 
-    <div class="w-full my-20 lg:px-36 px-8">
-      <h1 class="text-font-light {{ hover_in() }}">
-        Explore Our Work
-      </h1>
-
-      <div class="w-full h-96 bg-slate-300 {{ hover_in() }}">
-      </div>
+    <div class="w-full flex justify-center my-16">
+      {{ arrow_button("Learn More", "/description.html") }}
     </div>
     
     {% include 'layout/footer.html' %}

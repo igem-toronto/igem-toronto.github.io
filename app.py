@@ -115,7 +115,7 @@ def home():
 def people():
     team_members = defaultdict(list)
     team_members["Advisor"] = []
-    team_members["Co-President"] = []
+    team_members["Co-Presidents"] = []
     team_members["Wet Lab"] = []
     team_members["Dry Lab"] = []
     team_members["Hardware"] = []
@@ -143,7 +143,7 @@ def people():
         member["picture"] = "headshots/" + image_key + ".png"
 
         lower_role =  member["role"].split(", ")[0].lower()
-        group = team_members[lower_role.replace("lead", "").replace("director", "").strip().title()]
+        group = team_members[lower_role.replace("lead", "").replace("director", "").replace("co-president", "co-presidents").strip().title()]
 
         if "director" in lower_role:
             member["priority"] = 10

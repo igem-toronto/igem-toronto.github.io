@@ -16,18 +16,14 @@
   <td>{{ position }}</td>
   <td>
     <div class="flex gap-4 items-center h-full">
-      {% if email != "" %}
-        <a href="mailto:{{ email }}" target="_blank">
-          <svg height="25" class="inline-block" viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0 0 L 150 0 L 150 100 L 0 100" fill="black"/>
-            <path d="M 10 10 L 140 10 L 140 90 L 10 90 L 10 10" fill="white"/>
-            <path d="M 8 0 L 75 60 L 142 0 L 150 5 L 75 70 L 0 5 L 8 0" fill="black"/>
-          </svg>
-        </a>
-      {% endif %}
       {% if linkedin != "" %}
         <a href="{{ linkedin }}" target="_blank">
-          <img alt="{{ name }}'s LinkedIn" src="{{ new_cdn('assets/graphics/li-in-bug.png') }}" class="h-8 inline-block">
+          <i alt="{{ name }}'s LinkedIn" class="fa-brands fa-2xl fa-linkedin text-primary-dark hover:text-accent-saturated-purple"></i>
+        </a>
+      {% endif %}
+      {% if email != "" %}
+        <a href="mailto:{{ email }}" target="_blank">
+          <i class="fa-solid fa-envelope fa-2xl text-primary-dark hover:text-accent-saturated-purple"></i>
         </a>
       {% endif %}
     </div>

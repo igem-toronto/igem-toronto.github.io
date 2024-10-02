@@ -1,5 +1,4 @@
 {% extends "layout/subpage.html" %}
-<!-- ARBEIT: add links to scripts in gitlab and to neighboring pages. And Chloe's results!!!!-->
 {% block article_content %}
 <div>
   {{ heading("Colony Counter") }}
@@ -12,9 +11,9 @@
     </div>
     {{ subsubheading("Introduction") }}
     <div>
-      <p>In the team’s experience, counting colonies on a petri dish can take up to forty minutes per plate. Colony counting is an essential task for the growth assays the wet lab team requires. In particular, quantification of origin of replication efficacy demands quantifying growth assays through either repeated OD600 or colony count measurements, ideally as a time series. To achieve high throughput in wet lab operations, this bottleneck in measurement must be expedited as much as possible.</p>
+      <p>In the team's experience, counting colonies on a petri dish can take up to forty minutes per plate. Colony counting is an essential task for the growth assays the wet lab team requires. In particular, quantification of origin of replication efficacy demands quantifying growth assays through either repeated OD600 or colony count measurements, ideally as a time series. To achieve high throughput in wet lab operations, this bottleneck in measurement must be expedited as much as possible.</p>
       
-      <p>Automated colony counting has been made possible through machine learning, as demonstrated by {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}. This task is a specific case of the object detection machine learning problem, made famous through datasets such as COCO {{cite('Lin_Maire_Belongie_Hays_Perona_Ramanan_Dollár_Zitnick_2014')}}. The aforementioned resource used a ResNet-50 based object detection model {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}. Our team plans on improving upon AGAR’s work by using the same dataset but a higher capacity model in the form of the DETR vision transformer [ref, DETR]. In keeping with the team’s focus on internet of things architectures, any product system the team creates will be modular and compatible with extensions towards wireless/remote operation as well as integration with other digital devices, enabling creators to quickly combine this system with other components and upscale.</p>
+      <p>Automated colony counting has been made possible through machine learning, as demonstrated by {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}. This task is a specific case of the object detection machine learning problem, made famous through datasets such as COCO {{cite('Lin_Maire_Belongie_Hays_Perona_Ramanan_Dollár_Zitnick_2014')}}. The aforementioned resource used a ResNet-50 based object detection model {{cite('Majchrowska_Pawlowski_Gula_Bonus_Hanas_Loch_Pawlak_Roszkowiak_Golan_Drulis-Kawa_2021')}}. Our team plans on improving upon AGAR's work by using the same dataset but a higher capacity model in the form of the DETR vision transformer [ref, DETR]. In keeping with the team's focus on internet of things architectures, any product system the team creates will be modular and compatible with extensions towards wireless/remote operation as well as integration with other digital devices, enabling creators to quickly combine this system with other components and upscale.</p>
       
     </div>
     {{ subsubheading("Architecture") }}
@@ -43,7 +42,7 @@
     </div>
     {{ subsubheading("Bill of Materials") }}
     <div>
-      <table>
+      <table class="entrepreneurship">
         <tbody>
           <tr>
             <td><b>Full name and description</b></td>
@@ -115,13 +114,13 @@
     </div>
     {{ subsubheading("Methods") }}
     <div>
-      <p>For further information on developing the components, circuitry, and machine learning model, refer to:</p>
+      <p>For further information on developing the components, circuitry, and machine learning model, <b>in the sidebar</b>, refer to:</p>
       <ul>
-        <li>neighboring page link for the CAD work and circuitry;</li>
-        <li>neighboring page link for the machine learning model.</li>
+        <li>Model for the machine learning model.</li>
+        <li>CAD and circuitry for the CAD work and circuitry;</li>
       </ul>
       <p>This section mainly deals with integrating the CAD work, circuitry, and the machine learning model, and assumes that all the prerequisites in the aforementioned individual pages are met. The scripts supplied in the aforementioned two pages already enable serial communication between the Raspberry Pi and the Arduino.
-      {{img(new_cdn("hardware/colony-counter-user-workflow.png"), width="80%")}}
+      {{img(new_cdn("hardware/colony-counter-fsm.png"), width="80%")}}
       Figure 1. Finite state machine of Arduino-Raspberry Pi system.
       
       <p>When initialized, the device will be in a state ready to accept a Petri dish with colonies.</p>
@@ -156,18 +155,18 @@
       <p>Integrative testing was unfortunately not finished by the team, though the plan was to perform testing in two stages:</p>
       
       <i>Functionality testing</i>
-      <p>This testing aims to ensure the model’s functionality with the physical hardware component. The model would be loaded onto the script in the Raspberry Pi and the whole product system would be tested. Emphasis is laid on where the physical hardware interacts with the model:</p>
+      <p>This testing aims to ensure the model's functionality with the physical hardware component. The model would be loaded onto the script in the Raspberry Pi and the whole product system would be tested. Emphasis is laid on where the physical hardware interacts with the model:</p>
       <ul>
         <li>The transmission of the photograph taken by the camera to the model;</li>
         <li>The transmission of a resulting colony count to the Arduino microcontroller.</li>
       </ul>
       
       <i>End user testing</i>
-      <p>This testing aims to ensure the product system’s compatibility with the wet lab team’s practices. The whole product system would be provided to the wet lab team and any feedback collected. Emphasis would be laid on any points that the hardware team could not provide:</p>
+      <p>This testing aims to ensure the product system's compatibility with the wet lab team's practices. The whole product system would be provided to the wet lab team and any feedback collected. Emphasis would be laid on any points that the hardware team could not provide:</p>
       <ul>
         <li>Performance in a typical laboratory environment</li>
         <li>Ease of use</li>
-        <li>Additional features relevant to improving wet lab’s workflow, tying into principles discussed in our process engineering improvements.</li>
+        <li>Additional features relevant to improving wet lab's workflow, tying into principles discussed in our process engineering improvements.</li>
       </ul>
       
     </div>
@@ -259,7 +258,7 @@
       </ul>
       <i>Model Evaluation</i>
       <ul>
-        <li><b>Validation Set:</b> A portion of the AGAR dataset is held out for validation, allowing the team to monitor the model’s performance during training. The primary evaluation metric is mAP, which measures the accuracy of the model's object detection capabilities.</li>
+        <li><b>Validation Set:</b> A portion of the AGAR dataset is held out for validation, allowing the team to monitor the model's performance during training. The primary evaluation metric is mAP, which measures the accuracy of the model's object detection capabilities.</li>
         <li><b>Challenges:</b> Current validation results show a mAP of 0.038 and a validation loss of 1.704, indicating room for improvement in both accuracy and generalization. Increasing the dataset size and improving data variability are key future steps.</li>
       </ul>
       <i>Testing and Next Steps</i>
@@ -291,17 +290,28 @@
     </div>
     {{subsubheading('Product System')}}
     <div>
-      {{img(new_cdn(''))}}
-      {{img(new_cdn(''))}}
+      {{img(new_cdn('hardware/colony-counter-wiring.png'), width="80%")}}
+      <p>
+        Figure 1. Wiring diagram for the colony counter Arduino.
+      </p>
+      {{img(new_cdn('hardware/colony-counter-fsm.png'), width="80%")}}
       <p>The user interaction workflow can be summed up with the diagram above. Besides slotting the petri dish into the baseplate, the only user interaction is with the two buttons on the attached breadboard. The first button controls when to activate the DETR model and if to save the model output while the second button controls if the output should be discarded.</p>
       <p><i>CAD, design considerations</i></p>
-      <p>To ensure modularity, the stands of this colony counter stand are identical to the lab management solution rack, and use similar fastenings. Refer to a neighboring file for details.</p>
+      <p>To ensure modularity, the stands of this colony counter stand are identical to the lab management solution rack, and use similar fastenings. Refer to our lab management page for details, under CAD and circuitry.</p>
       <p><i>CAD, final drawings</i></p>
-      <!-- stl file here -->
+      <p>
+        The top plate was specially designed to accommodate multiple pieces of electronics, including the camera and all single board computers. Here is a visualisation. Please consult our lab management page, under CAD and circuitry, for visualisation of the vertical supports used.
+      </p>
+        <model-viewer
+        class="w-full min-h-96 my-8"
+        src="{{ url_for('static', filename = 'models/top-plate.gltf') }}"
+        alt="Top colony counter plate"
+        camera-controls
+        touch-action="pan-y"></model-viewer>  
     </div>
     {{subsubheading('Methods')}}
     <div>
-      <p>As the colony counter stand and the lab management rack were fabricated with similar conditions, consult the methods section of the neighboring page for a full description.</p>
+      <p>As the colony counter stand and the lab management rack were fabricated with similar conditions, consult our lab management page, under CAD and circuitry, for a full description.</p>
     </div>
   </div>
 </div>

@@ -8,6 +8,7 @@
 {{subheading("Step 1: Calculate the Current Carbon Footprint of the Plasmid AI Project")}}
 
 {{subsubheading("Dry Lab (CPU/GPU Usage)")}}
+<div>
 <p>From the Digital Research Alliance of Canada monitoring:</p>
 <ul>
     <li>CPU Usage: 0.84 core years</li>
@@ -15,49 +16,66 @@
 </ul>
 <p>To estimate the carbon footprint, we can use simplified emission factors for CPUs and GPUs:</p>
 <ul>
-    <li>Average Emission Factor for CPUs: 0.5 kg CO₂ per core hour.</li>
-    <li>Average Emission Factor for GPUs: 2.4 kg CO₂ per GPU hour, reflecting higher power usage.</li>
+    <li>Average Emission Factor for CPUs: 0.5 kg CO₂ per core hour[5].</li>
+    <li>Average Emission Factor for GPUs: 2.4 kg CO₂ per GPU hour, reflecting higher power usage[1].</li>
 </ul>
+  </div>
 
 {{subsubsubheading("Emissions Calculations")}}
+<div>
 <p><strong>CPU Emissions:</strong></p>
 <p>To calculate the CPU emissions, we use the formula:</p>
-<pre>CPU Emissions = 0.84 core years × (0.5 kg CO₂ per core hour) × (24 hours/day × 365 days/year)</pre>
+<p>CPU Emissions = 0.84 core years × (0.5 kg CO₂ per core hour) × (24 hours/day × 365 days/year)</p>
 <p><strong>Calculation:</strong></p>
-<pre>CPU Emissions = 0.84 × 0.5 × (24 × 365) = 3,679.2 kg CO₂ (approximately 3.68 tonnes CO₂)</pre>
+<p>CPU Emissions = 0.84 × 0.5 × (24 × 365) = 3,679.2 kg CO₂ (approximately 3.68 tonnes CO₂)</p>
+</div>
+
+<div>
 
 <p><strong>GPU Emissions:</strong></p>
 <p>To calculate the GPU emissions, we use the formula:</p>
-<pre>GPU Emissions = 0.30 GPU years × (2.4 kg CO₂ per GPU hour) × (24 hours/day × 365 days/year)</pre>
+<p>GPU Emissions = 0.30 GPU years × (2.4 kg CO₂ per GPU hour) × (24 hours/day × 365 days/year)</p>
 <p><strong>Calculation:</strong></p>
-<pre>GPU Emissions = 0.30 × 2.4 × (24 × 365) = 6,307.2 kg CO₂ (approximately 6.31 tonnes CO₂)</pre>
+<p>GPU Emissions = 0.30 × 2.4 × (24 × 365) = 6,307.2 kg CO₂ (approximately 6.31 tonnes CO₂)</p>
+  </div>
 
+<div>
 <p><strong>Total Dry Lab Emissions:</strong></p>
-<pre>Total Dry Lab Emissions = 3.68 tonnes (CPU) + 6.31 tonnes (GPU) = 9.99 tonnes CO₂.</pre>
+<p>Total Dry Lab Emissions = 3.68 tonnes (CPU) + 6.31 tonnes (GPU) = 9.99 tonnes CO₂.</p>
 
-<p>Benchmark: According to a study on data center emissions, the average data center emits approximately 200 kg CO₂ per MWh of electricity consumed. Given the high computational power required for AI projects, the emissions from the Plasmid AI Project are relatively significant but can be mitigated by transitioning to renewable energy sources and optimizing code efficiency.</p>
+<p>Benchmark: According to a study on data center emissions, the average data center emits approximately 200 kg CO₂ per MWh of electricity consumed[2]. Given the high computational power required for AI projects, the emissions from the Plasmid AI Project are relatively significant but can be mitigated by transitioning to renewable energy sources and optimizing code efficiency.</p>
+</div>
 
 {{subsubheading("Wet Lab (Material Usage)")}}
+<div>
 <p>To calculate the carbon footprint of the wet lab, we focus on significant consumables like ethanol, agar, and antibiotics. For simplification, major contributors like ethanol will be calculated, while minor consumables will be approximated.</p>
 <ul>
-    <li>Ethanol: 2 liters, with an emission factor of 14 kg CO₂ per liter.</li>
-    <li>Additional materials (e.g., LB broth, plasmid kits): estimated 50–100 kg CO₂ from production and transportation.</li>
+    <li>Ethanol: 2 liters, with an emission factor of 14 kg CO₂ per liter[1].</li>
+    <li>Additional materials (e.g., LB broth, plasmid kits): estimated 50–100 kg CO₂ from production and transportation[1].</li>
 </ul>
+  </div>
 
 {{subsubsubheading("Emissions Calculations")}}
+<div>
 <p><strong>Ethanol Emissions:</strong></p>
 <p>To calculate the ethanol emissions, we use the formula:</p>
-<pre>Ethanol Emissions = 2 L × 14 kg CO₂ per L</pre>
+<p>Ethanol Emissions = 2 L × 14 kg CO₂ per L</p>
 <p><strong>Calculation:</strong></p>
-<pre>Ethanol Emissions = 2 × 14 = 28 kg CO₂</pre>
+<p>Ethanol Emissions = 2 × 14 = 28 kg CO₂</p>
+</div>
 
+<div>
 <p><strong>Minor Chemical Contributions:</strong></p>
 <p>Approximate additional emissions from other chemicals (e.g., LB broth, plasmid kits) are estimated to be 50–100 kg CO₂ for production and transportation.</p>
 <p><strong>Total Wet Lab Emissions ≈ 78 kg CO₂.</strong></p>
+  </div>
+<div>
 
-<p>Benchmark: The carbon footprint of laboratory chemicals and consumables varies widely. For example, the production of 1 kg of ethanol emits about 14 kg CO₂. The emissions from the wet lab are relatively low compared to industrial chemical production but can be further reduced by refining protocols and choosing green suppliers.</p>
+<p>Benchmark: The carbon footprint of laboratory chemicals and consumables varies widely. For example, the production of 1 kg of ethanol emits about 14 kg CO₂[3]. The emissions from the wet lab are relatively low compared to industrial chemical production but can be further reduced by refining protocols and choosing green suppliers.</p>
+  </div>
 
 {{subsubheading("Hardware (Components and Manufacturing)")}}
+<div>
 <p>The hardware used, including Arduinos, sensors, and 3D printing filaments, contributes to emissions during manufacturing and assembly.</p>
 <ul>
     <li>Arduino Boards: Approximately 1 kg CO₂ per unit (based on production and transportation data).</li>
@@ -65,68 +83,89 @@
 </ul>
 <p><strong>Total Hardware Emissions ≈ 100 kg CO₂.</strong></p>
 
-<p>Benchmark: The production of electronic components, such as Arduinos and sensors, typically involves significant emissions. For instance, the production of a single smartphone can emit around 70 kg CO₂. The emissions from the hardware used in the Plasmid AI Project are moderate and can be reduced by using eco-friendly components and extending hardware life cycles.</p>
+<p>Benchmark: The production of electronic components, such as Arduinos and sensors, typically involves significant emissions. For instance, the production of a single smartphone can emit around 70 kg CO₂[4]. The emissions from the hardware used in the Plasmid AI Project are moderate and can be reduced by using eco-friendly components and extending hardware life cycles.</p>
+
+  </div>
 
 {{subsubheading("Total Carbon Footprint for Current Project")}}
+
+<div>
 <p><strong>Dry Lab:</strong> 9.99 tonnes CO₂</p>
 <p><strong>Wet Lab:</strong> 78 kg (0.078 tonnes) CO₂</p>
 <p><strong>Hardware:</strong> 100 kg (0.1 tonnes) CO₂</p>
 <p><strong>Total Current Carbon Footprint ≈ 10.17 tonnes CO₂.</strong></p>
 
+  </div>
+
 {{subheading("Limitations in Carbon Footprint Calculations")}}
 {{subsubheading("Wet Lab Emissions")}}
+<div>
 <p>While the wet lab emissions were estimated based on key consumables like ethanol and other materials, there are notable limitations in the current analysis:</p>
 <ul>
     <li><strong>Lack of Runtime Data for Equipment:</strong> The calculations do not account for the energy consumption and associated emissions of equipment used in the wet lab, such as centrifuges, incubators, and refrigerators.</li>
     <li><strong>Incomplete Assessment of Chemical Contributions:</strong> The focus on specific consumables (e.g., ethanol) may overlook other significant chemicals used in experiments that could contribute to the carbon footprint.</li>
     <li><strong>Transport Emissions:</strong> The current analysis does not factor in the emissions associated with the transportation of materials to the wet lab.</li>
 </ul>
+  </div>
 
 {{subsubheading("Hardware Emissions")}}
+
+<div>
 <p>Similar weaknesses exist in the analysis of hardware emissions:</p>
 <ul>
     <li><strong>Absence of Runtime Data:</strong> The carbon footprint calculations for hardware do not consider the runtime or operational hours of the various devices used, such as Arduinos and sensors.</li>
     <li><strong>Manufacturing and Disposal Emissions:</strong> The calculations do not include emissions associated with the disposal or recycling of these components at the end of their life cycles.</li>
     <li><strong>Variability in Component Lifespan:</strong> Different components may have varying lifespans, which affects their total emissions per unit of functionality.</li>
 </ul>
-
+</div>
 {{subheading("Step 2: Plan to Reduce Carbon Footprint for Scale-Up")}}
 {{subsubheading("Dry Lab")}}
+
+<div>
 <p>To reduce emissions in the dry lab, several strategies can be employed:</p>
 <ul>
     <li>Transition to renewable energy sources: Utilizing green-energy-powered data centers could significantly lower the emissions associated with CPU/GPU computing clusters.</li>
     <li>Optimize code: By improving computational efficiency, the project can reduce the number of CPU/GPU hours needed, cutting energy use.</li>
     <li>Switch to energy-efficient hardware: Adopting energy-efficient CPUs and GPUs can lower the power requirements per task, directly reducing carbon emissions.</li>
 </ul>
-
+</div>
 {{subsubheading("Wet Lab")}}
+<div>
 <ul>
     <li>Reduce chemical usage: By refining protocols and scaling down experimental volumes, the wet lab can minimize the use of consumables like ethanol.</li>
     <li>Choose green suppliers: Sourcing materials from suppliers that use bio-renewable or low-emission production methods can help reduce the indirect footprint of materials.</li>
     <li>Implement recycling and reuse strategies: Using reusable plastic materials and optimizing plasmid preparation protocols to reduce waste can contribute to lowering overall emissions.</li>
 </ul>
-
+</div>
 {{subsubheading("Hardware")}}
+<div>
 <ul>
     <li>Use eco-friendly components: Opting for components made from recycled or low-impact materials will reduce the embedded carbon in hardware purchases.</li>
     <li>Extend hardware life cycles: Reusing and refurbishing Arduinos, sensors, and RFID components will reduce the need for frequent replacements and their associated emissions.</li>
 </ul>
-
+</div>
 {{subsubheading("General Measures")}}
+
+<div>
 <ul>
     <li>Track emissions more accurately: Implementing a Life Cycle Assessment (LCA) will allow for more precise tracking of emissions across the project’s various phases.</li>
     <li>Purchase carbon offsets: When emissions cannot be reduced further, carbon offsets can be purchased to neutralize the remaining footprint.</li>
 </ul>
+  </div>
 
 {{subheading("Conclusion")}}
+<div>
 <p>In light of the pressing ecological challenges we face in the Anthropocene, understanding and mitigating the carbon footprint of projects like the Plasmid AI initiative is imperative. This assessment revealed a total estimated carbon footprint of approximately 10.17 tonnes CO₂, encompassing emissions from the dry lab, wet lab, and hardware components.</p>
 <p>Through careful calculations and contextual comparisons with industry benchmarks, we identified significant emissions contributions from various sources, particularly in the computational demands of the dry lab and the materials utilized in the wet lab. This analysis highlighted areas for improvement and underscored the importance of collecting more comprehensive data, such as equipment runtime and the full range of consumables used in experiments.</p>
 <p>To reduce the carbon footprint effectively, we proposed a series of actionable strategies, including transitioning to renewable energy sources, optimizing resource use, and implementing recycling and reuse protocols. By adopting these measures, the Plasmid AI Project can not only minimize its environmental impact but also set a precedent for sustainable practices within the field of synthetic biology.</p>
-
+</div>
 {{subheading("Acknowledgments")}}
+<div>
 <p>We would like to extend our gratitude to Bikramjit Singh Toor, an Associate Engineer from the Ministry of Environment, for their valuable expertise in helping us calculate our project's carbon footprint and guiding us in our future sustainability plans. Their support has been key in guiding our commitment to environmental responsibility and sustainability.</p>
+  </div>
 
 {{subheading("References")}}
+<div>
 <ol>
     <li>Amasuomo E, Imtiaz MA. (2016). Carbon footprint reduction strategies for different sectors of the economy. Br J Environ Sci, 4(4):1-10.</li>
     <li>Ritchie H, Roser M. (2020). CO₂ and greenhouse gas emissions. Our World in Data [Internet]. Available from: https://ourworldindata.org/co2-emissions.</li>
@@ -134,6 +173,8 @@
     <li>Schmidt M, Schwegler R. (2023). Framework for comparison of product carbon footprints of different manufacturing scenarios. Cambridge Core [Internet], 1(1):1-15. Available from: https://www.cambridge.org/core/services/aop-cambridge-core/content/view/17B5B1C3CDE5EA6DD7198A7D8C07D6DF/S2732527X23001943a.pdf/framework-for-comparison-of-product-carbon-footprints-of-different-manufacturing-scenarios.pdf.</li>
     <li>Scrucca F, Barberio G, Fantin V, Porta PL, Barbanera M. (2021). Carbon footprint case studies: municipal solid waste management, sustainable road transport and carbon sequestration. In: Environmental footprints and eco-design of products and processes. Springer; p. 1-10.</li>
 </ol>
+
+  </div>
 
 
 

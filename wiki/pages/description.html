@@ -2,388 +2,438 @@
 {% set add_sidebar = true %}
 
 {% block banner %}
-  {{ banner("Plasmid.AI", "An intelligent solution to antibiotic resistance ") }}
+{{ banner("Plasmid.AI", "An Intelligent Platform to Write New Life") }}
 {% endblock %}
 
 {% block article_content %}
-  {{ subheading('Motivation') }}
-  {{ subsubheading('The rise of antibiotic resistance') }}
-  <div>
-    <p>
-      Antibiotics are crucial in treating bacterial infections, and have prevented
-      millions of deaths since the discovery of penicillin in 1928 {{ cite('adedeji2016treasure') }}.
-      However, misuse of these drugs in medicine and agriculture, combined with a dry antibiotic
-      pipeline {{ cite('gupta2014dry') }}, has led to the generation of superbugs – namely,
-      bacteria that can withstand antibiotic treatment {{ cite('strathdee2023phage') }}.
-      This, coupled with broader drug resistance from other microbes (viruses, protists, etc.),
-      constitutes a phenomenon called antimicrobial resistance (AMR), which represents one of the
-      most pressing global health challenges humanity currently faces. According to the World Health
-      Organization (WHO), AMR is projected to cause 10 million deaths per year by 2050, cost more
-      than $100 trillion in lost economic output, and drastically increase poverty rates
-      {{ cite('who2019') }}.  <i>Test italics</i>
-    </p>
-    <p>
-      Many organizations have developed watchlists for the most concerning superbug bacteria,
-      notably the ESKAPE pathogens {{ cite('santaniello2020systematic') }} and the
-      WHO’s critical priority pathogens list {{ cite('who2017') }}.
-      In particular, pathogens like carbapenem-resistant <i>Enterobacteriaceae</i> and extensively
-      drug-resistant tuberculosis are at the forefront of antibacterial research.
-    </p>
-  </div>
 
-  {{ subsubheading('Current solutions fall short') }}
-  <div>
-    <p>
-      Multiple treatment methods currently exist to tackle the pathogens above,
-      but all with limited efficacy:
-    </p>
 
-    <div class="flex justify-center py-8 px-4">
-      <table class="default">
-        <thead>
-          <tr>
-            <th>
-              Treatment
-            </th>
-            <th>
-              Limitations
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              Stronger antibiotics
-            </td>
-            <td>
-              <ul>
-                <li>
-                  Bacteria become resistant to antibiotics faster than we can produce them
-                </li>
-                <li>
-                  Antibiotics that are too strong are harmful for patients
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Nanoparticles
-            </td>
-            <td>
-              <ul>
-                <li>
-                  Limited success demonstrated in vivo
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Antimicrobial peptides
-            </td>
-            <td>
-              <ul>
-                <li>
-                  Hard to design and formulate
-                </li>
-                <li>
-                  Often degraded in vivo
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Phage therapy
-            </td>
-            <td>
-              <ul>
-                <li>
-                  Hard to find suitable phages for patient infections
-                </li>
-                <li>
-                  Very complex infection dynamics
-                </li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+{{ subheading("Motivation") }}
 
-    <p>
-      At iGEM Toronto, we are rethinking the way we approach treating drug-resistant pathogens.
-      Instead of directly attacking superbugs, we are leveraging generative artificial intelligence (AI) to make
-      resistance-nullifying plasmids that healthy bacteria can transfer to them. This approach
-      is both highly targeted to single patient bacterial strains while being highly generalizable
-      to all types of resistance mechanisms.
-    </p>
-    <p>
-      To achieve this, we aim to create a proof of concept through a two part project:
-    </p>
-    <ol>
-      <li>
-        <p>
-          Develop the generative model and lab automation to create novel, working plasmids
-        </p>
-      </li>
-      <li>
-        <p>
-          Fine-tune the plasmid functionality to enhance their stability and make them target
-          antibiotic resistance pathways
-        </p>
-      </li>
-    </ol>
-    <p>
-      To make this pipeline a reality requires an integrated effort from all of our sub teams.
-    </p>
-  </div>
-  {{ subheading('Dry Lab') }}
-  <div>
-    <p>
-      Dry lab generates whole plasmids using machine learning (ML). Through an in silico
-      validation pipeline, we then filter the sampled sequences by predicted viability
-      and deliver promising plasmid components to the wet lab.
-    </p>
-  </div>
-  {{ subsubheading('Generating plasmids') }}
-  <div>
-    <p>
-      We aim to explore different sequence modelling approaches and, to scale to entire
-      plasmid sequences, we also pull from the recent literature on long-range ML architectures,
-      such as Mamba {{ cite('gu2024mamba') }} and Hyena {{ cite('poli2023hyena') }}.
-      Our preliminary experiments pursued diffusion-based approaches, which iteratively refine
-      random noise into coherent outputs
-      {{ cite('austin2021structured,hoogeboom2022autoregressive,ho2020denoising') }}.
-      We thought that they could naturally extend into geometric ML algorithms that respect
-      the circular nature of plasmids. Unfortunately, we found it too challenging to train
-      diffusion models, which we attribute to the noisier objective function, long sequences,
-      and limited compute.
-    </p>
-    <p>
-      Next, we investigated a nucleotide-level language modelling approach, where plasmids are
-      generated one nucleotide at a time in linear order. We train on plasmids curated from
-      the PLSDB database {{ cite('plsdb') }} with plasmids of less than 10 kbp in length.
-      Batch-wide analysis focusing on metrics such as size distribution, GC content, and repeat
-      types has shown one batch to be promising, transitioning it to our in silico validation
-      pipeline. Our future efforts will focus on implementing hybrid architectures and a custom
-      tokenizer to compress nucleotide inputs for training models.
-    </p>
-  </div>
+<div>
+  <p>
+    Over the past decades, we have witnessed a staggering number of advancements in genetic engineering. Some popular
+    events include the discovery of DNA's double helical structure, the development of the polymerase chain reaction,
+    the cloning of Dolly the sheep, and the advent of CRISPR-Cas9 gene editing, just to name a few {{
+    cite('genome_engineering_history') }}. Parallelling
+    these developments is the monumental growth of artificial intelligence (AI), namely generative models like
+    transformers that form the basis of popular applications such as ChatGPT {{ cite('What_are_Large_Language_Models?')
+    }}. Today, generative models greatly
+    enhance biology research and clinical discovery, with tools such as AlphaFold even allowing scientists to predict
+    protein structure {{ cite('Thornton_Laskowski_Borkakoti_2021') }}.
+  </p>
+  <p>
+    This year at iGEM Toronto, we are developing Plasmid.AI – a platform that uses generative AI to create new,
+    functional DNA sequences. Our ultimate goal for this platform is to write entirely new genomes to create novel
+    organisms, namely new bacteria and new phages, which have fine-tuned phenotypes. These designer organisms can have
+    success in various domains, such as in agriculture, in gut probiotics, in bioremediation, in bioproduction, and in
+    therapeutics. Given the complexity of this task, our project this year focuses on the simplest proof-of-concept: the
+    generation and validation of new plasmid parts/components.
+  </p>
+  <p>
+    In addition to developing DNA-writing technology, our team seeks to have the Plasmid.AI platform positively impact
+    communities. To this end, our human practices and entrepreneurship teams have honed in on solving antibiotic
+    resistance as the most crucial domain for promoting social good and commercialization. By focusing on this issue in
+    particular, Plasmid.AI can have the greatest positive impact locally and globally.
+  </p>
+  <p>
+    Thus, the overarching aim of our project this year is twofold:
+  </p>
+  <ol>
+    <li>Develop the foundational technology to write new life – starting with new plasmid components</li>
+    <li>Lay the groundwork for this foundational technology to positively impact communities – starting with antibiotic
+      resistance</li>
+  </ol>
+  <p>
+    These goals will serve as the building blocks to our future project goals of writing new genomes.
+  </p>
+</div>
 
-  {{ subsubheading('In silico validation') }}
-  <div>
-    <p>
-      We aim to assess the validity of important plasmid components such as the ori,
-      toxin-antitoxin pairs, and antibiotic resistance genes in silico to filter initial
-      batches of sequences to a few viable results ready for wet lab testing. We have
-      currently constructed a pipeline for assessing <i>oriV</i> viability, with pipelines
-      for other components to follow.
-    </p>
-    <p>
-      Our <i>oriV</i> verification pipeline consists of the following:
-    </p>
-    <ol>
-      <li>
-          Alignment: The most broadly used <i>ori</i> detection tool, Ori-Finder
-          {{ cite('dong2021ori') }} was found to be insufficient for our project,
-          as it lacked open source code and had a size limit for uploads, making
-          it unscalable. Thus, we aligned 10,000 generated sequences against DoriC
-          {{ cite('dong2022doric') }} (the largest existing <i>ori</i> database) using
-          MMseqs2 {{ cite('mmseqs2') }}. Oris were filtered based on their alignment scores.
-      </li>
-      <li>
-          Annotation: We curated a database of important <i>ori</i> components and motifs
-          from across literature and DoriC, found here: motif database. We searched
-          for DnaA boxes, AT-rich regions, iterons, and accessory motifs in generated
-          oris, as literature showed these components were important to <i>ori</i> viability
-          {{ cite('del1998replication') }}.
-      </li>
-      <li>
-          Replication machinery: We searched for appropriate replication machinery to
-          integrate our <i>ori</i> into the appropriate plasmid backbone.
-      </li>
-    </ol>
-    <p>
-      We are awaiting wet lab results to verify the <i>ori</i>s in vitro.
-    </p>
-  </div>
+{{ subheading("Goal 1: Developing tools to make functionally relevant plasmid components") }}
 
-  {{ subheading('Wet Lab') }}
-  <div>
-    <p>
-      Artificial plasmids generated by machine learning models hold great
-      potential for addressing antibiotic resistance. The wet lab team is tasked with
-      validating these AI-generated sequences in vitro.
-    </p>
-  </div>
+<div>
+  <p>
+    Plasmids are highly important biotechnological tools with numerous applications. Some of them are listed below:
+  </p>
+  <table style="width: 100%; margin-bottom: 15px; border: 1px solid #ddd; border-collapse: collapse;">
+    <tr style="background-color: #dbcfff;">
+      <th style="border: 1px solid #ddd; padding: 8px;">Application</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Therapeutics</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Can be engineered to express useful genes in cell therapies</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Production</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Have been used to produce useful proteins, such as insulin</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Gene delivery and editing</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Can act as vectors to deliver genes to other organisms,
+        including for vaccinations and CRISPR-Cas9 gene editing</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Molecular genetics</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">Used to clone genes into lab organisms<br>Often used to confer
+        selectable markers to lab organisms</td>
+    </tr>
+  </table>
+  <p>
+    Being able to develop plasmids and plasmid components with fine-tuned functionality would greatly enhance their
+    impact in the above applications and their utility as biotechnological tools. However, despite recent advances in
+    DNA sequence models, no tools have demonstrated the capacity to generate functionally relevant plasmids/plasmid
+    components de novo. This is a gap that part (1) of our project this year addresses.
+  </p>
+</div>
 
-  {{ subsubheading('Technology rationale') }}
-  <div>
-    <p>
-      Our primary strategy to counter superbugs involves creating AI-generated
-      plasmids that can outcompete the natural plasmids carrying antibiotic
-      resistance genes. While all plasmids impose a metabolic burden on bacteria,
-      those harbouring genes conferring antibiotic resistance are strongly selected
-      for due to their survival advantage in the presence of antibiotics. Our goal
-      is to design AI-generated plasmids that provide an even stronger selective
-      advantage, causing bacteria to replace the resistance-carrying plasmids with
-      our engineered versions.
-    </p>
-    <p>
-      When antibiotic pressure is removed, bacteria no longer have a selective reason
-      to retain plasmids carrying resistance genes, making them once again susceptible
-      to antibiotics. Our AI-generated plasmids function to aid the bacteria in
-      accelerating this process of discarding the plasmids carrying antibiotic
-      resistance by providing an even more favourable alternative.
-    </p>
-    <p>
-      More favourable plasmids are less metabolically burdensome, easier to replicate,
-      and capable of directly competing with existing resistance plasmids. Our team will
-      tackle all three facets by designing plasmids with replication machinery that is
-      not only more efficient but fundamentally incompatible with target plasmid.
-      Incompatibility creates competition for host replication machinery, leaving the
-      target plasmid insufficient replication resources to sustain itself, effectively
-      neutralizing it.
-    </p>
-  </div>
+{{ subsubheading("The dry lab team is developing the foundational models to write new plasmid components") }}
 
-  {{ subsubheading('Plasmid design, construction, and validation') }}
-  <div>
-    <p>
-      To validate the efficacy of AI-generated plasmids, the wet lab team will synthesize
-      these plasmids and test them in bacterial cultures. This process starts with first
-      confirming the functionality of these generated plasmids. The generated plasmid’s
-      origin of replication (<i>oriV</i>) are isolated, synthesized, and subsequently cloned
-      into a testing backbone and transformed for characterization.
-    </p>
-    <p>
-      To facilitate high-throughput, the testing backbone is engineered with Golden Gate
-      type IIS-restriction enzyme cut sites for transgene insertion. The functionality
-      of the AI-generated <i>oriV</i> will be assessed through growth assays, where the number
-      of colony-forming units (CFUs) in experimental populations will be compared to
-      negative control populations. A significant difference in CFUs in the experimental
-      group would indicate successful plasmid replication and functionality.
-    </p>
-    <p>
-      Further validation of plasmid viability will be conducted by extracting plasmids
-      from transformed bacteria followed by sequencing, hence confirming the propagation
-      of the <i>oriV</i> and other essential components such as the toxin-antitoxin system.
-    </p>
-  </div>
+<div>
+  <p>
+    Dry lab generates whole plasmids using machine learning (ML). Through an in silico validation pipeline, we then
+    filter the sampled sequences by predicted viability and deliver promising plasmid components to the wet lab.
+  </p>
+</div>
 
-  {{ subheading('Hardware') }}
-  <div>
-    <p>
-      Our dry lab-wet lab pipeline consists of exhaustively generating and testing candidate
-      AI-generated sequences for purpose and performance. As numerous and diverse plasmid
-      components are being generated and evaluated at any time, high throughput
-      experimentation workflows, tools, and best practices must be developed to support
-      team operations. This has the added benefit of expediting use of our dry lab-wet
-      lab pipeline by other researchers or in industry. The hardware team’s mandate is
-      to develop such workflows and tools.
-    </p>
-  </div>
+{{ subsubsubheading("Generating Plasmids") }}
 
-  {{ subsubheading('High throughput operations') }}
-  <div>
-    <p>
-      Sample storage and management is a perennially present problem across all kinds
-      of labs. Laboratories at the University of Toronto typically use HECHMET for
-      laboratory inventory management {{ cite('hechmet') }}, which is a barcode based
-      check-in/check-out system. Although this solution is optimised for generic chemicals,
-      it creates high overhead for small samples with short object life cycles. To enable
-      high throughput operations, we are developing a solution aimed at tackling managing
-      large numbers of samples, potentially across different locations.
-    </p>
-    <p>
-      The sample manager product system will consist of one or more holders for samples
-      with sensors and wireless communication capabilities, a server for data retention
-      and information transmission, and an application endpoint for data display and
-      check-in/check-out functionality. Wet lab team input and solutions used in the
-      manufacturing industry were incorporated. Cost and ease of use were considered
-      as part of the design process.
-    </p>
-    <p>
-      We based the product system based on a self-driving lab architecture described
-      in {{ cite('baird2023building')}}. Although initially developed for a
-      different purpose, we are adapting the architecture mentioned to form a
-      readily extendable internet of things framework for developing future
-      networked laboratory automation projects. Furthermore, data collected from usage
-      trends identified here may be fed into the Lean and Six Sigma process design
-      strategies, improving wet lab team parallelism while improving quality and
-      decreasing variability.
-    </p>
-  </div>
+<div>
+  <p>
+    There are three main components of our model development for plasmid generation: sequence tokenization, model
+    architecture and training, and model inference.
+  </p>
+  <p>
+    Tokenization: We used a sophisticated tokenization strategy called Byte Pair Encoding (BPE) trained on our dataset
+    of wildtype plasmid sequences. This tokenizer identifies and encodes frequently occurring subsequences, effectively
+    compressing repetitive DNA patterns common in long plasmids.
+  </p>
+  <p>
+    Model Architecture and Training: For our model architecture, we use the Mamba2 model, which has demonstrated success
+    in long-sequence modelling tasks. This choice was driven by Mamba's ability to handle long plasmid sequences
+    efficiently, making it well-suited for plasmid data. Its various features allow it to overcome the limitations of
+    traditional attention-based transformers in handling extended sequences. Our training objective follows the
+    next-token prediction paradigm, where the model learns to predict the next token in the sequence given
+    the preceding tokens. This method enables the model to learn the underlying patterns and structures of plasmid
+    sequences, capturing both local and global features of plasmid organization.
+  </p>
+  <p>
+    Model Inference: During inference, we generate novel plasmid sequences through a carefully designed process. We
+    initiate sequence generation with the CLS token, signaling the start of a new sequence. We then utilize nucleus
+    sampling {{ cite('Holtzman2020The') }} to predict the next tokens within the sequence, ultimately generating many
+    plasmid sequences in parallel.
+  </p>
+</div>
 
-  {{ subsubheading('High throughput tools') }}
-  <div>
-    <p>
-      Most assays done by the wet lab team will require some form of growth quantification.
-      Colony counting and OD600 assays are two such approaches. However, the former
-      requires significant repetitive effort and time, while the latter requires
-      specialised equipment in the form of a spectrophotometer or nephelometer
-      {{ cite('implen2024od600') }}. Advancements in computer vision, however, have enabled
-      object detection models to succeed in the former task {{ cite('majchrowska2021agar') }}.
-    </p>
-    <p>
-      We intend to implement and finetune a Vision Transformer model to perform colony
-      detection on petri dish plates. Furthermore, we plan to deploy the vision
-      transformer to a single chip computer, which will be housed on a benchtop stand
-      with a camera and related accessories. The whole assembly will be internet of
-      things accessible. Considerations made by the team include cost, throughput,
-      ease of construction, and eventual open source availability.
-    </p>
-  </div>
+{{ subsubsubheading("In-Silico Validation") }}
 
-  {{ subheading('Human Practices') }}
-  <div>
-    <p>
-      Our objective is to comprehensively educate the public about antibiotic resistance
-      through a holistic approach that addresses all relevant sectors. To achieve this, we are
-      implementing a series of strategic actions. First, we are collaborating with schools to
-      educate children on this critical issue, developing age-appropriate programs to instill
-      awareness from an early age. In addition, we are conducting preliminary risk assessments
-      to understand the scope and impact of antibiotic resistance, guided by established
-      frameworks such as the TUCKER framework, the NASEM framework, and the FBI UNICRI framework.
-    </p>
-    <p>
-      Engaging with stakeholders, including both supporters and opponents, is another key
-      step in our strategy. We aim to discuss potential countermeasures and gather valuable
-      feedback and insights to enhance and refine our project. To ensure our approach is
-      well-rounded, we are also collecting detailed information about antibiotic resistance
-      in various sectors, such as healthcare, agriculture, and the environment. This
-      information will help us tailor our strategies and interventions more effectively.
-    </p>
-    <p>
-      To reach different demographics, we aim on creating a variety of educational materials,
-      including newspaper articles, blogs, and using social media. These resources will be
-      designed to be accessible and engaging, maximising public outreach and impact.
-      Furthermore, we are committed to continuously improving our initiatives by actively
-      seeking and incorporating feedback from stakeholders and the public. By following this
-      structured approach, we aim to comprehensively address antibiotic resistance and
-      effectively educate the public, leveraging collaboration, informed strategies, and
-      continuous engagement.
-    </p>
-  </div>
+<div>
+  <p>
+    Overall Batch Summary Stats: Our in-silico pipeline validates batches of generated plasmids, identifying promising
+    plasmid origins of replication (ORIs) and selecting antimicrobial resistance (AMR) proteins with potential for
+    experimental success. Before sequence-specific validation, we assessed the overall quality of each batch using
+    clustering tools like MOBsuite {{ cite('Robertson_Nash_2018') }}. We examined sequence clusters, alignment to known
+    motifs, and checked for circular
+    contigs, which are indicative of novel plasmids.
+  </p>
+  <p>
+    ORI Alignment and Annotation: Generated sequences were aligned to the oriC database using MMseqs2 {{
+    cite('Steinegger_Söding_2017') }} and BLAST+ {{ cite('Steinegger_Söding_2017') }}.
+    High-scoring sequences were passed to the annotation phase, where key replication motifs were identified using MEME
+    Suite. Class B plasmids were further prioritized based on alignment and manual review.
+  </p>
+  <p>
+    Antimicrobial Protein Validation: The generative model, trained on whole-plasmid sequences, assumes generated
+    proteins should be functional. However, due to the unannotated training data, the model needed to generalize beyond
+    known wild-type proteins.
+    Using AMRFinderPlus {{
+    cite('Feldgarden_Brover_Gonzalez-Escalona_Frye_Haendiges_Haft_Hoffmann_Pettengill_Prasad_Tillman_et_al._2021')}}, we
+    aligned generated plasmid sequences against a diverse protein set, including antimicrobial
+    resistance factors.
+  </p>
+  <p>
+    Structure-Based Protein Validation: To detect protein misfolding or expression issues early, we used the ESMFold
+    {{ cite('Lin_Akin_Rao_Hie_Zhu_Lu_Smetanin_Verkuil_Kabeli_Shmueli_et_al._2022') }} deep-learning model for structure
+    prediction. Validation metrics such as plDDT, PAE, and pTM-scores were applied to
+    ensure protein accuracy. Regions with high pLDDT/pTM scores and low PAE values can be considered potentially viable
+    for downstream applications.
+  </p>
+</div>
 
-  {{ subheading('Entrepreneurship') }}
-  <div>
-    <p>
-      Our objective is to create a go-to market stage company for our AI-powered discovery
-      engine that integrates our proprietary large language model (dry lab) with rapid in
-      vitro screening and clinical validation (wet lab). Our company will identify new
-      antibiotic-resistant strain killing mechanisms and leveraging existing antibiotics
-      to create therapies faster and more cost-effectively than competitors.
-    </p>
-    <p>
-      We’re co-incubating with 2 independent incubators located in Canada and the UK.
-      These incubators have allowed us to refine our problem statement and understand
-      our value proposition. We’ve developed a rapid fire 3-minute pitch, a 6-minute
-      investor ready pitch, a robust business plan, and other deliverables necessary to
-      raise seed-stage capital and beyond.
-    </p>
-  </div>
+{{ subsubheading("The wet lab team is developing the workflow to validate dry lab's best sequence candidates in vitro")
+}}
+
+<div>
+  <p>
+    The wet lab team is tasked with validating dry lab's AI-generated sequences in vitro. To validate the efficacy of
+    AI-generated plasmids, the wet lab team synthesizes these plasmids and test them in bacterial cultures. This process
+    starts with first confirming the functionality of these generated plasmids. The generated plasmids' origin of
+    replication (oriV) are isolated, synthesized, and subsequently cloned into a testing backbone and transformed for
+    characterization.
+  </p>
+  <p>
+    To facilitate high-throughput validation, the testing backbone is engineered with Golden Gate type IIS-restriction
+    enzyme cut sites for transgene insertion. The functionality of the AI-generated oriVs will be assessed through
+    growth assays, where the number of colony-forming units (CFUs) in experimental populations will be compared to
+    negative control populations. A significant difference in CFUs in the experimental group would indicate successful
+    plasmid replication and functionality.
+  </p>
+  <p>
+    Further validation of plasmid viability will be conducted by extracting plasmids from transformed bacteria followed
+    by sequencing, hence confirming the propagation of the oriV and other essential components such as antibiotic
+    resistance genes (ARGs).
+  </p>
+</div>
+
+{{ subsubheading("The hardware team is developing IoT tools for upscaling and high-throughput sequence testing") }}
+
+<div>
+  <p>
+    The dry lab-wet lab pipeline consists of exhaustively generating and testing candidate AI-generated sequences for
+    purpose and performance. As numerous and diverse plasmid components are being generated and evaluated at any time,
+    high throughput experimentation workflows, tools, and best practices must be developed to support team operations.
+    This has the added benefit of expediting use of our dry lab-wet lab pipeline by other researchers or in industry.
+    The hardware team's mandate is to develop such workflows and tools.
+  </p>
+</div>
+
+{{ subsubsubheading("High throughput operations") }}
+
+<div>
+  <p>
+    Sample storage and management is a perennially present problem across all kinds of labs. Laboratories at the
+    University of Toronto typically use HECHMET for laboratory inventory management {{ cite('hechmet') }}, which is a
+    barcode based
+    check-in/check-out system. Although this solution is optimised for generic chemicals, it creates high overhead for
+    small samples with short object life cycles. To enable high throughput operations, we are developing a solution
+    aimed at tackling managing large numbers of samples, potentially across different locations.
+  </p>
+  <p>
+    The sample manager product system will consist of one or more holders for samples with sensors and wireless
+    communication capabilities, a server for data retention and information transmission, and an application endpoint
+    for data display and check-in/check-out functionality. Wet lab team input and solutions used in the manufacturing
+    industry were incorporated. Cost and ease of use were considered as part of the design process.
+  </p>
+  <p>
+    We based the product system based on a self-driving lab architecture described in {{ cite('HelloWorldProtocol') }}.
+    Although initially developed
+    for a different purpose, we are adapting the architecture mentioned to form a readily extendable internet of things
+    (IoT) framework for developing future networked laboratory automation projects. Furthermore, data collected from
+    usage trends identified here may be fed into the Lean and Six Sigma process design strategies, improving wet lab
+    team parallelism while improving quality and decreasing variability.
+  </p>
+</div>
+
+{{ subsubsubheading("High throughput tools") }}
+
+<div>
+  <p>
+    Most assays done by the wet lab team will require some form of growth quantification, in particular for in vitro
+    oriV validation. Colony counting and OD600 assays are two such approaches. However, the former requires significant
+    repetitive effort and time, while the latter requires specialised equipment in the form of a
+    spectrophotometer/nephelometer {{ cite('Diluphotometer') }}. Advancements in computer vision, however, have enabled
+    object detection models to
+    succeed in the former task {{ cite('AGAR') }}.
+  </p>
+  <p>
+    We intend to implement and finetune a vision transformer model to perform colony detection on petri dish plates.
+    Furthermore, we plan to deploy the vision transformer to a single chip computer, which will be housed on a benchtop
+    stand with a camera and related accessories. The whole assembly will be internet of things (IoT) accessible.
+    Considerations made by the team include cost, throughput, ease of construction, and eventual open source
+    availability.
+  </p>
+</div>
+
+{{ subsubsubheading("High throughput techniques") }}
+
+<div>
+  <p>
+    A laboratory and a factory share a similar goal in a sense that they are both production facilities for material
+    objects. In our case, our wet lab floor can be likened to a factory floor in a sense that we are trying to optimize
+    the wet lab team's throughput by as much as possible. As such, why not apply industrial engineering techniques to
+    the lab? The hardware team applied process engineering techniques, such as Lean, Six Sigma, and DMAIC, to the wet
+    lab floor, with the aim of reducing variability and increasing throughput {{ cite('Vorne_Industries')}}.
+  </p>
+</div>
+
+{{ subsubheading("Current results demonstrate AI-generated plasmid components are functional") }}
+
+<div>
+  <p>
+    Three major batches of sequences were generated and validated. Other batches (such as attempts with diffusion
+    models) were produced but did not show sufficient promise to make it to the validation pipeline.
+  </p>
+  <p>
+    Batch 1: The first batch of plasmids was generated using a Mamba model trained on a smaller dataset of less than
+    50,000 plasmids. This initial model used nucleotide-level tokenization, which limited its ability to capture
+    longer-range dependencies in the plasmid sequences. An initial set of 6 oris (a mix of Class A and Class B) was
+    selected. However, after attempting to design these plasmids in the wet lab, Class A plasmids were deemed to be too
+    difficult to test at this stage, as their machinery is more complex and difficult to detect. This wet Lab - dry Lab
+    iteration meant that instead 5 promising Class B oris were delivered to wet lab for testing. Finally, one promising
+    protein was also selected. None of the oris in this batch worked.
+  </p>
+  <p>
+    Batch 2: For the second batch, we transitioned to the Mamba2 architecture and implemented a Byte Pair Encoding (BPE)
+    tokenizer. We also significantly expanded our training dataset. 8 Class B oris and 5 proteins were selected from the
+    validation pipeline. At least 6 oris from this batch have shown promising results as of the time of writing.
+  </p>
+  <p>
+    Batch 3: For this batch, we focused on exploring the model's capability to generate plasmids with specific,
+    user-defined characteristics. We also further refined our training dataset and fine-tuning stage using results of
+    the wet lab experiments. 9 oris were selected for experimental validation. These oris have not been fully tested in
+    vitro yet.
+  </p>
+</div>
+
+{{ subheading("Goal 2: Addressing antibiotic resistance is the most crucial domain for Plasmid.AI") }}
+
+<div>
+  <p>
+    In addition to developing the foundational technology of writing new DNA sequences, our team seeks to lay the
+    groundwork for this project to have a positive social impact. This allows our work to benefit the communities around
+    us, which is an important aspect of synthetic biology and engineering. As such, our Human Practices (HP) and
+    Entrepreneurship teams have undertaken extensive work to determine the most suitable project application for
+    Plasmid.AI – at this stage, we have honed in on antibiotic resistance.
+  </p>
+</div>
+
+{{ subsubheading("The HP team lays the groundwork for social impact") }}
+
+<div>
+  <p>
+    HPs objective is to integrate the innovative capabilities of Plasmid AI with human practices to effectively address
+    the pressing challenge of antibiotic resistance (ABR). Through careful background research, we've identified ABR as
+    a critical issue that demands not just attention but innovative and thoughtful solutions (see Integrated Human
+    Practices section of wiki). We understand that this challenge goes beyond the laboratory; it deeply impacts the
+    lives of individuals and communities. Thus, we are committed to a holistic approach that embraces insights from a
+    diverse range of stakeholders.
+  </p>
+  <p>
+    As we navigate the rapidly evolving landscape of AI, we are committed to establishing a regulatory framework that
+    draws on existing models to ensure responsible and ethical use of our technology. In tandem with this, we remain
+    aware of our ecological footprint. Collaborating with an Associate Engineer from the Ministry of Environment, we are
+    dedicated to developing strategies that minimize our environmental impact while advancing our mission.
+  </p>
+  <p>
+    We believe education is a powerful catalyst for change. This year, we welcomed incoming freshmen through seminars
+    that illustrate the exciting possibilities within synthetic biology and highlight our work with Plasmid AI. In
+    partnership with the University of Toronto's Science Communication Club, we're crafting articles that not only
+    address antibiotic resistance but also encourage broader discussions about its implications. Through these
+    initiatives, we aim to spark meaningful conversations, engage communities, and create well-rounded solutions to this
+    pressing global challenge.
+  </p>
+</div>
+
+{{ subsubsubheading("Diving deeper into antibiotic resistance") }}
+
+<div>
+  <p>
+    Antibiotics are crucial in treating bacterial infections, and have prevented millions of deaths since the discovery
+    of penicillin in 1928 {{ cite('Adedeji_2016')}}. However, misuse of these drugs in medicine and agriculture,
+    combined with a dry antibiotic
+    pipeline {{ cite('Gupta_Nayak_2014') }}, has led to the generation of superbugs – namely, bacteria that can
+    withstand antibiotic treatment {{ cite('Strathdee_Hatfull_Mutalik_Schooley_2023') }}.
+    This, coupled with broader drug resistance from other microbes (viruses, protists, etc.), constitutes a phenomenon
+    called antimicrobial resistance (AMR), which represents one of the most pressing global health challenges humanity
+    currently faces. According to the World Health Organization (WHO), AMR is projected to cause 10 million deaths per
+    year by 2050, cost more than $100 trillion in lost economic output, and drastically increase poverty rates {{
+    cite('World Health Organization_2019') }}.
+  </p>
+  <p>
+    Many organizations have developed watchlists for the most concerning superbug bacteria, notably the ESKAPE pathogens
+    and the WHO's critical priority pathogens list {{ cite('World_Health_Organization_WHO_2017') }}. In particular,
+    pathogens like Carbapenem-resistant
+    Enterobacteriaceae (CRE) and extensively drug-resistant tuberculosis (XDR-TB) are at the forefront of antibacterial
+    research.
+  </p>
+  <p>
+    Multiple treatment methods currently exist to tackle the pathogens above, but all with limited efficacy:
+  </p>
+  <table style="width: 100%; margin-bottom: 15px; border: 1px solid #ddd; border-collapse: collapse;">
+    <tr style="background-color: #dbcfff;">
+      <th style="border: 1px solid #ddd; padding: 8px;">Treatment</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Limitations</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Stronger antibiotics</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <ul style="margin: 0; padding-left: 20px;">
+          <li>Bacteria become resistant to antibiotics faster than we can produce them</li>
+          <li>Antibiotics that are too strong are harmful for patients</li>
+          <li>Combination therapies are expensive and pose greater risk of adverse effects</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Nanoparticles</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <ul style="margin: 0; padding-left: 20px;">
+          <li>Limited success demonstrated <i>in vivo</i></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Antimicrobial peptides</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <ul style="margin: 0; padding-left: 20px;">
+          <li>Hard to design and formulate</li>
+          <li>Often degraded <i>in vivo</i></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;">Phage therapy</td>
+      <td style="border: 1px solid #ddd; padding: 8px;">
+        <ul style="margin: 0; padding-left: 20px;">
+          <li>Hard to find suitable phages for patient infections</li>
+          <li>Very complex infection dynamics</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+
+</div>
+
+{{ subsubsubheading("Using plasmid components solve ABR") }}
+
+<div>
+  <p>
+    A strategy to counter superbugs involves creating AI-generated plasmids that can outcompete the natural plasmids
+    carrying antibiotic resistance genes. While all plasmids impose a metabolic burden on bacteria, those harbouring
+    genes conferring antibiotic resistance are strongly selected for due to their survival advantage in the presence of
+    antibiotics. Designing AI-generated plasmids that provide an even stronger selective advantage will cause bacteria
+    to replace the resistance-carrying plasmids with our engineered versions.
+  </p>
+  <p>
+    When antibiotic pressure is removed, bacteria no longer have a selective reason to retain plasmids carrying
+    resistance genes, making them once again susceptible to antibiotics. Our AI-generated plasmids function to aid the
+    bacteria in accelerating this process of discarding the plasmids carrying antibiotic resistance by providing an even
+    more favourable alternative.
+  </p>
+  <p>
+    Specifically, more favourable plasmids are less metabolically burdensome, easier to replicate, and capable of
+    directly competing with existing resistance plasmids. By generating AI-plasmid components with these
+    characteristics, we can resensitize superbugs to antibiotic resistance via removal of its plasmid-based antibiotic
+    resistance.
+  </p>
+</div>
+
+{{ subsubheading("The entrepreneurship team goes a step further into the realm of commercialization") }}
+
+<div>
+  <p>
+    Our objective is to create a go-to market stage company for our AI-powered discovery engine that integrates our
+    proprietary foundational model (dry lab) with rapid in vitro screening and clinical validation (wet lab). Our
+    company will markedly enhance the preclinical screening of novel phages to create superbug therapies faster and more
+    cost-effectively than competitors.
+  </p>
+  <p>
+    We're co-incubating with 2 independent incubators located in Canada and the UK. These incubators have allowed us to
+    refine our problem statement and understand our value proposition. We've developed a rapid fire 3-minute pitch, a
+    6-minute investor ready pitch, a robust business plan, and other deliverables necessary to raise seed-stage capital
+    and beyond.
+  </p>
+</div>
 
 {% endblock %}

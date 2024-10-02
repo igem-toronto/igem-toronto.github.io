@@ -1,1 +1,33 @@
+{% extends "layout/subpage.html" %}
 
+{% block article_content %}
+  {{ subpage_banner() }}
+
+{{subheading("Indigenous Community Impact Assessment")}}
+
+{{subsubheading("Introduction")}}
+<p>As our project has developed, we've encountered some delays in directly engaging with Indigenous communities, which has made it even more crucial for us to ensure that our work is genuinely relevant to those most affected by antibiotic resistance. To this end, we conducted an impact assessment to confirm that our efforts are focused on real needs rather than simply aiming for inclusivity. We remain dedicated to reaching out and building connections with these communities, ensuring that our strategies are tailored to address their unique health challenges and that our interventions are meaningful and equitable.</p>
+
+{{subsubheading("Impact of Antibiotic Resistance on Indigenous Communities in Canada")}}
+<p>Antibiotic resistance, particularly in the form of methicillin-resistant Staphylococcus aureus (MRSA), poses a significant health challenge for Indigenous communities in Canada. These populations experience higher infection rates due to a combination of intersecting risk factors, including social determinants of health and limited access to healthcare resources[1]. Both hospital-acquired MRSA (HA-MRSA) and community-acquired MRSA (CA-MRSA) are prevalent in these communities, where overcrowding, inadequate sanitation, and poor housing conditions facilitate the rapid spread of infections [1].</p>
+
+{{subsubheading("Prevalence of MRSA in Indigenous Communities")}}
+<p>The burden of MRSA among Indigenous populations is substantial, with studies indicating a prevalence rate of 14.78% for CA-MRSA in skin and soft tissue infections (SSTIs) within First Nations communities across five provinces [1]. The prevalence of MRSA is particularly pronounced in northern and remote regions, with rates reaching as high as 168.1 per 10,000 residents in northern Saskatchewan in 2006 and even higher in subsequent years [2].</p>
+
+{{subsubheading("Risk Factors for MRSA Infections")}}
+<p>Several environmental and socioeconomic factors drive the high prevalence of MRSA in Indigenous communities. Overcrowded housing, lack of sanitation, and limited healthcare access create conditions where infections can spread easily [2]. Indigenous populations are also more likely to have comorbidities, such as diabetes and alcoholism, which increase susceptibility to infections. For instance, approximately 21.43% of individuals in affected populations have diabetes, while 18.75% have cardiac diseases, both of which impair the immune response and complicate recovery [1].</p>
+<p>Inadequate infection control measures in healthcare settings also contribute to the problem. Delays in diagnosis and treatment arise from a shortage of diagnostic tools and trained healthcare personnel. Tracking MRSA colonization in these areas is challenging due to insufficient surveillance systems, highlighting the need for improved healthcare infrastructure and infection control protocols [2].</p>
+
+{{subsubheading("Antibiotic Resistance Patterns")}}
+<p>Patterns of antibiotic resistance in MRSA strains isolated from Indigenous populations reveal critical insights. While MRSA strains are uniformly resistant to beta-lactam antibiotics, such as penicillin and cefazolin, there is variability in resistance to other classes of antibiotics. In remote First Nations communities, nearly all MRSA isolates have shown susceptibility to clindamycin, with about 60% remaining susceptible to erythromycin [1]. This suggests that although treatment options are available, evolving resistance patterns emphasize the necessity for tailored antibiotic stewardship programs.</p>
+<p>Additionally, high susceptibility to trimethoprim-sulfamethoxazole (TMP-SMX), a common treatment for mild to moderate MRSA infections, has been observed [2]. However, resistance to fluoroquinolones and macrolides remains a concern, with over 50% of MRSA strains demonstrating resistance to these antibiotic classes. Continuous monitoring of antibiotic resistance patterns is essential to ensure effective treatment for MRSA infections in Indigenous communities.</p>
+
+{{subsubheading("Conclusion")}}
+<p>The data clearly indicates that Indigenous communities are significantly affected by antibiotic resistance, particularly through high rates of antibiotic prescriptions and infections caused by CA-MRSA. To address these challenges effectively, it is essential to develop targeted strategies that not only focus on the development of new solutions, such as Plasmid AI, but also take into account the unique health profiles and needs of these vulnerable communities. This will ensure that interventions are inclusive, equitable, and responsive to the specific challenges faced by Indigenous populations in Canada.</p>
+
+{{subsubheading("References")}}
+<ol>
+    <li>Jeong D, Nguyen HNT, Tyndall M, Schreiber YS. (2020). Antibiotic use among twelve Canadian First Nations communities: a retrospective chart review of skin and soft tissue infections. BMC Infect Dis, 20(118):1-8. doi:10.1186/s12879-020-4842-1.</li>
+    <li>Mitevska E, Wong B, Surewaard BGJ, Jenne CN. (2021). The prevalence, risk, and management of methicillin-resistant Staphylococcus aureus infection in diverse populations across Canada: a systematic review. Pathogens, 10(393):1-22. doi:10.3390/pathogens10030393.</li>
+</ol>
+{% endblock %}

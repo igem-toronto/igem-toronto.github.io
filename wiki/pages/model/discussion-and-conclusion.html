@@ -1,0 +1,133 @@
+{% extends "layout/subpage.html" %}
+
+{% block article_content %}
+{{heading("Model")}}
+{{ subheading("Discussion") }}
+<div>
+    <p>
+        The results of our plasmid generation model demonstrate both the potential and limitations of combining
+        computational approaches with experimental validation in synthetic biology. Our tokenizer proved to be highly
+        effective in improving our training metrics and retaining biological relevance. Our validation pipeline,
+        particularly in ori alignment, allows for nuance by searching beyond high alignment metrics for the presence of
+        important motifs. Nevertheless, the predominantly negative alignment scores for the Class B plasmid elements
+        highlight the complexity of generating biologically functional plasmids solely through computational methods.
+        These results suggest that while our model captures general plasmid structures, there are gaps in replicating
+        the nuanced sequence variations required for specific functional elements. This underscores the need for more
+        diverse reference sequences and improved fine-tuning of the model to capture subtle sequence motifs. The
+        iterative wet lab-dry lab collaboration has proven invaluable in this regard; initial dry lab predictions
+        identified promising sequences, which were then refined based on wet lab feedback. For instance, the decision to
+        focus on Class B plasmids for wet lab testing was driven by their simpler replication machinery, which is easier
+        to validate experimentally compared to Class A plasmids with more complex requirements. This collaborative cycle
+        between computational generation and experimental validation not only enhances the accuracy of generated
+        plasmids but also accelerates the overall engineering cycle. Some key limitations and next steps are discussed
+        below.
+
+    </p>
+</div>
+
+{{ subsubheading("Limitations") }}
+<div>
+    {{ subsubsubheading("Limited Data For Model Training") }}
+    <div>
+        <p>
+            The scarcity and complexity of plasmid sequence data present significant challenges for machine learning models
+            like our Mamba2. Plasmids are typically long sequences, but relatively few have been fully sequenced, resulting
+            in a limited dataset for training. Moreover, their modular nature, consisting of various functional elements
+            combined in different ways, further complicates the learning process. To address these limitations, we
+            implemented several data augmentation techniques. We employed random circular permutations to simulate the
+            circular nature of plasmids and to increase sequence diversity. Additionally, we included sub plasmid sequences
+            of varying lengths, effectively breaking down the complex structures into more manageable segments. These
+            strategies not only expanded our training dataset but also helped our model better capture the modular and
+            circular characteristics of plasmids, improving its ability to generate biologically plausible sequences despite
+            the initial data constraints.
+    
+        </p>
+    </div>
+    {{ subsubsubheading("Motif Annotation and Discovery") }}
+    <div>
+        <p>
+            There is limited data available on relevant motifs. Particularly, protein binding motifs are difficult to
+            annotate. MEME only discovers motifs but it does not determine if any of the discovered motifs are known binding
+            sites. We can use MEME Suite’s FIMO tool {{ cite('Bailey2015' )}} to scan the sequences for occurrences of the
+            discovered motifs and
+            compare them against known binding site databases to identify potential binding sites; however, this requires
+            supplying a sequence of known binding site motifs. Currently, we are unable to find a database of replication
+            protein binding motifs. To overcome this limitation, in the current pipeline, we prioritize features that are
+            more likely to be conserved, such as RNA II molecules, AT-rich regions, etc.
+    
+        </p>
+    </div>
+    {{ subsubsubheading("Complex ori Machinery") }}
+    <div>
+        <p>
+            The ori is an intricate and interdependent network of smaller, essential components, all of which must be both
+            present and functionally matched for successful plasmid replication. Because wildtype plasmids already possess
+            these configurations, much of the intricacies involved in how these elements interact remain poorly studied. The
+            challenge lies in the relational nature of these components—each element is not just independently necessary but
+            must also coordinate with others in a specific spatial and temporal context. This complexity makes it difficult
+            to experimentally disentangle the contributions of individual motifs, further compounded by a lack of
+            comprehensive datasets that characterize these interactions in diverse bacterial systems.
+        </p>
+    </div>
+    {{ subsubsubheading("Relational Challenge") }}
+    <div>
+        <p>
+            The relational challenge is especially problematic when attempting to generate or engineer new plasmid oris
+            through computational models. The necessity for these components to be contextually correct, not just
+            individually present, creates difficulties in ensuring functional replication in synthetic constructs. Despite
+            these challenges, understanding and replicating these complex interdependencies is key to designing new plasmids
+            with predictable behavior, and more research is needed to systematically explore how these components co-evolve
+            and function together.
+    
+        </p>
+    </div>
+</div>
+
+{{ subsubheading("Next Steps") }}
+<div>
+    <p>
+        Building upon our current progress, our next step in plasmid generation will focus on developing a more
+        context-aware model that can better capture the intricate relationships between different plasmid elements. We
+        envision implementing a hierarchical generation approach, where the model first learns to generate a high-level
+        plasmid architecture, including the relative positions and sizes of key functional elements such as ori regions,
+        coding sequences, and regulatory elements. This skeletal structure would then guide the generation of specific
+        sequences for each element, ensuring better coherence and biological plausibility. Additionally, we plan to
+        incorporate attention mechanisms that allow the model to explicitly consider long-range dependencies within the
+        plasmid sequence, potentially improving the generation of complex regulatory networks and compatible functional
+        elements. This advanced generation strategy aims to produce more holistic and functionally viable plasmid
+        designs, bridging the gap between computational predictions and biological reality.
+
+    </p>
+    <p>
+        Developing more sophisticated alignment and motif discovery algorithms, potentially incorporating machine
+        learning-based sequence alignment methods, would enhance the accuracy of in silico validation, especially for
+        distinguishing between complex plasmid types. Expanding the in silico validation pipeline to include more
+        comprehensive functional assays, such as simulation of plasmid replication and expression dynamics, would
+        provide deeper insights into the biological relevance of generated sequences. Eventually, we hope to validate
+        entire plasmids beyond oris, and beyond this, other sequences such as bacterial chromosomes and phage genomes.
+
+    </p>
+</div>
+
+{{ subheading("Conclusion") }}
+<div>
+    <p>
+        The development of our plasmid generation model highlights several critical advancements and challenges in the
+        field of synthetic biology. Our use of BPE for tokenizing plasmid sequences has proven effective in compressing
+        extensive genetic information while preserving biological relevance, enabling efficient processing of large
+        plasmids. The Mamba model’s state-space architecture further supports this by handling long-range dependencies
+        more effectively than traditional transformer models, thereby capturing both local and global features essential
+        for accurate plasmid generation. Our two-phase training process—pretraining on a broad dataset and fine-tuning
+        on specific plasmid classes—strikes a balance between generalizability and specificity, enhancing the model’s
+        ability to generate biologically plausible sequences tailored to specific research needs. However, challenges in
+        the in silico validation process, particularly in the classification and alignment of Class A and Class B
+        plasmids, reveal the need for more diverse training data and improved sequence alignment techniques. Preliminary
+        results indicate that while Class B plasmid generation shows potential, further refinement in motif discovery
+        and alignment pipelines is required to increase the biological validity and experimental relevance of the
+        generated plasmids. Our iterative approach, combining computational generation with wet lab validation, enables
+        a strong foundational solution for generating novel bioloigcally relevant plasmids.
+
+    </p>
+    <br>
+</div>
+{% endblock %}

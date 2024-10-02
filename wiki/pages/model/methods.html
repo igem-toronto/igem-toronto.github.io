@@ -1,0 +1,535 @@
+{% extends "layout/subpage.html" %}
+
+{% block article_content %}
+{{heading("Model")}}
+{{ subheading("Methods") }}
+
+{{ subsubheading("Dataset Curation") }}
+<div>
+    <p>
+        Our natural bacterial plasmid dataset consists of 137,041 circular plasmid sequences derived from single
+        origins. The sequences were curated from public databases like PLSDB and IMG/PR {{ cite('Schmartz,Camargo') }}, and are filtered based on
+        plasmid topology (e.g., circular vs linear) and source type.
+    </p>
+</div>
+
+{{ subsubheading("Model Development") }}
+<div>
+    <p>
+        There are three main components of our model development: sequence tokenization, model architecture and
+        training, and model inference. This approach enables us
+        to effectively process large plasmid sequences and generate novel, biologically plausible plasmids.
+    </p>
+</div>
+
+{{ subsubsubheading("Sequence Representation and Tokenization") }}
+<div>
+    <p>
+        Most recent genomics modelling approaches adopt deep sequence models, which have seen success in Natural
+        Language Process (NLP). Each nucleotide in a nucleotide sequence is considered as a token, analogous to a word
+        in a sentence in the NLP context. This means that sequences can be extremely long. In our context, plasmids are
+        generally 2K-10K base pairs long. This presents a computational challenge for modern deep learning models, and
+        some ingenuity is required to overcome this obstacle.
+    </p>
+    <p>
+        We use a sophisticated tokenization strategy called Byte Pair Encoding (BPE) trained on our dataset of plasmid
+        sequences, inspired by the success of DNABERT-2 {{ cite('zhou2024dnabert')}}. This tokenizer identifies and
+        encodes frequently occurring
+        subsequences, effectively compressing repetitive DNA patterns common in plasmids. After tokenizing a raw
+        nucleotide sequence, each token represents a short nucleotide sequence (e.g. AAT) in the tokenizer’s dictionary.
+        The use of BPE is crucial for managing long plasmids within computational constraints, allowing us to fit
+        plasmid sequences up to 4x longer in the same context length.
+    </p>
+</div>
+
+{{ subsubsubheading("Model Architecture and Training") }}
+<div>
+    <p>
+        For our model architecture, we use the Mamba2 model, a recent state-space model (SSM) architecture which has
+        demonstrated success in long-sequence modelling tasks {{ cite('dao2024transformers,gu2024mamba') }}. This choice was driven by Mamba's ability to handle
+        long plasmid sequences efficiently, making it well-suited for plasmid data. The Mamba architecture employs a
+        state space model with a selection mechanism, allowing more controlled propagation of information between
+        layers. The computational complexity of the forward pass is linear in the sequence length, which is superior to
+        the transformer’s quadratic complexity. These features allow it to overcome the limitations of traditional
+        attention-based transformers in handling extended sequences.
+    </p>
+    <p>
+        Our training objective follows the next-token prediction paradigm, similar to language model training. In this
+        approach, the model learns to predict the next token in the sequence given the preceding tokens. This
+        method enables the model to learn the underlying patterns and structures of plasmid sequences, capturing both
+        local and global features of plasmid organization.
+    </p>
+    <p>
+        We implemented a two-phase training process to optimize the model's performance. The first phase, pretraining,
+        utilized our entire dataset of plasmid sequences. This broad exposure allows the model to learn general plasmid
+        characteristics and patterns, establishing a strong foundation for sequence generation. The second phase,
+        fine-tuning, focused on a subset of data specific to our target organism and plasmid class. This specialized
+        training enhances the model's ability to generate plasmids relevant to our specific research focus, improving
+        the quality and relevance of the generated sequences.
+    </p>
+    <p>
+        We also use genomics-specific data augmentation to improve training and enhance generation quality. We perform
+        reverse-complement (RC) augmentation, wherein we randomly change the input plasmid sequence to its
+        reverse-complement with a chosen probability. Also, as plasmids are circular, choosing a particular starting
+        point is somewhat arbitrary. To this end, we propose random circular crop augmentation, in which we randomly
+        shift the chosen “starting point” by some number of nucleotides. The RC augmentation allows the model to capture
+        the relationship between a nucleotide sequence and its reverse complement, and the circular crop augmentation
+        provides the model with the ability to handle input plasmid sequences regardless of the chosen “starting point.”
+        Both of these augmentation strategies result in improved generation, and support targeted generation of plasmid
+        sequences with particular properties.
+    </p>
+    <p>
+        This training approach enables our model to first capture general plasmid structures and then specialize in
+        generating plasmids relevant to our specific research focus, striking a balance between generalizability and
+        specificity. This is the paradigm in many cutting-edge machine learning models such as AlphaFold
+        {{ cite('AlphaFold_and_beyond_2023') }}. The fine-tuning process allows for targeted generation of plasmids with
+        desired characteristics,
+        which demonstrates our model’s potential for genomics applications.
+    </p>
+    <br>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/model.png" />
+    </div>
+    <br><br>
+</div>
+
+{{ subsubsubheading("Model Inference") }}
+<div>
+    <p>
+        During inference, we generate novel plasmid sequences through a carefully designed process. We initiate sequence
+        generation with the CLS token, signaling the start of a new sequence. We then utilize nucleus sampling to
+        predict the next tokens within the sequence, ultimately generating many plasmid sequences in parallel
+        {{ cite('Holtzman2020The') }}. This
+        is the sampling method of choice for many large language models which can also control the diversity of
+        generated samples, allowing us to trade off sample quality with diversity.
+    </p>
+    <p>
+        The generation process then proceeds iteratively. The model progressively generates each subsequent token, with
+        decisions based on the preceding sequence and learned patterns. This process continues until a complete plasmid
+        sequence is produced or a predefined length is reached, allowing for the creation of plasmids of varying sizes.
+    </p>
+    <br>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/inference.png" />
+    </div>
+    <br><br><br>
+</div>
+
+{{ subsubheading("Model In Silico Validation Pipeline") }}
+
+{{ subsubsubheading("Overall Strategy") }}
+<div>
+    <p>
+        The validation pipeline assesses the reliability of a generated batch as a whole, identifies plasmid ORIs that
+        appear promising, and selects antimicrobial proteins that could perform well experimentally.
+
+    </p>
+</div>
+
+{{ subsubsubheading("Batch Summary Statistics") }}
+<div>
+    <p>
+        We performed a holistic assessment of the quality of each batch of sequences before starting a sequence by
+        sequence validation pipeline. This was done both at a batch-wide level and individual sequence level. At the
+        batch-wide level, we leveraged existing tools for genetic sequence clustering and annotation, particularly
+        MOBsuite {{ cite('Robertson_Nash_2018') }}., to gain deeper insight into the potential biological significance
+        of the changes between and
+        within batches. We examined whether the sequences in a given batch formed clusters, aligned well against known
+        motifs, and had circular contigs (which are good criteria for predicting putative novel plasmids).
+
+    </p>
+    <p>
+        Firstly, single-linkage clustering by MASH distance {{ cite('Ondov') }} was performed on all the generated
+        sequences. This
+        revealed relations that exist within a batch of sequences. Next, to shed light on the relation between a batch
+        and known plasmid sequences, we used BLAST to calculate the alignment score between sequences in our batch and
+        known sequences of replicons, relaxase proteins and repetitive elements. We also filter by coverage and identity
+        to ensure only the sequences with the highest alignment score get cataloged as putative plasmids. Finally,
+        sequence size and GC content distribution were examined across our generated sequences. We would expect
+        something close to a Gaussian distribution of GC content in a “good” batch.
+
+    </p>
+</div>
+
+{{ subsubsubheading("Key Ori Features and Classes") }}
+<div>
+    <p>
+        <strong>Ori features and motifs </strong><br>
+        Oris require a complex and interdependent set of machinery to be present to replicate. Some of the most
+        important regions or motifs are: Rep protein sites (Class A), AT-rich regions, DnaA boxes, and dam methylation
+        sequence iteron (directly repeated sequences) containing regions {{ cite('Rajewska_Wegrzyn_Konieczny_2012,Rajewska_Wegrzyn_Konieczny_2012') }}. The AT-rich region particularly is the
+        most universally conserved structural element in both prokaryotic and eukaryotic replicons {{
+        cite('Rajewska_Wegrzyn_Konieczny_2012') }}. We compiled a
+        database of major motifs found across the literature for these ori features.
+
+    </p>
+    <p>
+        <strong>Class A vs Class B plasmids – Classification Pipeline Overview and Results </strong><br>
+        Theta-replicating plasmids can be classified based on their replication initiation mechanisms. Of the many
+        existing classes, this project mostly concerns Class A and Class B plasmids {{ cite('Lilly_Camps_2015')}}.
+        <br>
+        Class A theta plasmids rely on plasmid-encoded Replication proteins (Rep proteins) to initiate replication
+        {{ cite('Lilly_Camps_2015') }}.
+        The replication of Class A plasmids is complex and rep proteins are not well documented. In contrast, Class B
+        theta plasmids undergo a simpler replication mechanism. They do not require any Rep proteins and instead rely on
+        host machinery for their replication initiation. Since only RNA II and a P2 promoter are required, Class B
+        replication is easier to validate computationally as fewer sequence alignments can be used for identification.
+        <br>
+        Despite these known differences between Class A and Class B plasmids, there is no existing method in the
+        literature that can classify an unknown plasmid’s sequence as Class A or Class B. As a result, despite the
+        simplicity of Class B plasmid replication, it is still difficult to accurately classify unknown plasmids through
+        only in-silico methods.
+        <br>
+        We developed a preliminary script that aligns each generated plasmid sequence to a set of known class B
+        elements. The script sequentially aligned each generated plasmid sequence to the four following elements: P2
+        Promoter, RNA II Coding Region, R-loop Formation Site (substituted by GC content analysis due to R-loops having
+        G/C rich nature), and the terH consensus sequence. The alignment scores for all four components were mostly
+        negative across the majority of the plasmids. Only a very small subset of sequences showed positive scores for
+        P2 promoter alignment, which corresponded to the shortened sequences in the datasets. These negative scores
+        suggest poor alignment between the generated sequences and the class B elements.
+        <br>
+        These negative scores are likely due to a lack of sequence variability in the class B elements that were used.
+        For example, only one version of the P2 promoter and RNA II region (From E. coli ColE1 plasmid) were used,
+        limiting the accuracy of the alignments. Using a set of variants for each sequence could improve alignment
+        scores. However, the lack of established consequence sequences for a P2 promoter and RNA II coding region make
+        this a difficult next step to pursue.
+        <br>
+    </p>
+</div>
+
+{{ subsubsubheading("Ori Alignment Pipeline") }}
+<div>
+    <p>
+        The first step in our generated sequence alignment pipeline was to align our generated sequences to an ori
+        database and select those generated sequences with a high but less than 100% alignment to a wildtype ori from
+        the doriC {{ cite('Dong_Luo_Gao_2022') }} database. MMseqs2 {{ cite('Steinegger_Söding_2017') }} and BLAST+
+        {{ cite('Camacho_Coulouris_Avagyan_Ma_Papadopoulos_Bealer_Madden_2009') }} were used to align the sequences. These
+        generated sequences were then passed into the annotation phase of our pipeline.
+    </p>
+</div>
+
+{{ subsubsubheading("Ori Annotation") }}
+<div>
+    <p>
+        We compiled a database of major motifs found across literature for important ori features.
+        To identify replication proteins corresponding to each ori, we first found motifs within the generated plasmid
+        ori sequences and then determined if any replication proteins bind to these motifs. For motif discovery, we
+        used MEME Suite 5.5.5's MEME tool {{ cite('Bailey_Johnson_Grant_Noble_2015') }}. To identify class B plasmids,
+        sequences were both put through our class B
+        alignment pipeline (discussed in “Key Ori Features and Classes”) and manually examined. Sequences that aligned
+        to known class B plasmids were prioritized.
+    </p>
+    <br>
+</div>
+
+{{ subsubheading("Protein Validation - Antimicrobial Resistance") }}
+<div>
+    <p>
+        Since our generative model was trained on whole-plasmid sequences containing a large collection of wild type
+        protein sequences, the underlying assumption was that proteins generated from the learned distribution of
+        functional proteins should also be functional. One significant challenge is the unannotated whole plasmid
+        sequence on which the model was trained, meaning the model must be able to learn from a sample space not
+        constrained to near known functional wildtype proteins, as well as not being provided with protein structural
+        priors {{ cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et_al._2023') }}. Below are
+        some of the common concerns associated with generated protein sequences and the associated
+        computational evaluation metrics we used to address these issues.
+
+    </p>
+    <p>
+        Typically, protein sequences are detected and validated in silico by comparing the distribution of generated
+        sequences to natural controls using alignment-derived scores. We experimented with commonly used homology search
+        techniques such as BLAST and MmSeq2 against the 2023 Comprehensive Antibiotic Resistance Database (CARD)
+        {{cite('Alcock2022') }} to search for antimicrobial resistance proteins (AMR). However, there were two problems with this approach. First,
+        the homology alignment did not take into account the issue of overfitting commonly seen in generative models, in
+        which the model produces sequences that mimic too closely those seen in the training set. Second, the relatively
+        high threshold of 75% similarity matches would leave out potentially viable proteins that can attest to the
+        model’s ability to produce novel sequences not previously seen in existing databases. Thus, it was clear that
+        the traditional protein validation approach was not suitable for evaluating performance of generative models.
+
+    </p>
+    <p>
+        To address this issue, we used alignment-based techniques with significantly more relaxed thresholds and on a
+        more diverse family of proteins to identify potential sequences as testing samples. First, in terms of
+        threshold, a lower percentage of coverage to a reference length of 20% is applied, and the selected ORFs are
+        extended by a flanking sequence of 100 bp length along the 5’ direction of the coding sequence. The cutoff of
+        20% was chosen to benchmark our model against a current state-of-the-art large language protein generation
+        model, ProGen, as it is the lowest percentage sequence identity of ProGen’s generated proteins
+        {{cite('Madani_Krause_Greene_Subramanian_Mohr_Holton_Olmos_Xiong_Sun_Socher_et_al._2023') }}. This lower
+        score also allows for the inclusion of artificial sequences that diverge from natural sequences. Second, using
+        NCBI’s AMRFinderPlus database
+        {{ cite('Feldgarden_Brover_Gonzalez-Escalona_Frye_Haendiges_Haft_Hoffmann_Pettengill_Prasad_Tillman_et_al._2021') }}, we used BLAST against both the “core” and “plus” proteins collection, as well
+        as filtered for genes specific to E. coli to ensure consistency with plasmid design. The “core” and “plus”
+        protein collection includes not only AMR, but also stress response factors (biocide, metal, heat resistance),
+        virulence factors, antigens and porins. Overall, these design choices contribute to a protein validation
+        pipeline with significantly higher granularity.
+
+    </p>
+    <p>
+        Due to the text-generation mechanism of language modeling that our model is based on, the generated proteins are
+        sensitive to pathogenic single-nucleotide variations, leading to many potential factors that can lead to poor
+        protein expression and activity in in vitro experimentation. This may include missense mutations that disrupt
+        protein folding and stability, or nonsense mutations causing stop codon formation and hinder expression. Thus,
+        it is important to use structure-based tools for early detection of these issues and to avoid passing any unfit
+        candidates to wet-lab validation as possible. In particular, we use the Transformer-based protein-folding
+        predictive model ESMFold {{ cite('Lin_Akin_Rao_Hie_Zhu_Lu_Smetanin_Verkuil_Kabeli_Shmueli_et_al._2022' )}}, most
+        importantly for its ability to accurately predict structures for orphan
+        proteins with limited sequence homologs. We used four metrics for assessing accuracy and reliability of
+        predicted protein models: Predicted Local Distance Difference Test (plDDT), Predicted Aligned Error (PAE), Plot
+        of Contacts from Structure Module, and the predicted template modeling score (pTM-score). Overall, regions with
+        high pLDDT/pTM scores and low PAE values can be considered potentially viable for downstream applications.
+        Additional information about these protein metrics is provided in the appendix.
+    </p>
+    <p>
+        An end-to-end preliminary implementation of the protein validation pipeline with the outlined metrics is
+        included in our released software package. Given a collection of generated DNA sequences, the pipeline performs
+        high-throughput sequencing, protein annotation and 3-D structure prediction. Upon completion, the program
+        returns the predicted protein’s DNA and amino acid sequences, associated scores and visualization for evaluation
+        purposes.
+
+    </p>
+    <br>
+</div>
+
+{{ subsubheading("Ori Batch Results") }}
+<div>
+    <p>
+        Three major batches of sequences were generated and validated. Other batches (such as attempts with diffusion
+        models) were produced but did not show sufficient promise to make it to the validation pipeline.
+    </p>
+    <br>
+</div>
+
+{{ subsubsubheading("Batch 1") }}
+<div>
+    <p>
+        The first batch of plasmids was generated using a Mamba model trained on a smaller dataset of less than 50,000
+        plasmids. This initial model used nucleotide-level tokenization, which limited its ability to capture
+        longer-range dependencies in the plasmid sequences. While this approach provided a baseline, it had limitations
+        in generating biologically plausible plasmids. The batch-wide analysis pipeline produced the following results:
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/batch1batch1.png" />
+    </div>
+    <p>
+        The sequence size of this batch showed wide variation. Its GC content distribution is slightly skewed towards
+        the lower end, and it has a relatively small standard deviation - indeed, the smallest one from all the batches.
+        Furthermore, no putative plasmids were identified; hence, no clusters were produced. No closed local alignment
+        results were produced for relaxase proteins either. Luckily, there were some promising results: MOBsuite found
+        sequences that closely aligned to specific clusters of Rep proteins:
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/reprep.png" />
+    </div>
+    <p>
+        This encouraged us to dive deeper into the batch and select top sequences for in-vitro validation.
+        An initial set of 6 oris, a mix of Class A and Class B was selected. However, after attempting to design these
+        plasmids in Wet Lab, Class A plasmids were deemed to be too difficult to test at this stage, as their machinery
+        is more complex and difficult to detect. This Wet Lab - Dry Lab iteration meant that instead 5 promising Class B
+        oris were delivered to Wet Lab. Finally, one promising protein was also selected. None of the oris in this batch
+        worked.
+    </p>
+    <div id="dna-gallery-1" class="dna-gallery">
+        <div class="dna-sequence">
+            <div class="sequence-id">Sequence ID: <span id="sequence-id-1"></span></div>
+            <div class="sequence-content" id="sequence-content-1"></div>
+        </div>
+        <div class="gallery-controls">
+            <button class="gallery-button" id="prev-button-1" onclick="changeSequence1(-1)">Previous</button>
+            <button class="gallery-button" id="next-button-1" onclick="changeSequence1(1)">Next</button>
+        </div>
+    </div>
+    <br>
+</div>
+
+{{ subsubsubheading("Batch 2") }}
+<div>
+    <p>
+        For the second batch, we transitioned to the Mamba2 architecture and implemented a Byte Pair Encoding (BPE)
+        tokenizer. This allowed us to scale the context length to encompass more nucleotides effectively. We also
+        significantly expanded our training dataset. Additionally, we introduced data augmentation techniques, including
+        random circular permutations and the inclusion of sub-plasmid sequences of varying lengths. These augmentations
+        helped the model better capture the circular nature of plasmids and their modular structure.
+        <br>
+        The batch-wide analysis and statistics showed more promising results:
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/batch2batch2.png" />
+    </div>
+    <p>
+        There was a very significant change in the distribution of size and GC content with respect to the previous
+        batch. We observed simultaneously much smaller variance in the length of the generated sequences and a much
+        higher variance in their GC content. Furthermore, this time MOBsuite did identify clusters of putative plasmids
+        within the produced contigs. It also found close alignments to known clusters of rep and relaxase proteins
+        (notably, most of the alignments came from the putative plasmid clusters):
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/reprep2.png" />
+    </div>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/reprep22.png" />
+    </div>
+    <p>
+        These encouraging in-silico results were matched by an equally encouraging in-vitro validation:
+        8 Class B oris and 5 proteins were selected from the validation pipeline. At least 6 oris from this batch have
+        shown promising results as of the time of writing.
+    </p>
+    <div id="dna-gallery-2" class="dna-gallery">
+        <div class="dna-sequence">
+            <div class="sequence-id">Sequence ID: <span id="sequence-id-2"></span></div>
+            <div class="sequence-content" id="sequence-content-2"></div>
+        </div>
+        <div class="gallery-controls">
+            <button class="gallery-button" id="prev-button-2" onclick="changeSequence2(-1)">Previous</button>
+            <button class="gallery-button" id="next-button-2" onclick="changeSequence2(1)">Next</button>
+        </div>
+    </div>
+    <br>
+</div>
+
+{{ subsubsubheading("Batch 3") }}
+<div>
+    <p>
+        For the third batch, we focused on exploring the model's capability to generate plasmids with specific,
+        user-defined characteristics. As an initial experiment in this direction, we attempted to condition the model to
+        produce plasmids with a target length of approximately 2048 base pairs. We also further refined our training
+        dataset and fine-tuning stage using results of the wet lab experiments.
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/batch3batch3.png" />
+    </div>
+    <p>
+        The initial statistical analysis of this batch strongly suggests that our conclusions about the (at least
+        locally) optimal distribution of the physical properties among the generated sequences: The variance in sequence
+        size was even smaller, with practically all sequences being around 2000 bp long. The GC distribution also showed
+        a smaller variance, and the slight tri-modal pattern in Batch 2 disappeared almost completely.
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/reprep3.png" />
+    </div>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/reprep33.png" />
+    </div>
+    <p>
+        We identified even more putative plasmid clusters than for Batch 2. Furthermore, the local alignment analysis
+        showed identified many more matches with known relaxase and rep proteins:
+    </p>
+    <p>
+        9 oris were selected for experimental validation. These oris have not been fully tested in vitro yet.
+    </p>
+    <br>
+</div>
+
+{{ subsubheading("Protein Selection") }}
+<div>
+    <p>
+        Most of the DNA sequences from batch 3 that align with the AMR database have lengths too short to form a viable
+        protein (less than 300mAA) when blasted for ORFs for amino acid sequence translation. Out of a batch of 10000
+        sequences, 140 DNA sequences were found to have aligned with the AMRFinderPlus database above the minimum 20%
+        coverage to reference sequences, and only 6 translated amino acid sequences were predicted to form viable 3D
+        protein structures.
+    </p>
+    <p>
+        One good indicator of the model performance is the lack of overfitting. As seen in the percentage coverage of
+        reference length, half of the selected predicted proteins are only ~50% in comparison to wild type. If these
+        proteins perform as well in wet lab experimentation as ESMFold predicts, then we can infer that the model is
+        capable of producing viable proteins. Overall, 6 proteins were selected for testing.
+    </p>
+    <p>
+        The selected generated proteins below are listed in descending order of (1) predicted template modeling score
+        (pTM) and Predicted Local Distance Difference Test (plDDT) score.
+
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/table1.png" style="max-width: 100%; height: auto;" />
+    </div>
+    <br>
+    <p>
+        <strong>Seq5905_860-2045: tet(A) tetracycline efflux MFS transporter</strong>
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/esmfold-sp5905.png"
+            style="max-width: 90%; height: auto;" />
+    </div>
+    <div style="width: 72%; margin: 0 auto; overflow: hidden; border-radius: 1px;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/seq5905.gif"
+            style="width: 120%; height: 120%; margin: -2% 0 0 -10%; object-fit: cover;" />
+    </div>
+    <br>
+    <p>
+        <strong>Seq7980_197-1130: aph(6)-Id aminoglycoside O-phosphotransferase</strong>
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/esmfold-sp7980.png"
+            style="max-width: 90%; height: auto;" />
+    </div>
+    <div style="width: 72%; margin: 0 auto; overflow: hidden; border-radius: 1px;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/seq7980.gif"
+            style="width: 120%; height: 120%; margin: 0% 0 -3% -10%; object-fit: cover;" />
+    </div>
+    <br><br>
+    <p>
+        <strong>Seq7293_1119-2046: aph(6)-Id aminoglycoside O-phosphotransferase</strong>
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/esmfold-sp7293.png"
+            style="max-width: 90%; height: auto;" />
+    </div>
+    <div style="width: 72%; margin: 0 auto; overflow: hidden; border-radius: 1px; position: relative;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/seq7293.gif"
+            style="width: 133.33%; height: 133.33%; margin: -5% 0 0 -10%; object-fit: cover;" />
+        <div style="position: absolute; top: 0; right: 0; bottom: 0; width: 15%; background-color: white;"></div>
+    </div>
+    <br><br>
+    <p>
+        <strong>Seq5572_1-2046: sigA serine protease autotransporter toxin</strong>
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/esmfold-sp5572.png"
+            style="max-width: 90%; height: auto;" />
+    </div>
+    <div style="width: 72%; margin: 0 auto; overflow: hidden; border-radius: 1px; position: relative;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/seq5572.gif"
+            style="width: 133.33%; height: 133.33%; margin: -5% 0 -10% -10%; object-fit: cover;" />
+        <div style="position: absolute; top: 0; right: 0; bottom: 0; width: 18%; background-color: white;"></div>
+    </div>
+    <br><br>
+    <p>
+        <strong>Seq3558_1-2007: sigA serine protease autotransporter toxin</strong>
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/esmfold-sp3558.png"
+            style="max-width: 90%; height: auto;" />
+    </div>
+    <div style="width: 72%; margin: 0 auto; overflow: hidden; border-radius: 1px; position: relative;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/seq3558.gif"
+            style="width: 133.33%; height: 133.33%; margin: -5% 0 0 -10%; object-fit: cover;" />
+        <div style="position: absolute; top: 0; right: 0; bottom: 0; width: 18%; background-color: white;"></div>
+    </div>
+    <br><br>
+    <p>
+        <strong>Seq1712: P25733, CfaC, CFA/I fimbrial subunit C</strong>
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/esmfold-sp1712.png"
+            style="max-width: 90%; height: auto;" />
+    </div>
+    <div style="width: 72%; margin: 0 auto; overflow: hidden; border-radius: 1px;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/seq1712.gif"
+            style="width: 120%; height: 120%; margin: -10% 0 -10% -10%; object-fit: cover;" />
+    </div>
+    <br><br>
+</div>
+
+{{ subsubheading("Most Valuable Plasmid") }}
+<div>
+    <p>
+        The most promising plasmid generated was Seq741, a 2026 bp plasmid with a 779 bp long ori sequence of Class B
+        origin containing RNAI and RNAII molecules. The plasmid also contained a highly promising generated protein. The
+        plasmid showed promising results when tested in vitro and the ori was functional (further discussed in Wet Lab
+        results).
+    </p>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="https://static.igem.wiki/teams/5230/drylab/mvp.png" />
+    </div>
+</div>
+{% endblock %}

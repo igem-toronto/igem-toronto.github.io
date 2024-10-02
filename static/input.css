@@ -116,7 +116,7 @@ ol:not(.custom) {
 }
 
 table.entrepreneurship {
-    @apply w-full lg:block hidden;
+    @apply w-full;
 }
 
 table.entrepreneurship th {

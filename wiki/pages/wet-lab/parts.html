@@ -1,0 +1,177 @@
+{% extends "layout/subpage.html" %}
+
+{% block article_content %}
+{{ heading("Wet Lab") }}
+{{ subheading('Parts') }}
+<div>
+  <p>All experiments were carried out using the Invitrogen One Shot™ MAX Efficiency™ DH5α-T1R Competent Cells.</p>
+  {{ subsubheading('Table 1. Vectors and synthesized DNA used for the cloning process') }}
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
+      <tr>
+        <th>Part Name</th>
+        <th>Part Number</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>eforRed/eforCP Biobrick K592012</td>
+        <td>BBa_J435099</td>
+        <td>PCR Product</td>
+        <td>
+          eforRed/eforCP Biobrick K592012 underwent PCR with the bla_part_B_F and bla_part_A_R primers to create a
+          testing vector consisting of the Ampicillin resistance gene (bla) and its promoter, RBS, and terminator. BsaI
+          cut sites and GAGT/CCTT overhangs were added in via PCR.
+        </td>
+      </tr>
+      <tr>
+        <td>pJUMP27-1A</td>
+        <td>BBa_J428326</td>
+        <td>PCR Product</td>
+        <td>
+          This consists of the pJUMP27-1A (sfGFP) <i>oriV</i>, and it is a E. <i>coli</i> plasmid origin of replication.<br>
+          pJUMP27-1A (sfGFP) underwent PCR with the pJUMP27-1A(sfGFP) 2054-2075 F1 and pJUMP27-1A(sfGFP) 2633-2654 R2
+          primers. BsaI cut sites and AAGG/ACTC overhangs were added in via PCR.
+        </td>
+      </tr>
+      <tr>
+        <td>pColE1_Ori</td>
+        <td>BBa_K5230001</td>
+        <td>WT <i>oriV</i></td>
+        <td>
+          Wild-type origin of replication from the plasmid pColE1. Batch 1 sequences aligned with this <i>oriV</i> and it
+          functioned as a control to confirm the modularity of <i>oriV</i>s.
+        </td>
+      </tr>
+      <tr>
+        <td>4089</td>
+        <td>BBa_K5230005</td>
+        <td>AI <i>oriV</i></td>
+        <td>
+          AI-generated origin of replication by a tokenizer, named sample 4089. Has a length of 975 bp. It was aligned
+          with the Type B wild-type plasmid ori from E. <i>coli</i> plasmid pT108.
+        </td>
+      </tr>
+      <tr>
+        <td>5276</td>
+        <td>BBa_K5230006</td>
+        <td>AI <i>oriV</i></td>
+        <td>
+          AI-generated origin of replication by a tokenizer, named sample 5276. Has a length of 963 bp. BBa_K5230006 was
+          matched with the Type B wild-type plasmid ori from E. <i>coli</i> plasmid pT108.
+        </td>
+      </tr>
+      <tr>
+        <td>5727</td>
+        <td>BBa_K5230007</td>
+        <td>AI <i>oriV</i></td>
+        <td>
+          AI-generated origin of replication by a tokenizer, named sample 5727. Has a length of 965 bp. BBa_K5230007 was
+          matched with the Type B wild-type plasmid ori from E. <i>coli</i> plasmid pT108.
+        </td>
+      </tr>
+      <tr>
+        <td>9371</td>
+        <td>BBa_K5230008</td>
+        <td>AI <i>oriV</i></td>
+        <td>
+          AI-generated origin of replication by a tokenizer, named sample 9371. Has a length of 688 bp. BBa_K5230008 was
+          matched with the Type B wild-type plasmid ori from E. <i>coli</i> plasmid pT108.
+        </td>
+      </tr>
+      <tr>
+        <td>741</td>
+        <td>BBa_K5230022</td>
+        <td>AI <i>oriV</i></td>
+        <td>
+          AI-generated origin of replication by a tokenizer, named sample 741. Has a length of 827 bp. BBa_K5230022 was
+          matched with the Type B wild-type plasmid ori from E. <i>coli</i> plasmid pT108.
+        </td>
+      </tr>
+    </table>
+  </div>
+  {{ subsubheading('Table 2. Primers used for cloning process') }}
+  <div class="w-full overflow-auto">
+    <table class="entrepreneurship">
+      <tr>
+        <th>Part Name</th>
+        <th>Part Number</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>bla_part_B_F</td>
+        <td>BBa_K5230013</td>
+        <td>Primer</td>
+        <td>
+          Forward primer for amplicilin resistance backbone eforRed/eforCP K592012. Primer has a length of 36, 52.78% GC
+          content, and annealing temperature of 66.2°C. Contains a BsaI cut site and overhang sequence GAGT.
+        </td>
+      </tr>
+      <tr>
+        <td>bla_part_A_R</td>
+        <td>BBa_K5230015</td>
+        <td>Primer</td>
+        <td>
+          Reverse primer for the ampicillin resistance backbone eforRed_eforCP K592012. Primer has a length of 36 bp,
+          50% GC content, and annealing temperature of 66.2°C. Contains a BsaI cut site and overhang sequence CCTT.
+        </td>
+      </tr>
+      <tr>
+        <td>pJUMP27-1A(sfGFP) 2054-2075 F1</td>
+        <td>BBa_K5230016</td>
+        <td>Primer</td>
+        <td>
+          Forward primer for positive control OriV pJUMP27-1A(sfGFP). Primer has a length of 36, 55.56% GC content, and
+          annealing temperature of 66.4°C.
+        </td>
+      </tr>
+      <tr>
+        <td>pJUMP27-1A(sfGFP) 2054-2075 R2</td>
+        <td>BBa_K5230017</td>
+        <td>Primer</td>
+        <td>
+          Reverse primer for positive control OriV pJUMP27-1A(sfGFP). Primer has a length of 36, 61.11% GC content, and
+          annealing temperature of 66.4°C.
+        </td>
+      </tr>
+      <tr>
+        <td>ori_sample_A_F</td>
+        <td>BBa_K5230018</td>
+        <td>Primer</td>
+        <td>
+          Forward primer for the batch one AI-generated OriVs. Primer has a length of 22, 59.09% GC content, and
+          annealing temperature of 67.3°C.
+        </td>
+      </tr>
+      <tr>
+        <td>ori_sample_B_R</td>
+        <td>BBa_K5230019</td>
+        <td>Primer</td>
+        <td>
+          Reverse primer for the batch one AI-generated OriVs. Primer has a length of 22, 50% GC content, and annealing
+          temperature of 65.8°C.
+        </td>
+      </tr>
+      <tr>
+        <td>pColE1_RNAII_A_F</td>
+        <td>BBa_K5230020</td>
+        <td>Primer</td>
+        <td>
+          Forward primer with a length of 36 base pairs, used during PCR amplification of the wild-type pColE1 ori. GC
+          content is 54.5%, and annealing temperature is 66.2C.
+        </td>
+      </tr>
+      <tr>
+        <td>pColE1_RR_C_R</td>
+        <td>BBa_K5230021</td>
+        <td>Primer</td>
+        <td>
+          Reverse primer with a length of 36 base pairs, used during PCR amplification of the wild-type pColE1 ori. GC
+          content is 50%, and an annealing temperature of 66.2C.
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+{% endblock %}

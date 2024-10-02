@@ -1,0 +1,218 @@
+{% extends "layout/subpage.html" %}
+
+{% block article_content %}
+{{ heading("Wet Lab") }}
+{{ subheading('Design') }} 
+{{ subsubheading('1. Backbone and Controls') }}
+<div>
+  <p>
+    The main AI-plasmid part the wet lab team tested was the <i>oriV</i>. In general, the AI-generated <i>oriV</i>s consisted of
+    various control elements (such as RNAI-, RNAII-, rep- and rop-coding regions) and non-coding regions. As such, to
+    test this part, the wet lab team cloned the dry lab <i>oriV</i>s into suitable backbones of which have similar control
+    elements for their <i>oriV</i>s. This ensured compatibility between the dry lab <i>oriV</i> and backbone.
+  </p>
+  <p>
+    A backbone conferring resistance to a specific antibiotic serves as an effective positive and negative control for
+    growth assays that are essential for ascertaining dry lab <i>oriV</i> functionality. Such a backbone eliminates confounding
+    variables that may skew the interpretation of experimental results by observing E. <i>coli</i> growth as well as number of
+    colonies to determine if the backbone was successfully annealed to the ori, and successfully uptaken into the E.
+    coli.
+  </p>
+  <p>
+    Initially, the plasmid pSB1C3 was used as a backbone. pSB1C3 is a common plasmid backbone from E. <i>coli</i> which confers
+    chloramphenicol resistance. Thus, pSB1C3 was to be used as a positive control for the experiments, since it was
+    predicted that it would successfully grow on the plates. pSB1C3 was miniprepped and underwent PCR to increase the
+    amount of this plasmid, transformed into E. <i>coli</i>, which was then plated. However, no growth was observed from the
+    transformed E. <i>coli</i> on the chloramphenicol plates.
+  </p>
+  <p>
+    After we repeated this experiment a number of times, the team decided to have the plasmid sequenced to check if the
+    structure was correct. Sequencing results revealed that the backbone contained additional BsaI sites than initially
+    described, meaning that it was being cut in additional locations, meaning the ori and the backbone would fail to be
+    annealed together.
+  </p>
+  <p>
+    This meant that afterward, a different positive control had to be used for the experiments. Interlab_NegC was used,
+    however, there it exhibited a similar problem as pSB1C3. After no growth was observed again, Interlab_NegC was taken
+    for sequencing and found to have an extra BsaI site, which caused the backbone to be cleaved during GGA as our GGA
+    workflow utilized the exact same restriction sites.
+  </p>
+  <p>
+    Finally, we found that eforRed/eforCP Biobrick K592012, an ampicillin (Amp) backbone was successful as a positive
+    control backbone, indicated by numerous colonies on Amp agar plates. This led us to use this backbone for future
+    experiments. eforRed/eforCP Biobrick K592012 had a length of 2807 bp, and contained a 861 bp long bla gene, coding
+    for beta-lactamase and thus conferring Amp antibiotic resistance.
+  </p>
+  <p>
+    <b><u>Positive Control</u></b><br>
+    The positive control served to validate the wet lab team’s experimental approach of cloning dry lab <i>oriV</i>s into
+    functional backbones to test their functionality. Here, this control is carried out by cloning a known working <i>oriV</i>
+    (pJump27) into eforRed/eforCP Biobrick K592012 using GGA. This would theoretically create a construct that confers
+    Amp resistance provided that the cloned <i>oriV</i> is functional.
+  </p>
+  <p>
+    As such, this construct is then transformed into competent E. <i>coli</i> K12 thawed on ice. The culture was then plated on
+    Amp plates, incubated at 37°C overnight, and then observed for growth of colonies the following morning (which would
+    indicate successful <i>oriV</i> functionality).
+  </p>
+  <p>
+    Once we verified that this assembled plasmid was functional by plating transformed bacteria, we began our assemblies
+    using the Dry Lab-generated sequences.
+  </p>
+  <p>
+    <b><u>Negative Control</u></b><br>
+    The negative controls are made by transforming competent E. <i>coli</i> cells with a functional plasmid lacking an <i>oriV</i>
+    sequence. The negative control contains only a linear plasmid backbone without an ori, since it has not been cloned
+    and annealed to anything. When assembled and plated onto Amp plates, these cells will theoretically die as they have
+    no <i>oriV</i> to propagate any Amp-resistance cassettes.
+  </p>
+  <p>
+    The negative control is used to ensure the assembly’s procedure was correct, as E. <i>coli</i> without the ori to replicate
+    the plasmid would not survive on the antibiotic-plated media. For our GGA using the Interlab plasmid, eforRed/eforCP Biobrick K592012
+    with water was used as a negative control.
+  </p>
+</div>
+{{ subsubheading('2. Cell Preparation') }}
+<div>
+  <p>
+    <b><u>LB Amp agar plates</u></b><br>
+    Before beginning transformations, it is important to prepare nutrient rich plates with the correct antibiotic
+    conditions to ensure only E. <i>coli</i> DH5ɑ that have successfully taken up the designed plasmid with antibiotic
+    resistance (i.e. successfully transformed) can grow. DH5ɑ competent E. <i>coli</i> cells were used for the transformation.
+    LB agar miller was dissolved in milliQ water, then autoclaved using the wet cycle. Once cooled, Amp was added to the
+    agar at a concentration of 100 µg/mL. The agar was then poured into sterile petri dishes and allowed to solidify at
+    room temperature, with aseptic technique applied throughout. The plates were then stored at 4°C and warmed up to
+    37°C before the transformed E. <i>coli</i> cells were plated. Prior to plating of transformed E. <i>coli</i>coli, the plates were warmed
+    up to room temperature to facilitate their growth.
+  </p>
+  <p>
+    <b><u>Competent Cells</u></b><br>
+    In our experiment, we used E <i>coli</i> DH5α cells due to their high efficiency in transformation and stable amplification
+    {{ cite('Kostylev2015') }}. These cells were stored at -80°C and subsequently thawed on ice before use. To initiate
+    the transformation, we added the assembled plasmid, containing the <i>oriV</i> drylab generated sequence with the eforCP
+    backbone, to the thawed cells and incubated the mixture. We then performed a heat shock by incubating the cells at
+    42°C for exactly 30 seconds to facilitate the uptake of the plasmid DNA. Following heat shock, we added SOC medium
+    to the cells and then incubated the mixture at 37°C to ensure sufficient recovery. Finally, we plated the
+    transformed cells on agar plates containing Amp to select for successful transformants.
+  </p>
+</div>
+{{ subsubheading('3. Assembly') }}
+<div>
+  <p>
+    GGA is a one-pot molecular cloning technique that allows for the combination of multiple inserts into a backbone
+    without the need for multiple restriction enzymes {{ cite('Engler2008') }}(Figure 1). We used GGA to assemble all 
+    our plasmids for testing of <i>oriV</i> sequences and ARGs.
+  </p>
+  <div>
+    {{ img(new_cdn("wetlab/gga-figure-1.webp"), alt="") }}
+    <p>
+      <b>Figure 1.</b> Golden Gate Assembly uses type IIS restriction enzymes, which have separate recognition (yellow)
+      and cut sites (green, purple, light pink). This allows for the creation of many possible unique overhangs without
+      the need for multiple restriction enzymes. GGA can then proceed in a one-pot reaction, allowing for a backbone and
+      multiple inserts to be combined simultaneously. Figure created with BioRender.com.
+    </p>
+  </div>
+  <p>
+    We developed a molecular cloning (MoClo) system for our <i>oriV</i> and ARG assemblies (Figure 2). Inserts for both
+    experiments were assembled into backbones with a selection marker, the ARG backbone also containing an <i>oriV</i> sequence
+    (Figures 4-5). Dry lab generated <i>oriV</i> sequences were either well aligned to the <i>oriV</i> control element RNAII or the
+    noncoding and Rop sequence, so 5 different assemblies were used to test their functionality (Figure 3).
+  </p>
+  <div>
+    {{ img(new_cdn("wetlab/moclo-system-figure-2.webp"), alt="") }}
+    <p>
+      <b>Figure 2.</b> OriV and ARG MoClo system overhangs and their assigned letters. Overhang locations in assemblies
+      are indicated in Figures 3 and 4. Figure created with BioRender.com.
+    </p>
+  </div>
+  <div>
+    {{ img(new_cdn("wetlab/type-b-oriv-assembly-figure-3.webp"), alt="") }}
+    <p>
+      <b>Figure 3.</b> Type B <i>oriV</i> and sequences used to test generated <i>oriV</i> alignments. Dry lab has been generating
+      type B <i>oriV</i> sequences, which contain sequences for RNAI, RNAII, Rop, and a noncoding region. Generated <i>oriV</i>
+      sequences have been aligning best to either RNAII or the noncoding region and Rop sequence, so we made assemblies
+      to test these generated sequences by themselves and with the sequence that they are best aligned to from a wild
+      type (WT) <i>oriV</i> sequence. Figure created with BioRender.com.
+    </p>
+  </div>
+  <div>
+    {{ img(new_cdn("wetlab/oriv-assembly-maps-figure-4.webp"), alt="") }}
+    <p>
+      <b>Figure 4.</b> The assemblies used to test generated <i>oriV</i> functionality, letters indicating the locations of
+      specific MoClo overhangs. Each generated <i>oriV</i> sequence was tested by itself and with a portion of a WT <i>oriV</i>
+      containing the region of the <i>oriV</i> sequence that the generated sequence wasn’t best aligned to. The entire WT <i>oriV</i>
+      was also used as a control. Amp was chosen as the selection marker, and bla was used for the backbone’s ARG.
+      Figure created with BioRender.com.
+    </p>
+  </div>
+  <div>
+    <div style="margin: auto; width: 50%; height: auto;">
+    {{ img(new_cdn("wetlab/arg-assembly-map-figure-5.webp"), alt="") }}
+    </div>
+    <p>
+      <b>Figure 5.</b> The assembly used to test generated ARG functionality, letters indicating the locations of
+      specific MoClo overhangs. A selection marker was included to allow for selection if the generated ARG was
+      nonfunctional. Figure created with BioRender.com.
+    </p>
+  </div>
+</div>
+{{ subsubheading('4. Transformation') }}
+<div>
+  <p>
+    After finishing the assemblies, we transformed our backbone eforRed/eforCP Biobrick K592012 with different dry lab
+    generated <i>oriV</i> sequences. We use competent E. <i>coli</i> DH5a cells to transform the plasmids in. We add 2 uL (1 pg – 100
+    ng) of our vectors to thawed competent cells. We then incubate on ice and heat shock the cells, which is followed by
+    cell recovery using SOC media for 1 hour. Afterwards, we plate the liquid cell culture on Agar plates with
+    corresponding antibiotics.
+  </p>
+  <p>
+    To test the function of the ARGs, we will also transform the assembled plasmids into competent E. <i>coli</i> DH5a cells.
+    We will be using double antibiotic plates, which includes CmR, our antibiotic selection marker, and Amp.
+  </p>
+</div>
+
+{{ subheading('Experiments') }} 
+{{ subsubheading('Preliminary experiments (Controls)') }}
+<div>
+  <p>
+    We began with validating our positive control experiment using the pSB1C3 device and the <i>oriV</i> from the pJUMP27-1A
+    plasmid from the 2024 iGEM Distribution Kit Plate. However, this vector was found to have unreported BsaI cut sites.
+    Therefore, we switched to the Interlab_NegC device, but that was also discovered to also have unreported BsaI cut
+    sites. Finally, we used the eforRed_eforCP K592012 device and obtained visible colonies and a valid sequencing
+    result, thus verifying our positive control.
+  </p>
+</div>
+{{ subsubheading('Main experiments (Validation)') }}
+<div>
+  <p>
+    Next, we began assembling the AI-generated sequences generated by our dry lab team into the eforRed/eforCP K592012
+    device (BBa_J435099). The first batch of sequences generated by dry lab were not found to be functional as the
+    transformed bacteria did not grow into visible colonies. 6 generated <i>oriV</i>s from the second batch of sequences
+    generated visible colonies, and 5 of them were confirmed to be functional via whole plasmid sequencing. Testing for
+    the third batch of sequences, which includes sequences encoding for ARGs and <i>oriV</i>s, is currently in progress.
+  </p>
+</div>
+{{ subsubheading('Calendar') }}
+<div x-data="{ galleryIndex: 0 }">
+  <div x-show="galleryIndex === 0" class="w-full p-8">
+    {{ img(new_cdn("wetlab/experiment-calendar-may.webp"), alt="") }}
+  </div>
+  <div x-show="galleryIndex === 1" class="w-full p-8 break-words">
+    {{ img(new_cdn("wetlab/experiment-calendar-june.webp"), alt="") }}
+  </div>
+  <div x-show="galleryIndex === 2" class="w-full p-8 break-words">
+    {{ img(new_cdn("wetlab/experiment-calendar-july.webp"), alt="") }}
+  </div>
+  <div x-show="galleryIndex === 3" class="w-full p-8 break-words">
+    {{ img(new_cdn("wetlab/experiment-calendar-august.webp"), alt="") }}
+  </div>
+  <div x-show="galleryIndex === 4" class="w-full p-8 break-words">
+    {{ img(new_cdn("wetlab/experiment-calendar-september.webp"), alt="") }}
+  </div>
+  {{ carousel_navigation("galleryIndex", 5) }}
+</div>
+{{ subsubheading('Lab Notes') }}
+<div>
+  {{ pdf("https://static.igem.wiki/teams/5230/wetlab/ilovepdf-merged-2.pdf") }}
+</div>
+{% endblock %}

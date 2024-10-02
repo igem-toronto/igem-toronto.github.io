@@ -123,10 +123,11 @@ def people():
     team_members["Wiki"] = []
     team_members["Outreach"] = []
     team_members["Advisor"] = []
-    r = requests.get(
-        "https://docs.google.com/spreadsheets/d/15uTIHgv6K2rDe-HD5g0GGp6LOWPNmeOBPJnN0LYdax8/gviz/tq?tqx=out:csv")
+    
+    with open("static/team.csv") as f:
+        text = f.read()
 
-    reader = csv.reader(r.text.split('\n'))
+    reader = csv.reader(text.split('\n'))
     for line in reader:
         if line[0] == "Name" or line[0] == "":
             continue

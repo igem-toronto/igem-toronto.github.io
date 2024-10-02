@@ -283,7 +283,7 @@
       {{img(new_cdn("hardware/sensor-attachment-detail.jpeg"), width="50%")}}
       <p>Figure 3. Note how the IR proximity sensors sit on top of earring attachments in the green rectangles, and are fastened by the stud in the red rectangle.</p>
       <p>To secure the proximity sensors to the bottom rack, plastic earrings are used instead of screws. These earrings can be glued onto the rack, with the post sticking up, since they are also made of plastic, ensuring adhesive compatibility. The earrings hold the sensors securely by pacing the screw holes of the proximity sensor onto the earring posts and pressing the backing against the rack with the proximity sensor being sandwiched in between, which creates a stable connection. This method is more economical and practical compared to using screws, particularly due to the small size of the proximity sensor screw holes, which would make using screws more difficult to find, more expensive and harder to set into.</p>
-      <p>The rack is made from polylactic acid (PLA) which is a thermoplastic monomer derived from renewable, organic sources. It is lightweight, durable, easy to clean as well as easily accessible as it is wildley used in 3D printing . When properly printed it is not porous and it can be sanitized. This makes it suitable for a lab, where durability and hygiene are critical.</p>
+      <p>The rack is made from polylactic acid (PLA) which is a thermoplastic monomer derived from renewable, organic sources {{cite('TWI_Ltd')}}. It is lightweight, durable, easy to clean as well as easily accessible as it is wildley used in 3D printing . When properly printed it is not porous and it can be sanitized. This makes it suitable for a lab, where durability and hygiene are critical.</p>
       <p>Here is a visualisation of our bottom plate, where the plastic earrings and the sensors are mounted on.</p>
         <model-viewer
         class="w-full min-h-96 my-8"
@@ -308,7 +308,7 @@
       <p><i>Wiring</i></p>
       <p>Wires are assembled as shown in the picture. The rack is not depicted; the proximity sensors go into the rack via the earring slot mechanism described in the Product System section.</p>
       {{img(new_cdn("hardware/rack-wiring.png"), width="80%")}}
-      <p>Figure 6. Sample wiring diagram for the rack. The wires for the proximity sensor already come in the colour red, black, and white which are for the power (5V), ground, and signal respectively.</p>
+      <p>Figure 6. Sample wiring diagram for the rack. The wires for the proximity sensor already come in the colour red, black, and white which are for the power (5V), ground, and signal respectively. Each of these wires is soldered to one with a male end to be able to easily connect it to either the breadboard or the Arduino. The power and the ground is distributed to all the sensors with the use of the breadboard. The grey and orange wires are male to male wires to and they connect the 5V and ground from the Arduino to the board, while the white signal wires from the sensors are instead directly connected to the Arduino board.</p>
 
       <p><i>RFID Sleeve</i></p>
       <p>To fabricate the sleeve, the following crocheting steps were done: </p>

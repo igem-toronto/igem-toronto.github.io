@@ -1,53 +1,30 @@
 {% extends "layout/subpage.html" %}
 
 {% block article_content %}
-  {{ subheading("Hardware page") }}
-  {{ subsubheading("Heading 1") }}
-{{ subsubheading("Heading 5") }}
+{{heading("Hardware overview")}}
 <div>
   <p>
-    akjgöoapdöskbvjldksafjbv.mc,
-    jdhjldfsgk
+    For iGEM Toronto's project this year, our wet lab and dry lab teams are engaged in a workflow, conveniently depicted as follows:
   </p>
+  {{img(new_cdn('hardware/wetlab-wf.png'))}}
   <p>
-    afölakc,mvc,.klaögb.fv
+    Our dry lab team can generate DNA sequences at a touch of a button, but all of the sequences dry lab deems viable must be verified by wet lab before being meaningfully used. However, wet lab faces their own bottlenecks, in the form of incubation times, cloning reaction times, quantification assay times, and human error, all of which reduce wet lab throughput. The workflow is actually very much lopsided, with dry lab being able to supply wet lab with sequences faster than wet lab can supply dry lab with feedback:
   </p>
+  {{img(new_cdn('hardware/wetlab-current-state.png'))}}
   <p>
-    afgblfjgfnd
+    As such, the mandate of the hardware team is to improve the throughput of wet lab processes. In our project, we explore several fundamental yet powerful ways of doing this, contributing to the team's work in developing and advancing the building blocks of synthetic biology practices as part of the foundational advance village. Themes explored include integration of machine learning in laboratory practices, internet of things technologies, and applications of industrial process engineering to the lab.
+  </p>
+  {{subheading('Colony counter')}}
+  <p>
+    It takes up to forty minutes to label and count colonies on one petri dish. Why not reduce that to less than five? In our colony counter neighboring page, we explore counting colonies via machine learning, accelerating a highly repetitive and time-killing, yet essential, task.
+  </p>
+  {{subheading('Lab management')}}
+  <p>
+    Human error happens in the lab all the time. Samples are mislabeled, misplaced, misidentified, and ultimately, lost. Time wasted on lost samples is time that can be saved for other viable samples. We introduce an internet-of-things framework to reduce sample losses via laboratory stock control. The same framework is highly modular and transferable, providing inroads to other projects in the future.
+  </p>
+  {{subheading('Process engineering')}}
+  <p>
+    Fundamentally, the lab is a small factory, so why not bring successful industrial process engineering practices to the laboratory floor? Philosophies such as Lean and Six Sigma have helped automobile manufacturers increase throughput and decrease waste for decades. Here, we identify ways industrial practices can be adapted and used directly on the lab floor.
   </p>
 </div>
-{{ subsubheading("Heading 2") }}
-{{ subsubheading("Heading 2") }}
-<div>
-  <p>
-    sföjgakldfjö
-  </p>
-</div>
-
-  {{ subheading("Models") }}
-    <model-viewer
-      class="w-full min-h-96 my-8"
-      src="{{ url_for('static', filename = 'models/expanded.gltf') }}"
-      alt="Oxidation Chamber"
-      camera-controls
-      touch-action="pan-y"></model-viewer>
-  <model-viewer
-    class="w-full min-h-96 my-8"
-    src="{{ url_for('static', filename = 'models/top-plate.gltf') }}"
-    alt="Oxidation Chamber"
-    camera-controls
-    touch-action="pan-y"></model-viewer>
-  <model-viewer
-    class="w-full min-h-96 my-8"
-    src="{{ url_for('static', filename = 'models/top-rack.gltf') }}"
-    alt="Oxidation Chamber"
-    camera-controls
-    touch-action="pan-y"></model-viewer>
-  <model-viewer
-    class="w-full min-h-96 my-8"
-    src="{{ url_for('static', filename = 'models/vertical-plate.gltf') }}"
-    alt="Oxidation Chamber"
-    camera-controls
-    touch-action="pan-y"></model-viewer>
-
 {% endblock %}

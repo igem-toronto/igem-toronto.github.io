@@ -218,32 +218,546 @@ We also discussed the reluctance of municipalities to adopt new technologies wit
 </div>
 
 
-{{subheading("Public Feedback")}}
-{{subheading("Dry Lab Integration")}}
-
-
-
-{{subsubheading("DR. MICHAEL GARTON")}}
+{{subheading("PUBLIC FEEDBACK")}}
 
 <div>
-  
-   {{ img(new_cdn("human-practices/garton.png"), width="50%") }}
 
+  <p>
+As part of our efforts to understand how the general public perceives antibiotic resistance and its broader implications, we reached out to three individuals who agreed to share their perspectives. Their insights offer a glimpse into the challenges of public awareness and engagement around this issue. To maintain privacy, their identities remain anonymous.
+    </p>
+
+</div>
+{{subsubheading("Insight 1: Definition of Antibiotic Resistance")}} 
+
+<div>
+  <p>
+One participant defined antibiotic resistance as the evolution of bacteria that become resistant to antibiotics once effective at treating infections. They pointed out that, while some people who follow health news are aware of the issue, many still lack a deep understanding of its potential severity. They emphasized the need for more accessible information to raise awareness, suggesting the use of public health campaigns, such as posters in healthcare facilities, and interactive social media content.
+
+    </p>
+</div>
+
+{{subsubheading("Insight 2: Personal Experience with Antibiotic Resistance")}} 
+<div>
+<p>
+Another interviewee shared a personal experience where they had been prescribed antibiotics for a severe throat infection, but the treatment was initially ineffective due to bacterial resistance. It wasn’t until they switched to a stronger medication that the infection was resolved. The interviewee remarked that people often do not realize the risks of overusing antibiotics and tend to see them as a "quick fix." To improve awareness, they suggested using personal stories and case studies to demonstrate the real-life consequences of antibiotic resistance.
+
+  </p>
+
+</div>
+{{subsubheading("Insight 3: Understanding the Broader Implications")}} 
+<div>
+  <p>
+A third participant discussed the issue from a more systemic perspective, noting that antibiotic resistance extends beyond healthcare into areas like agriculture, where antibiotics are overused. They voiced concerns that public education on the topic is insufficient and often overshadowed by more immediate health concerns. To address this, they advocated for more comprehensive approaches, such as integrating antibiotic resistance into school curricula and launching social media campaigns to engage broader audiences.
+    </p>
+
+  </div>
+
+{{subsubheading("Reflectionss or Next Steps")}} 
+<div>
+  <p>
+Reflecting on the feedback we've gathered from various stakeholders and public insights, it's clear that while there is awareness of antibiotic resistance, there remains a significant gap in deeper understanding. The personal experiences and broader concerns shared offer valuable perspectives that reinforce the importance of our project. These insights not only highlight the urgency of the issue but also point us toward new ways of engaging the public and shaping our communication strategies.
+</p>
+</div>
+
+{{subheading("GUIDED BY INSIGHT: ADDRESSING ANTIBIOTIC RESISTANCE")}}
+<div>
+  <p>The insights we gathered from healthcare professionals like the nurse practitioner and Dr. Bath, along with public feedback, highlighted the urgency of addressing antibiotic resistance. Healthcare workers revealed the limitations of traditional antibiotic development and the potential of AI to accelerate solutions. Meanwhile, public feedback stressed the lack of awareness around resistance and the real-world dangers of antibiotic misuse, emphasizing the need for education. These insights solidified our decision to focus our technology on this issue, recognizing the powerful opportunity AI and synthetic biology present to develop innovative, impactful solutions.
+
+</p>
+</div>
+
+{{subheading("GUIDED BY INSIGHT: ADDRESSING ANTIBIOTIC RESISTANCE")}}
+<div>
+  <p>As we started reaching out to more stakeholders, we reaffirm our commitment to ensuring meaningful engagement with Indigenous communities. To this end, we have conducted a thorough impact assessment to evaluate the direct effects of antibiotic resistance in these populations. For detailed findings and analysis, please visit our dedicated impact assessment page.
+</p>
+</div>
+
+
+{{subheading("HARNESSING ACADEMIC EXPERTISE")}}
+
+{{subsubheading("DR. ALBERT BURGHUISE")}}
+<div>
+  
+  
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Professor Albert Burghuise is a professor in the Biochemistry Department at Mcgill University, whose research is focused on the development of antimicrobials, antibiotic resistance and crystallography. We reached out to Dr. Burghuise as we wanted his insights on our methods as well as learn more about antibiotic resistance from his perspective.</p>
   <p><u>What did they say?</u></p> 
   <p>
-    Prof. Garton was also  instrumental in developing the foundations and approach of the project and determining key milestones. He directed us to existing research in the field and helped highlight gaps. He also connected us with graduate students who could give feedback. 
+    Professor Burghuise helped us understand the urgent nature of antibiotic resistance describing it second only to climate change. He also helped us understand that perspectives on antibiotic resistance can be subjective and may be underestimated due to the presence of alternative antibiotics. We learnt of how many existing antibiotics are derived from natural compounds that have co-evolved with bacteria for a long time and bacteria have evolved resistance mechanisms against them over that time. We were surprised when he shared with us how scientists have observed resistance in places that are untouched by humans. He talked about a study in an isolated cave in Mexico which had never been exposed to antibiotics, however scientists found bacteria that were already resistant to many of our modern drugs. He highlighted that we are not discovering new forms of resistance, rather we are selecting for bacteria that already possess these defenses and that is why resistance seems to appear rapidly after new antibiotics are introduced. 
   </p>
-  
+  <p>
+Professor. Burghuise also advised that our dataset’s quality and relevance is a crucial aspect of our project and eminent for its success. He also shared some insights to keep in mind for our hardware sample management system and colony detection. He pointed out that the Integration of Internet of Things [IoT] devices could lead to a large amount of data, and how this is an existing problem in hospitals as well. He explained how despite there being a large interest in incorporating IoT, existing systems are not functioning as effectively as desired. We also learnt that there is a concern regarding the information in these systems not being effectively utilized, this issue stemming from data overload, making it challenging for researchers to extract meaningful insights. A suggestion from the professor to address data overload was to develop AI algorithms that can sift through vast amounts of data and identify relevant patterns or insights.
+    </p>
+ 
   
   <p><u>Reflection or Next Steps</u></p>  
 
   <p>
 
- Prof. Garton’s mentorship was crucial in determining the essential milestones for the project. We used his advice to design the validation pipeline and set the milestone of testing oris. 
+ Our conversation with Professor Burghuis significantly influenced how we engage stakeholders and approach discussions on antibiotic resistance. We came to understand that the perceived threat of antibiotic resistance is often subjective and can be downplayed due to the availability of alternative antibiotics. However, Professor Burghuis emphasized that antibiotic resistance has deep historical roots—it’s not just a modern issue. This realization is key to how we educate the public, many of whom view antibiotic resistance as a recent development. By highlighting its long-standing presence, we can more effectively convey the urgency of addressing this growing problem and emphasize its pervasive, ongoing impact.
+
+    </p>
+  <p>
+We also took his concerns about data overload seriously, and subsequently had a discussion with our hardware team about the issue. They explained the challenges they face, particularly with bandwidth limitations and database size. One critical point was that our communication servers have limited bandwidth, and storing large amounts of data isn’t feasible. This led us to rethink our database structures, ensuring they are as compact as possible, storing only essential data such as timestamps to track sample age, without unnecessary information. We also learned that the larger the database, the more expensive and difficult it becomes to maintain, particularly with the microcontrollers we’re using, which have very limited memory capacity.
+
     </p>
 
+  <p>Regarding the development of AI algorithms, our team admitted that we don’t currently have the capacity to create sophisticated data-sifting tools. There is also a disconnect between industry practitioners and AI experts, as the manufacturing environment is slow to adopt these technologies. Implementing machine learning or AI into our system would require a significant commitment and shift in our current methods, which may not be feasible in the short term.
+</p>
+
+  <p>In conclusion, while we continue to navigate the complexities of the data overload challenge, this conversation has significantly clarified our project's direction regarding feedback integration and data management. As we move forward, we acknowledge that enhancing our data storage processes is a longer-term objective. </p>
+
+    {{ img(new_cdn("human-practices/burghuise.png"), width="50%") }}
   
 </div>
+
+{{subsubheading("DR. KARINE AUCLAIRE")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Dr. Karine Auclair is a professor at McGill University and a Canada Research Chair Antimicrobials. Her research focuses on antibiotic resistance, and she is currently developing a novel treatment for intracellular infections that is free of antibiotics, enhancing the immune system's ability to combat infections. We reached out to her to gain insights into our project, particularly concerning current trends, ethical considerations, and practical challenges in the field of antibiotic resistance</p>
+  <p><u>What did they say?</u></p> 
+  <p>
+    Dr. Auclair highlighted several key areas for us to consider. In terms of current trends, she pointed out that antibiotic resistance continues to evolve rapidly, particularly as researchers turn to artificial intelligence (AI)for designing inhibitors targeting resistant bacterial strains. She emphasized the importance of keeping an eye on medical chemistry developments and their potential applications in our plasmid designs.
+
+  </p>
+  <p>
+Regarding strategies for plasmid development, Dr. Auclair noted the complexity of plasmid mutation and resistance mechanisms, advising us that the main challenge is the diversity of resistance pathways. This might require the development of multiple systems to address resistance across different bacterial species.
+    </p>
+
+  <p>On the topic of ethical challenges, Dr. Auclair observed that research funding often follows economic interests, with more resources directed toward diseases affecting wealthier nations, such as cancer. This makes securing funding for conditions like tuberculosis, which primarily affects less affluent countries, more difficult.
+</p>
+
+  <p>She also pointed out several practical challenges, such as the stringent regulations involved in working with pathogenic bacteria, which require certification for handling level 2 bacteria. Additionally, when designing plasmids, she advised us to be mindful of the different parts involved, such as multiple cloning sites.
+</p>
+
+  <p>Lastly, she mentioned the influence of new technologies, including natural product biosynthesis and advances in AI and RNA sequencing, which have revolutionized how researchers approach antibiotic resistance today</p>
+  
+  <p><u>Reflection or Next Steps</u></p>  
+
+  <p>
+
+Dr. Auclair highlighted the complexity of resistance mechanisms and the diversity of resistance pathways among different bacterial species. This insight reinforces our approach of designing plasmids that offer a stronger selective advantage than existing resistance-carrying plasmids. By focusing on creating plasmids that are less metabolically burdensome, easier to replicate, and fundamentally incompatible with target plasmids, we aim to address the multifaceted nature of antibiotic resistance. Our strategy directly responds to the challenge of diversity in resistance mechanisms by ensuring that our plasmids can effectively compete across various bacterial species.
+
+    </p>
+  <p>
+Dr. Auclair’s insights on funding disparities in antibiotic research emphasizes the need for diverse funding sources. While our project does not focus on diseases like tuberculosis, understanding these challenges is important. Our finance team has effectively secured the necessary resources, allowing us to advance our technology by laying the groundwork to combat antibiotic resistance.
+
+    </p>
+
+  <p>Additionally, her insights into regulatory challenges underscore the importance of compliance. Our wet lab has conducted thorough safety assessments to ensure we meet all necessary certifications and adhere to safety standards in our practices. Overall, our engagement with Dr. Auclair has refined our strategies for addressing antibiotic resistance by highlighting key considerations in plasmid design, funding, and regulatory compliance. We will use these insights to improve our project and ensure it aligns with the ethical and practical aspects of the field. This approach will help us navigate the complexities of antibiotic resistance more effectively.
+</p>
+
+    {{ img(new_cdn("human-practices/auclaire.png"), width="50%") }}
+
+</div>
+
+{{subheading("WET-LAB INTEGRATION")}}
+
+  {{subsubheading("DR. MICHAEL GARTON")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Dr. Garton is an Assistant Professor in the Institute of Biomedical Engineering at the University of Toronto. He is the Primary Investigator on the iGEM Toronto project and he has provided crucial guidance throughout the program. He has a strong background in high-throughput computational protein design and is a Canada Research Chair for Synthetic Biology.</p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+  Dr. Garton shared the eventual goal of making a fully functional genome. He additionally helped contextualize the role of antibiotic resistance in this project. Through discussion about how to address this pressing issue, iGEM and Dr. Garton decided to generate novel plasmids to increase biodiversity in an effort to combat novel disease. 
+
+
+  </p>
+  <p><u>Reflection or Next Steps</u></p>  
+
+  <p>
+
+Discussion with Dr. Garton was a springboard for the remainder of the project and from his insights we were able to proceed with the direction of our project. We evaluated the feasibility of generating plasmids using AI and began to synthesize plasmids as well as test them in vitro. 
+
+    </p>
+
+</div>
+
+{{subsubheading("DR. FREEMAN LAN")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Dr. Lan is an Assistant Professor with the Institute of Biomedical Engineering at the University of Toronto. He specialises in utilising high-throughput experimental methods to study complex disease, which aligns closely with our project.</p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    Dr. Lan provided essential counsel on which specific sequences would be most beneficial to generate and test in vitro. Originally, we were operating with the belief that the model would generate whole plasmids, however, it was quickly realised that this may not be the best approach as this would not help us isolate our observations to any one region of the plasmid. Our initial plan was then to evaluate the role of the origin of replication (oriV) and Toxin-Antitoxin (TA) systems. We discovered, with the help of Dr. Lan, that the oriV would be the most vital sequence to assess.
+  </p>
+  
+  <p><u>Reflections or Next Steps</u></p>  
+  <p>
+    From our conversations with Dr. Lan, we were able to glean that the oriV is the sequence of the plasmid where we should be focusing our efforts. As such, for the remainder of the project, the oriV was our primary target and we deprioritised evaluation of TA systems.
+  </p>
+</div>
+
+{{subsubheading("ENDANG SUSILAWATI")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Endang (Susie) Susilawati is the Lab Manager of BioZone at the University of Toronto, where iGEM was able to execute the wet lab portion of the project. She is generally responsible for safety and maintenance of lab equipment.</p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    Through conduction of lab tours and equipment demonstrations, Susie provided our team with invaluable safety training. She was also our point of contact when there were any issues with the lab equipment.
+  </p>
+  
+  <p><u>Reflections and Next Steps</u></p>  
+  <p>
+    The lessons imparted to our team ensured that our team would be kept safe throughout the project. Our actions after safety training largely reflected the workflows and best practices indicated to us by Susie.
+  </p>
+</div>
+
+{{subsubheading("DR. MOHAMED NASR")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Dr. Nasr is a Postdoctoral Fellow with BioZone at the University of Toronto.</p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    Dr. Nasr provided some additional training on lab equipment as well as providing some of it directly, which was greatly beneficial to our wet lab endeavors.
+  </p>
+  
+  <p><u>Reflections and Next Steps</u></p>  
+  <p>
+    We made use of the know-how granted by Dr. Nasr to ensure that our project moved at a consistent and safe pace.
+  </p>
+</div>
+
+{{subsubheading("DR. MONA ABO-HASHESH")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Dr. Abo-Hashesh is an Assistant Professor at Port Said University and a Research Fellow/Associate with BioZone at the University of Toronto.</p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    Dr. Abo-Hashesh provided relevant feedback and experimental analysis when our PCRs did not work as expected. Specifically, our positive control was not working and she provided counsel that allowed us to troubleshoot and get back on track. We later determined that the issue was we had received the incorrect plasmids and had to reassess our strategy and pivot to alternative plasmids.
+  </p>
+  
+  <p><u>Reflections or Next Steps</u></p>  
+  <p>
+    Moving forward from speaking with Dr. Abo-Hashesh, we were able to more clearly ascertain any errors in future PCR and improve the efficiency of our workflow.
+  </p>
+</div>
+
+{{subsubheading("VICTORIA IVEY")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Victoria Ivey is a PhD student studying Chemical and Biomolecular Engineering at the University of Toronto. Her history is primarily based in biochemistry and molecular biology with her PhD focusing on the characterisation of microorganisms, which overlaps with our project.</p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    Victoria aided in ensuring that our positive control worked consistently.
+  </p>
+  
+  <p><u>Reflections or Next Steps</u></p>  
+  <p>
+    As a result of Victoria’s support, we were able to develop a benchmark by which to compare future experiments and improve our understanding of our experimental results.
+  </p>
+</div>
+
+{{subsubheading("MARK SPAHL")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Mark Spahl is a PhD student in Metabolic Engineering at the University of Toronto.</p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    Mark helped us fix our positive control, situate ourselves in the lab and understand some equipment.
+  </p>
+  
+  <p><u>Reflections or Next Steps</u></p>  
+  <p>
+    Mark’s advice allowed us to quickly and smoothly lift our wet lab work off the ground and understand how to operate moving forward.
+  </p>
+</div>
+
+{{subsubheading("MATTHEW EDGHILL")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+
+  <p>Matthew is a research assistant.</p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    Similarly to Mark and Victoria, Matthew helped us with our positive control. He additionally helped with the operation of some equipment.
+  </p>
+  
+  <p><u>Reflections or Next Steps</u></p>  
+  <p>
+    Due to Matthew’s help with our project, we were able to operate machinery and proceed with our experiment in a more efficient manner.
+  </p>
+</div>
+
+
+{{subheading("Dry Lab Integration")}}
+
+
+
+{{subsubheading("DR. MICHAEL GARTON")}}
+<div>
+  <p><u>What did they say?</u></p> 
+  <p>
+    Prof. Garton was also instrumental in developing the foundations and approach of the project and determining key milestones. He directed us to existing research in the field and helped highlight gaps. He also connected us with graduate students who could give feedback.
+  </p>
+  
+  <p><u>Reflections and Next Steps</u></p>  
+  <p>
+    Prof. Garton’s mentorship was crucial in determining the essential milestones for the project. We used his advice to design the validation pipeline and set the milestone of testing oris.
+  </p>
+</div>
+
+{{subsubheading("DR. FREEMAN LAN")}}
+<div>
+  <p><u>What did they say?</u></p> 
+  <p>
+    Prof. Lan supported the dry lab team by brainstorming the validation pipeline and finding useful datasets and tools. He helped shape our initial thinking around metrics needed to validate plasmids as well as useful components to test for, such as oris and toxin/anti-toxin pairs.
+  </p>
+  
+  <p><u>Reflections and Next Steps</u></p>  
+  <p>
+    Based on Prof. Lan’s advice, dry lab delved deeper into existing research on ori identification and developed metrics that would test for that.
+  </p>
+</div>
+
+
+
+{{subheading("CONNECTING RESEARCH WITH RESPONSIBILITY: EXPLORING BIOETHICS")}}
+
+{{subsubheading("DR. JONATHAN HERRINGTON")}}
+<div class="side-by-side">
+  <p><u>Who is this stakeholder?</u></p> 
+  <p>
+    Professor Jonathan Herrington is an Assistant Professor at the University of Rochester, specializing in the philosophy of science, health, and technology. We reached out to him to explore the bioethical dimensions of our project, particularly its dual-use nature, equity concerns, model bias, and to gather insights on structuring a regulatory framework that aligns with ethical considerations.
+  </p>
+      {{ img(new_cdn("human-practices/herrington.png"), width="50%") }}
+</div>
+
+<div>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    Dr. Herrington emphasized the critical need to identify and mitigate biases in the design and application of our AI-generated plasmids. He expressed concerns that inherent biases within our dataset could lead to varying levels of toxicity across different bacterial populations, impacting the effectiveness of treatments based on specific bacterial strains. Given the limited funding available to our student team for comprehensive bias mitigation, he advised prioritizing transparency about our dataset's limitations. This approach fosters trust in our findings and helps navigate the ethical implications of deploying our technology across diverse populations.
+  </p>
+  <p>
+    Additionally, Dr. Herrington highlighted the importance of aligning our technology with global principles of justice and equity. He cautioned that our AI-generated plasmids could exacerbate existing global health disparities, particularly in countries like India.
+  </p>
+  <p>
+    To address the dual-use nature of biotechnology, he advocated for the establishment of ethical safeguards to prevent the misuse of our plasmids. He recommended reinforcing our current efforts by establishing a hybrid regulatory framework that combines three existing models: the NASM framework, the FBI-UNICRI framework, and the Tucker framework. This approach will ensure comprehensive oversight and enhance our commitment to responsible biotechnology practices.
+  </p>
+  
+  <p><u>Reflections and Next Steps</u></p>  
+  <p>
+    In response to Dr. Herrington's insights, we recognized the importance of identifying and mitigating biases in the design of our plasmids. Acknowledging our limitations as a student team, particularly regarding funding for comprehensive bias mitigation, we have prioritized transparency about our dataset's limitations. This commitment has helped us navigate the ethical implications of deploying our technology across diverse populations.
+  </p>
+  <p>
+    To further this goal, we proactively reached out to various healthcare professionals in India to gain a deeper understanding of antibiotic resistance and its implications in various contexts. This engagement has informed our approach and helped ensure that our technology aligns with global principles of justice and equity.
+  </p>
+  <p>
+    In addressing the dual-use nature of biotechnology, Dr. Herrington emphasized the need for ethical safeguards to prevent the misuse of our plasmids. We have already integrated his recommendations into our regulatory framework by building upon established models such as the NASM framework, the TUCKER framework, and the FBI-UNICRI framework. Moving forward, we will continue to prioritize transparency and ethical considerations in our project, ensuring that our efforts align with best practices in biotechnology governance.
+  </p>
+</div>
+
+{{subheading("GLOBAL HEALTH PERSPECTIVES: ENGAGING WITH HEALTHCARE PROFESSIONALS IN INDIA")}}
+
+{{subsubheading("DR. JEEVA VENKATESAN")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p> 
+  <p>
+    Dr. Jeeva Venkatesan is a practicing dentist based in India, specializing in oral health and the role of antibiotics in dental practices. Our engagement with Dr. Venkatesan followed discussions with Professor Herrington, as we sought to understand antibiotic use and resistance, particularly in the dental field. Her insights are crucial for informing our project on antibiotic resistance, especially regarding the impact of socio-economic factors on treatment adherence.
+  </p>
+  
+  <p><u>What did they say?</u></p> 
+  <p>
+    In our discussions, Dr. Venkatesan highlighted that antibiotic resistance in dentistry often develops from both overuse and underuse of medications like amoxicillin. She explained that antibiotics are typically prescribed to manage oral infections and prevent systemic complications. However, economic challenges significantly influence patient behavior, leading many to take antibiotics for only a short duration or to stop treatment once their pain subsides. This incomplete adherence contributes to the development of resistance.
+  </p>
+  <p>
+    Dr. Venkatesan emphasized the need for improved access to affordable antibiotics, suggesting that government intervention is necessary to reduce medication prices and ensure equitable access for all patients. While most healthcare professionals are aware of these issues, she stressed the importance of prioritizing these concerns at the policy level to foster responsible prescribing practices.
+  </p>
+  
+  <p><u>Reflections or Next Steps</u></p>  
+  <p>
+    Dr. Venkatesan’s insights have deepened our understanding of the socio-economic factors influencing antibiotic use and resistance. We now recognize the importance of community engagement in our project, and we will actively seek to learn more from the communities affected by antibiotic resistance.
+  </p>
+  <ul>
+    <li><strong>Community Interaction:</strong> We will engage with local communities to better understand their experiences and challenges regarding antibiotic use in dental care. This will involve listening sessions and focus groups to gather feedback that can inform our approach.</li>
+    <li><strong>Integration of Insights:</strong> By incorporating Dr. Venkatesan's feedback, we will ensure that our project not only develops innovative solutions to combat antibiotic resistance but also addresses the socio-economic barriers faced by patients. This holistic approach will enhance the relevance and impact of our work, aiming to create a more sustainable healthcare model.</li>
+  </ul>
+  <p>
+    We have also learned the importance of policy advocacy and will keep this in mind as a long-term goal for our project. This awareness will guide our future efforts to ensure that our initiatives align with broader healthcare policies that promote equitable access to antibiotics and responsible prescribing practices.
+  </p>
+  
+  <p>
+    Through these actions, we aspire to foster a more equitable approach to tackling antibiotic resistance.
+  </p>
+</div>
+
+{{subheading("VETERINARY PERSPECTIVES ON ANTIBIOTIC RESISTANCE")}}
+{{subsubheading("DR. BARATHI DHASAN")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+  <p>
+    Dr. Barathi Dhasan is a veterinarian based in India with extensive knowledge in animal health and antibiotic use. Our discussions with Dr. Dhasan focused on antibiotic resistance in livestock and poultry, providing valuable insights into the implications of antibiotic use in veterinary medicine.
+  </p>
+  
+  <p><u>What did they say?</u></p>
+  <p>
+    In our conversations, Dr. Dhasan explained that high levels of antibiotics are commonly used in the treatment of infections in cows, particularly for conditions like mastitis caused by coliform bacteria. He noted that the increasing prevalence of antibiotic resistance is a significant concern, particularly due to the indiscriminate use of these drugs.
+  </p>
+  <p>
+    He highlighted that livestock farmers often administer antibiotics to prevent secondary bacterial infections that arise following viral infections in poultry. This practice is driven by economic necessity, as poultry is typically kept for short durations to maximize yield, leading to extensive antibiotic use to ensure they reach market weight efficiently.
+  </p>
+  <p>
+    Dr. Dhasan pointed out that the overuse of certain classes of antibiotics, such as cephalosporins and aminoglycosides, contributes to resistance in both large animals and poultry. While penicillin may yield good results, drugs like sulfonamides are becoming less effective. He emphasized the need for better education among veterinarians regarding responsible antibiotic use, given that some practitioners may lack adequate training.
+  </p>
+  <p>
+    Economic barriers play a crucial role in antibiotic use, as many pet owners and farmers cannot afford diagnostic testing. This often leads to a reliance on empirical treatments without proper culture and sensitivity testing. Dr. Dhasan mentioned that injectable antibiotics are often preferred for their effectiveness, though they come with higher rejection rates, complicating treatment further.
+  </p>
+
+  <p><u>Reflections or Next Steps</u></p>
+  <p>
+    From our discussions with Dr. Dhasan, we learned about the critical issues surrounding antibiotic resistance in veterinary medicine and the potential parallels with human health. We now recognize that our project could potentially extend its applications to veterinary practices, particularly in addressing antibiotic resistance.
+  </p>
+  <ul>
+    <li><strong>Potential Applications:</strong> We will explore how the principles of our project, especially the development of resistance-nullifying plasmids, could be adapted for veterinary applications, particularly in the treatment of mastitis and secondary infections in poultry.</li>
+    <li><strong>Interdisciplinary Insights:</strong> The insights gained from Dr. Dhasan have highlighted the interconnectedness of antibiotic use across species. Understanding these dynamics will inform our broader strategy in combating antibiotic resistance.</li>
+    <li><strong>Long-Term Goals:</strong> We will keep in mind the importance of responsible antibiotic stewardship as a long-term goal of our project, recognizing that solutions in human medicine can also have relevance in veterinary contexts.</li>
+  </ul>
+  <p>
+    Overall, we gained valuable insights into antibiotic resistance in veterinary medicine, which have highlighted the potential for our project to address similar challenges across both human and animal health sectors.
+  </p>
+</div>
+
+
+
+
+
+{{subheading("THE ROLE OF HISTORY IN SHAPING SOLUTIONS")}}
+{{subsubheading("DR. ELIZABETH KOESTER")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+  <p>
+    Professor Elizabeth Koester is a former lawyer currently serving as a professor at the University of Toronto in the Institute for the History & Philosophy of Science & Technology. She is the author of <em>In the Public Good: Eugenics and Law in Ontario</em>, a work that examines the intersection of law, history, and societal values. Our discussions with Dr. Koester focused on how historical perceptions might influence current views of our project. We also explored the relationship between traditional medical practices and the adoption of modern treatments like antibiotics in various communities. Additionally, we learned how historical factors such as colonialism and healthcare disparities have shaped contemporary attitudes toward antibiotic use in marginalized populations.
+  </p>
+
+  <p><u>What did they say?</u></p>
+  <p>
+    In our discussions, we sought to address the potential for inequality in implementing our project. Dr. Koester highlighted the significant disparities in access to medical services and information, which could be exacerbated by advancements in medicine. She cautioned against focusing solely on the solutions offered by AI without acknowledging the accompanying medical inequalities.
+  </p>
+  <p>
+    Regarding public reception, she noted that some communities remain suspicious of medical involvement, stemming from a historical context where traditional practices were often disregarded in favor of Western medicine. Despite this, many traditional remedies have a scientific basis; for instance, aspirin was derived from tree bark used in traditional practices. Dr. Koester observed that while some individuals express concern about vaccines, acceptance can vary depending on the type of medication.
+  </p>
+  <p>
+    To foster positive public engagement, she stressed the importance of respecting community opinions, providing education on AI and antibiotic resistance, and maintaining transparency. She drew parallels to vaccine skepticism, emphasizing that cautious reactions could similarly manifest towards our project.
+  </p>
+  <p>
+    Dr. Koester also discussed how historical factors, such as colonialism, have contributed to stereotypes and unequal opportunities in healthcare. She cited instances of unethical medical practices, such as drug testing in India and the Tuskegee syphilis study, which have left lasting distrust in certain communities. Successful integration of traditional and modern medical practices requires a respectful collaboration with these communities.
+  </p>
+  <p>
+    Regarding ethical considerations, Dr. Koester expressed confidence in the stakeholder consultation process, noting that ample thought has gone into preventing ethical issues. However, she reiterated the potential for inequality, emphasizing that disparities in access to medical services persist, even in urban areas like Toronto. Understanding the historical context of medicine is crucial for informing our ethical approach, particularly in communities that have experienced healthcare disparities.
+  </p>
+
+  <p><u>Reflections or Next Steps</u></p>
+  <p>
+    Given the existing inequalities in healthcare, we acknowledge that our project could inadvertently exacerbate these issues if not made accessible to all. We are committed to addressing this challenge by fostering education and respecting diverse opinions. Following Professor Koester's guidance, we have embraced full transparency in our project, recognizing that public knowledge is vital for building trust.
+  </p>
+  <ul>
+    <li><strong>Community Engagement:</strong> To enhance public understanding of AI in healthcare, we have organized engaging workshops, such as a "Paint and Sip," where participants expressed their perspectives on AI in synthetic biology through art. These workshops not only encourage critical thinking but also provide an avenue for the public to engage with our approach to antibiotic resistance via engineered plasmids, fostering informed perspectives.</li>
+    <li><strong>Broader Engagement:</strong> Additionally, we designed <em>AImersion</em>, a community engagement project, inviting the general public to participate in the same artistic exploration, thereby gathering diverse viewpoints for a more holistic approach.</li>
+    <li><strong>Understanding Traditional Medicine:</strong> In our efforts to understand broader perspectives, we reached out to individuals who practice traditional medicine. This engagement allowed us to explore how these practices align or differ from modern treatments, offering valuable insights that could shape our project’s accessibility and acceptance in various communities.</li>
+    <li><strong>Vaccine Skepticism:</strong> We also took steps to engage in conversations with individuals regarding vaccine skepticism. Our aim was to understand their concerns without judgment, and we found this to be a crucial exercise in drawing parallels with how some may view AI-driven medical interventions. This approach has deepened our understanding of public attitudes and helped us refine our strategy.</li>
+  </ul>
+  <p>
+    By focusing on education, transparency, and respect, we aim to contribute positively to the ongoing discourse surrounding healthcare and antibiotic resistance.
+  </p>
+</div>
+{{subsubheading("DR. LUIS CAMPOS")}}
+<div>
+  <p><u>Who is this stakeholder?</u></p>
+  <p>
+    Professor Luis Campos serves as an Associate Professor and Co-Director at Rice University, focusing on the History of Science, Technology, and Innovation. He has a particular interest in the history of synthetic biology, among other topics.
+  </p>
+
+  <p><u>What did they say?</u></p>
+  <p>
+    During our consultation with Professor Campos regarding our approach to human practices, we learned that some opinions towards modern science, often expressed as “conspiracy theories” or “antiscience,” could actually stem from a place of caution. We learned that these perspectives reflect valid concerns and emphasized the importance of approaching them with understanding and empathy.
+  </p>
+
+  <p><u>Reflections or Next Steps</u></p>
+  <p>
+    Inspired by our discussions with Professor Koester and Professor Campos, we took the initiative to engage with individuals who are vaccine hesitant. We posted on a Reddit forum dedicated to vaccine-related discussions, where we explained our project and asked them to share their insights on vaccine hesitancy. Our aim was to understand the diverse perspectives surrounding vaccine hesitancy, to ensure our project is inclusive of all forms of caution.
+  </p>
+</div>
+
+
+
+{{subheading("UNDERSTANDING VACCINE HESITANCY")}}
+
+{{subsubheading("Dialogue with Individuals Expressing Concerns About Vaccines on Reddit")}}
+
+<div class="side-by-side">
+
+  <p>
+    Inspired by our conversations with Professor Koester and Professor Campos we wanted to hear perspectives that may be cautious in response to healthcare interventions. In our efforts to better understand concerns surrounding vaccines, we initiated a dialogue with individuals on the "Debate Vaccine" subreddit, where vaccine issues are actively discussed. Our approach involved posing neutral and respectful questions aimed at gathering insights on concerns surrounding vaccines, the safe alternatives they consider, and the attributes they would want in a solution to ensure its safety. This caution could parallel reactions to the introduction of our technology, which utilizes AI and is also a healthcare intervention. This conversation was intended to foster understanding rather than derive conclusions or test hypotheses. 
+  </p>
+        {{ img(new_cdn("human-practices/needle.png"), width="50%") }}
+
+</div>
+
+{{subsubheading("Ethical Considerations")}}
+<div>
+
+<p>
+    Our engagement does not fall under the definition of "research" as outlined in the TCPS2. Research is characterized by "an undertaking intended to extend knowledge through a disciplined inquiry or systematic investigation." [28] In this instance, our activities involved soliciting insights rather than conducting a structured research study [28]. We do not collect or retain any identifiable data, as the discussions are anonymous and no personal information is linked to the insights shared [28]. Furthermore, there was no systematic investigation or analysis of the insights gathered, and we are not disseminating findings in the conventional sense, but rather publishing the perspectives as they were shared. Importantly, we obtained explicit consent from all participants to share their views, reinforcing the ethical consideration in our approach [28]. Given these points, our activities align with the TCPS2 definition that does not necessitate research ethics review. We are committed to transparency and ethical engagement in all our interactions.
+</p>
+
+<p>These are the unique perspectives that we received:</p>
+<ul>
+    <li>
+        <strong>1. Concerns about Vaccines:</strong> One individual expressed profound fear stemming from a personal experience at age 17, where they experienced severe pain shortly after vaccination, leading them to associate vaccines with potential death or injury. They emphasized that their trust in healthcare professionals is crucial, as without it, they feel unwilling to accept vaccinations.
+    </li>
+    <li>
+        <strong>2. Trust and Healthcare:</strong> Another perspective highlighted a deep-seated mistrust in healthcare institutions. They noted a history of pharmaceutical companies misrepresenting their products, leading to distrust in healthcare recommendations. This skepticism is compounded by personal experiences with adverse reactions in their family following vaccinations, which has ultimately led them to question the integrity of the medical establishment.
+    </li>
+    <li>
+        <strong>3. Community Narratives:</strong> A participant mentioned the significance of personal experiences in shaping their views on vaccines. They observed that while community narratives can influence perceptions, the trustworthiness of the individuals sharing those narratives plays a critical role. They also remarked that communities tend to become polarized, making it difficult to change entrenched beliefs on either side of the vaccine debate.
+    </li>
+    <li>
+        <strong>4. Alternatives to Vaccination:</strong> One perspective suggested allowing the body’s natural defenses to handle diseases, citing personal health success without further vaccinations as evidence of this approach's safety. They expressed a preference for alternatives that do not involve vaccination, emphasizing their belief in the body's inherent mechanisms.
+    </li>
+    <li>
+        <strong>5. Developing Solutions:</strong> This individual noted that solutions aligning with their perspective already exist; they seek to be left alone regarding vaccine mandates. They stressed the need for transparency and ethical considerations in developing any health solutions, reflecting their desire for autonomy in health decisions.
+    </li>
+    <li>
+        <strong>6. Toxic Ingredients and Safety:</strong> Concerns were raised regarding the ingredients in vaccines, particularly aluminum adjuvants, and their potential neurotoxicity. The individual called for more rigorous safety studies conducted by independent parties to ensure that the risks associated with vaccine ingredients are thoroughly evaluated.
+    </li>
+    <li>
+        <strong>7. Personal Experiences of Adverse Reactions:</strong> This individual recounted their family’s experiences with severe adverse reactions to vaccines, which led them to seek answers that contradicted established medical narratives. They emphasized the importance of sharing experiences to build a clearer understanding of vaccine safety.
+    </li>
+    <li>
+        <strong>8. Trust in Healthcare Evolution:</strong> Another individual discussed the evolving nature of trust in healthcare professionals. They noted that their upbringing instilled trust in medical institutions, but ongoing negative experiences have significantly eroded this trust. They highlighted the necessity for healthcare to distance itself from pharmaceutical influences to regain public confidence.
+    </li>
+    <li>
+        <strong>9. Skepticism Towards Medical Research:</strong> A perspective emerged emphasizing the need for a more critical examination of medical treatments beyond vaccines. This individual expressed a desire for alternative medical options to be more vigorously explored, advocating for freedom of choice in health decisions without social stigma or mandates.
+    </li>
+    <li>
+        <strong>10. Expertise and Skepticism:</strong> This individual emphasized the importance of recognizing cultural biases in public health and the need for alternative perspectives in medical discussions. Their personal health challenges, including long COVID and adverse reactions to medications, further shape their skepticism.
+    </li>
+</ul>
+
+<p><strong>Reflections or Next Steps</strong></p>
+<p>
+    Moving forward, our aim was to implement the suggestions provided by the individuals we engaged with, particularly focusing on enhancing educational outreach and building trust within communities. Our recent seminar, which reached over 600 students through social media, exemplifies our commitment to this mission. During the seminar, we raised awareness about antibiotic resistance and provided a transparent overview of the methods used in our project, fostering an open dialogue about our approach and the implications for public health.
+</p>
+
+  </div>
 
 
 

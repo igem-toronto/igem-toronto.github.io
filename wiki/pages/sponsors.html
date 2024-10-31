@@ -3,25 +3,43 @@
 
 {% block content %}
 {{ heading("Sponsors") }}
-iGEM Toronto is grateful to be be supported by our sponsors.
+<div>
+    <p>
+        iGEM Toronto is grateful to be be supported by our sponsors.
+    </p>
+</div>
+
+{{ subheading("Gold Tier") }}
+<div class="flex items-center justify-center flex-wrap">
+    <div class="p-5">
+        <img src="{{ url_for('static', filename='logo-genscript.jpg') }}" width="300px" alt="Genscript" />
+    </div>
+    <div class="p-5">
+        <img src="{{ url_for('static', filename='logo-idt.png') }}" width="300px" alt="Integrated DNA Technologies" />
+    </div>
+</div>
+{{ subheading("Silver Tier") }}
 <div class="flex items-center justify-center flex-wrap">
     <div class="p-5">
         <img src="{{ url_for('static', filename='logo-snapgene.svg') }}" width="300px" alt="Snapgene" />
     </div>
+</div>
+{{ subheading("Bronze Tier") }}
+<div class="flex items-center justify-center flex-wrap">
     <div class="p-5">
-        <img src="{{ url_for('static', filename='logo-genscript.jpg') }}" width="300px" alt="Genscript" />
+        <img src="{{ url_for('static', filename='New-NEB-logo.png') }}" width="300px" alt="New England Biolabs" />
     </div>
     <div class="p-5">
         <img src="{{ url_for('static', filename='logo-uoft-lmp.png') }}" width="300px" alt="University of Toronto - Laborator Medicine and Pathobiology" />
     </div>
     <div class="p-5">
-        <img src="{{ url_for('static', filename='logo-luna_nanotech.webp') }}" width="300px" alt="Luna Nanotech" />
+        <img src="{{ url_for('static', filename='Cedarlane+Reagents-tree-L.png') }}" width="300px" alt="Cedarlane" />
     </div>
     <div class="p-5">
-        <img src="{{ url_for('static', filename='logo-idt.png') }}" width="300px" alt="Integrated DNA Technologies" />
+        <img src="{{ url_for('static', filename='HMB.jpg') }}" width="300px" alt="University of Toronto - Human Biology" />
     </div>
     <div class="p-5">
-        <img src="{{ url_for('static', filename='logo-assu.png') }}" width="300px" alt="ASSU" />
+        <img src="{{ url_for('static', filename='CSB-logo.png') }}" width="300px" alt="Cell & Systems Biology" />
     </div>
 </div>
 

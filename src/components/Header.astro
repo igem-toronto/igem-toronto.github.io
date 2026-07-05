@@ -1,0 +1,148 @@
+---
+import navigation from '../data/navigation.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (link: string) => (link.startsWith('http') ? link : base + link);
+
+const logoUrl = 'https://static.igem.wiki/teams/4615/wiki/graphics/igem-toronto.png';
+const currentPath = Astro.url.pathname;
+
+const isActive = (link: string) =>
+  !link.startsWith('http') && currentPath.replace(/\/$/, '') === (base + link).replace(/\/$/, '');
+---
+
+<header class="sticky top-0 z-50 border-b border-primary-950 bg-primary-950">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <a href={base + '/'} class="flex items-center gap-3">
+      <img src={logoUrl} alt="iGEM Toronto Logo" class="h-11 w-auto" />
+      <span class="hidden border-l border-white/20 pl-3 text-xs uppercase tracking-[0.2em] text-white/60 sm:block">
+        University of Toronto
+      </span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav class="hidden items-stretch lg:flex" aria-label="Main navigation">
+      {
+        navigation.map((item) =>
+          'sublinks' in item && item.sublinks ? (
+            <div class="group relative flex">
+              <button
+                type="button"
+                class="flex items-center gap-1.5 px-5 text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-white"
+                aria-haspopup="true"
+              >
+                {item.text}
+                <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <div class="invisible absolute right-0 top-full min-w-48 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div class="border border-primary-950 bg-white shadow-sm">
+                  {item.sublinks.map((sub) => (
+                    <a
+                      href={href(sub.link)}
+                      class="block border-b border-primary-950/10 px-5 py-3 text-sm text-primary-950 transition-colors last:border-b-0 hover:bg-primary-50"
+                    >
+                      {sub.text}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={href(item.link!)}
+              class:list={[
+                'flex items-center px-5 text-sm font-medium uppercase tracking-widest transition-colors hover:text-white',
+                isActive(item.link!) ? 'text-white shadow-[inset_0_-2px_0_0_var(--color-accent-orange)]' : 'text-white/80',
+              ]}
+            >
+              {item.text}
+            </a>
+          )
+        )
+      }
+    </nav>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-button"
+      type="button"
+      class="p-2 text-white lg:hidden"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg id="icon-open" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path stroke-linecap="square" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="icon-close" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path stroke-linecap="square" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile navigation -->
+  <nav id="mobile-menu" class="hidden border-t border-white/15 bg-primary-950 lg:hidden" aria-label="Mobile navigation">
+    <div class="px-4 py-2">
+      {
+        navigation.map((item) =>
+          'sublinks' in item && item.sublinks ? (
+            <div data-mobile-group class="border-b border-white/10 last:border-b-0">
+              <button
+                type="button"
+                class="flex w-full items-center justify-between py-3 text-left text-sm font-medium uppercase tracking-widest text-white/85"
+                data-mobile-toggle
+                aria-expanded="false"
+              >
+                {item.text}
+                <svg class="h-3 w-3 transition-transform" data-chevron viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <div class="hidden pb-2 pl-4" data-mobile-sublinks>
+                {item.sublinks.map((sub) => (
+                  <a href={href(sub.link)} class="block py-2 text-sm text-white/70 transition-colors hover:text-white">
+                    {sub.text}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={href(item.link!)}
+              class="block border-b border-white/10 py-3 text-sm font-medium uppercase tracking-widest text-white/85 last:border-b-0"
+            >
+              {item.text}
+            </a>
+          )
+        )
+      }
+    </div>
+  </nav>
+</header>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  button?.addEventListener('click', () => {
+    const isHidden = menu?.classList.toggle('hidden');
+    button.setAttribute('aria-expanded', String(!isHidden));
+    iconOpen?.classList.toggle('hidden', !isHidden);
+    iconClose?.classList.toggle('hidden', isHidden);
+  });
+
+  document.querySelectorAll('[data-mobile-toggle]').forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const group = toggle.closest('[data-mobile-group]');
+      const sublinks = group?.querySelector('[data-mobile-sublinks]');
+      const chevron = toggle.querySelector('[data-chevron]');
+      const isHidden = sublinks?.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!isHidden));
+      chevron?.classList.toggle('rotate-180', !isHidden);
+    });
+  });
+</script>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 375" width="300" height="375">
+  <rect width="300" height="375" fill="#eef2f4"/>
+  <circle cx="150" cy="140" r="58" fill="#19425A" opacity="0.18"/>
+  <path d="M 55 375 Q 55 250 150 250 Q 245 250 245 375 Z" fill="#19425A" opacity="0.18"/>
+  <line x1="60" y1="330" x2="240" y2="330" stroke="#19425A" stroke-width="1" opacity="0.15"/>
+  <text x="150" y="352" text-anchor="middle" font-family="sans-serif" font-size="13" letter-spacing="2" fill="#19425A" opacity="0.5">PORTRAIT</text>
+</svg>

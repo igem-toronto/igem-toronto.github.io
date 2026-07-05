@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// NOTE FOR MAINTAINERS: most sponsor logo files were never committed to the
+// old repository, so `logo: null` entries render a styled placeholder box.
+// To fix one, drop the logo file into public/images/sponsors/ and set
+// `logo: base + '/images/sponsors/your-file.png'` here.
+// See docs/UPDATING_THE_TEAM.md for details.
+const tiers = [
+  {
+    name: 'Presenting Sponsor',
+    sponsors: [{ name: 'CPSIF', logo: null }],
+  },
+  {
+    name: 'Gold Tier',
+    sponsors: [
+      { name: 'GenScript', logo: null },
+      { name: 'Integrated DNA Technologies', logo: null },
+    ],
+  },
+  {
+    name: 'Silver Tier',
+    sponsors: [{ name: 'SnapGene', logo: `${base}/images/sponsors/logo-snapgene.svg` }],
+  },
+  {
+    name: 'Bronze Tier',
+    sponsors: [
+      { name: 'New England Biolabs', logo: null },
+      { name: 'UofT — Laboratory Medicine & Pathobiology', logo: null },
+      { name: 'Cedarlane', logo: null },
+      { name: 'UofT — Human Biology', logo: null },
+      { name: 'UofT — Cell & Systems Biology', logo: null },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Sponsors" description="The sponsors who support iGEM Toronto.">
+  <PageHeader
+    eyebrow="Support"
+    title="Sponsors"
+    lede="iGEM Toronto is grateful to be supported by our sponsors. Their generosity makes our research possible."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="space-y-14">
+      {
+        tiers.map((tier, i) => (
+          <div>
+            <div class="mb-6 flex items-baseline gap-4 border-b border-primary-950/15 pb-4">
+              <span class="font-display text-sm font-semibold tabular-nums text-accent-orange">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h2 class="font-display text-xl font-bold tracking-tight text-primary-950">{tier.name}</h2>
+            </div>
+            <div class="grid grid-cols-2 gap-px border border-primary-950/10 bg-primary-950/10 sm:grid-cols-3 lg:grid-cols-4">
+              {tier.sponsors.map((sponsor) => (
+                <div class="flex h-36 items-center justify-center bg-white p-6">
+                  {sponsor.logo ? (
+                    <img src={sponsor.logo} alt={sponsor.name} class="max-h-full max-w-full object-contain" loading="lazy" />
+                  ) : (
+                    <div class="text-center">
+                      <span class="block font-display text-sm font-semibold text-primary-950">{sponsor.name}</span>
+                      <span class="mt-1 block text-xs uppercase tracking-wider text-primary-950/40">Logo to be added</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 flex flex-col items-start justify-between gap-6 border border-primary-950 bg-primary-950 px-8 py-10 md:flex-row md:items-center">
+      <div>
+        <h2 class="font-display text-2xl font-bold tracking-tight text-white">Interested in sponsoring us?</h2>
+        <p class="mt-2 max-w-xl text-white/60">
+          Support the next generation of synthetic biologists at the University of Toronto.
+        </p>
+      </div>
+      <a
+        href="mailto:igem@g.skule.ca"
+        class="shrink-0 border border-accent-orange bg-accent-orange px-7 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </section>
+</BaseLayout>

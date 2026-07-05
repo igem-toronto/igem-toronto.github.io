@@ -1,0 +1,104 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   iGEM Toronto brand theme
+   Colors carried over from the previous site's tailwind.config.js,
+   extended with a few shades for the redesign.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-primary-50: #eef7fb;
+  --color-primary-100: #d8f0ef;
+  --color-primary-200: #a0d4f2;
+  --color-primary-300: #6dacd1;
+  --color-primary-400: #559dbc;
+  --color-primary-700: #235a7a;
+  --color-primary-800: #19425a;
+  --color-primary-900: #102d3f;
+  --color-primary-950: #0a1e2b;
+
+  --color-accent-orange: #de601e;
+  --color-accent-orange-light: #f08a4f;
+  --color-accent-blue: #559dbc;
+  --color-accent-turquoise: #028d81;
+  --color-accent-turquoise-light: #06b3a4;
+
+  --color-cream: #fbf7f0;
+  --color-cream-dark: #cdc1b6;
+
+  --font-sans: 'Jost', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Fonts served from the iGEM CDN (same as the previous site). */
+@font-face {
+  font-family: 'Jost';
+  src: url('https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-400.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-400-italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-500.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-600.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('https://static.igem.wiki/teams/4615/wiki/fonts/jost/jost-700.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://static.igem.wiki/teams/4615/wiki/fonts/montserrat/montserrat-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://static.igem.wiki/teams/4615/wiki/fonts/montserrat/montserrat-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Archivo';
+  src: url('https://static.igem.wiki/teams/4615/wiki/fonts/archivo/archivo-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans text-primary-950 bg-white antialiased;
+}
+
+/* Editorial ligatures/kerning for a cleaner, print-like feel. */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+/* Hide elements marked with x-cloak-style attribute until JS runs. */
+[data-cloak] {
+  display: none !important;
+}

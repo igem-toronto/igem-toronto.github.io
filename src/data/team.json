@@ -1,0 +1,186 @@
+{
+  "_README": "PLACEHOLDER ROSTER — every member below is a placeholder. See docs/UPDATING_THE_TEAM.md for step-by-step instructions on replacing these entries with the current team. The previous (2023) roster is archived at docs/archive/team-2023.csv for reference.",
+  "groups": [
+    "Presidents",
+    "Advisors",
+    "Wet Lab",
+    "Dry Lab",
+    "Hardware",
+    "Entrepreneurship",
+    "Human Practices",
+    "Outreach",
+    "Wiki Team"
+  ],
+  "members": [
+    {
+      "name": "PLACEHOLDER — President Name",
+      "group": "Presidents",
+      "roles": ["President"],
+      "description": "PLACEHOLDER — Write a short 1–4 sentence third-person bio here. Example: 'Alex is a third-year Chemical Engineering student who leads the team's overall strategy and loves everything synbio.'",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — President Name",
+      "group": "Presidents",
+      "roles": ["President"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Advisor Name",
+      "group": "Advisors",
+      "roles": ["Advisor"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Advisor Name",
+      "group": "Advisors",
+      "roles": ["Advisor"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Wet Lab Lead Name",
+      "group": "Wet Lab",
+      "roles": ["Wet Lab Lead"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Wet Lab Member Name",
+      "group": "Wet Lab",
+      "roles": ["Wet Lab"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Wet Lab Member Name",
+      "group": "Wet Lab",
+      "roles": ["Wet Lab"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Dry Lab Lead Name",
+      "group": "Dry Lab",
+      "roles": ["Dry Lab Lead"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Dry Lab Member Name",
+      "group": "Dry Lab",
+      "roles": ["Dry Lab"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Hardware Lead Name",
+      "group": "Hardware",
+      "roles": ["Hardware Lead"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Hardware Member Name",
+      "group": "Hardware",
+      "roles": ["Hardware"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Entrepreneurship Lead Name",
+      "group": "Entrepreneurship",
+      "roles": ["Entrepreneurship Lead"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Human Practices Lead Name",
+      "group": "Human Practices",
+      "roles": ["Human Practices Lead"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Human Practices Member Name",
+      "group": "Human Practices",
+      "roles": ["Human Practices"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Outreach Lead Name",
+      "group": "Outreach",
+      "roles": ["Outreach Lead"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Wiki Team Lead Name",
+      "group": "Wiki Team",
+      "roles": ["Wiki Team Lead"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "PLACEHOLDER — Wiki Team Member Name",
+      "group": "Wiki Team",
+      "roles": ["Wiki Team"],
+      "description": "PLACEHOLDER — Short third-person bio.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    }
+  ]
+}

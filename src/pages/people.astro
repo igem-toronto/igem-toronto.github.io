@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import MemberBubble from '../components/MemberBubble.astro';
+import team from '../data/team.json';
+
+// Members are grouped by the `group` field, in the order defined in team.json.
+// Leads/directors/presidents are sorted to the front of each group.
+const leadPriority = (roles: string[]) =>
+  roles.some((r) => /president|director/i.test(r)) ? 0 : roles.some((r) => /lead/i.test(r)) ? 1 : 2;
+
+const isLead = (roles: string[]) => leadPriority(roles) < 2;
+
+const grouped = team.groups
+  .map((group) => ({
+    group,
+    members: team.members
+      .filter((m) => m.group === group)
+      .sort((a, b) => leadPriority(a.roles) - leadPriority(b.roles)),
+  }))
+  .filter(({ members }) => members.length > 0);
+
+let cardIndex = 0;
+---
+
+<BaseLayout title="People" description="Meet the people behind iGEM Toronto.">
+  <PageHeader
+    eyebrow="The Team"
+    title="People"
+    lede="The scientists, engineers, and communicators behind iGEM Toronto. Select any portrait to read their bio."
+  />
+
+  <!-- Team photo -->
+  <section class="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8">
+    <!--
+      TODO (human): replace the placeholder below with a current team group photo.
+      Upload the photo via https://uploads.igem.org (or place it in public/images/)
+      and swap this div for:
+        <img src="YOUR_PHOTO_URL" alt="The iGEM Toronto team" class="w-full border border-primary-950/15" />
+      The previous 2023 photo lived at:
+        https://static.igem.wiki/teams/4615/wiki/hpphoto/img-3314.jpg
+    -->
+    <div class="flex aspect-[21/9] w-full items-center justify-center border border-primary-950/15 bg-primary-50">
+      <div class="px-6 text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/40">Figure 1</p>
+        <p class="mt-2 font-medium text-primary-950/70">Team photograph — to be added</p>
+        <p class="mt-1 text-sm text-primary-950/45">See docs/UPDATING_THE_TEAM.md</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team grids -->
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="space-y-14">
+      {
+        grouped.map(({ group, members }, i) => (
+          <div>
+            <div class="mb-8 flex items-baseline gap-4 border-b border-primary-950/15 pb-4">
+              <span class="font-display text-sm font-semibold tabular-nums text-accent-orange">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h2 class="font-display text-2xl font-bold tracking-tight text-primary-950" id={group.toLowerCase().replace(/\s+/g, '-')}>
+                {group}
+              </h2>
+              <span class="text-sm text-primary-950/40">({members.length})</span>
+            </div>
+            <div class="grid grid-cols-3 gap-x-5 gap-y-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+              {members.map((member) => (
+                <MemberBubble
+                  name={member.name}
+                  roles={member.roles}
+                  description={member.description}
+                  photo={member.photo}
+                  linkedin={member.linkedin}
+                  website={member.website}
+                  email={member.email}
+                  index={cardIndex++}
+                  variant={isLead(member.roles) ? 'hub' : 'node'}
+                />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-open-dialog]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dialog = document.getElementById(btn.dataset.openDialog!) as HTMLDialogElement | null;
+      dialog?.showModal();
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-close-dialog]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dialog = document.getElementById(btn.dataset.closeDialog!) as HTMLDialogElement | null;
+      dialog?.close();
+    });
+  });
+
+  document.querySelectorAll('dialog').forEach((dialog) => {
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>

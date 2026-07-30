@@ -1,26 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import AchievementsTimeline from '../components/AchievementsTimeline.astro';
+import MemberPie from '../components/MemberPie.astro';
 
 const logoMarkUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/logo-mark.png`;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const mailingListUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform';
-
-const stats = [
-  { value: '2007', label: 'Competing since' },
-  { value: '04', label: 'Gold medals' },
-  { value: '04', label: 'Silver medals' },
-  { value: '04', label: 'Bronze medals' },
-];
-
-const areas = [
-  { n: '01', title: 'Wet Lab', body: 'Hands-on molecular biology — cloning, assays, and protocol development at the bench.' },
-  { n: '02', title: 'Dry Lab', body: 'Computational modelling, bioinformatics, and simulation of biological systems.' },
-  { n: '03', title: 'Hardware', body: 'Custom instrumentation bridging biology and engineering.' },
-  { n: '04', title: 'Human Practices', body: 'Ethics, stakeholder engagement, and the societal context of our work.' },
-];
 ---
 
 <BaseLayout title="Home">
@@ -71,20 +59,6 @@ const areas = [
     </div>
   </section>
 
-  <!-- Stats strip -->
-  <section class="border-b border-primary-950/15 bg-white">
-    <div class="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-primary-950/10 border-x border-primary-950/10 sm:grid-cols-4 sm:divide-y-0 lg:px-0">
-      {
-        stats.map((stat) => (
-          <div class="px-6 py-10">
-            <div class="font-display text-4xl font-bold tabular-nums text-primary-950">{stat.value}</div>
-            <div class="mt-2 text-xs font-medium uppercase tracking-[0.15em] text-primary-950/50">{stat.label}</div>
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
   <!-- About -->
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
     <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
@@ -99,42 +73,49 @@ const areas = [
           excellence.
         </p>
         <p>
-          Since 2007, we have represented the University of Toronto at the undergraduate level. Our work has culminated
+          Since 2007, we have represented the University of Toronto at the undergraduate level, spanning wet lab
+          research, computational modelling, hardware, human practices, and entrepreneurship. Our work has culminated
           in four gold medals, four silver medals, four bronze medals, and numerous special prizes.
-          <!-- TODO (human): update the sentence below with the team's most recent competition results. -->
-          Most recently, our team won the award for Best Model, the Gold Medal, and five other special nominations.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Research areas -->
+  <!-- Track record -->
   <section class="border-y border-primary-950/15 bg-primary-50">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-      <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
-        <div class="lg:col-span-4">
-          <SectionHeading title="Where we work" eyebrow="Disciplines" number="02" />
-          <a
-            href={base + '/divisions/'}
-            class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
-          >
-            All divisions
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </a>
-        </div>
-        <div class="grid gap-px border border-primary-950/10 bg-primary-950/10 sm:grid-cols-2 lg:col-span-8">
-          {
-            areas.map((area) => (
-              <div class="bg-white p-8">
-                <span class="font-display text-sm font-semibold tabular-nums text-accent-orange">{area.n}</span>
-                <h3 class="mt-3 font-display text-xl font-bold text-primary-950">{area.title}</h3>
-                <p class="mt-2 leading-relaxed text-primary-950/65">{area.body}</p>
-              </div>
-            ))
-          }
-        </div>
+      <SectionHeading
+        title="Our track record"
+        eyebrow="Competition history"
+        number="02"
+        subtitle="Every year we take a new project to the iGEM Giant Jamboree. Select a year to see the project, the results, and the wiki we published."
+      />
+      <AchievementsTimeline />
+    </div>
+  </section>
+
+  <!-- Who we are -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading
+          title="Who we are"
+          eyebrow="The team"
+          number="03"
+          subtitle="Students from across the university, organized into divisions that each own a part of the project. Select a slice to meet that division."
+        />
+        <a
+          href={base + '/divisions/'}
+          class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+        >
+          All divisions
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+      <div class="lg:col-span-8">
+        <MemberPie />
       </div>
     </div>
   </section>

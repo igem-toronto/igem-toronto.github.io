@@ -1,0 +1,44 @@
+{
+  "_README": "Competition history shown on the home page timeline. Only years with real, confirmed details are listed — add a year back by copying an entry below and filling it in. Set `needsReview: true` while an entry is still incomplete and the site will show a small 'details still need to be filled in' note. See docs/UPDATING_THE_TEAM.md.",
+  "summary": {
+    "since": 2007,
+    "gold": 4,
+    "silver": 4,
+    "bronze": 4
+  },
+  "years": [
+    {
+      "year": "2024",
+      "project": "Combating antimicrobial resistance with AI",
+      "track": "Overgraduate",
+      "medal": "Gold",
+      "awards": ["Best Model", "Best Entrepreneurship", "Top 10 — Overgraduate"],
+      "wikiUrl": "https://2024.igem.wiki/utoronto/",
+      "blurb": "Our best result to date. Competing against more than 400 teams from 48 countries, the team built a platform leveraging AI to counter antibiotic-resistant superbugs, placing in the top 10 of the overgraduate category. 2024 was also the first year iGEM Toronto fielded a formal entrepreneurship team, which went on to compete in the U of T Entrepreneurship Hatchery's Demo Week.",
+      "photos": [],
+      "needsReview": false
+    },
+    {
+      "year": "2022",
+      "project": "Early detection of Oak Wilt disease",
+      "track": "Conservation",
+      "medal": "Gold",
+      "awards": ["Nominated — Best Conservation Project"],
+      "wikiUrl": "https://2022.igem.wiki/toronto/",
+      "blurb": "To help conserve wildlife affected by Oak Wilt — a fungal disease caused by B. fagacearum — the team proposed an on-site early diagnostic tool that lets foresters identify infected oak trees in time to slow the spread. Presented at the Giant Jamboree in Paris alongside 346 teams from 45 countries.",
+      "photos": [],
+      "needsReview": false
+    },
+    {
+      "year": "2019",
+      "project": "Accelerating Industrial Plastic Degradation With PETase",
+      "track": "Manufacturing",
+      "medal": "Gold",
+      "awards": ["Nominated — Best Manufacturing Project (top 5)"],
+      "wikiUrl": "https://2019.igem.org/Team:Toronto/",
+      "blurb": "The team engineered PETase to accelerate the breakdown of industrial plastic waste, earning Gold Medal standard at the Giant Jamboree in Boston — our first gold since 2013 — and a nomination for Best Manufacturing Project, placing the project in the top five of its track.",
+      "photos": [],
+      "needsReview": false
+    }
+  ]
+}

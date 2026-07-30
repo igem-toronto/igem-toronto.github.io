@@ -1,52 +1,85 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
+import team from '../data/team.json';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Only link through to the People page for divisions that exist as a roster
+// group there, so we never point at an anchor that isn't rendered.
+const peopleAnchor = (division: string) =>
+  team.groups.includes(division) ? `${base}/people/#${division.toLowerCase().replace(/\s+/g, '-')}` : null;
 const mailingListUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform';
 
+// TODO (human): this copy is interim — replace each `lede`, `description`, and
+// `highlights` entry with the official text from the "iGEM Toronto Division
+// Info 2026" doc. Add a photo per division by setting `photo` to an uploaded
+// image URL (https://uploads.igem.org) or a local path under
+// public/images/divisions/. See docs/UPDATING_THE_TEAM.md.
 const divisions = [
   {
     name: 'Wet Lab',
     tag: 'Experimental',
+    lede: 'Where the project physically comes to life.',
     description:
-      'The heart of scientific exploration. Scientists and bioengineers conduct hands-on experiments, perfect protocols, and bring biological projects to life at the bench.',
+      'Wet Lab designs and runs the experiments at the core of every iGEM project. Members clone and assemble genetic constructs, transform and culture cells, run assays, and troubleshoot protocols until the system works — then characterize it well enough to stand up to international judging.',
+    highlights: ['Molecular cloning and assembly', 'Protocol design and troubleshooting', 'Assay development and characterization'],
+    photo: null,
   },
   {
     name: 'Dry Lab',
     tag: 'Computational',
+    lede: 'The computational engine behind the bench.',
     description:
-      'The digital frontier of synthetic biology — analyzing data, modelling complex systems, and applying bioinformatics tools to guide experimental design.',
+      'Dry Lab turns biological questions into models and code. Members build metabolic and kinetic models, run simulations, analyze omics data, and develop the software tools that let the team predict outcomes and prioritize experiments before a single pipette is lifted.',
+    highlights: ['Metabolic and kinetic modelling', 'Bioinformatics and data analysis', 'Scientific software and simulation'],
+    photo: null,
   },
   {
     name: 'Hardware',
     tag: 'Engineering',
+    lede: 'Custom instruments built for the problem at hand.',
     description:
-      'Where biology meets technology. Electronics and hardware development produce custom instrumentation for synthetic biology projects.',
+      'Hardware designs and builds the physical devices our projects need but cannot buy. Members work through CAD, electronics, embedded firmware, and fabrication to produce prototypes that are tested against real experimental requirements and iterated alongside the lab.',
+    highlights: ['CAD and rapid prototyping', 'Electronics and embedded firmware', 'Device testing and iteration'],
+    photo: null,
   },
   {
     name: 'Human Practices',
     tag: 'Ethics & society',
+    lede: 'Making sure the science is responsible and wanted.',
     description:
-      'The ethical, social, and cultural dimensions of synthetic biology. Engaging stakeholders, researching societal implications, and integrating responsible practices into design.',
+      'Human Practices studies how our work lands in the world. Members interview stakeholders and domain experts, research the ethical, legal, and social implications of the project, and feed what they learn back into the design so the final system reflects the needs of the people it affects.',
+    highlights: ['Stakeholder and expert engagement', 'Ethics and policy research', 'Integrating findings into project design'],
+    photo: null,
   },
   {
     name: 'Entrepreneurship',
     tag: 'Business',
+    lede: 'Turning a research project into a viable venture.',
     description:
-      'Bridging science and business. Identifying market opportunities, developing business plans, and exploring funding strategies to turn projects into impactful ventures.',
+      'Entrepreneurship takes the science beyond the competition. Members size the market, interview potential customers, model the business, and build the pitch and funding strategy needed to move a promising project toward commercialization.',
+    highlights: ['Market and customer research', 'Business modelling and financials', 'Pitching and fundraising'],
+    photo: null,
   },
   {
     name: 'Outreach',
     tag: 'Communication',
+    lede: 'Bringing synthetic biology to the wider community.',
     description:
-      'Sharing synthetic biology with the community through educational programs, engagement with schools and organizations, and public science communication.',
+      'Outreach makes our work legible to people outside the lab. Members plan educational programs and workshops, partner with schools and community organizations, and produce the content that shares synthetic biology with a general audience.',
+    highlights: ['Workshops and educational programming', 'School and community partnerships', 'Science communication and content'],
+    photo: null,
   },
   {
     name: 'Finance',
     tag: 'Operations',
+    lede: 'The support structure that keeps the team running.',
     description:
-      'Sustaining the team through budgeting, financial strategy, and fundraising — a vital role behind every initiative iGEM Toronto undertakes.',
+      'Finance sustains everything else. Members manage the budget, track spending across divisions, coordinate sponsorship and grant applications, and make sure the resources are there when the lab, hardware, and travel bills come due.',
+    highlights: ['Budgeting and expense tracking', 'Sponsorship and grant applications', 'Financial planning across divisions'],
+    photo: null,
   },
 ];
 ---
@@ -55,25 +88,70 @@ const divisions = [
   <PageHeader
     eyebrow="Structure"
     title="Divisions"
-    lede="Each division contributes a distinct set of skills and expertise. Together they drive the success of our projects."
+    lede="Each division owns a distinct part of the project and contributes a different set of skills. Together they take an idea from a whiteboard sketch to a characterized system presented on the world stage."
   />
 
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="border-t border-primary-950/15">
+    <div class="grid gap-px border border-primary-950/10 bg-primary-950/10 lg:grid-cols-2">
       {
         divisions.map((division, i) => (
-          <div class="grid gap-4 border-b border-primary-950/15 py-8 md:grid-cols-12 md:gap-8">
-            <div class="flex items-baseline gap-4 md:col-span-4">
-              <span class="font-display text-sm font-semibold tabular-nums text-accent-orange">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <div>
-                <h2 class="font-display text-xl font-bold tracking-tight text-primary-950">{division.name}</h2>
-                <p class="mt-1 text-xs uppercase tracking-[0.15em] text-primary-950/45">{division.tag}</p>
-              </div>
+          <article class="flex flex-col bg-white">
+            <div class="aspect-[16/9] overflow-hidden border-b border-primary-950/10">
+              {division.photo ? (
+                <img
+                  src={division.photo}
+                  alt={`The iGEM Toronto ${division.name} division`}
+                  loading="lazy"
+                  class="h-full w-full object-cover"
+                />
+              ) : (
+                <div class="flex h-full w-full items-center justify-center bg-primary-50">
+                  <div class="text-center">
+                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/35">
+                      {division.name}
+                    </p>
+                    <p class="mt-1 text-xs text-primary-950/35">Photo to be added</p>
+                  </div>
+                </div>
+              )}
             </div>
-            <p class="leading-relaxed text-primary-950/70 md:col-span-8">{division.description}</p>
-          </div>
+
+            <div class="flex flex-1 flex-col p-8">
+              <div class="flex items-baseline gap-4">
+                <span class="font-display text-sm font-semibold tabular-nums text-accent-orange">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h2 class="font-display text-xl font-bold tracking-tight text-primary-950">{division.name}</h2>
+                  <p class="mt-1 text-xs uppercase tracking-[0.15em] text-primary-950/45">{division.tag}</p>
+                </div>
+              </div>
+
+              <p class="mt-5 font-display text-lg font-medium leading-snug text-primary-950">{division.lede}</p>
+              <p class="mt-3 leading-relaxed text-primary-950/70">{division.description}</p>
+
+              <ul class="mt-6 border-t border-primary-950/10">
+                {division.highlights.map((highlight) => (
+                  <li class="flex items-baseline gap-3 border-b border-primary-950/10 py-2 text-sm text-primary-950/70">
+                    <span class="text-accent-orange">&#8226;</span>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+
+              {peopleAnchor(division.name) && (
+                <a
+                  href={peopleAnchor(division.name)}
+                  class="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+                >
+                  Meet the division
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </article>
         ))
       }
     </div>

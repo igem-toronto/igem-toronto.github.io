@@ -1,0 +1,169 @@
+---
+import achievements from '../data/achievements.json';
+
+const { summary, years } = achievements;
+
+const medalClass = (medal: string) => {
+  if (/gold/i.test(medal)) return 'border-amber-500/60 bg-amber-500/10 text-amber-700';
+  if (/silver/i.test(medal)) return 'border-primary-950/25 bg-primary-950/5 text-primary-950/70';
+  if (/bronze/i.test(medal)) return 'border-accent-orange/50 bg-accent-orange/10 text-accent-orange';
+  return 'border-primary-950/20 bg-white text-primary-950/50';
+};
+
+const stats = [
+  { value: String(summary.since), label: 'Competing since' },
+  { value: String(summary.gold).padStart(2, '0'), label: 'Gold medals' },
+  { value: String(summary.silver).padStart(2, '0'), label: 'Silver medals' },
+  { value: String(summary.bronze).padStart(2, '0'), label: 'Bronze medals' },
+];
+---
+
+<div>
+  <!-- Summary ledger -->
+  <div class="grid grid-cols-2 divide-x divide-y divide-primary-950/10 border border-primary-950/10 sm:grid-cols-4 sm:divide-y-0">
+    {
+      stats.map((stat) => (
+        <div class="px-6 py-8">
+          <div class="font-display text-3xl font-bold tabular-nums text-primary-950">{stat.value}</div>
+          <div class="mt-2 text-xs font-medium uppercase tracking-[0.15em] text-primary-950/50">{stat.label}</div>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Year rail -->
+  <div class="mt-12 border-b border-primary-950/15" role="tablist" aria-label="Competition years">
+    <div class="-mb-px flex gap-1 overflow-x-auto">
+      {
+        years.map((entry, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`year-tab-${entry.year}`}
+            data-year-tab={entry.year}
+            aria-controls={`year-panel-${entry.year}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            class:list={[
+              'shrink-0 border-b-2 px-5 py-3 font-display text-lg font-bold tabular-nums transition-colors',
+              i === 0
+                ? 'border-accent-orange text-primary-950'
+                : 'border-transparent text-primary-950/40 hover:text-primary-950/80',
+            ]}
+          >
+            {entry.year}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Year panels -->
+  {
+    years.map((entry, i) => (
+      <div
+        role="tabpanel"
+        id={`year-panel-${entry.year}`}
+        data-year-panel={entry.year}
+        aria-labelledby={`year-tab-${entry.year}`}
+        hidden={i !== 0}
+        class="pt-10"
+      >
+        <div class="grid gap-x-12 gap-y-8 lg:grid-cols-12">
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class:list={['border px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em]', medalClass(entry.medal)]}>
+                {entry.medal === 'TBC' ? 'Result to be confirmed' : `${entry.medal} Medal`}
+              </span>
+              {entry.track !== 'TBC' && (
+                <span class="border border-primary-950/20 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-primary-950/55">
+                  {entry.track}
+                </span>
+              )}
+            </div>
+
+            <h3 class="mt-5 font-display text-2xl font-bold tracking-tight text-primary-950">{entry.project}</h3>
+            {entry.needsReview && (
+              <p class="mt-3 border-l-2 border-accent-orange bg-primary-50 px-3 py-2 text-sm text-primary-950/60">
+                Details for this year still need to be filled in — see docs/UPDATING_THE_TEAM.md
+              </p>
+            )}
+            <p class="mt-4 leading-relaxed text-primary-950/70">{entry.blurb}</p>
+
+            <a
+              href={entry.wikiUrl}
+              class="mt-6 inline-flex items-center gap-2 border-b border-accent-orange pb-0.5 text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:border-primary-950 hover:text-primary-950"
+            >
+              View the {entry.year} wiki
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="lg:col-span-5">
+            <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/40">Awards</h4>
+            {entry.awards.length > 0 ? (
+              <ul class="mt-4 border-t border-primary-950/10">
+                {entry.awards.map((award) => (
+                  <li class="flex items-baseline gap-3 border-b border-primary-950/10 py-2.5 text-primary-950/80">
+                    <span class="text-accent-orange">&#8226;</span>
+                    {award}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="mt-4 border-t border-primary-950/10 pt-3 text-sm text-primary-950/45">
+                Awards to be added — see docs/UPDATING_THE_TEAM.md
+              </p>
+            )}
+
+            {/*
+              TODO (human): add photos for this year to `photos` in src/data/achievements.json.
+              Upload via https://uploads.igem.org and paste the resulting URL, or place files
+              in public/images/achievements/ and use "/images/achievements/filename.jpg".
+            */}
+            <h4 class="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/40">Gallery</h4>
+            <div class="mt-4 grid grid-cols-3 gap-2">
+              {entry.photos.length > 0
+                ? entry.photos.map((photo) => (
+                    <div class="aspect-square overflow-hidden border border-primary-950/15">
+                      <img src={photo} alt={`iGEM Toronto ${entry.year}`} loading="lazy" class="h-full w-full object-cover" />
+                    </div>
+                  ))
+                : Array.from({ length: 3 }).map(() => (
+                    <div class="flex aspect-square items-center justify-center border border-dashed border-primary-950/20 bg-primary-50 px-2 text-center">
+                      <span class="text-[10px] uppercase tracking-wider text-primary-950/35">Photo</span>
+                    </div>
+                  ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-year-tab]');
+  const panels = document.querySelectorAll<HTMLElement>('[data-year-panel]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const year = tab.dataset.yearTab;
+
+      tabs.forEach((other) => {
+        const active = other === tab;
+        other.setAttribute('aria-selected', String(active));
+        other.classList.toggle('border-accent-orange', active);
+        other.classList.toggle('text-primary-950', active);
+        other.classList.toggle('border-transparent', !active);
+        other.classList.toggle('text-primary-950/40', !active);
+        other.classList.toggle('hover:text-primary-950/80', !active);
+      });
+
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.yearPanel !== year;
+      });
+    });
+  });
+</script>

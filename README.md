@@ -1,6 +1,9 @@
 # iGEM Toronto Website
 
-The chapter website for iGEM Toronto, built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com), deployed to GitHub Pages.
+The chapter website for iGEM Toronto, built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
+
+<!-- TODO (human): paste the live Vercel URL here once the project is deployed. -->
+**Live site:** _not deployed yet — see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)_
 
 > Rebuilt in 2026 from the previous Flask/Jinja site (which was adapted from the iGEM Toronto 2023 wiki).
 
@@ -21,17 +24,20 @@ Requires Node.js (LTS). No Python needed anymore.
 ├── public/                  → static assets served as-is
 │   └── images/              → local images (placeholder headshot, sponsor logos)
 ├── src/
-│   ├── components/          → Header, Footer, MemberCard, SectionHeading
+│   ├── components/          → Header, Footer, MemberBubble, AchievementsTimeline, MemberPie, ...
 │   ├── data/
 │   │   ├── navigation.json  → main navigation bar config
-│   │   └── team.json        → team roster (drives the People page)
+│   │   ├── team.json        → team roster (drives the People page and the pie chart)
+│   │   └── achievements.json→ competition history (drives the home page timeline)
 │   ├── layouts/
 │   │   └── BaseLayout.astro → HTML shell shared by all pages
 │   ├── pages/               → one .astro file per page (routes match filenames)
 │   └── styles/global.css    → Tailwind theme, brand colors, fonts
 ├── docs/
 │   ├── UPDATING_THE_TEAM.md → how to update the roster, photos, sponsors
+│   ├── DEPLOYMENT.md        → how to deploy to Vercel
 │   └── archive/team-2023.csv→ archived 2023 roster
+├── vercel.json              → Vercel build settings
 └── .github/workflows/       → build & deploy to GitHub Pages on push to main
 ```
 
@@ -51,6 +57,6 @@ Larger images (headshots, event photos) should be uploaded via [uploads.igem.org
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/build-and-deploy.yml`, which builds the site with Astro and deploys it to GitHub Pages.
+**See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** for the step-by-step Vercel setup. In short: import the GitHub repo into Vercel once, and every push to `main` redeploys automatically with a permanent URL.
 
-If the site is served from a project subpath (`https://<user>.github.io/<repo>/`), set `base` in `astro.config.mjs` accordingly — see the comment in that file.
+A GitHub Pages workflow (`.github/workflows/build-and-deploy.yml`) also still runs on push to `main`. It can be deleted once Vercel is the official home.

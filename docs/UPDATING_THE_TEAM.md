@@ -57,16 +57,66 @@ Most sponsor logo files were never committed to the old repository, so the Spons
 
 Also review the tier assignments — they were carried over from the 2023 sponsor list.
 
-## 4. Other content TODOs
+## 4. Competition history (home page timeline)
+
+The "Our track record" section on the home page is driven by [`src/data/achievements.json`](../src/data/achievements.json). Each year is one entry:
+
+```json
+{
+  "year": "2025",
+  "project": "Project Name",
+  "track": "Bioremediation",
+  "medal": "Gold",
+  "awards": ["Best Model", "Nominated — Best Wiki"],
+  "wikiUrl": "https://2025.igem.wiki/toronto/",
+  "blurb": "Two to four sentences about the problem, the approach, and the outcome.",
+  "photos": [],
+  "needsReview": false
+}
+```
+
+Notes:
+
+- **`needsReview`** — leave `true` while the entry is still incomplete; the site shows a small "details still need to be filled in" note. Set it to `false` once the year is accurate, and the note disappears.
+- **`medal`** — `"Gold"`, `"Silver"`, `"Bronze"`, or `"TBC"`. The badge is colored automatically.
+- **`photos`** — a list of image URLs. Leave it empty (`[]`) to show placeholder tiles. Upload photos via [uploads.igem.org](https://uploads.igem.org) and paste the URLs, or put files in `public/images/achievements/` and use `"/images/achievements/filename.jpg"`.
+- **`summary`** at the top of the file holds the total medal counts shown above the timeline — update these when results change.
+
+### Adding a year
+
+Only years with real, confirmed details are listed (currently **2024, 2022, 2019**). Earlier years and 2025 were left out rather than shown as empty placeholders.
+
+To add one, copy an existing entry, paste it into `years` in the right chronological spot (newest first), and fill it in. Wiki URLs follow a predictable pattern:
+
+| Year | Wiki URL |
+|---|---|
+| 2025 | `https://2025.igem.wiki/toronto/` |
+| 2023 | `https://2023.igem.wiki/toronto/` |
+| 2018 | `https://2018.igem.org/Team:Toronto/` |
+| 2017 | `https://2017.igem.org/Team:Toronto/` |
+
+The year tabs and the default-selected year are generated from this list automatically — no code changes needed.
+
+## 5. Division descriptions and photos
+
+The Divisions page copy lives in the frontmatter of [`src/pages/divisions.astro`](../src/pages/divisions.astro). Each division has a `lede` (one punchy sentence), a `description` (2–3 sentences), and three `highlights` bullets.
+
+The current text is **interim** — it should be replaced with the official wording from the "iGEM Toronto Division Info 2026" doc.
+
+To add a division photo, set `photo` from `null` to an image URL (uploads.igem.org) or a local path like `/images/divisions/wet-lab.jpg`. Landscape images work best (they are cropped to 16:9).
+
+## 6. Other content TODOs
 
 Search the codebase for `TODO (human)` to find every spot that needs real content:
 
-- **Home page** (`src/pages/index.astro`): the "most recent competition results" sentence and the medal counts in the stats strip.
+- **Home page** (`src/pages/index.astro`): the hero tagline is a single line if the team lands on a new one.
 - **Favicon** (`src/layouts/BaseLayout.astro`): add a `favicon.svg` to `public/`.
 - **Collaborations** (`src/pages/collaborations.astro`): the listed events are from the 2023 cycle; add this year's events to the list in the frontmatter.
-- **Navigation** (`src/data/navigation.json`): add a link to the newest project wiki when it exists.
+- **Sponsors** (`src/pages/sponsors.astro`): tiers and logos still reflect the 2023 sponsor list.
+- **Navigation** (`src/data/navigation.json`): add a link to the newest project wiki each year.
+- **Deployment** (`astro.config.mjs`, `README.md`): set the live URL once Vercel is set up.
 
-## 5. Seeing your changes
+## 7. Seeing your changes
 
 - Locally: run `npm install` once, then `npm run dev` and open http://localhost:4321.
-- In production: pushing to the `main` branch triggers the GitHub Actions workflow, which builds and deploys to GitHub Pages automatically (see `.github/workflows/build-and-deploy.yml`).
+- In production: pushing to the `main` branch redeploys the site automatically — see [DEPLOYMENT.md](DEPLOYMENT.md).

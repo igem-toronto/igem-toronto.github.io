@@ -1,0 +1,28 @@
+# Curated historical photographs for the site gallery.
+#
+# The full 161 MB archive of scraped wiki images lives outside this repo (see
+# docs/HISTORY_AND_GALLERY.md). Roughly 90% of it is headshots, sponsor logos and
+# wiki chrome. This file lists the small subset that is actually a photograph of
+# people doing something, which is what the gallery is for.
+#
+# Columns are TAB separated:
+#   source_file  year  output_name  category  caption
+#
+# category must be one of: team-photo, lab, jamboree, outreach, social
+# caption must not name individuals (see docs/HISTORY_AND_GALLERY.md).
+#
+# Run ./scripts/import-history-photos.sh after editing.
+
+2006_1_stanmikeniljovon.jpg	2006	lab-training-01.webp	lab	Blue Water members during lab training
+2006_2_iranamoarash.jpg	2006	lab-training-02.webp	lab	Blue Water members during lab training
+2006_3_fevejessicafarshidherak.jpg	2006	lab-training-03.webp	lab	Blue Water members during lab training
+2006_4_ramcharlesherak.jpg	2006	lab-training-04.webp	lab	Blue Water members during lab training
+2006_5_hokwongeorgeherak.jpg	2006	lab-training-05.webp	lab	Blue Water members during lab training
+2006_6_natlinananho.jpg	2006	lab-training-06.webp	lab	Blue Water members during lab training
+2006_7_tingelliotsara.jpg	2006	lab-training-07.webp	lab	Blue Water members in the teaching lab
+2006_8_herakcharles.jpg	2006	lab-training-08.webp	lab	Blue Water members during lab training
+2009_8_tmdt-team2.jpg	2009	team-in-the-lab.webp	team-photo	The Encapsulator team in the lab at MaRS, in team shirts
+2010_2_team.jpg	2010	team-outside.webp	team-photo	The 2010 team outside on campus
+2016_18_2016-team.jpg	2016	team-front-campus.webp	team-photo	The 2016 team on front campus, University College behind them
+2018_1_ramen-burger.jpg	2018	team-dinner-ramen-burger.webp	social	A ramen burger from a 2018 team dinner — the only candid photo that survives from that year
+2023_25_img-3314.jpg	2023	team-stairs.webp	team-photo	The Methanivore team in Toronto

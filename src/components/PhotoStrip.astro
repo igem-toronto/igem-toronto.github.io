@@ -1,0 +1,54 @@
+---
+/**
+ * Compact three-up photo strip for the home page timeline panels.
+ *
+ * Not interactive — the full set, with the lightbox, lives on the season page.
+ * Seasons without photographs render dashed slots so the gap stays visible.
+ */
+import { photosFor, photoUrl, seasonUrl } from '../lib/history';
+
+interface Props {
+  year: number;
+  limit?: number;
+}
+
+const { year, limit = 3 } = Astro.props;
+
+const photos = photosFor(year).slice(0, limit);
+const emptySlots = Math.max(0, limit - photos.length);
+const total = photosFor(year).length;
+---
+
+<div>
+  <div class="flex items-baseline justify-between">
+    <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/40">Photographs</h4>
+    {total > limit && (
+      <a href={seasonUrl(year)} class="text-xs uppercase tracking-wider text-accent-orange hover:text-primary-950">
+        All {total}
+      </a>
+    )}
+  </div>
+
+  <div class="mt-4 grid grid-cols-3 gap-2">
+    {
+      photos.map((photo) => (
+        <a href={seasonUrl(year)} class="block aspect-square overflow-hidden border border-primary-950/15">
+          <img
+            src={photoUrl(photo.file)}
+            alt={photo.caption}
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+        </a>
+      ))
+    }
+    {
+      Array.from({ length: emptySlots }).map(() => (
+        <div class="flex aspect-square items-center justify-center border border-dashed border-primary-950/20 bg-primary-50 px-2 text-center">
+          <span class="text-[10px] uppercase tracking-wider text-primary-950/35">None yet</span>
+        </div>
+      ))
+    }
+  </div>
+</div>

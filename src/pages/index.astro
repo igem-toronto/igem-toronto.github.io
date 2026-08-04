@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import AchievementsTimeline from '../components/AchievementsTimeline.astro';
+import HistoryTimeline from '../components/HistoryTimeline.astro';
 import MemberPie from '../components/MemberPie.astro';
 
 const logoMarkUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/logo-mark.png`;
@@ -73,9 +73,10 @@ const mailingListUrl =
           excellence.
         </p>
         <p>
-          Since 2007, we have represented the University of Toronto at the undergraduate level, spanning wet lab
-          research, computational modelling, hardware, human practices, and entrepreneurship. Our work has culminated
-          in four gold medals, four silver medals, four bronze medals, and numerous special prizes.
+          We have represented the University of Toronto since 2005, spanning wet lab research, computational
+          modelling, hardware, human practices, and entrepreneurship. Twenty-one seasons have produced six gold
+          medals, three silver, four bronze, and a run of special prizes that includes back-to-back Top 10
+          finishes in 2024 and 2025.
         </p>
       </div>
     </div>
@@ -88,9 +89,21 @@ const mailingListUrl =
         title="Our track record"
         eyebrow="Competition history"
         number="02"
-        subtitle="Every year we take a new project to the iGEM Giant Jamboree. Select a year to see the project, the results, and the wiki we published."
+        subtitle="Every season since 2005, including the years the record is incomplete. Select a year for the short version, then open it for the project, the awards, and the photographs that survive."
       />
-      <AchievementsTimeline />
+      <HistoryTimeline />
+
+      <div class="mt-12 border-t border-primary-950/15 pt-8">
+        <a
+          href={base + '/history/'}
+          class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+        >
+          The full history
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 

@@ -46,7 +46,7 @@ If a photo URL breaks, the card automatically falls back to the placeholder silh
 
 ## 2. Team group photo (People page)
 
-The People page currently shows a dashed "Team photo coming soon" box. To replace it, open [`src/pages/people.astro`](../src/pages/people.astro), find the `TODO (human)` comment near the top of the page body, and swap the placeholder `<div>` for an `<img>` tag as shown in that comment. The 2023 photo is still available at `https://static.igem.wiki/teams/4615/wiki/hpphoto/img-3314.jpg`.
+The People page currently shows a dashed "Team photo coming soon" box. To replace it, open [`src/pages/people.astro`](../src/pages/people.astro), find the `TODO (human)` comment near the top of the page body, and swap the placeholder `<div>` for an `<img>` tag as shown in that comment. The 2023 team photo is committed to this repo at `/images/history/2023/team-stairs.webp` if you want a stand-in until the 2026 photo exists.
 
 ## 3. Sponsor logos
 
@@ -57,45 +57,24 @@ Most sponsor logo files were never committed to the old repository, so the Spons
 
 Also review the tier assignments — they were carried over from the 2023 sponsor list.
 
-## 4. Competition history (home page timeline)
+## 4. Competition history and photographs
 
-The "Our track record" section on the home page is driven by [`src/data/achievements.json`](../src/data/achievements.json). Each year is one entry:
+The competition record moved out of this guide when the site grew from three seasons to
+all twenty-one. It now has its own document:
 
-```json
-{
-  "year": "2025",
-  "project": "Project Name",
-  "track": "Bioremediation",
-  "medal": "Gold",
-  "awards": ["Best Model", "Nominated — Best Wiki"],
-  "wikiUrl": "https://2025.igem.wiki/toronto/",
-  "blurb": "Two to four sentences about the problem, the approach, and the outcome.",
-  "photos": [],
-  "needsReview": false
-}
-```
+**→ [HISTORY_AND_GALLERY.md](HISTORY_AND_GALLERY.md)**
 
-Notes:
+That covers adding this year's season to `src/data/history.json`, adding photographs to
+`src/data/gallery.json` and `public/images/history/`, and the rules about what the site
+does and does not publish. `src/data/achievements.json` no longer exists; `history.json`
+replaced it.
 
-- **`needsReview`** — leave `true` while the entry is still incomplete; the site shows a small "details still need to be filled in" note. Set it to `false` once the year is accurate, and the note disappears.
-- **`medal`** — `"Gold"`, `"Silver"`, `"Bronze"`, or `"TBC"`. The badge is colored automatically.
-- **`photos`** — a list of image URLs. Leave it empty (`[]`) to show placeholder tiles. Upload photos via [uploads.igem.org](https://uploads.igem.org) and paste the URLs, or put files in `public/images/achievements/` and use `"/images/achievements/filename.jpg"`.
-- **`summary`** at the top of the file holds the total medal counts shown above the timeline — update these when results change.
+Short version, at the end of a competition season:
 
-### Adding a year
-
-Only years with real, confirmed details are listed (currently **2024, 2022, 2019**). Earlier years and 2025 were left out rather than shown as empty placeholders.
-
-To add one, copy an existing entry, paste it into `years` in the right chronological spot (newest first), and fill it in. Wiki URLs follow a predictable pattern:
-
-| Year | Wiki URL |
-|---|---|
-| 2025 | `https://2025.igem.wiki/toronto/` |
-| 2023 | `https://2023.igem.wiki/toronto/` |
-| 2018 | `https://2018.igem.org/Team:Toronto/` |
-| 2017 | `https://2017.igem.org/Team:Toronto/` |
-
-The year tabs and the default-selected year are generated from this list automatically — no code changes needed.
+1. Add an entry to the top of `years` in `src/data/history.json`.
+2. Update the `summary` block in the same file.
+3. Add any photographs to `src/data/gallery.json`.
+4. Run `npm run check:history`.
 
 ## 5. Division descriptions and photos
 
@@ -113,7 +92,7 @@ Search the codebase for `TODO (human)` to find every spot that needs real conten
 - **Favicon** (`src/layouts/BaseLayout.astro`): add a `favicon.svg` to `public/`.
 - **Collaborations** (`src/pages/collaborations.astro`): the listed events are from the 2023 cycle; add this year's events to the list in the frontmatter.
 - **Sponsors** (`src/pages/sponsors.astro`): tiers and logos still reflect the 2023 sponsor list.
-- **Navigation** (`src/data/navigation.json`): add a link to the newest project wiki each year.
+- **Navigation** (`src/data/navigation.json`): add a link to the newest project wiki each year under "History".
 - **Deployment** (`astro.config.mjs`, `README.md`): set the live URL once Vercel is set up.
 
 ## 7. Seeing your changes

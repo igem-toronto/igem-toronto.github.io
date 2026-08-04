@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "npm run check:history && astro build",
+    "preview": "astro preview",
+    "check:history": "node scripts/check-history-data.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",

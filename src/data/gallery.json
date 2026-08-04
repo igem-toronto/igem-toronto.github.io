@@ -1,0 +1,117 @@
+{
+  "_README": "Historical photographs, grouped by season. Every season in history.json has a key here, including the empty ones — an empty array is what makes the site render a labelled 'no photos yet' slot, which is deliberate. `file` is relative to public/images/history/. To add photos: drop them in public/images/history/<year>/ (or list them in scripts/curated-photos.tsv and run scripts/import-history-photos.sh) and add an entry here. Captions must not name individuals. Full instructions: docs/HISTORY_AND_GALLERY.md",
+  "categories": [
+    { "id": "team-photo", "label": "Team photos" },
+    { "id": "lab", "label": "In the lab" },
+    { "id": "jamboree", "label": "Jamboree" },
+    { "id": "outreach", "label": "Outreach" },
+    { "id": "social", "label": "Socials" }
+  ],
+  "years": {
+    "2026": [],
+    "2025": [],
+    "2024": [],
+    "2023": [
+      {
+        "file": "2023/team-stairs.webp",
+        "caption": "The Methanivore team in Toronto",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2022": [],
+    "2021": [],
+    "2019": [],
+    "2018": [
+      {
+        "file": "2018/team-dinner-ramen-burger.webp",
+        "caption": "A ramen burger from a 2018 team dinner — the only candid photograph that survives from that season",
+        "category": "social",
+        "credit": ""
+      }
+    ],
+    "2017": [],
+    "2016": [
+      {
+        "file": "2016/team-front-campus.webp",
+        "caption": "The 2016 team on front campus, University College behind them",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2015": [],
+    "2014": [],
+    "2013": [],
+    "2012": [],
+    "2011": [],
+    "2010": [
+      {
+        "file": "2010/team-outside.webp",
+        "caption": "The 2010 team on campus",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2009": [
+      {
+        "file": "2009/team-in-the-lab.webp",
+        "caption": "The Encapsulator team in the lab at MaRS, in team shirts",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2008": [],
+    "2007": [],
+    "2006": [
+      {
+        "file": "2006/lab-training-07.webp",
+        "caption": "Blue Water members in the teaching lab",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2006/lab-training-01.webp",
+        "caption": "Blue Water members during lab training",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2006/lab-training-02.webp",
+        "caption": "Blue Water members during lab training",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2006/lab-training-03.webp",
+        "caption": "Blue Water members during lab training",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2006/lab-training-04.webp",
+        "caption": "Blue Water members during lab training",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2006/lab-training-05.webp",
+        "caption": "Blue Water members during lab training",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2006/lab-training-06.webp",
+        "caption": "Blue Water members during lab training",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2006/lab-training-08.webp",
+        "caption": "Blue Water members during lab training",
+        "category": "lab",
+        "credit": ""
+      }
+    ],
+    "2005": []
+  }
+}

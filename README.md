@@ -22,21 +22,33 @@ Requires Node.js (LTS). No Python needed anymore.
 
 ```
 ├── public/                  → static assets served as-is
-│   └── images/              → local images (placeholder headshot, sponsor logos)
+│   └── images/
+│       ├── history/<year>/  → curated historical photographs (WebP, ≤1600px)
+│       └── sponsors/        → sponsor logos
 ├── src/
-│   ├── components/          → Header, Footer, MemberBubble, AchievementsTimeline, MemberPie, ...
+│   ├── components/          → Header, Footer, MemberBubble, HistoryTimeline, PhotoGrid, TeamSizeChart, ...
 │   ├── data/
 │   │   ├── navigation.json  → main navigation bar config
-│   │   ├── team.json        → team roster (drives the People page and the pie chart)
-│   │   └── achievements.json→ competition history (drives the home page timeline)
+│   │   ├── team.json        → current roster (People page + pie chart)
+│   │   ├── history.json     → all 21 seasons (home timeline, /history/, /history/<year>/)
+│   │   └── gallery.json     → photographs by season (/gallery/ + season pages)
+│   ├── lib/history.ts       → shared helpers for reading the two files above
 │   ├── layouts/
 │   │   └── BaseLayout.astro → HTML shell shared by all pages
 │   ├── pages/               → one .astro file per page (routes match filenames)
+│   │   ├── history/index.astro  → the full record
+│   │   ├── history/[year].astro → one page per season, generated from history.json
+│   │   └── gallery.astro        → all photographs, filterable
 │   └── styles/global.css    → Tailwind theme, brand colors, fonts
+├── scripts/
+│   ├── check-history-data.mjs    → validates history.json + gallery.json (runs on build)
+│   ├── import-history-photos.sh  → resize/convert curated photos into public/images/history/
+│   └── curated-photos.tsv        → the curation list that script reads
 ├── docs/
-│   ├── UPDATING_THE_TEAM.md → how to update the roster, photos, sponsors
-│   ├── DEPLOYMENT.md        → how to deploy to Vercel
-│   └── archive/team-2023.csv→ archived 2023 roster
+│   ├── UPDATING_THE_TEAM.md    → how to update the roster, photos, sponsors
+│   ├── HISTORY_AND_GALLERY.md  → how to add a season and add photographs
+│   ├── DEPLOYMENT.md           → how to deploy to Vercel
+│   └── archive/team-2023.csv   → archived 2023 roster
 ├── vercel.json              → Vercel build settings
 └── .github/workflows/       → build & deploy to GitHub Pages on push to main
 ```
@@ -49,7 +61,14 @@ Requires Node.js (LTS). No Python needed anymore.
 - Replacing the placeholder team photo and sponsor logos
 - All remaining `TODO (human)` markers in the codebase
 
+For the competition record and photographs, see
+**[docs/HISTORY_AND_GALLERY.md](docs/HISTORY_AND_GALLERY.md)** — how to add a season to
+`src/data/history.json` and photographs to `src/data/gallery.json`. Run `npm run check:history`
+after editing either; the build runs it too and fails if the data is inconsistent.
+
 The site currently ships with **placeholder team members** — the real roster needs to be filled in.
+The gallery is also thin on purpose: only six of twenty-one seasons have any photographs, and
+`/gallery/` lists the empty ones so the gaps stay visible.
 
 ## Images and the iGEM CDN
 

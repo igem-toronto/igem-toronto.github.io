@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import TeamSizeChart from '../../components/TeamSizeChart.astro';
+import {
+  allSeasons,
+  ledgerStats,
+  medalClass,
+  medalLabel,
+  photoCount,
+  projectLabel,
+  seasonUrl,
+  skippedYears,
+  summary,
+} from '../../lib/history';
+
+const stats = ledgerStats();
+const skipped = new Map(skippedYears.map((entry) => [entry.year, entry.reason]));
+
+// Interleave the seasons with the years nobody competed, newest first, so the
+// index reads as a continuous run of years rather than a list with silent holes.
+type Row =
+  | { kind: 'season'; season: (typeof allSeasons)[number] }
+  | { kind: 'gap'; year: number; reason: string };
+
+const rows: Row[] = [];
+for (let i = 0; i < allSeasons.length; i++) {
+  rows.push({ kind: 'season', season: allSeasons[i] });
+  const next = allSeasons[i + 1];
+  if (!next) continue;
+  for (let year = allSeasons[i].year - 1; year > next.year; year--) {
+    rows.push({ kind: 'gap', year, reason: skipped.get(year) ?? 'No team entered this year.' });
+  }
+}
+---
+
+<BaseLayout
+  title="History"
+  description="Every iGEM Toronto season since 2005 — projects, tracks, results, and team sizes."
+>
+  <PageHeader
+    eyebrow="Since 2005"
+    title="History"
+    lede={`Twenty-one seasons, ${summary.memberYears} member-years, and ${summary.alumni} people. This is the full record, including the years that went badly and the ones where the evidence has not survived.`}
+  />
+
+  <!-- Ledger -->
+  <section class="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 divide-x divide-y divide-primary-950/10 border border-primary-950/10 sm:grid-cols-4 sm:divide-y-0">
+      {
+        stats.map((stat) => (
+          <div class="px-6 py-8">
+            <div class="font-display text-3xl font-bold tabular-nums text-primary-950">{stat.value}</div>
+            <div class="mt-2 text-xs font-medium uppercase tracking-[0.15em] text-primary-950/50">{stat.label}</div>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-4 text-sm text-primary-950/55">
+      {summary.seasonsCompeted} of those {summary.seasonsRegistered} seasons reached the Jamboree —
+      {summary.gold} gold, {summary.silver} silver and {summary.bronze} bronze medals between them.
+    </p>
+  </section>
+
+  <!-- Team size over time -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="Team size, season by season"
+      eyebrow="Growth"
+      number="01"
+      subtitle="Three people in 2008, when the team withdrew, to sixty-seven in 2024, the year it first placed in the Top 10. Select a bar to open that season."
+    />
+    <TeamSizeChart />
+  </section>
+
+  <!-- Year index -->
+  <section class="border-y border-primary-950/15 bg-primary-50">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionHeading
+        title="Every season"
+        eyebrow="The record"
+        number="02"
+        subtitle="Newest first. Select a year for the project, the full award list, and the photographs that survive."
+      />
+
+      <div class="border-t border-primary-950/15">
+        {
+          rows.map((row) =>
+            row.kind === 'gap' ? (
+              <div class="flex items-baseline gap-5 border-b border-primary-950/10 px-1 py-4">
+                <span class="w-14 shrink-0 font-display text-lg font-bold tabular-nums text-primary-950/25">
+                  {row.year}
+                </span>
+                <span class="text-sm italic text-primary-950/45">{row.reason}</span>
+              </div>
+            ) : (
+              <a
+                href={seasonUrl(row.season.year)}
+                class="group flex flex-col gap-2 border-b border-primary-950/10 px-1 py-5 transition-colors hover:bg-white sm:flex-row sm:items-baseline sm:gap-5"
+              >
+                <span class="w-14 shrink-0 font-display text-lg font-bold tabular-nums text-primary-950">
+                  {row.season.year}
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block font-medium text-primary-950 group-hover:text-accent-orange">
+                    {projectLabel(row.season)}
+                  </span>
+                  <span class="mt-1 block text-sm text-primary-950/50">
+                    {row.season.track ?? 'No track recorded'} · {row.season.teamSize} members
+                    {row.season.nickname && ` · ${row.season.nickname}`}
+                  </span>
+                </span>
+                <span
+                  class:list={[
+                    'shrink-0 self-start border px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] sm:self-auto',
+                    medalClass(row.season.medal),
+                  ]}
+                >
+                  {medalLabel(row.season)}
+                </span>
+              </a>
+            ),
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Provenance -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading title="About this record" eyebrow="Provenance" number="03" />
+      </div>
+      <div class="space-y-5 leading-relaxed text-primary-950/75 lg:col-span-8">
+        <p>
+          Rosters, team sizes and results come from iGEM's own team API, cross-checked against each
+          season's wiki. Where the two disagree, the wiki wins for project names and the API wins for
+          who was on the team.
+        </p>
+        <p>
+          <strong class="font-semibold text-primary-950">"No result recorded" is not "no medal."</strong>
+          iGEM's awards API returns nothing before 2009, and for 2005, 2006, 2010, 2011 and 2012 no
+          results page survives anywhere we can reach. Those seasons may well have won something. The
+          2007 silver is listed here only because the original 2007 results page still exists — the API
+          has no record of it.
+        </p>
+        <p>
+          Two seasons have no recoverable project. In 2011 and 2021 the project wiki was left as the
+          unedited iGEM template, so the name is gone even though the roster shows a full team. 2008 is
+          the one year the chapter registered and then withdrew.
+        </p>
+        <p>
+          {photoCount()} photographs have been recovered so far, from six seasons. Everything else that
+          survives on the old wikis is headshots, sponsor logos and page furniture. If you have real
+          photographs from any season — lab work, the Jamboree, outreach, socials — they are wanted.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

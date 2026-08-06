@@ -1,40 +1,733 @@
 {
   "_README": "Historical photographs, grouped by season. Every season in history.json has a key here, including the empty ones — an empty array is what makes the site render a labelled 'no photos yet' slot, which is deliberate. `file` is relative to public/images/history/. To add photos: drop them in public/images/history/<year>/ (or list them in scripts/curated-photos.tsv and run scripts/import-history-photos.sh) and add an entry here. Captions must not name individuals. Full instructions: docs/HISTORY_AND_GALLERY.md",
   "categories": [
-    { "id": "team-photo", "label": "Team photos" },
-    { "id": "lab", "label": "In the lab" },
-    { "id": "jamboree", "label": "Jamboree" },
-    { "id": "outreach", "label": "Outreach" },
-    { "id": "social", "label": "Socials" }
+    {
+      "id": "team-photo",
+      "label": "Team photos"
+    },
+    {
+      "id": "lab",
+      "label": "In the lab"
+    },
+    {
+      "id": "jamboree",
+      "label": "Jamboree"
+    },
+    {
+      "id": "outreach",
+      "label": "Outreach"
+    },
+    {
+      "id": "social",
+      "label": "Socials"
+    },
+    {
+      "id": "conference",
+      "label": "Conferences"
+    }
   ],
   "years": {
     "2026": [],
-    "2025": [],
-    "2024": [],
+    "2025": [
+      {
+        "file": "2025/engineering-clubs-fair-01.webp",
+        "caption": "Engineering Clubs Fair",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2025/engineering-clubs-fair-02.webp",
+        "caption": "Engineering Clubs Fair",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2025/team-photo-01.webp",
+        "caption": "The 2025 team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2025/team-photo-02.webp",
+        "caption": "The 2025 team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2025/igem-jamboree-01.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/igem-toronto-mentorship-program-kickoff-oct--01.webp",
+        "caption": "Mentorship programme kickoff, 3 October 2025",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2025/igem-toronto-mentorship-program-kickoff-oct--02.webp",
+        "caption": "Mentorship programme kickoff, 3 October 2025",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2025/igem-toronto-mentorship-program-kickoff-oct--03.webp",
+        "caption": "Mentorship programme kickoff, 3 October 2025",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2025/igem-toronto-mentorship-program-kickoff-oct--04.webp",
+        "caption": "Mentorship programme kickoff, 3 October 2025",
+        "category": "outreach",
+        "credit": ""
+      }
+    ],
+    "2024": [
+      {
+        "file": "2024/igem-grand-jamboree-2024-01.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-grand-jamboree-2024-02.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-grand-jamboree-2024-03.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/synpec-cloning-workshop-spring-2024-cohort-01.webp",
+        "caption": "SynPEC cloning workshop, spring 2024",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2024/synpec-cloning-workshop-spring-2024-cohort-02.webp",
+        "caption": "SynPEC cloning workshop, spring 2024",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2024/synpec-cloning-workshop-spring-2024-cohort-03.webp",
+        "caption": "SynPEC cloning workshop, spring 2024",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2024/synpec-cloning-workshop-spring-2024-cohort-04.webp",
+        "caption": "SynPEC cloning workshop, spring 2024",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-grand-jamboree-2024-04.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-grand-jamboree-2024-05.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-grand-jamboree-2024-06.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-grand-jamboree-2024-07.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-grand-jamboree-2024-08.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-grand-jamboree-2024-09.webp",
+        "caption": "Grand Jamboree 2024 — the year Toronto first placed in the Top 10",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/ontheverge-2024-mcgill-igem-synbio-ai-confer-01.webp",
+        "caption": "OnTheVerge, McGill iGEM SynBio+AI conference, Montreal, September 2024",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2024/igem-debate-competition-hart-house-01.webp",
+        "caption": "Debate competition at Hart House, on AI-driven approaches to antibiotic resistance",
+        "category": "outreach",
+        "credit": ""
+      }
+    ],
     "2023": [
       {
         "file": "2023/team-stairs.webp",
         "caption": "The Methanivore team in Toronto",
         "category": "team-photo",
         "credit": ""
+      },
+      {
+        "file": "2023/landfill-site-visit-london-landfill-w12a-01.webp",
+        "caption": "Landfill site visit, W12A London, 17 August 2023 — the field work behind Methanivore",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2023/landfill-site-visit-london-landfill-w12a-02.webp",
+        "caption": "Landfill site visit, W12A London, 17 August 2023 — the field work behind Methanivore",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2023/landfill-site-visit-london-landfill-w12a-03.webp",
+        "caption": "Landfill site visit, W12A London, 17 August 2023 — the field work behind Methanivore",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2023/biozone-co2-conference-01.webp",
+        "caption": "BioZone CO₂ Conference",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2023/biozone-co2-conference-02.webp",
+        "caption": "BioZone CO₂ Conference",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2023/biozone-co2-conference-03.webp",
+        "caption": "BioZone CO₂ Conference",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2023/in-vitro-conference-uoft-in-vitro-judging-01.webp",
+        "caption": "In Vitro Conference, 27 August 2023 — hosted by iGEM McGill",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2023/landfill-site-visit-london-landfill-w12a-04.webp",
+        "caption": "Landfill site visit, W12A London, 17 August 2023 — the field work behind Methanivore",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2023/landfill-site-visit-london-landfill-w12a-05.webp",
+        "caption": "Landfill site visit, W12A London, 17 August 2023 — the field work behind Methanivore",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2023/landfill-site-visit-london-landfill-w12a-06.webp",
+        "caption": "Landfill site visit, W12A London, 17 August 2023 — the field work behind Methanivore",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2023/gemstart-01.webp",
+        "caption": "GemStart, 3 June 2023",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2023/gemstart-02.webp",
+        "caption": "GemStart, 3 June 2023",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2023/igem-grand-jamboree-2023-01.webp",
+        "caption": "Grand Jamboree 2023",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2023/igem-grand-jamboree-2023-02.webp",
+        "caption": "Grand Jamboree 2023",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2023/igem-grand-jamboree-2023-03.webp",
+        "caption": "Grand Jamboree 2023",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2023/igem-grand-jamboree-2023-04.webp",
+        "caption": "Grand Jamboree 2023",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2023/igem-grand-jamboree-2023-05.webp",
+        "caption": "Grand Jamboree 2023",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2023/in-vitro-conference-uoft-in-vitro-judging-02.webp",
+        "category": "conference",
+        "caption": "In Vitro Conference, 27 August 2023 — hosted by iGEM McGill"
+      },
+      {
+        "file": "2023/in-vitro-conference-uoft-in-vitro-judging-03.webp",
+        "category": "conference",
+        "caption": "In Vitro Conference, 27 August 2023 — hosted by iGEM McGill"
+      },
+      {
+        "file": "2023/clubs-fair-01.webp",
+        "category": "outreach",
+        "caption": "Fall Clubs Fair, 6 September 2023"
+      },
+      {
+        "file": "2023/the-cannon-article-01.webp",
+        "category": "outreach",
+        "caption": "The Cannon, October 2023 — the team's article on landfill gas emissions in U of T's engineering magazine"
       }
     ],
-    "2022": [],
-    "2021": [],
-    "2019": [],
+    "2022": [
+      {
+        "file": "2022/canada-mini-jamboree-montreal-01.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-02.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-03.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-04.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-05.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-06.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-07.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-08.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-09.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-10.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-11.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/canada-mini-jamboree-montreal-12.webp",
+        "caption": "Canada Mini Jamboree, Montreal, August 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/igem-grand-jamboree-2022-paris-01.webp",
+        "caption": "Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/igem-grand-jamboree-2022-paris-02.webp",
+        "caption": "Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/igem-grand-jamboree-2022-paris-03.webp",
+        "caption": "Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/igem-grand-jamboree-2022-paris-04.webp",
+        "caption": "Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/igem-grand-jamboree-2022-paris-05.webp",
+        "caption": "Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/igem-grand-jamboree-2022-paris-06.webp",
+        "caption": "Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/igem-grand-jamboree-2022-paris-07.webp",
+        "caption": "Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/igem-grand-jamboree-2022-paris-08.webp",
+        "caption": "Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      }
+    ],
+    "2021": [
+      {
+        "file": "2021/synbio-professional-panel-01.webp",
+        "caption": "SynBio Professional Panel",
+        "category": "conference",
+        "credit": ""
+      }
+    ],
+    "2019": [
+      {
+        "file": "2019/igem-toronto-2019-team-photo-01.webp",
+        "caption": "The 2019 team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2019/igem-giant-jamboree-2019-01.webp",
+        "caption": "Giant Jamboree, Boston, November 2019",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2019/igem-giant-jamboree-2019-02.webp",
+        "caption": "Giant Jamboree, Boston, November 2019",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2019/igem-giant-jamboree-2019-03.webp",
+        "caption": "Giant Jamboree, Boston, November 2019",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2019/club-carnival-2019-01.webp",
+        "caption": "Club Carnival, September 2019",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-01.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-02.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-03.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-04.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-05.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-06.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-07.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-08.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-09.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-10.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29th-feb-2020-11.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/igem-toronto-2019-2020-team-photo-01.webp",
+        "caption": "The 2019–2020 team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-01.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-02.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-03.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-04.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-05.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-06.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-07.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-08.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-09.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-10.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-11.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-12.webp",
+        "caption": "Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      }
+    ],
     "2018": [
       {
         "file": "2018/team-dinner-ramen-burger.webp",
         "caption": "A ramen burger from a 2018 team dinner — the only candid photograph that survives from that season",
         "category": "social",
         "credit": ""
+      },
+      {
+        "file": "2018/igem-toronto-2018-team-photo-01.webp",
+        "caption": "The 2018 team",
+        "category": "team-photo",
+        "credit": ""
       }
     ],
-    "2017": [],
+    "2017": [
+      {
+        "file": "2017/icon-a-thon-july-29-01.webp",
+        "caption": "Icon-A-Thon, 29 July 2017",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-july-29-02.webp",
+        "caption": "Icon-A-Thon, 29 July 2017",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-july-29-03.webp",
+        "caption": "Icon-A-Thon, 29 July 2017",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-july-29-04.webp",
+        "caption": "Icon-A-Thon, 29 July 2017",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-july-29-05.webp",
+        "caption": "Icon-A-Thon, 29 July 2017",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-july-29-06.webp",
+        "caption": "Icon-A-Thon, 29 July 2017",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-july-29-07.webp",
+        "caption": "Icon-A-Thon, 29 July 2017",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-july-29-08.webp",
+        "caption": "Icon-A-Thon, 29 July 2017",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-01.webp",
+        "caption": "Science Rendezvous, 13 May 2017",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-02.webp",
+        "caption": "Science Rendezvous, 13 May 2017",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-03.webp",
+        "caption": "Science Rendezvous, 13 May 2017",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-04.webp",
+        "caption": "Science Rendezvous, 13 May 2017",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-05.webp",
+        "caption": "Science Rendezvous, 13 May 2017",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-06.webp",
+        "caption": "Science Rendezvous, 13 May 2017",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-07.webp",
+        "caption": "Science Rendezvous, 13 May 2017",
+        "category": "outreach",
+        "credit": ""
+      }
+    ],
     "2016": [
       {
         "file": "2016/team-front-campus.webp",
         "caption": "The 2016 team on front campus, University College behind them",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2016/igem-toronto-2016-team-photo-01.webp",
+        "caption": "The 2016 team",
         "category": "team-photo",
         "credit": ""
       }

@@ -112,7 +112,9 @@
       "teamSize": 27,
       "status": "competed",
       "medal": "Gold",
-      "awards": ["Best Conservation Project — nominee"],
+      "awards": [
+        "Best Conservation Project — nominee"
+      ],
       "wikiUrl": "https://2022.igem.wiki/toronto/",
       "teamsUrl": "https://teams.igem.org/4479",
       "blurb": "A field-usable LAMP assay letting foresters detect oak wilt infection early enough to slow its spread.",
@@ -123,7 +125,7 @@
       "year": 2021,
       "teamName": "Toronto",
       "nickname": null,
-      "project": null,
+      "project": "Computational enzyme design for PET-degrading enzymes",
       "track": "Software",
       "section": "undergrad",
       "teamSize": 15,
@@ -132,9 +134,9 @@
       "awards": [],
       "wikiUrl": "https://2021.igem.org/Team:Toronto",
       "teamsUrl": "https://teams.igem.org/3949",
-      "blurb": "A fifteen-person software-track team that competed through the pandemic. The wiki was never filled in, so the project itself is lost.",
-      "story": "2021 is often assumed to be a blank year. It was not: the iGEM roster records a full fifteen-person team, entered in the Software track. What is missing is the wiki — it was left as the unedited iGEM template, so the project name and description cannot be recovered from any surviving source. No images survive either.",
-      "note": "Project unrecoverable — the wiki was left as the iGEM template."
+      "blurb": "A fifteen-person software-track team that competed through the pandemic. The wiki was never filled in, so for years the project was assumed lost — it was recovered in 2026 from a surviving slide deck.",
+      "story": "2021 is often assumed to be a blank year. It was not: the iGEM roster records a full fifteen-person team in the Software track, and the wiki was left as the unedited iGEM template, which is why the project vanished from the record.\n\nIt was recovered in 2026 from a presentation given to BioZone in April 2021. The team was doing computational enzyme design for PET-degrading enzymes: building a probability distribution over plastic-degrading enzymes, expanding sequence space with ProteinSolver, running a Rosetta design pipeline, and closing a dry-lab/wet-lab active-learning loop with a Gaussian process trained on 25 million sequences. The deck cites the 2019 team’s BioBrick parts as prior work, which makes 2019 and 2021 one continuous line rather than two separate attempts.\n\nIt is also the closest ancestor of the 2026 project. PetaBite is making structurally the same bet — machine-learning-guided discovery of better PETases — five years later and at a very different scale.",
+      "note": "Project recovered in 2026 from a BioZone slide deck, not the wiki. The 2021 wiki remains the unedited iGEM template."
     },
     {
       "year": 2019,
@@ -146,7 +148,9 @@
       "teamSize": 27,
       "status": "competed",
       "medal": "Gold",
-      "awards": ["Best Manufacturing Project — nominee (top 5)"],
+      "awards": [
+        "Best Manufacturing Project — nominee (top 5)"
+      ],
       "wikiUrl": "https://2019.igem.org/Team:Toronto/",
       "teamsUrl": "https://teams.igem.org/2910",
       "blurb": "Engineering PETase to break down industrial plastic waste faster — the chapter's first gold since 2013.",
@@ -214,7 +218,9 @@
       "teamSize": 40,
       "status": "competed",
       "medal": "Silver",
-      "awards": ["Best Applied Design — nominee"],
+      "awards": [
+        "Best Applied Design — nominee"
+      ],
       "wikiUrl": "https://2015.igem.org/Team:Toronto/",
       "teamsUrl": "https://teams.igem.org/1760",
       "blurb": "Flux balance analysis extended from single organisms to whole microbial consortia.",

@@ -90,7 +90,6 @@ Search the codebase for `TODO (human)` to find every spot that needs real conten
 
 - **Home page** (`src/pages/index.astro`): the hero tagline is a single line if the team lands on a new one.
 - **Favicon** (`src/layouts/BaseLayout.astro`): add a `favicon.svg` to `public/`.
-- **Collaborations** (`src/pages/collaborations.astro`): the listed events are from the 2023 cycle; add this year's events to the list in the frontmatter.
 - **Sponsors** (`src/pages/sponsors.astro`): tiers and logos still reflect the 2023 sponsor list.
 - **Navigation** (`src/data/navigation.json`): add a link to the newest project wiki each year under "History".
 - **Deployment** (`astro.config.mjs`, `README.md`): set the live URL once Vercel is set up.

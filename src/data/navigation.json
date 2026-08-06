@@ -3,7 +3,6 @@
     "text": "History",
     "sublinks": [
       { "text": "Every season", "link": "/history/" },
-      { "text": "Gallery", "link": "/gallery/" },
       { "text": "2026 wiki (current)", "link": "https://2026.igem.wiki/toronto/" },
       { "text": "2025 wiki", "link": "https://2025.igem.wiki/toronto/" },
       { "text": "2024 wiki", "link": "https://2024.igem.wiki/utoronto/" },
@@ -17,6 +16,6 @@
       { "text": "People", "link": "/people/" }
     ]
   },
-  { "text": "Collaborations", "link": "/collaborations/" },
+  { "text": "Gallery", "link": "/gallery/" },
   { "text": "Sponsors", "link": "/sponsors/" }
 ]

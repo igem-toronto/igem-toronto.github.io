@@ -26,6 +26,8 @@ export interface Season {
   medal: string | null;
   awards: string[];
   wikiUrl: string;
+  /** 'full' if the wiki carries real content, 'template' if it was never filled in. */
+  wikiStatus: 'full' | 'template';
   teamsUrl: string;
   blurb: string;
   story: string;
@@ -51,6 +53,15 @@ export const allSeasons: Season[] = [...seasons].sort((a, b) => b.year - a.year)
 
 /** Seasons in chronological order — for charts and left-to-right timelines. */
 export const seasonsAscending: Season[] = [...seasons].sort((a, b) => a.year - b.year);
+
+/**
+ * Seasons whose wiki is worth linking to, newest first.
+ *
+ * Excludes any season whose wiki was left as the unedited iGEM template — as of
+ * 2026 that is 2021 alone. Linking a visitor to a page that says "this is the
+ * abstract of your project" is worse than not linking at all.
+ */
+export const seasonsWithWiki: Season[] = allSeasons.filter((season) => season.wikiStatus === 'full');
 
 export const summary = historyData.summary;
 export const skippedYears = historyData.skippedYears;

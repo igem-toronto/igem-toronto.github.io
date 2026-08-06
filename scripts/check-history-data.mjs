@@ -96,6 +96,17 @@ for (const season of history.years) {
   if (!season.project && !season.note) {
     warnings.push(`${season.year}: has no project name and no note explaining why`);
   }
+
+  // wikiStatus drives whether the season's wiki is linked from the nav.
+  if (!['full', 'template'].includes(season.wikiStatus)) {
+    errors.push(`${season.year}: wikiStatus must be "full" or "template", got ${JSON.stringify(season.wikiStatus)}`);
+  }
+
+  // MediaWiki 404s on a trailing slash, and every pre-2022 wiki is MediaWiki.
+  // This silently broke seven links once already.
+  if (/^https:\/\/20\d\d\.igem\.org\/Team:.+\/$/.test(season.wikiUrl)) {
+    errors.push(`${season.year}: wikiUrl has a trailing slash, which 404s on the old igem.org wikis`);
+  }
 }
 
 for (const warning of warnings) console.warn(`warn  ${warning}`);

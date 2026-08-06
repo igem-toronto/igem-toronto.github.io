@@ -52,6 +52,26 @@ the medal counts disagree with the seasons.
 | `project` | `null` if it genuinely cannot be recovered. Always pair a `null` project with a `note`. |
 | `note` | Rendered as a highlighted caveat on the season page. Use it whenever the record is incomplete. |
 | `section` | `"undergrad"`, `"overgrad"`, or `null`. |
+| `wikiStatus` | `"full"` or `"template"`. Controls whether the season's wiki is linked from the History dropdown in the nav. |
+
+### `wikiUrl` and `wikiStatus`
+
+The nav's "Project wikis" grid is generated from `history.json` — never hardcode wiki
+links in `navigation.json`. Adding a season with `wikiStatus: "full"` puts it in the
+dropdown automatically.
+
+Set `wikiStatus` to `"template"` when the wiki was registered but never filled in.
+As of 2026 that is **2021 alone**: its pages are the stock iGEM template, down to
+"this is the abstract of your project". Sending a visitor there is worse than not
+linking at all. Every other season's wiki was fetched and confirmed to carry real
+content.
+
+> **Never put a trailing slash on a pre-2022 `wikiUrl`.** The old `<year>.igem.org`
+> wikis run MediaWiki, which 404s on `Team:Toronto/` but serves `Team:Toronto`. Seven
+> links were broken this way. The check script now rejects it.
+
+Note also that legacy `igem.org` hosts return HTTP 403 to default clients — use a
+browser User-Agent when checking a link by hand, or you will think a live wiki is dead.
 
 > **`medal: null` does not mean "no medal."** For 2005, 2006, 2010, 2011 and 2012 it
 > means no iGEM results page survives that we can reach — those teams may well have

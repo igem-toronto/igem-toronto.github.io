@@ -3,82 +3,189 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import HistoryTimeline from '../components/HistoryTimeline.astro';
 import MemberPie from '../components/MemberPie.astro';
-
-const logoMarkUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/logo-mark.png`;
+import { allSeasons, photoUrl, photosFor, summary } from '../lib/history';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const logoMarkUrl = `${base}/images/logo-mark.png`;
 const mailingListUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform';
+
+// A hand-picked spread rather than the newest eight, so the strip shows the range
+// of what a season actually involves: bench work, outreach, teaching, competition.
+const featuredFiles = [
+  '2006/lab-training-01.webp',
+  '2024/synpec-cloning-workshop-spring-2024-cohort-01.webp',
+  '2017/science-rendezvous-2017-01.webp',
+  '2022/igem-grand-jamboree-2022-paris-01.webp',
+  '2023/landfill-site-visit-london-landfill-w12a-01.webp',
+  '2025/igem-toronto-mentorship-program-kickoff-oct--01.webp',
+];
+
+const allPhotos = allSeasons.flatMap((season) => photosFor(season.year));
+const featured = featuredFiles
+  .map((file) => allPhotos.find((photo) => photo.file === file))
+  .filter((photo): photo is NonNullable<typeof photo> => Boolean(photo));
+
+const stats = [
+  { value: String(summary.seasonsRegistered), label: 'Seasons since 2005' },
+  { value: String(summary.alumni), label: 'People on the team' },
+  { value: String(summary.gold), label: 'Gold medals' },
+  { value: '2', label: 'Top 10 finishes' },
+];
 ---
 
 <BaseLayout title="Home">
-  <!-- Hero: full-screen, logo + tagline + actions -->
-  <section class="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden border-b border-primary-950 bg-primary-950">
-    <!-- Fine engineering grid -->
+  <!-- Hero -->
+  <section class="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden border-b border-primary-950 bg-primary-950 pb-28 sm:pb-30">
     <div
       class="pointer-events-none absolute inset-0 opacity-[0.12]"
       style="background-image: linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 72px 72px;"
       aria-hidden="true"
     >
     </div>
-    <!-- Actual logo as a large, faint backdrop watermark -->
     <img
       src={logoMarkUrl}
       alt=""
       aria-hidden="true"
-      class="pointer-events-none absolute left-1/2 top-1/2 h-[85%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-[0.06]"
+      class="pointer-events-none absolute left-1/2 top-1/2 h-[150%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-[0.05]"
     />
-    <!-- Vignette for depth -->
     <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(ellipse at center, transparent 25%, rgba(10,30,43,0.7) 100%);" aria-hidden="true"></div>
 
-    <div class="relative mx-auto flex w-full max-w-4xl flex-col items-center px-4 text-center sm:px-6">
-      <p class="font-display text-2xl font-medium leading-snug tracking-tight text-white sm:text-3xl lg:text-4xl">
-        The future of <em class="not-italic text-accent-orange-light">synthetic biology</em>, at Canada's <em class="not-italic text-primary-200">best</em> university.
+    <div class="relative mx-auto w-full max-w-4xl px-4 text-center sm:px-6">
+      <h1 class="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+        Life is <em class="not-italic text-accent-orange-light">engineerable</em>.
+      </h1>
+      <p class="mx-auto mt-8 max-w-2xl text-lg font-medium leading-relaxed text-white/85 sm:text-xl">
+        We are the University of Toronto's iGEM team.
       </p>
-      <div class="mt-12 flex flex-col items-center gap-4 sm:flex-row">
+      <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">
+        We apply synthetic biology to tackle pressing problems, and train the next generation of
+        scientists to engineer these futures.
+      </p>
+      <div class="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
         <a
           href={mailingListUrl}
           class="w-full border border-accent-orange bg-accent-orange px-8 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent sm:w-auto"
         >
-          Join the Mailing List
+          Join the Team
         </a>
         <a
-          href={base + '/people/'}
+          href={base + '/history/'}
           class="w-full border border-white/30 px-8 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:border-white sm:w-auto"
         >
-          Meet the Team
+          What We've Built
         </a>
       </div>
     </div>
 
-    <!-- Scroll cue -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40" aria-hidden="true">
-      <svg class="h-6 w-6 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="square" d="M12 5v14M6 13l6 6 6-6" />
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70" aria-hidden="true">
+      <svg class="h-12 w-12 animate-bounce sm:h-14 sm:w-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <path stroke-linecap="square" d="M12 4v15M5 12.5l7 7 7-7" />
       </svg>
     </div>
   </section>
 
-  <!-- About -->
+  <!-- What we do -->
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
     <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
       <div class="lg:col-span-4">
-        <SectionHeading title="About the team" eyebrow="Overview" number="01" />
+        <SectionHeading title="What we do" eyebrow="The team" number="01" />
       </div>
-      <div class="space-y-6 text-lg leading-relaxed text-primary-950/80 lg:col-span-8">
-        <p>
-          iGEM Toronto is a team at the forefront of synthetic biology research and innovation. As participants in the
-          International Genetically Engineered Machine (iGEM) competition, we tackle global challenges through the
-          application of cutting-edge biological solutions, fostering creativity, collaboration, and scientific
-          excellence.
+      <div class="lg:col-span-8">
+        <p class="text-lg leading-relaxed text-primary-950/80">
+          Synthetic biology treats a living cell as something you can design. Give it new genetic
+          instructions and it will do a job it was never evolved to do. Every autumn a new group of
+          undergraduates picks a problem worth that effort and spends a year on it, designing the
+          constructs, building them at the bench, modelling what should happen, and testing whether
+          it does. In November the work is judged at the iGEM Grand Jamboree against teams from
+          around the world.
         </p>
-        <p>
-          We have represented the University of Toronto since 2005, spanning wet lab research, computational
-          modelling, hardware, human practices, and entrepreneurship. Twenty-one seasons have produced six gold
-          medals, three silver, four bronze, and a run of special prizes that includes back-to-back Top 10
-          finishes in 2024 and 2025.
-        </p>
+
+        <div class="mt-12 grid gap-10 border-t border-primary-950/15 pt-10 sm:grid-cols-2">
+          <div>
+            <h3 class="font-display text-xl font-bold tracking-tight text-primary-950">
+              The research is real
+            </h3>
+            <p class="mt-3 leading-relaxed text-primary-950/70">
+              Seasons have gone after antibiotic resistance, landfill emissions, invasive tree
+              disease, contaminated tailings and industrial plastic waste. The work has produced
+              genetic parts other teams still build on, and it holds up in front of judges who do
+              this for a living.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-display text-xl font-bold tracking-tight text-primary-950">
+              So is the training
+            </h3>
+            <p class="mt-3 leading-relaxed text-primary-950/70">
+              Most members arrive having never run an experiment of their own. They leave having
+              designed one, built it, argued about what the data meant, and defended the answer.
+              That is the part of the team that outlasts any single project.
+            </p>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Record -->
+  <section class="border-y border-primary-950/15 bg-primary-50">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 gap-y-10 sm:grid-cols-4">
+        {
+          stats.map((stat) => (
+            <div>
+              <div class="font-display text-4xl font-bold tabular-nums text-primary-950 sm:text-5xl">
+                {stat.value}
+              </div>
+              <div class="mt-2 text-xs font-medium uppercase tracking-[0.15em] text-primary-950/50">
+                {stat.label}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Photographs -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="A year on the team"
+      eyebrow="In practice"
+      number="02"
+      subtitle="Bench work, teaching, outreach and the Jamboree. Two decades of it, recovered from the team's own archive."
+    />
+
+    <div class="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
+      {
+        featured.map((photo) => (
+          <figure class="group relative aspect-[4/3] overflow-hidden border border-primary-950/15">
+            <img
+              src={photoUrl(photo.file)}
+              alt={photo.caption}
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-950/85 to-transparent p-3 pt-10 text-xs leading-snug text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              {photo.caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 border-t border-primary-950/15 pt-8">
+      <a
+        href={base + '/gallery/'}
+        class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+      >
+        The full gallery
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
     </div>
   </section>
 
@@ -86,10 +193,10 @@ const mailingListUrl =
   <section class="border-y border-primary-950/15 bg-primary-50">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <SectionHeading
-        title="Our track record"
-        eyebrow="Competition history"
-        number="02"
-        subtitle="Every season since 2005, including the years the record is incomplete. Select a year for the short version, then open it for the project, the awards, and the photographs that survive."
+        title="Every season since 2005"
+        eyebrow="Track record"
+        number="03"
+        subtitle="A different problem every year, including the years the record is incomplete. Select a year for the short version, then open it for the project, the awards and the photographs that survive."
       />
       <HistoryTimeline />
 
@@ -113,9 +220,9 @@ const mailingListUrl =
       <div class="lg:col-span-4">
         <SectionHeading
           title="Who we are"
-          eyebrow="The team"
-          number="03"
-          subtitle="Students from across the university, organized into divisions that each own a part of the project. Select a slice to meet that division."
+          eyebrow="The divisions"
+          number="04"
+          subtitle="Wet lab, dry lab, hardware, human practices and business. You do not need a biology degree to be useful here, and most of the team does not have one. Select a slice to meet that division."
         />
         <a
           href={base + '/divisions/'}
@@ -137,9 +244,12 @@ const mailingListUrl =
   <section class="bg-primary-950">
     <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center lg:px-8">
       <div>
-        <h2 class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">Interested in joining?</h2>
+        <h2 class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          Applications open every September
+        </h2>
         <p class="mt-2 max-w-xl text-white/60">
-          Whether you pipette, code, build, or communicate — there is a place for you on the team.
+          Whether you pipette, code, build or write, there is a place for you on the team. Join the
+          list and we will tell you when hiring opens.
         </p>
       </div>
       <a

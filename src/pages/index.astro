@@ -26,11 +26,17 @@ const featured = featuredFiles
   .map((file) => allPhotos.find((photo) => photo.file === file))
   .filter((photo): photo is NonNullable<typeof photo> => Boolean(photo));
 
+// Counted rather than hardcoded, so the band cannot go stale the season we
+// place again. iGEM records these as "Top 10 — <section>".
+const topTenFinishes = allSeasons.filter((season) =>
+  (season.awards ?? []).some((award) => award.startsWith('Top 10')),
+).length;
+
 const stats = [
   { value: String(summary.seasonsRegistered), label: 'Seasons since 2005' },
   { value: String(summary.alumni), label: 'People on the team' },
   { value: String(summary.gold), label: 'Gold medals' },
-  { value: '2', label: 'Top 10 finishes' },
+  { value: String(topTenFinishes), label: 'Top 10 finishes' },
 ];
 ---
 
@@ -53,10 +59,10 @@ const stats = [
 
     <div class="relative mx-auto w-full max-w-4xl px-4 text-center sm:px-6">
       <h1 class="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-        Life is <em class="not-italic text-accent-orange-light">engineerable</em>.
+        Life is <em class="not-italic text-accent-orange-light">engineerable</em>
       </h1>
       <p class="mx-auto mt-8 max-w-2xl text-lg font-medium leading-relaxed text-white/85 sm:text-xl">
-        We are the University of Toronto's iGEM team.
+        University of Toronto's iGEM team
       </p>
       <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">
         We apply synthetic biology to tackle pressing problems, and train the next generation of
@@ -70,10 +76,10 @@ const stats = [
           Join the Team
         </a>
         <a
-          href={base + '/history/'}
+          href="#what-we-do"
           class="w-full border border-white/30 px-8 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:border-white sm:w-auto"
         >
-          What We've Built
+          Who We Are?
         </a>
       </div>
     </div>
@@ -86,15 +92,21 @@ const stats = [
   </section>
 
   <!-- What we do -->
-  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <section id="what-we-do" class="mx-auto max-w-7xl scroll-mt-16 px-4 py-20 sm:px-6 lg:px-8">
     <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
       <div class="lg:col-span-4">
         <SectionHeading title="What we do" eyebrow="The team" number="01" />
+        <img
+          src={`${base}/images/home/team-best-therapeutics-2025-square.webp`}
+          alt="iGEM Toronto team celebrating the Best Therapeutics Project award at the 2025 Grand Jamboree"
+          loading="lazy"
+          class="hidden aspect-square w-full border border-primary-950/15 object-cover lg:block"
+        />
       </div>
       <div class="lg:col-span-8">
         <p class="text-lg leading-relaxed text-primary-950/80">
           Synthetic biology treats a living cell as something you can design. Give it new genetic
-          instructions and it will do a job it was never evolved to do. Every autumn a new group of
+          instructions and it will do a job it was never evolved to do. Every winter a new group of
           undergraduates picks a problem worth that effort and spends a year on it, designing the
           constructs, building them at the bench, modelling what should happen, and testing whether
           it does. In November the work is judged at the iGEM Grand Jamboree against teams from
@@ -131,7 +143,7 @@ const stats = [
   <!-- Record -->
   <section class="border-y border-primary-950/15 bg-primary-50">
     <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 gap-y-10 sm:grid-cols-4">
+      <div class="grid grid-cols-2 gap-y-10 text-center sm:grid-cols-4">
         {
           stats.map((stat) => (
             <div>
@@ -168,7 +180,8 @@ const stats = [
               decoding="async"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-950/85 to-transparent p-3 pt-10 text-xs leading-snug text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <!-- Always legible on touch, where there is no hover to reveal it. -->
+            <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-950/90 to-transparent p-3 pt-10 text-xs leading-snug text-white transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
               {photo.caption}
             </figcaption>
           </figure>
@@ -179,10 +192,10 @@ const stats = [
     <div class="mt-10 border-t border-primary-950/15 pt-8">
       <a
         href={base + '/gallery/'}
-        class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+        class="inline-flex items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
       >
         The full gallery
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
         </svg>
       </a>
@@ -203,10 +216,10 @@ const stats = [
       <div class="mt-12 border-t border-primary-950/15 pt-8">
         <a
           href={base + '/history/'}
-          class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+          class="inline-flex items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
         >
           The full history
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
           </svg>
         </a>
@@ -226,10 +239,10 @@ const stats = [
         />
         <a
           href={base + '/divisions/'}
-          class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+          class="mt-8 inline-flex items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
         >
           All divisions
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
           </svg>
         </a>
@@ -245,7 +258,7 @@ const stats = [
     <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center lg:px-8">
       <div>
         <h2 class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
-          Applications open every September
+          Applications open every February
         </h2>
         <p class="mt-2 max-w-xl text-white/60">
           Whether you pipette, code, build or write, there is a place for you on the team. Join the

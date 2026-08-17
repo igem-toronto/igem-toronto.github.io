@@ -1,186 +1,1004 @@
 {
-  "_README": "PLACEHOLDER ROSTER — every member below is a placeholder. See docs/UPDATING_THE_TEAM.md for step-by-step instructions on replacing these entries with the current team. The previous (2023) roster is archived at docs/archive/team-2023.csv for reference.",
   "groups": [
     "Presidents",
     "Advisors",
     "Wet Lab",
     "Dry Lab",
     "Hardware",
-    "Entrepreneurship",
     "Human Practices",
+    "Venture",
     "Outreach",
-    "Wiki Team"
+    "Web"
   ],
   "members": [
     {
-      "name": "PLACEHOLDER — President Name",
+      "name": "Purav Gupta",
       "group": "Presidents",
-      "roles": ["President"],
-      "description": "PLACEHOLDER — Write a short 1–4 sentence third-person bio here. Example: 'Alex is a third-year Chemical Engineering student who leads the team's overall strategy and loves everything synbio.'",
+      "roles": [
+        "President"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "purav.gupta@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — President Name",
+      "name": "Anthony Dinglasan",
       "group": "Presidents",
-      "roles": ["President"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "President",
+        "Venture Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "anthony.dinglasan@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Advisor Name",
+      "name": "Chinmay Potdar",
       "group": "Advisors",
-      "roles": ["Advisor"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Advisor"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "chinmay.potdar@alumni.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Advisor Name",
+      "name": "Jonas Lehar",
       "group": "Advisors",
-      "roles": ["Advisor"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Advisor"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "jonas.lehar@gmail.com"
     },
     {
-      "name": "PLACEHOLDER — Wet Lab Lead Name",
+      "name": "Claire Cui",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "claire.cui@mail.utoronto.ca"
+    },
+    {
+      "name": "Sania Ahmad",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "sania.ahmad@mail.utoronto.ca"
+    },
+    {
+      "name": "Bethany Chan",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "bethany.chan@mail.utoronto.ca"
+    },
+    {
+      "name": "Muneer Jaffery",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "muneer.jaffrey@mail.utoronto.ca"
+    },
+    {
+      "name": "Patricia Rea",
       "group": "Wet Lab",
-      "roles": ["Wet Lab Lead"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Wet Lab Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "patricia.rea@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Wet Lab Member Name",
+      "name": "Selina Liu",
       "group": "Wet Lab",
-      "roles": ["Wet Lab"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Wet Lab Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "selinayingxue.liu@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Wet Lab Member Name",
+      "name": "Owen Poyner",
       "group": "Wet Lab",
-      "roles": ["Wet Lab"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Wet Lab Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "owen.poyner@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Dry Lab Lead Name",
+      "name": "Calton Louis Paul",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "calton.louispaul@mail.utoronto.ca"
+    },
+    {
+      "name": "Kaitlyn Chen",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "kaitlyn.chen@mail.utoronto.ca"
+    },
+    {
+      "name": "Francesca Chernous",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab",
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "francesca.chernous@mail.utoronto.ca"
+    },
+    {
+      "name": "Angela Tung Yan Leung",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "angelaty.leung@mail.utoronto.ca"
+    },
+    {
+      "name": "Hin Yau Bernice Wong",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "bernicehy.wong@mail.utoronto.ca"
+    },
+    {
+      "name": "Cheryl Cheng",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "cf.cheng@mail.utoronto.ca"
+    },
+    {
+      "name": "Cindy Cheng",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab",
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "cindyq.cheng@mail.utoronto.ca"
+    },
+    {
+      "name": "Xiaosheng Sun",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "osborn.sun@mail.utoronto.ca"
+    },
+    {
+      "name": "Raffaele William Dengler",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "r.dengler@mail.utoronto.ca"
+    },
+    {
+      "name": "Sara Habibi",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "saraa.habibi@mail.utoronto.ca"
+    },
+    {
+      "name": "Suha Ashraf",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "suha.ashraf@mail.utoronto.ca"
+    },
+    {
+      "name": "Yutian Cheng",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "yutian.cheng@mail.utoronto.ca"
+    },
+    {
+      "name": "Naziba Swatta Nahid",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab",
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "naziba.nahid@mail.utoronto.ca"
+    },
+    {
+      "name": "Hongming Cao",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "meghan.cao@mail.utoronto.ca"
+    },
+    {
+      "name": "Sara Bou Saab",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "sara.bousaab@mail.utoronto.ca"
+    },
+    {
+      "name": "Zi Qi Zhang",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "akina.zhang@mail.utoronto.ca"
+    },
+    {
+      "name": "Thomas Quigley",
       "group": "Dry Lab",
-      "roles": ["Dry Lab Lead"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Dry Lab Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "thomas.quigley@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Dry Lab Member Name",
+      "name": "Dennis Zhu",
       "group": "Dry Lab",
-      "roles": ["Dry Lab"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Dry Lab Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "dennis.zhu@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Hardware Lead Name",
+      "name": "Patricia Krisanti",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "patricia.krisanti@mail.utoronto.ca"
+    },
+    {
+      "name": "Denis Rivard",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "denis.rivard@mail.utoronto.ca"
+    },
+    {
+      "name": "Junzhe Li",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "vicjz.li@mail.utoronto.ca"
+    },
+    {
+      "name": "Oscar Heath",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "oscar.heath@mail.utoronto.ca"
+    },
+    {
+      "name": "Alexander Leonardos",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "alex.leonardos@mail.utoronto.ca"
+    },
+    {
+      "name": "Angela Jiang",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "angelajiang.jiang@mail.utoronto.ca"
+    },
+    {
+      "name": "Aditya Ghosh",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "Aditya.ghosh@mail.utoronto.ca"
+    },
+    {
+      "name": "Sara Parvaresh Rizi",
+      "group": "Web",
+      "roles": [
+        "Dry Lab",
+        "Outreach",
+        "Web"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "s.parvareshrizi@mail.utoronto.ca"
+    },
+    {
+      "name": "Nino Saeki",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "nino.saeki@mail.utoronto.ca"
+    },
+    {
+      "name": "Soham Shorey",
       "group": "Hardware",
-      "roles": ["Hardware Lead"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Hardware Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "soham.shorey@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Hardware Member Name",
+      "name": "Rebecca Tam",
       "group": "Hardware",
-      "roles": ["Hardware"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Hardware Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "Rebeccazoe.tam@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Entrepreneurship Lead Name",
-      "group": "Entrepreneurship",
-      "roles": ["Entrepreneurship Lead"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "name": "Lingqi (Lindsay) Tu",
+      "group": "Hardware",
+      "roles": [
+        "Hardware"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "lindsay.tu@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Human Practices Lead Name",
+      "name": "Arya Bari",
+      "group": "Hardware",
+      "roles": [
+        "Hardware"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "arya.bari@mail.utoronto.ca"
+    },
+    {
+      "name": "Lia Campbell",
+      "group": "Hardware",
+      "roles": [
+        "Hardware",
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "lia.campbell@mail.utoronto.ca"
+    },
+    {
+      "name": "Daisy Huang",
+      "group": "Hardware",
+      "roles": [
+        "Hardware"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "daisyqx.huang@mail.utoronto.ca"
+    },
+    {
+      "name": "Aayush Mengane",
+      "group": "Hardware",
+      "roles": [
+        "Hardware"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "aayush.mengane@mail.utoronto.ca"
+    },
+    {
+      "name": "Claire Dumortier",
+      "group": "Hardware",
+      "roles": [
+        "Hardware"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "claire.dumortier@mail.utoronto.ca"
+    },
+    {
+      "name": "Karys Littlejohns",
+      "group": "Hardware",
+      "roles": [
+        "Hardware"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "karys.littlejohns@mail.utoronto.ca"
+    },
+    {
+      "name": "James Zhang",
+      "group": "Hardware",
+      "roles": [
+        "Hardware"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "zaiyuan.zhang@mail.utoronto.ca"
+    },
+    {
+      "name": "Adanna Nmezi",
       "group": "Human Practices",
-      "roles": ["Human Practices Lead"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Human Practices Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "adanna.nmezi@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Human Practices Member Name",
+      "name": "Komal Lalh",
       "group": "Human Practices",
-      "roles": ["Human Practices"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Human Practices"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "komal.lalh@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Outreach Lead Name",
+      "name": "Zync Aggarao Infante",
+      "group": "Human Practices",
+      "roles": [
+        "Human Practices",
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "zync.infante@mail.utoronto.ca"
+    },
+    {
+      "name": "Megan Chiao",
+      "group": "Human Practices",
+      "roles": [
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "megan.chiao@mail.utoronto.ca"
+    },
+    {
+      "name": "Manasvini Bharath",
+      "group": "Human Practices",
+      "roles": [
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "manasvini.bharath@mail.utoronto.ca"
+    },
+    {
+      "name": "Clara Han",
+      "group": "Human Practices",
+      "roles": [
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "Clara.han@mail.utoronto.ca"
+    },
+    {
+      "name": "Shivangi Roy",
+      "group": "Human Practices",
+      "roles": [
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "shivangi.roy@mail.utoronto.ca"
+    },
+    {
+      "name": "Sami Ur Rehman",
+      "group": "Human Practices",
+      "roles": [
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "bc220209331sur@vu.edu.pk"
+    },
+    {
+      "name": "Pelendi Hewage Nadithya Samarawickrema",
+      "group": "Human Practices",
+      "roles": [
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "nadithya.samarawickrema@mail.utoronto.ca"
+    },
+    {
+      "name": "Lisa Chen",
+      "group": "Venture",
+      "roles": [
+        "Venture Lead",
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "ylisa.chen@mail.utoronto.ca"
+    },
+    {
+      "name": "Ipek Ilhan",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "ipek.ilhan@mail.utoronto.ca"
+    },
+    {
+      "name": "Robinson Meng",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "robinson.meng@mail.utoronto.ca"
+    },
+    {
+      "name": "Grace Li",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "gracee.li@mail.utoronto.ca"
+    },
+    {
+      "name": "mehrasa kheirizad",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "mehrasa.kheirizad@mail.utoronto.ca"
+    },
+    {
+      "name": "Rima Rajan",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "rima.rajan@mail.utoronto.ca"
+    },
+    {
+      "name": "Austin Chiang",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "austin.chiang@mail.utoronto.ca"
+    },
+    {
+      "name": "Clelia Troisi",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "clelia.troisi@mail.utoronto.ca"
+    },
+    {
+      "name": "Hannah Li",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "hannahh.li@mail.utoronto.ca"
+    },
+    {
+      "name": "Seshill Real Armas",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "seshill.realarmas@mail.utoronto.ca"
+    },
+    {
+      "name": "Benjamin Outar",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "ben.outar@mail.utoronto.ca"
+    },
+    {
+      "name": "Rachel Chu",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "wcr.chu@mail.utoronto.ca"
+    },
+    {
+      "name": "Isabella Sobec",
+      "group": "Venture",
+      "roles": [
+        "Venture",
+        "Human Practices"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "isabella.sobec@mail.utoronto.ca"
+    },
+    {
+      "name": "Adrija (Hiya) Paul",
       "group": "Outreach",
-      "roles": ["Outreach Lead"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "roles": [
+        "Outreach Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "adrija.paul@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Wiki Team Lead Name",
-      "group": "Wiki Team",
-      "roles": ["Wiki Team Lead"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "name": "Talitha Ferro",
+      "group": "Outreach",
+      "roles": [
+        "Outreach Lead"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "talitha.ferro@mail.utoronto.ca"
     },
     {
-      "name": "PLACEHOLDER — Wiki Team Member Name",
-      "group": "Wiki Team",
-      "roles": ["Wiki Team"],
-      "description": "PLACEHOLDER — Short third-person bio.",
+      "name": "Angirmaa Tamir",
+      "group": "Outreach",
+      "roles": [
+        "Outreach"
+      ],
+      "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": ""
+      "email": "angirmaa.tamir@mail.utoronto.ca"
+    },
+    {
+      "name": "Kathleen Nicole Mesach",
+      "group": "Outreach",
+      "roles": [
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "k.mesach@mail.utoronto.ca"
+    },
+    {
+      "name": "Wineta Prisella Pangestu",
+      "group": "Outreach",
+      "roles": [
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "wineta.pangestu@mail.utoronto.ca"
+    },
+    {
+      "name": "Hillary Carlton Bongso",
+      "group": "Outreach",
+      "roles": [
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "hillary.bongso@mail.utoronto.ca"
+    },
+    {
+      "name": "Anastasia Butnariu",
+      "group": "Outreach",
+      "roles": [
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "anastasia.butnariu@mail.utoronto.ca"
+    },
+    {
+      "name": "Ibtisaam Wasi",
+      "group": "Outreach",
+      "roles": [
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "ibtisaam.wasi@mail.utoronto.ca"
+    },
+    {
+      "name": "Abdelrahman Elshrief",
+      "group": "Web",
+      "roles": [
+        "Outreach",
+        "Web"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "abdel.elshrief@mail.utoronto.ca"
+    },
+    {
+      "name": "Jane Felicia Jonatan",
+      "group": "Web",
+      "roles": [
+        "Outreach",
+        "Web"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "jane.jonatan@mail.utoronto.ca"
+    },
+    {
+      "name": "Hok Wan (Abby) Lui",
+      "group": "Web",
+      "roles": [
+        "Web Lead",
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "abby.lui@mail.utoronto.ca"
     }
   ]
 }

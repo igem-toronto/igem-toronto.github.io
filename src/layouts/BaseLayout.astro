@@ -10,8 +10,10 @@ interface Props {
 
 const {
   title,
-  description = 'iGEM Toronto — the University of Toronto team competing in the International Genetically Engineered Machine competition.',
+  description = "University of Toronto's iGEM team. We apply synthetic biology to tackle pressing problems, and train the next generation of scientists to engineer these futures.",
 } = Astro.props;
+
+const pageTitle = `${title} | iGEM Toronto`;
 ---
 
 <!doctype html>
@@ -22,7 +24,20 @@ const {
     <meta name="description" content={description} />
     <!-- TODO (human): add a favicon at public/favicon.svg (the old favicon files were never committed to the repo). -->
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <title>{title} | iGEM Toronto</title>
+    <title>{pageTitle}</title>
+
+    <!-- Link previews. Without these, shares to Slack/Discord/LinkedIn fall back
+         to the bare URL and whatever text the scraper guesses at. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="iGEM Toronto" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <!-- TODO (human): add a 1200x630 social image at public/images/og.png, set
+         og:image to its absolute URL, and switch this to summary_large_image.
+         Claiming the large card without an image just renders as a bare link. -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />

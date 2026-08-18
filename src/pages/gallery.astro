@@ -26,12 +26,12 @@ const total = photoCount();
 
 <BaseLayout
   title="Gallery"
-  description="Photographs from twenty-one seasons of iGEM Toronto — lab work, team photos, socials and the Jamboree."
+  description="Photographs from twenty-one years of iGEM Toronto — lab work, team photos, socials and the Jamboree."
 >
   <PageHeader
     eyebrow="2005 — present"
     title="Gallery"
-    lede={`${total} photographs from ${withPhotos.length} of ${allSeasons.length} seasons. Most came out of the chapter's own Drive rather than the old wikis, which is why the set covers things the wikis never recorded — outreach days, landfill site visits, a team dinner in 2018. The empty seasons below are waiting for yours.`}
+    lede={`${total} photographs from ${withPhotos.length} of ${allSeasons.length} years.`}
   />
 
   <!-- Filters -->
@@ -66,7 +66,7 @@ const total = photoCount();
     <div class="space-y-16">
       {
         withPhotos.map((season) => (
-          <div data-season-section={String(season.year)}>
+          <div id={`year-${season.year}`} data-season-section={String(season.year)} class="scroll-mt-32">
             <div class="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-primary-950/15 pb-4">
               <a
                 href={seasonUrl(season.year)}
@@ -98,9 +98,9 @@ const total = photoCount();
   <!-- Seasons still missing photographs -->
   <section class="border-t border-primary-950/15 bg-primary-50">
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <h2 class="font-display text-2xl font-bold tracking-tight text-primary-950">Seasons with no photographs</h2>
+      <h2 class="font-display text-2xl font-bold tracking-tight text-primary-950">Years with no photographs</h2>
       <p class="mt-3 max-w-2xl leading-relaxed text-primary-950/65">
-        {withoutPhotos.length} of {allSeasons.length} seasons have nothing yet. If you were on one of these teams,
+        {withoutPhotos.length} of {allSeasons.length} years have nothing yet. If you were on one of these teams,
         or you know someone who was, photographs from the lab, the Jamboree, outreach events or team socials
         would fill these in. Instructions for adding them are in <code class="text-primary-950/80">docs/HISTORY_AND_GALLERY.md</code>.
       </p>

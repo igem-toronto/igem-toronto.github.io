@@ -87,32 +87,6 @@
       "email": "sania.ahmad@mail.utoronto.ca"
     },
     {
-      "name": "Bethany Chan",
-      "group": "Advisors",
-      "roles": [
-        "Advisor",
-        "Wet Lab"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "bethany.chan@mail.utoronto.ca"
-    },
-    {
-      "name": "Muneer Jaffery",
-      "group": "Advisors",
-      "roles": [
-        "Advisor",
-        "Outreach"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "muneer.jaffrey@mail.utoronto.ca"
-    },
-    {
       "name": "Patricia Rea",
       "group": "Wet Lab",
       "roles": [
@@ -147,18 +121,6 @@
       "linkedin": "",
       "website": "",
       "email": "owen.poyner@mail.utoronto.ca"
-    },
-    {
-      "name": "Calton Louis Paul",
-      "group": "Wet Lab",
-      "roles": [
-        "Wet Lab"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "calton.louispaul@mail.utoronto.ca"
     },
     {
       "name": "Kaitlyn Chen",
@@ -208,31 +170,6 @@
       "linkedin": "",
       "website": "",
       "email": "bernicehy.wong@mail.utoronto.ca"
-    },
-    {
-      "name": "Cheryl Cheng",
-      "group": "Wet Lab",
-      "roles": [
-        "Wet Lab"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "cf.cheng@mail.utoronto.ca"
-    },
-    {
-      "name": "Cindy Cheng",
-      "group": "Wet Lab",
-      "roles": [
-        "Wet Lab",
-        "Outreach"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "cindyq.cheng@mail.utoronto.ca"
     },
     {
       "name": "Xiaosheng Sun",
@@ -296,9 +233,8 @@
     },
     {
       "name": "Naziba Swatta Nahid",
-      "group": "Wet Lab",
+      "group": "Venture",
       "roles": [
-        "Wet Lab",
         "Venture"
       ],
       "description": "",
@@ -368,18 +304,6 @@
       "email": "dennis.zhu@mail.utoronto.ca"
     },
     {
-      "name": "Patricia Krisanti",
-      "group": "Dry Lab",
-      "roles": [
-        "Dry Lab"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "patricia.krisanti@mail.utoronto.ca"
-    },
-    {
       "name": "Denis Rivard",
       "group": "Dry Lab",
       "roles": [
@@ -390,18 +314,6 @@
       "linkedin": "",
       "website": "",
       "email": "denis.rivard@mail.utoronto.ca"
-    },
-    {
-      "name": "Junzhe Li",
-      "group": "Dry Lab",
-      "roles": [
-        "Dry Lab"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "vicjz.li@mail.utoronto.ca"
     },
     {
       "name": "Oscar Heath",
@@ -476,6 +388,18 @@
       "linkedin": "",
       "website": "",
       "email": "nino.saeki@mail.utoronto.ca"
+    },
+    {
+      "name": "Amardeep Singh",
+      "group": "Dry Lab",
+      "roles": [
+        "Dry Lab"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "amardeeps5201@gmail.com"
     },
     {
       "name": "Soham Shorey",
@@ -554,7 +478,8 @@
       "name": "Aayush Mengane",
       "group": "Hardware",
       "roles": [
-        "Hardware"
+        "Hardware",
+        "Wet Lab"
       ],
       "description": "",
       "photo": null,
@@ -648,18 +573,6 @@
       "email": "megan.chiao@mail.utoronto.ca"
     },
     {
-      "name": "Manasvini Bharath",
-      "group": "Human Practices",
-      "roles": [
-        "Human Practices"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "manasvini.bharath@mail.utoronto.ca"
-    },
-    {
       "name": "Clara Han",
       "group": "Human Practices",
       "roles": [
@@ -682,18 +595,6 @@
       "linkedin": "",
       "website": "",
       "email": "shivangi.roy@mail.utoronto.ca"
-    },
-    {
-      "name": "Sami Ur Rehman",
-      "group": "Human Practices",
-      "roles": [
-        "Human Practices"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "bc220209331sur@vu.edu.pk"
     },
     {
       "name": "Pelendi Hewage Nadithya Samarawickrema",
@@ -722,9 +623,9 @@
     },
     {
       "name": "Ipek Ilhan",
-      "group": "Venture",
+      "group": "Wet Lab",
       "roles": [
-        "Venture"
+        "Wet Lab"
       ],
       "description": "",
       "photo": null,
@@ -733,16 +634,17 @@
       "email": "ipek.ilhan@mail.utoronto.ca"
     },
     {
-      "name": "Robinson Meng",
-      "group": "Venture",
+      "name": "Cindy Cheng",
+      "group": "Wet Lab",
       "roles": [
-        "Venture"
+        "Wet Lab",
+        "Outreach"
       ],
       "description": "",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": "robinson.meng@mail.utoronto.ca"
+      "email": "cindyq.cheng@mail.utoronto.ca"
     },
     {
       "name": "Grace Li",
@@ -767,18 +669,6 @@
       "linkedin": "",
       "website": "",
       "email": "mehrasa.kheirizad@mail.utoronto.ca"
-    },
-    {
-      "name": "Rima Rajan",
-      "group": "Venture",
-      "roles": [
-        "Venture"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "rima.rajan@mail.utoronto.ca"
     },
     {
       "name": "Austin Chiang",
@@ -817,18 +707,6 @@
       "email": "hannahh.li@mail.utoronto.ca"
     },
     {
-      "name": "Seshill Real Armas",
-      "group": "Venture",
-      "roles": [
-        "Venture"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "seshill.realarmas@mail.utoronto.ca"
-    },
-    {
       "name": "Benjamin Outar",
       "group": "Venture",
       "roles": [
@@ -864,6 +742,31 @@
       "linkedin": "",
       "website": "",
       "email": "isabella.sobec@mail.utoronto.ca"
+    },
+    {
+      "name": "Michael Pak",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "mpak8@uwo.ca"
+    },
+    {
+      "name": "Muneer Jaffery",
+      "group": "Venture",
+      "roles": [
+        "Venture",
+        "Outreach"
+      ],
+      "description": "",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "muneer.jaffrey@mail.utoronto.ca"
     },
     {
       "name": "Adrija (Hiya) Paul",
@@ -905,7 +808,8 @@
       "name": "Kathleen Nicole Mesach",
       "group": "Outreach",
       "roles": [
-        "Outreach"
+        "Outreach",
+        "Wet Lab"
       ],
       "description": "",
       "photo": null,
@@ -929,7 +833,8 @@
       "name": "Hillary Carlton Bongso",
       "group": "Outreach",
       "roles": [
-        "Outreach"
+        "Outreach",
+        "Venture"
       ],
       "description": "",
       "photo": null,

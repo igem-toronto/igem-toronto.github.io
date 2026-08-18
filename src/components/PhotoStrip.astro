@@ -1,8 +1,10 @@
 ---
 /**
- * Compact three-up photo strip for the home page timeline panels.
+ * Compact three-up photo strip — a teaser, not a browser. Every photo and the
+ * "All N" link point at `linkUrl`, which defaults to the season page but is
+ * overridden to a Gallery anchor when this strip is used ON the season page
+ * itself (see history/[year].astro), so it never links to its own page.
  *
- * Not interactive — the full set, with the lightbox, lives on the season page.
  * Seasons without photographs render dashed slots so the gap stays visible.
  */
 import { photosFor, photoUrl, seasonUrl } from '../lib/history';
@@ -10,11 +12,18 @@ import { photosFor, photoUrl, seasonUrl } from '../lib/history';
 interface Props {
   year: number;
   limit?: number;
+  /** Specific files to show, in order, instead of the season's default order. */
+  featured?: string[];
+  /** Where every photo and "All N" link to. Defaults to the season page. */
+  linkUrl?: string;
 }
 
-const { year, limit = 3 } = Astro.props;
+const { year, limit = 3, featured, linkUrl = seasonUrl(year) } = Astro.props;
 
-const photos = photosFor(year).slice(0, limit);
+const allPhotos = photosFor(year);
+const photos = featured
+  ? (featured.map((file) => allPhotos.find((p) => p.file === file)).filter(Boolean) as typeof allPhotos)
+  : allPhotos.slice(0, limit);
 const emptySlots = Math.max(0, limit - photos.length);
 const total = photosFor(year).length;
 ---
@@ -23,7 +32,7 @@ const total = photosFor(year).length;
   <div class="flex items-baseline justify-between">
     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/40">Photographs</h4>
     {total > limit && (
-      <a href={seasonUrl(year)} class="text-xs uppercase tracking-wider text-accent-orange hover:text-primary-950">
+      <a href={linkUrl} class="text-xs uppercase tracking-wider text-accent-orange hover:text-primary-950">
         All {total}
       </a>
     )}
@@ -32,7 +41,7 @@ const total = photosFor(year).length;
   <div class="mt-4 grid grid-cols-3 gap-2">
     {
       photos.map((photo) => (
-        <a href={seasonUrl(year)} class="block aspect-square overflow-hidden border border-primary-950/15">
+        <a href={linkUrl} class="block aspect-square overflow-hidden border border-primary-950/15">
           <img
             src={photoUrl(photo.file)}
             alt={photo.caption}

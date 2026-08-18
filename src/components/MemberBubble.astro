@@ -61,7 +61,7 @@ const shortName = name.replace(/^PLACEHOLDER\s*[—-]\s*/, '');
       <p class:list={['font-display font-bold text-primary-950', variant === 'hub' ? 'text-sm' : 'text-[11px] sm:text-xs']}>
         {shortName}
       </p>
-      <p class="mt-0.5 text-[9px] uppercase tracking-wider text-primary-950/50 sm:text-[10px]">{roles[0]}</p>
+      <p class="mt-0.5 text-[9px] uppercase tracking-wider text-primary-950/50 sm:text-[10px]">{roles.join(' & ')}</p>
     </div>
   </button>
 </div>

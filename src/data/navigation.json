@@ -1,9 +1,9 @@
 [
   {
     "text": "History",
-    "sublinks": [{ "text": "Every season", "link": "/history/" }],
-    "_wikiListComment": "Renders one link per season wiki, generated from src/data/history.json. Seasons whose wiki was left as the iGEM template (2021) are excluded automatically — do not hardcode wiki links here.",
-    "wikiList": true
+    "sublinks": [{ "text": "All Years", "link": "/history/" }],
+    "_yearGridComment": "Renders a \"Choose a Year...\" grid, one link per season, generated from src/data/history.json and pointing to that season's /history/<year>/ page — not its wiki. Do not hardcode year links here.",
+    "yearGrid": true
   },
   {
     "text": "Team",

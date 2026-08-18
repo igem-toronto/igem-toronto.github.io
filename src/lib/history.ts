@@ -14,6 +14,15 @@ import galleryData from '../data/gallery.json';
 export type Medal = 'Gold' | 'Silver' | 'Bronze';
 export type SeasonStatus = 'competed' | 'withdrew' | 'inProgress';
 
+/** A video hosted on the iGEM Video Universe (video.igem.org), embedded via iframe. */
+export interface SeasonVideo {
+  /** 'promo' = Project Promotion, 'presentation' = Team Presentation, 'other' = anything else worth keeping. */
+  role: 'promo' | 'presentation' | 'other';
+  title: string;
+  embedUrl: string;
+  watchUrl: string;
+}
+
 export interface Season {
   year: number;
   teamName: string;
@@ -32,6 +41,8 @@ export interface Season {
   blurb: string;
   story: string;
   note: string | null;
+  /** Videos from the iGEM Video Universe. Absent (not empty) for seasons with none archived there. */
+  videos?: SeasonVideo[];
 }
 
 export interface Photo {
@@ -53,15 +64,6 @@ export const allSeasons: Season[] = [...seasons].sort((a, b) => b.year - a.year)
 
 /** Seasons in chronological order — for charts and left-to-right timelines. */
 export const seasonsAscending: Season[] = [...seasons].sort((a, b) => a.year - b.year);
-
-/**
- * Seasons whose wiki is worth linking to, newest first.
- *
- * Excludes any season whose wiki was left as the unedited iGEM template — as of
- * 2026 that is 2021 alone. Linking a visitor to a page that says "this is the
- * abstract of your project" is worse than not linking at all.
- */
-export const seasonsWithWiki: Season[] = allSeasons.filter((season) => season.wikiStatus === 'full');
 
 export const summary = historyData.summary;
 export const skippedYears = historyData.skippedYears;

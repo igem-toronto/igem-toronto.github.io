@@ -5,17 +5,14 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import TeamSizeChart from '../../components/TeamSizeChart.astro';
 import {
   allSeasons,
-  ledgerStats,
   medalClass,
   medalLabel,
-  photoCount,
   projectLabel,
   seasonUrl,
   skippedYears,
   summary,
 } from '../../lib/history';
 
-const stats = ledgerStats();
 const skipped = new Map(skippedYears.map((entry) => [entry.year, entry.reason]));
 
 // Interleave the seasons with the years nobody competed, newest first, so the
@@ -37,39 +34,21 @@ for (let i = 0; i < allSeasons.length; i++) {
 
 <BaseLayout
   title="History"
-  description="Every iGEM Toronto season since 2005 — projects, tracks, results, and team sizes."
+  description="Every iGEM Toronto year since 2005 — projects, tracks, results, and team sizes."
 >
   <PageHeader
     eyebrow="Since 2005"
     title="History"
-    lede={`Twenty-one seasons, ${summary.memberYears} member-years, and ${summary.alumni} people. This is the full record, including the years that went badly and the ones where the evidence has not survived.`}
+    lede={`Twenty-one years, ${summary.memberYears} member-years, and ${summary.alumni} people. This is the full record, including the years that went badly and the ones where the evidence has not survived.`}
   />
 
-  <!-- Ledger -->
-  <section class="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 divide-x divide-y divide-primary-950/10 border border-primary-950/10 sm:grid-cols-4 sm:divide-y-0">
-      {
-        stats.map((stat) => (
-          <div class="px-6 py-8">
-            <div class="font-display text-3xl font-bold tabular-nums text-primary-950">{stat.value}</div>
-            <div class="mt-2 text-xs font-medium uppercase tracking-[0.15em] text-primary-950/50">{stat.label}</div>
-          </div>
-        ))
-      }
-    </div>
-    <p class="mt-4 text-sm text-primary-950/55">
-      {summary.seasonsCompeted} of those {summary.seasonsRegistered} seasons reached the Jamboree —
-      {summary.gold} gold, {summary.silver} silver and {summary.bronze} bronze medals between them.
-    </p>
-  </section>
-
   <!-- Team size over time -->
-  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <section class="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8">
     <SectionHeading
-      title="Team size, season by season"
+      title="Team size, year by year"
       eyebrow="Growth"
       number="01"
-      subtitle="Three people in 2008, when the team withdrew, to sixty-seven in 2024, the year it first placed in the Top 10. Select a bar to open that season."
+      subtitle="Three people in 2008, when the team withdrew, to sixty-seven in 2024, the year it first placed in the Top 10. Select a bar to open that year."
     />
     <TeamSizeChart />
   </section>
@@ -78,7 +57,7 @@ for (let i = 0; i < allSeasons.length; i++) {
   <section class="border-y border-primary-950/15 bg-primary-50">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <SectionHeading
-        title="Every season"
+        title="Every year"
         eyebrow="The record"
         number="02"
         subtitle="Newest first. Select a year for the project, the full award list, and the photographs that survive."
@@ -135,37 +114,9 @@ for (let i = 0; i < allSeasons.length; i++) {
       </div>
       <div class="space-y-5 leading-relaxed text-primary-950/75 lg:col-span-8">
         <p>
-          Rosters, team sizes and results come from iGEM's own team API, cross-checked against each
-          season's wiki. Where the two disagree, the wiki wins for project names and the API wins for
-          who was on the team.
-        </p>
-        <p>
-          <strong class="font-semibold text-primary-950">"No result recorded" is not "no medal."</strong>
-          iGEM's awards API returns nothing before 2009, and for 2005, 2006, 2010, 2011 and 2012 no
-          results page survives anywhere we can reach. Those seasons may well have won something. The
-          2007 silver is listed here only because the original 2007 results page still exists — the API
-          has no record of it.
-        </p>
-        <p>
-          Two seasons, 2011 and 2021, spent years recorded as having no project at all, because both
-          wikis were filed under the unedited iGEM template. <strong class="font-semibold text-primary-950"
-            >Both were recovered in 2026.</strong
-          > 2021 came back from a slide deck given to BioZone that April. 2011 turned out never to have
-          been lost — the template was only the scaffolding, and the real project description was sitting
-          on the live wiki underneath it, unread. 2008 is the one year the chapter registered and then
-          withdrew.
-        </p>
-        <p>
-          {photoCount()} photographs have been recovered so far, across twelve seasons. Most came out
-          of the chapter's own Google Drive rather than the wikis, which is why several are filed under
-          folders nobody had opened in years — the 2020 Open House, a 2017 outreach day at Science
-          Rendezvous, the 2023 landfill visit that shaped Methanivore. Dates are taken from filenames and
-          folder names where the photographs carry them, and left off where they do not.
-        </p>
-        <p>
-          There are gaps. 2005 through 2015 is almost entirely missing, and the earliest seasons survive
-          only as a handful of images hotlinked from pages that have since gone dark. If you have real
-          photographs from any season — lab work, the Jamboree, outreach, socials — they are wanted.
+          If you are an iGEM Toronto alumni and/or have more pictures from previous years, please
+          email <a href="mailto:igem@g.skule.ca" class="text-accent-orange underline decoration-accent-orange/40 underline-offset-4 hover:text-primary-950">igem@g.skule.ca</a>
+          — we would love to recover them.
         </p>
       </div>
     </div>

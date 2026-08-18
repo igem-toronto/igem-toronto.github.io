@@ -3,28 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import HistoryTimeline from '../components/HistoryTimeline.astro';
 import MemberPie from '../components/MemberPie.astro';
-import { allSeasons, photoUrl, photosFor, summary } from '../lib/history';
+import { allSeasons, summary } from '../lib/history';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const logoMarkUrl = `${base}/images/logo-mark.png`;
 const mailingListUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform';
-
-// A hand-picked spread rather than the newest eight, so the strip shows the range
-// of what a season actually involves: bench work, outreach, teaching, competition.
-const featuredFiles = [
-  '2006/lab-training-01.webp',
-  '2024/synpec-cloning-workshop-spring-2024-cohort-01.webp',
-  '2017/science-rendezvous-2017-01.webp',
-  '2022/igem-grand-jamboree-2022-paris-01.webp',
-  '2023/landfill-site-visit-london-landfill-w12a-01.webp',
-  '2025/igem-toronto-mentorship-program-kickoff-oct--01.webp',
-];
-
-const allPhotos = allSeasons.flatMap((season) => photosFor(season.year));
-const featured = featuredFiles
-  .map((file) => allPhotos.find((photo) => photo.file === file))
-  .filter((photo): photo is NonNullable<typeof photo> => Boolean(photo));
 
 // Counted rather than hardcoded, so the band cannot go stale the season we
 // place again. iGEM records these as "Top 10 — <section>".
@@ -33,7 +17,7 @@ const topTenFinishes = allSeasons.filter((season) =>
 ).length;
 
 const stats = [
-  { value: String(summary.seasonsRegistered), label: 'Seasons since 2005' },
+  { value: String(summary.seasonsRegistered), label: 'Teams since 2005' },
   { value: String(summary.alumni), label: 'People on the team' },
   { value: String(summary.gold), label: 'Gold medals' },
   { value: String(topTenFinishes), label: 'Top 10 finishes' },
@@ -105,34 +89,34 @@ const stats = [
       </div>
       <div class="lg:col-span-8">
         <p class="text-lg leading-relaxed text-primary-950/80">
-          Synthetic biology treats a living cell as something you can design. Give it new genetic
-          instructions and it will do a job it was never evolved to do. Every winter a new group of
-          undergraduates picks a problem worth that effort and spends a year on it, designing the
-          constructs, building them at the bench, modelling what should happen, and testing whether
-          it does. In November the work is judged at the iGEM Grand Jamboree against teams from
-          around the world.
+          Synthetic biology treats a living cell as something you can engineer. Give the cell new
+          genetic instructions, and it can do a job it never evolved to do. Every winter, our team
+          selects a global problem and spends the year trying to solve it — designing genetic
+          constructs, modeling the outcomes, and testing the results. In November, we present our
+          work at the iGEM Grand Jamboree, competing with teams from all around the world.
         </p>
 
         <div class="mt-12 grid gap-10 border-t border-primary-950/15 pt-10 sm:grid-cols-2">
           <div>
             <h3 class="font-display text-xl font-bold tracking-tight text-primary-950">
-              The research is real
+              The research is real...
             </h3>
             <p class="mt-3 leading-relaxed text-primary-950/70">
-              Seasons have gone after antibiotic resistance, landfill emissions, invasive tree
-              disease, contaminated tailings and industrial plastic waste. The work has produced
-              genetic parts other teams still build on, and it holds up in front of judges who do
-              this for a living.
+              Past teams have tackled antibiotic resistance, landfill emissions, invasive tree
+              diseases, contaminated mine tailings, and industrial plastic waste. Our work produces
+              tangible results, with members having gone on to publish their research or spin out
+              their projects into startups.
             </p>
           </div>
           <div>
             <h3 class="font-display text-xl font-bold tracking-tight text-primary-950">
-              So is the training
+              so is the training
             </h3>
             <p class="mt-3 leading-relaxed text-primary-950/70">
-              Most members arrive having never run an experiment of their own. They leave having
-              designed one, built it, argued about what the data meant, and defended the answer.
-              That is the part of the team that outlasts any single project.
+              Most members arrive with little to no research experience, but leave as confident
+              scientists who have completed the full cycle of designing, building, and testing.
+              Whether they move into computational modeling or wet lab research, the skills they
+              build here form the foundation of their careers.
             </p>
           </div>
         </div>
@@ -160,55 +144,37 @@ const stats = [
     </div>
   </section>
 
-  <!-- Photographs -->
+  <!-- Gallery CTA -->
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-    <SectionHeading
-      title="A year on the team"
-      eyebrow="In practice"
-      number="02"
-      subtitle="Bench work, teaching, outreach and the Jamboree. Two decades of it, recovered from the team's own archive."
-    />
-
-    <div class="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
-      {
-        featured.map((photo) => (
-          <figure class="group relative aspect-[4/3] overflow-hidden border border-primary-950/15">
-            <img
-              src={photoUrl(photo.file)}
-              alt={photo.caption}
-              loading="lazy"
-              decoding="async"
-              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <!-- Always legible on touch, where there is no hover to reveal it. -->
-            <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-950/90 to-transparent p-3 pt-10 text-xs leading-snug text-white transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
-              {photo.caption}
-            </figcaption>
-          </figure>
-        ))
-      }
-    </div>
-
-    <div class="mt-10 border-t border-primary-950/15 pt-8">
-      <a
-        href={base + '/gallery/'}
-        class="inline-flex items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
-      >
-        The full gallery
+    <a
+      href={base + '/gallery/'}
+      class="flex flex-col items-start justify-between gap-6 border border-primary-950 bg-primary-950 px-8 py-10 transition-colors hover:bg-primary-950/90 sm:flex-row sm:items-center"
+    >
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent-orange-light">In practice</p>
+        <h2 class="mt-2 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          Bench work, teaching, outreach, the Jamboree
+        </h2>
+        <p class="mt-2 max-w-xl text-white/60">
+          Two decades of it, recovered from the team's own archive and browsable by year or category.
+        </p>
+      </div>
+      <span class="inline-flex shrink-0 items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors">
+        Explore the gallery
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
         </svg>
-      </a>
-    </div>
+      </span>
+    </a>
   </section>
 
   <!-- Track record -->
   <section class="border-y border-primary-950/15 bg-primary-50">
     <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <SectionHeading
-        title="Every season since 2005"
+        title="Every team since 2005"
         eyebrow="Track record"
-        number="03"
+        number="02"
         subtitle="A different problem every year, including the years the record is incomplete. Select a year for the short version, then open it for the project, the awards and the photographs that survive."
       />
       <HistoryTimeline />
@@ -234,8 +200,8 @@ const stats = [
         <SectionHeading
           title="Who we are"
           eyebrow="The divisions"
-          number="04"
-          subtitle="Wet lab, dry lab, hardware, human practices and business. You do not need a biology degree to be useful here, and most of the team does not have one. Select a slice to meet that division."
+          number="03"
+          subtitle="Wet lab, dry lab, hardware, human practices, outreach, venture and web. You don't need a biology degree to make an impact here, and a lot of the team does not have one. Select a slice to learn more about that division."
         />
         <a
           href={base + '/divisions/'}
@@ -262,7 +228,7 @@ const stats = [
         </h2>
         <p class="mt-2 max-w-xl text-white/60">
           Whether you pipette, code, build or write, there is a place for you on the team. Join the
-          list and we will tell you when hiring opens.
+          mailing list and you will be the first to know when recruitment opens.
         </p>
       </div>
       <a

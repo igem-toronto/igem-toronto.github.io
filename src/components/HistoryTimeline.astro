@@ -1,8 +1,10 @@
 ---
 /**
- * The home page competition timeline: one tab per season, 2005 to the present.
+ * The home page competition timeline: a year rail (2005 to the present, each
+ * year a direct link to /history/<year>/) plus a spotlight panel for the
+ * current season.
  *
- * Panels stay deliberately short — a medal, a track, one sentence, three
+ * The panel stays deliberately short — a medal, a track, one sentence, three
  * photographs. Everything else (the full award list, the story, the whole
  * gallery) lives on the season page behind "Learn more".
  */
@@ -10,6 +12,18 @@ import PhotoStrip from './PhotoStrip.astro';
 import { allSeasons, ledgerStats, medalClass, medalLabel, projectLabel, seasonUrl } from '../lib/history';
 
 const stats = ledgerStats();
+const currentSeason = allSeasons[0];
+
+// Hand-picked rather than the default (most-recent-first) order, so the home
+// page preview leads with the competition result rather than whatever was
+// uploaded last.
+const featuredByYear: Record<number, string[]> = {
+  2026: [
+    '2026/petascale-booth-web-summit.webp',
+    '2026/gcm-certificate-award-photo-1-2026-08-13.webp',
+    '2026/wet-lab-subgroup-culture-bottles-jun-2026.webp',
+  ],
+};
 ---
 
 <div>
@@ -39,18 +53,12 @@ const stats = ledgerStats();
     >
     </div>
 
-    <div class="border-b border-primary-950/15" role="tablist" aria-label="Competition seasons">
+    <div class="border-b border-primary-950/15" aria-label="Competition years">
       <div class="-mb-px flex gap-1 overflow-x-auto scroll-smooth" data-year-rail>
         {
           allSeasons.map((season, i) => (
-            <button
-              type="button"
-              role="tab"
-              id={`year-tab-${season.year}`}
-              data-year-tab={season.year}
-              aria-controls={`year-panel-${season.year}`}
-              aria-selected={i === 0 ? 'true' : 'false'}
-              tabindex={i === 0 ? 0 : -1}
+            <a
+              href={seasonUrl(season.year)}
               class:list={[
                 'shrink-0 border-b-2 px-4 py-3 font-display text-lg font-bold tabular-nums transition-colors',
                 i === 0
@@ -59,110 +67,63 @@ const stats = ledgerStats();
               ]}
             >
               {season.year}
-            </button>
+            </a>
           ))
         }
       </div>
     </div>
   </div>
 
-  <!-- Year panels -->
-  {
-    allSeasons.map((season, i) => (
-      <div
-        role="tabpanel"
-        id={`year-panel-${season.year}`}
-        data-year-panel={season.year}
-        aria-labelledby={`year-tab-${season.year}`}
-        hidden={i !== 0}
-        class="pt-10"
-      >
-        <div class="grid gap-x-12 gap-y-8 lg:grid-cols-12">
-          <div class="lg:col-span-7">
-            <div class="flex flex-wrap items-center gap-2">
-              <span
-                class:list={[
-                  'border px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em]',
-                  medalClass(season.medal),
-                ]}
-              >
-                {medalLabel(season)}
-              </span>
-              {season.track && (
-                <span class="border border-primary-950/20 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-primary-950/55">
-                  {season.track}
-                </span>
-              )}
-              <span class="border border-primary-950/20 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-primary-950/55">
-                {season.teamSize} members
-              </span>
-            </div>
+  <!-- Spotlight panel — the current season only. Every other year is one click
+       away via the rail above, which now links straight to its own page. -->
+  <div class="pt-10">
+    <div class="grid gap-x-12 gap-y-8 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <div class="flex flex-wrap items-center gap-2">
+          <span
+            class:list={[
+              'border px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em]',
+              medalClass(currentSeason.medal),
+            ]}
+          >
+            {medalLabel(currentSeason)}
+          </span>
+          {currentSeason.track && (
+            <span class="border border-primary-950/20 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-primary-950/55">
+              {currentSeason.track}
+            </span>
+          )}
+          <span class="border border-primary-950/20 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-primary-950/55">
+            {currentSeason.teamSize} members
+          </span>
+        </div>
 
-            <h3 class="mt-5 font-display text-2xl font-bold tracking-tight text-primary-950">
-              {projectLabel(season)}
-            </h3>
-            <p class="mt-4 leading-relaxed text-primary-950/70">{season.blurb}</p>
+        <h3 class="mt-5 font-display text-2xl font-bold tracking-tight text-primary-950">
+          {projectLabel(currentSeason)}
+        </h3>
+        <p class="mt-4 leading-relaxed text-primary-950/70">{currentSeason.blurb}</p>
 
-            <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <a
-                href={seasonUrl(season.year)}
-                class="inline-flex items-center gap-2 border border-accent-orange bg-accent-orange px-6 py-2.5 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
-              >
-                Learn more
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </a>
-              {season.awards.length > 0 && (
-                <span class="text-sm text-primary-950/55">
-                  + {season.awards.length} special {season.awards.length === 1 ? 'award' : 'awards'}
-                </span>
-              )}
-            </div>
-          </div>
-
-          <div class="lg:col-span-5">
-            <PhotoStrip year={season.year} />
-          </div>
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a
+            href={seasonUrl(currentSeason.year)}
+            class="inline-flex items-center gap-2 border border-accent-orange bg-accent-orange px-6 py-2.5 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
+          >
+            Learn more
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+          {currentSeason.awards.length > 0 && (
+            <span class="text-sm text-primary-950/55">
+              + {currentSeason.awards.length} special {currentSeason.awards.length === 1 ? 'award' : 'awards'}
+            </span>
+          )}
         </div>
       </div>
-    ))
-  }
+
+      <div class="lg:col-span-5">
+        <PhotoStrip year={currentSeason.year} featured={featuredByYear[currentSeason.year]} />
+      </div>
+    </div>
+  </div>
 </div>
-
-<script>
-  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-year-tab]'));
-  const panels = document.querySelectorAll<HTMLElement>('[data-year-panel]');
-
-  const select = (tab: HTMLButtonElement, focus = false) => {
-    tabs.forEach((other) => {
-      const active = other === tab;
-      other.setAttribute('aria-selected', String(active));
-      other.tabIndex = active ? 0 : -1;
-      other.classList.toggle('border-accent-orange', active);
-      other.classList.toggle('text-primary-950', active);
-      other.classList.toggle('border-transparent', !active);
-      other.classList.toggle('text-primary-950/40', !active);
-      other.classList.toggle('hover:text-primary-950/80', !active);
-    });
-
-    panels.forEach((panel) => {
-      panel.hidden = panel.dataset.yearPanel !== tab.dataset.yearTab;
-    });
-
-    tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-    if (focus) tab.focus();
-  };
-
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => select(tab));
-
-    // With 21 tabs the rail is long enough that arrow keys stop being a nicety.
-    tab.addEventListener('keydown', (event) => {
-      const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
-      if (step === 0) return;
-      event.preventDefault();
-      select(tabs[(index + step + tabs.length) % tabs.length], true);
-    });
-  });
-</script>

@@ -1,0 +1,63 @@
+---
+/**
+ * Compact three-up photo strip — a teaser, not a browser. Every photo and the
+ * "All N" link point at `linkUrl`, which defaults to the season page but is
+ * overridden to a Gallery anchor when this strip is used ON the season page
+ * itself (see history/[year].astro), so it never links to its own page.
+ *
+ * Seasons without photographs render dashed slots so the gap stays visible.
+ */
+import { photosFor, photoUrl, seasonUrl } from '../lib/history';
+
+interface Props {
+  year: number;
+  limit?: number;
+  /** Specific files to show, in order, instead of the season's default order. */
+  featured?: string[];
+  /** Where every photo and "All N" link to. Defaults to the season page. */
+  linkUrl?: string;
+}
+
+const { year, limit = 3, featured, linkUrl = seasonUrl(year) } = Astro.props;
+
+const allPhotos = photosFor(year);
+const photos = featured
+  ? (featured.map((file) => allPhotos.find((p) => p.file === file)).filter(Boolean) as typeof allPhotos)
+  : allPhotos.slice(0, limit);
+const emptySlots = Math.max(0, limit - photos.length);
+const total = photosFor(year).length;
+---
+
+<div>
+  <div class="flex items-baseline justify-between">
+    <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/40">Photographs</h4>
+    {total > limit && (
+      <a href={linkUrl} class="text-xs uppercase tracking-wider text-accent-orange hover:text-primary-950">
+        All {total}
+      </a>
+    )}
+  </div>
+
+  <div class="mt-4 grid grid-cols-3 gap-2">
+    {
+      photos.map((photo) => (
+        <a href={linkUrl} class="block aspect-square overflow-hidden border border-primary-950/15">
+          <img
+            src={photoUrl(photo.file)}
+            alt={photo.caption}
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+        </a>
+      ))
+    }
+    {
+      Array.from({ length: emptySlots }).map(() => (
+        <div class="flex aspect-square items-center justify-center border border-dashed border-primary-950/20 bg-primary-50 px-2 text-center">
+          <span class="text-[10px] uppercase tracking-wider text-primary-950/35">None yet</span>
+        </div>
+      ))
+    }
+  </div>
+</div>

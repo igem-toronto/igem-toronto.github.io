@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import team from '../data/team.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Only link through to the People page for divisions that exist as a roster
+// group there, so we never point at an anchor that isn't rendered.
+const peopleAnchor = (division: string) =>
+  team.groups.includes(division) ? `${base}/people/#${division.toLowerCase().replace(/\s+/g, '-')}` : null;
+const mailingListUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform';
+
+// Copy sourced from the "iGEM Toronto Division Info 2026" doc, lightly edited
+// for the site's tone. Add a photo per division by setting `photo` to an
+// uploaded image URL (https://uploads.igem.org) or a local path under
+// public/images/divisions/. See docs/UPDATING_THE_TEAM.md.
+const divisions = [
+  {
+    name: 'Wet Lab',
+    tag: 'Experimental',
+    lede: 'Where the project physically comes to life.',
+    description:
+      'Wet Lab designs and runs the experiments at the core of every iGEM project. Members clone and assemble genetic constructs, transform and culture cells, run assays, and troubleshoot protocols.',
+    highlights: ['Molecular cloning and assembly', 'Assay development and characterization', 'Protocol design and troubleshooting'],
+    photo: null,
+  },
+  {
+    name: 'Dry Lab',
+    tag: 'Computational',
+    lede: 'The computational engine behind the project.',
+    description:
+      'Dry Lab takes the biological questions and tries to model and solve them with code. Members build algorithms, train machine learning models, analyze omics data, and develop the software tools that let the team predict outcomes and prioritize wet lab experiments.',
+    highlights: ['Training and using ML models', 'Bioinformatics and data analysis', 'Algorithm design and simulation'],
+    photo: null,
+  },
+  {
+    name: 'Hardware',
+    tag: 'Engineering',
+    lede: 'Custom instruments built for the problem at hand.',
+    description:
+      'Hardware designs and builds the physical devices our projects need. Members work through CAD, electronics, embedded firmware, and fabrication to produce prototypes that are tested against real experimental requirements and iterated alongside the lab. iGEM Toronto is proud to be the only team in eastern North America with a dedicated hardware division.',
+    highlights: ['CAD and rapid prototyping', 'Electronics and embedded firmware', 'Device testing and iteration'],
+    photo: null,
+  },
+  {
+    name: 'Human Practices',
+    tag: 'Ethics & society',
+    lede: 'Making sure the science is responsible and wanted.',
+    description:
+      'Human Practices studies how our work lands in the world. Members interview stakeholders and domain experts, research the ethical, legal, and social implications of the project, and feed what they learn back into the design so the final system reflects the needs of the people it affects.',
+    highlights: ['Stakeholder and expert engagement', 'Ethics and policy research', 'Integrating findings into project design'],
+    photo: null,
+  },
+  {
+    name: 'Venture',
+    tag: 'Business & operations',
+    lede: 'Turning the science into a viable, funded venture.',
+    description:
+      'Venture takes an academic project and builds the plan to commercialize it. Members size the market, interview potential customers, and build the pitch and business case for commercialization, while also tracking the budget, securing sponsorships, and writing the grant applications that keep the team funded.',
+    highlights: ['Market research and business modelling', 'Pitching and fundraising', 'Budget tracking and grant applications'],
+    photo: null,
+  },
+  {
+    name: 'Outreach',
+    tag: 'Communication',
+    lede: 'Bringing synthetic biology to the wider community.',
+    description:
+      'Outreach brings our work to people outside the lab. Members plan educational programs and workshops, partner with schools and community organizations, and produce the graphics, social media, and content that share synthetic biology with a general audience.',
+    highlights: ['Workshops and educational programming', 'School and community partnerships', 'Graphic design and social media'],
+    photo: null,
+  },
+  {
+    name: 'Web',
+    tag: 'Development',
+    lede: 'The site and wiki that carry the work to the world.',
+    description:
+      "Web builds the team's digital presence. Members develop the recruitment website and, closer to the competition deadline, the iGEM wiki, which is our main deliverable for the Jamboree. We use front-end frameworks to turn a year of lab and business work into something that can be presented to the judges and the public.",
+    highlights: ['Front-end web development', 'iGEM wiki development', 'Site design and UX'],
+    photo: null,
+  },
+];
+---
+
+<BaseLayout title="Divisions" description="The divisions that make up iGEM Toronto.">
+  <PageHeader
+    eyebrow="Structure"
+    title="Divisions"
+    lede="Each division owns a part of the project and brings a different set of skills. Together, we take the idea from a rough plan and build the entire stack which is presented on the world stage."
+  />
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-px border border-primary-950/10 bg-primary-950/10 lg:grid-cols-2">
+      {
+        divisions.map((division, i) => (
+          <article class="flex flex-col bg-white">
+            <div class="aspect-[16/9] overflow-hidden border-b border-primary-950/10">
+              {division.photo ? (
+                <img
+                  src={division.photo}
+                  alt={`The iGEM Toronto ${division.name} division`}
+                  loading="lazy"
+                  class="h-full w-full object-cover"
+                />
+              ) : (
+                <div class="flex h-full w-full items-center justify-center bg-primary-50">
+                  <div class="text-center">
+                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/35">
+                      {division.name}
+                    </p>
+                    <p class="mt-1 text-xs text-primary-950/35">Photo to be added</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div class="flex flex-1 flex-col p-8">
+              <div class="flex items-baseline gap-4">
+                <span class="font-display text-sm font-semibold tabular-nums text-accent-orange">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h2 class="font-display text-xl font-bold tracking-tight text-primary-950">{division.name}</h2>
+                  <p class="mt-1 text-xs uppercase tracking-[0.15em] text-primary-950/45">{division.tag}</p>
+                </div>
+              </div>
+
+              <p class="mt-5 font-display text-lg font-medium leading-snug text-primary-950">{division.lede}</p>
+              <p class="mt-3 leading-relaxed text-primary-950/70">{division.description}</p>
+
+              <ul class="mt-6 border-t border-primary-950/10">
+                {division.highlights.map((highlight) => (
+                  <li class="flex items-baseline gap-3 border-b border-primary-950/10 py-2 text-sm text-primary-950/70">
+                    <span class="text-accent-orange">&#8226;</span>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+
+              {peopleAnchor(division.name) && (
+                <a
+                  href={peopleAnchor(division.name)}
+                  class="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+                >
+                  Meet the division
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 flex flex-col items-start justify-between gap-6 border border-primary-950 bg-primary-950 px-8 py-10 md:flex-row md:items-center">
+      <div>
+        <h2 class="font-display text-2xl font-bold tracking-tight text-white">Find your place</h2>
+        <p class="mt-2 max-w-xl text-white/60">
+          Lab experiments, computation, hardware, ethics, venture, outreach, or web — there is a place for you.
+        </p>
+      </div>
+      <a
+        href={mailingListUrl}
+        class="shrink-0 border border-accent-orange bg-accent-orange px-7 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent"
+      >
+        Join Us
+      </a>
+    </div>
+  </section>
+</BaseLayout>

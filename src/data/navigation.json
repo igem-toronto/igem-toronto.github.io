@@ -1,0 +1,17 @@
+[
+  {
+    "text": "History",
+    "sublinks": [{ "text": "All Years", "link": "/history/" }],
+    "_yearGridComment": "Renders a \"Choose a Year...\" grid, one link per season, generated from src/data/history.json and pointing to that season's /history/<year>/ page — not its wiki. Do not hardcode year links here.",
+    "yearGrid": true
+  },
+  {
+    "text": "Team",
+    "sublinks": [
+      { "text": "Divisions", "link": "/divisions/" },
+      { "text": "People", "link": "/people/" }
+    ]
+  },
+  { "text": "Gallery", "link": "/gallery/" },
+  { "text": "Sponsors", "link": "/sponsors/" }
+]

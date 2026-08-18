@@ -1,10 +1,17 @@
 {
+  "name": "igem-toronto-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "build": "FLASK_APP=app.py flask freeze",
-    "start": "python app.py"
+    "dev": "astro dev",
+    "build": "npm run check:history && astro build",
+    "preview": "astro preview",
+    "check:history": "node scripts/check-history-data.mjs"
   },
-  "devDependencies": {
-    "tailwindcss": "^3.3.2",
-    "alpinejs": "^3.13.5"
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.6",
+    "tailwindcss": "^4.3.2"
   }
 }

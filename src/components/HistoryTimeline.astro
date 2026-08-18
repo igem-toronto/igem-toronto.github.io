@@ -1,0 +1,129 @@
+---
+/**
+ * The home page competition timeline: a year rail (2005 to the present, each
+ * year a direct link to /history/<year>/) plus a spotlight panel for the
+ * current season.
+ *
+ * The panel stays deliberately short — a medal, a track, one sentence, three
+ * photographs. Everything else (the full award list, the story, the whole
+ * gallery) lives on the season page behind "Learn more".
+ */
+import PhotoStrip from './PhotoStrip.astro';
+import { allSeasons, ledgerStats, medalClass, medalLabel, projectLabel, seasonUrl } from '../lib/history';
+
+const stats = ledgerStats();
+const currentSeason = allSeasons[0];
+
+// Hand-picked rather than the default (most-recent-first) order, so the home
+// page preview leads with the competition result rather than whatever was
+// uploaded last.
+const featuredByYear: Record<number, string[]> = {
+  2026: [
+    '2026/petascale-booth-web-summit.webp',
+    '2026/gcm-certificate-award-photo-1-2026-08-13.webp',
+    '2026/wet-lab-subgroup-culture-bottles-jun-2026.webp',
+  ],
+};
+---
+
+<div>
+  <!-- Summary ledger -->
+  <div class="grid grid-cols-2 divide-x divide-y divide-primary-950/10 border border-primary-950/10 sm:grid-cols-4 sm:divide-y-0">
+    {
+      stats.map((stat) => (
+        <div class="px-6 py-8">
+          <div class="font-display text-3xl font-bold tabular-nums text-primary-950">{stat.value}</div>
+          <div class="mt-2 text-xs font-medium uppercase tracking-[0.15em] text-primary-950/50">{stat.label}</div>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Year rail. 21 seasons is wider than any phone, so it scrolls; the gradient
+       masks on either side are the affordance that says so. -->
+  <div class="relative mt-12">
+    <div
+      class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-primary-50 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-primary-50 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="border-b border-primary-950/15" aria-label="Competition years">
+      <div class="-mb-px flex gap-1 overflow-x-auto scroll-smooth" data-year-rail>
+        {
+          allSeasons.map((season, i) => (
+            <a
+              href={seasonUrl(season.year)}
+              class:list={[
+                'shrink-0 border-b-2 px-4 py-3 font-display text-lg font-bold tabular-nums transition-colors',
+                i === 0
+                  ? 'border-accent-orange text-primary-950'
+                  : 'border-transparent text-primary-950/40 hover:text-primary-950/80',
+              ]}
+            >
+              {season.year}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Spotlight panel — the current season only. Every other year is one click
+       away via the rail above, which now links straight to its own page. -->
+  <div class="pt-10">
+    <div class="grid gap-x-12 gap-y-8 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <div class="flex flex-wrap items-center gap-2">
+          <span
+            class:list={[
+              'border px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em]',
+              medalClass(currentSeason.medal),
+            ]}
+          >
+            {medalLabel(currentSeason)}
+          </span>
+          {currentSeason.track && (
+            <span class="border border-primary-950/20 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-primary-950/55">
+              {currentSeason.track}
+            </span>
+          )}
+          <span class="border border-primary-950/20 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-primary-950/55">
+            {currentSeason.teamSize} members
+          </span>
+        </div>
+
+        <h3 class="mt-5 font-display text-2xl font-bold tracking-tight text-primary-950">
+          {projectLabel(currentSeason)}
+        </h3>
+        <p class="mt-4 leading-relaxed text-primary-950/70">{currentSeason.blurb}</p>
+
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a
+            href={seasonUrl(currentSeason.year)}
+            class="inline-flex items-center gap-2 border border-accent-orange bg-accent-orange px-6 py-2.5 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
+          >
+            Learn more
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+          {currentSeason.awards.length > 0 && (
+            <span class="text-sm text-primary-950/55">
+              + {currentSeason.awards.length} special {currentSeason.awards.length === 1 ? 'award' : 'awards'}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        <PhotoStrip year={currentSeason.year} featured={featuredByYear[currentSeason.year]} />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,159 @@
+---
+import team from '../data/team.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const anchor = (group: string) => `${base}/people/#${group.toLowerCase().replace(/\s+/g, '-')}`;
+
+// Segment sizes come straight from the roster, so the chart stays in sync
+// whenever members are added to or removed from src/data/team.json.
+const counts = team.groups
+  .map((group) => ({ group, count: team.members.filter((m) => m.group === group).length }))
+  .filter(({ count }) => count > 0);
+
+const total = counts.reduce((sum, { count }) => sum + count, 0);
+
+const palette = [
+  '#19425A',
+  '#de601e',
+  '#028d81',
+  '#559dbc',
+  '#6dacd1',
+  '#f08a4f',
+  '#06b3a4',
+  '#235a7a',
+  '#a0d4f2',
+];
+
+const CX = 100;
+const CY = 100;
+const R = 78;
+const INNER = 42;
+
+// Build one donut wedge per group, plus the unit vector of its bisector so the
+// segment can be nudged outward on hover.
+let cursor = -Math.PI / 2;
+const segments = counts.map(({ group, count }, i) => {
+  const sweep = (count / total) * Math.PI * 2;
+  const start = cursor;
+  const end = cursor + sweep;
+  cursor = end;
+
+  const mid = (start + end) / 2;
+  const largeArc = sweep > Math.PI ? 1 : 0;
+
+  const p = (radius: number, angle: number) =>
+    `${(CX + radius * Math.cos(angle)).toFixed(3)} ${(CY + radius * Math.sin(angle)).toFixed(3)}`;
+
+  const d = [
+    `M ${p(R, start)}`,
+    `A ${R} ${R} 0 ${largeArc} 1 ${p(R, end)}`,
+    `L ${p(INNER, end)}`,
+    `A ${INNER} ${INNER} 0 ${largeArc} 0 ${p(INNER, start)}`,
+    'Z',
+  ].join(' ');
+
+  return {
+    group,
+    count,
+    d,
+    color: palette[i % palette.length],
+    percent: Math.round((count / total) * 100),
+    dx: (Math.cos(mid) * 6).toFixed(3),
+    dy: (Math.sin(mid) * 6).toFixed(3),
+    href: anchor(group),
+  };
+});
+---
+
+<div class="grid items-center gap-10 sm:grid-cols-2" data-member-pie>
+  <!-- Chart -->
+  <div class="relative mx-auto w-full max-w-xs">
+    <svg viewBox="0 0 200 200" class="h-auto w-full overflow-visible" role="img" aria-label="Team members by division">
+      {
+        segments.map((segment) => (
+          <a href={segment.href} data-segment={segment.group} class="group/seg outline-none">
+            <title>{`${segment.group}: ${segment.count} members`}</title>
+            <path
+              d={segment.d}
+              fill={segment.color}
+              stroke="#ffffff"
+              stroke-width="1.5"
+              class="origin-center cursor-pointer transition-transform duration-200 ease-out"
+              style={`--dx:${segment.dx}px; --dy:${segment.dy}px;`}
+            />
+          </a>
+        ))
+      }
+    </svg>
+
+    <!-- Center readout -->
+    <div class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
+      <span class="font-display text-3xl font-bold tabular-nums text-primary-950" data-pie-value>{total}</span>
+      <span class="mt-0.5 max-w-[7rem] text-[10px] font-semibold uppercase tracking-[0.15em] text-primary-950/50" data-pie-label>
+        Members
+      </span>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <ul class="border-t border-primary-950/10">
+    {
+      segments.map((segment) => (
+        <li>
+          <a
+            href={segment.href}
+            data-legend={segment.group}
+            class="flex items-center gap-3 border-b border-primary-950/10 py-2.5 transition-colors hover:bg-primary-50"
+          >
+            <span class="h-3 w-3 shrink-0" style={`background-color:${segment.color}`} aria-hidden="true" />
+            <span class="flex-1 text-sm text-primary-950/80">{segment.group}</span>
+            <span class="text-sm font-semibold tabular-nums text-primary-950">{segment.count}</span>
+            <span class="w-10 text-right text-xs tabular-nums text-primary-950/40">{segment.percent}%</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  [data-member-pie] path {
+    transform: translate(0, 0);
+  }
+  [data-member-pie] .is-active path {
+    transform: translate(var(--dx), var(--dy));
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-member-pie]').forEach((root) => {
+    const value = root.querySelector<HTMLElement>('[data-pie-value]');
+    const label = root.querySelector<HTMLElement>('[data-pie-label]');
+    const defaultValue = value?.textContent ?? '';
+    const defaultLabel = label?.textContent ?? '';
+
+    const setActive = (group: string | null) => {
+      root.querySelectorAll<HTMLElement>('[data-segment]').forEach((segment) => {
+        segment.classList.toggle('is-active', segment.dataset.segment === group);
+      });
+
+      if (!value || !label) return;
+      if (group) {
+        const legend = root.querySelector<HTMLElement>(`[data-legend="${CSS.escape(group)}"]`);
+        value.textContent = legend?.children[2]?.textContent ?? defaultValue;
+        label.textContent = group;
+      } else {
+        value.textContent = defaultValue;
+        label.textContent = defaultLabel;
+      }
+    };
+
+    root.querySelectorAll<HTMLElement>('[data-segment], [data-legend]').forEach((el) => {
+      const group = el.dataset.segment ?? el.dataset.legend ?? null;
+      el.addEventListener('mouseenter', () => setActive(group));
+      el.addEventListener('focus', () => setActive(group));
+      el.addEventListener('mouseleave', () => setActive(null));
+      el.addEventListener('blur', () => setActive(null));
+    });
+  });
+</script>

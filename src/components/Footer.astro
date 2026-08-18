@@ -1,0 +1,52 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const logoUrl = 'https://static.igem.wiki/teams/4615/wiki/graphics/igem-toronto.png';
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-primary-950 bg-primary-950 text-white">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-6">
+        <a href={base + '/'}>
+          <img src={logoUrl} alt="iGEM Toronto Logo" class="h-16 w-auto" />
+        </a>
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
+          Representing the University of Toronto in the International Genetically Engineered Machine competition
+          since 2005.
+        </p>
+      </div>
+
+      <div class="md:col-span-3">
+        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">Index</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a href={base + '/history/'} class="text-white/75 transition-colors hover:text-white">History</a></li>
+          <li><a href={base + '/gallery/'} class="text-white/75 transition-colors hover:text-white">Gallery</a></li>
+          <li><a href={base + '/people/'} class="text-white/75 transition-colors hover:text-white">People</a></li>
+          <li><a href={base + '/divisions/'} class="text-white/75 transition-colors hover:text-white">Divisions</a></li>
+          <li><a href={base + '/sponsors/'} class="text-white/75 transition-colors hover:text-white">Sponsors</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">Contact</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li>
+            <a href="mailto:igem@g.skule.ca" class="text-white/75 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white">
+              igem@g.skule.ca
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/igemtoronto/" class="text-white/75 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white">
+              Instagram — @igemtoronto
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col justify-between gap-2 border-t border-white/15 pt-6 text-xs text-white/40 sm:flex-row">
+      <p>&copy; {year} iGEM Toronto</p>
+    </div>
+  </div>
+</footer>

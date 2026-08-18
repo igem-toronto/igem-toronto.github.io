@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import HistoryTimeline from '../components/HistoryTimeline.astro';
+import MemberPie from '../components/MemberPie.astro';
+import { allSeasons, summary } from '../lib/history';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const logoMarkUrl = `${base}/images/logo-mark.png`;
+const mailingListUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform';
+
+// Counted rather than hardcoded, so the band cannot go stale the season we
+// place again. iGEM records these as "Top 10 — <section>".
+const topTenFinishes = allSeasons.filter((season) =>
+  (season.awards ?? []).some((award) => award.startsWith('Top 10')),
+).length;
+
+const stats = [
+  { value: String(summary.seasonsRegistered), label: 'Teams since 2005' },
+  { value: String(summary.alumni), label: 'People on the team' },
+  { value: String(summary.gold), label: 'Gold medals' },
+  { value: String(topTenFinishes), label: 'Top 10 finishes' },
+];
+---
+
+<BaseLayout title="Home">
+  <!-- Hero -->
+  <section class="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden border-b border-primary-950 bg-primary-950 pb-28 sm:pb-30">
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.12]"
+      style="background-image: linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 72px 72px;"
+      aria-hidden="true"
+    >
+    </div>
+    <img
+      src={logoMarkUrl}
+      alt=""
+      aria-hidden="true"
+      class="pointer-events-none absolute left-1/2 top-1/2 h-[150%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 opacity-[0.05]"
+    />
+    <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(ellipse at center, transparent 25%, rgba(10,30,43,0.7) 100%);" aria-hidden="true"></div>
+
+    <div class="relative mx-auto w-full max-w-4xl px-4 text-center sm:px-6">
+      <h1 class="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+        Life is <em class="not-italic text-accent-orange-light">engineerable</em>
+      </h1>
+      <p class="mx-auto mt-8 max-w-2xl text-lg font-medium leading-relaxed text-white/85 sm:text-xl">
+        University of Toronto's iGEM team
+      </p>
+      <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">
+        We apply synthetic biology to tackle pressing problems, and train the next generation of
+        scientists to engineer these futures.
+      </p>
+      <div class="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href={mailingListUrl}
+          class="w-full border border-accent-orange bg-accent-orange px-8 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent sm:w-auto"
+        >
+          Join the Team
+        </a>
+        <a
+          href="#what-we-do"
+          class="w-full border border-white/30 px-8 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:border-white sm:w-auto"
+        >
+          Who We Are?
+        </a>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70" aria-hidden="true">
+      <svg class="h-12 w-12 animate-bounce sm:h-14 sm:w-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <path stroke-linecap="square" d="M12 4v15M5 12.5l7 7 7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section id="what-we-do" class="mx-auto max-w-7xl scroll-mt-16 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading title="What we do" eyebrow="The team" number="01" />
+        <img
+          src={`${base}/images/home/team-best-therapeutics-2025-square.webp`}
+          alt="iGEM Toronto team celebrating the Best Therapeutics Project award at the 2025 Grand Jamboree"
+          loading="lazy"
+          class="hidden aspect-square w-full border border-primary-950/15 object-cover lg:block"
+        />
+      </div>
+      <div class="lg:col-span-8">
+        <p class="text-lg leading-relaxed text-primary-950/80">
+          Synthetic biology treats a living cell as something you can engineer. Give the cell new
+          genetic instructions, and it can do a job it never evolved to do. Every winter, our team
+          selects a global problem and spends the year trying to solve it — designing genetic
+          constructs, modeling the outcomes, and testing the results. In November, we present our
+          work at the iGEM Grand Jamboree, competing with teams from all around the world.
+        </p>
+
+        <div class="mt-12 grid gap-10 border-t border-primary-950/15 pt-10 sm:grid-cols-2">
+          <div>
+            <h3 class="font-display text-xl font-bold tracking-tight text-primary-950">
+              The research is real...
+            </h3>
+            <p class="mt-3 leading-relaxed text-primary-950/70">
+              Past teams have tackled antibiotic resistance, landfill emissions, invasive tree
+              diseases, contaminated mine tailings, and industrial plastic waste. Our work produces
+              tangible results, with members having gone on to publish their research or spin out
+              their projects into startups.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-display text-xl font-bold tracking-tight text-primary-950">
+              so is the training
+            </h3>
+            <p class="mt-3 leading-relaxed text-primary-950/70">
+              Most members arrive with little to no research experience, but leave as confident
+              scientists who have completed the full cycle of designing, building, and testing.
+              Whether they move into computational modeling or wet lab research, the skills they
+              build here form the foundation of their careers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Record -->
+  <section class="border-y border-primary-950/15 bg-primary-50">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 gap-y-10 text-center sm:grid-cols-4">
+        {
+          stats.map((stat) => (
+            <div>
+              <div class="font-display text-4xl font-bold tabular-nums text-primary-950 sm:text-5xl">
+                {stat.value}
+              </div>
+              <div class="mt-2 text-xs font-medium uppercase tracking-[0.15em] text-primary-950/50">
+                {stat.label}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery CTA -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <a
+      href={base + '/gallery/'}
+      class="flex flex-col items-start justify-between gap-6 border border-primary-950 bg-primary-950 px-8 py-10 transition-colors hover:bg-primary-950/90 sm:flex-row sm:items-center"
+    >
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent-orange-light">In practice</p>
+        <h2 class="mt-2 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          Bench work, teaching, outreach, the Jamboree
+        </h2>
+        <p class="mt-2 max-w-xl text-white/60">
+          Two decades of it, recovered from the team's own archive and browsable by year or category.
+        </p>
+      </div>
+      <span class="inline-flex shrink-0 items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors">
+        Explore the gallery
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </span>
+    </a>
+  </section>
+
+  <!-- Track record -->
+  <section class="border-y border-primary-950/15 bg-primary-50">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionHeading
+        title="Every team since 2005"
+        eyebrow="Track record"
+        number="02"
+        subtitle="A different problem every year, including the years the record is incomplete. Select a year for the short version, then open it for the project, the awards and the photographs that survive."
+      />
+      <HistoryTimeline />
+
+      <div class="mt-12 border-t border-primary-950/15 pt-8">
+        <a
+          href={base + '/history/'}
+          class="inline-flex items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
+        >
+          The full history
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we are -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading
+          title="Who we are"
+          eyebrow="The divisions"
+          number="03"
+          subtitle="Wet lab, dry lab, hardware, human practices, outreach, venture and web. You don't need a biology degree to make an impact here, and a lot of the team does not have one. Select a slice to learn more about that division."
+        />
+        <a
+          href={base + '/divisions/'}
+          class="mt-8 inline-flex items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
+        >
+          All divisions
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+      <div class="lg:col-span-8">
+        <MemberPie />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="bg-primary-950">
+    <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center lg:px-8">
+      <div>
+        <h2 class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          Applications open every February
+        </h2>
+        <p class="mt-2 max-w-xl text-white/60">
+          Whether you pipette, code, build or write, there is a place for you on the team. Join the
+          mailing list and you will be the first to know when recruitment opens.
+        </p>
+      </div>
+      <a
+        href={mailingListUrl}
+        class="shrink-0 border border-accent-orange bg-accent-orange px-7 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent"
+      >
+        Join the Mailing List
+      </a>
+    </div>
+  </section>
+</BaseLayout>

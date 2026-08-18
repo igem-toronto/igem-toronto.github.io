@@ -1,0 +1,116 @@
+---
+/**
+ * A grid of historical photographs with a click-to-enlarge lightbox.
+ *
+ * Seasons with no photographs yet render a labelled empty slot rather than
+ * nothing at all — the gap is visible on purpose, so it gets filled.
+ * Used by /history/<year>/ and /gallery/.
+ */
+import { photoUrl, type Photo } from '../lib/history';
+
+interface Props {
+  photos: Photo[];
+  year: number | string;
+  /** Unique per instance — the lightbox dialogs are keyed off it. */
+  idPrefix: string;
+  columns?: 2 | 3 | 4;
+}
+
+const { photos, year, idPrefix, columns = 3 } = Astro.props;
+
+const columnClass = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+}[columns];
+---
+
+{
+  photos.length > 0 ? (
+    <div class:list={['grid grid-cols-1 gap-4', columnClass]}>
+      {photos.map((photo, i) => (
+        <figure class="group" data-photo data-category={photo.category} data-year={String(year)}>
+          <button
+            type="button"
+            data-open-dialog={`${idPrefix}-photo-${i}`}
+            class="block w-full cursor-zoom-in overflow-hidden border border-primary-950/15 bg-primary-50"
+          >
+            <img
+              src={photoUrl(photo.file)}
+              alt={photo.caption}
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+            />
+          </button>
+          <figcaption class="mt-2 text-sm leading-snug text-primary-950/60">
+            {photo.caption}
+            {photo.credit && <span class="text-primary-950/40"> — {photo.credit}</span>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  ) : (
+    <div class="flex min-h-40 flex-col items-center justify-center border border-dashed border-primary-950/25 bg-primary-50 px-6 py-10 text-center">
+      <p class="font-display text-sm font-semibold uppercase tracking-[0.2em] text-primary-950/45">
+        {year} — no photographs yet
+      </p>
+      <p class="mt-2 max-w-md text-sm leading-relaxed text-primary-950/50">
+        Nothing from this year has been recovered. If you have photographs — lab work, the Jamboree,
+        outreach, socials — they belong here.
+      </p>
+      <p class="mt-2 text-xs uppercase tracking-wider text-primary-950/35">
+        docs/HISTORY_AND_GALLERY.md
+      </p>
+    </div>
+  )
+}
+
+{
+  photos.map((photo, i) => (
+    <dialog
+      id={`${idPrefix}-photo-${i}`}
+      class="w-[min(92vw,72rem)] border border-primary-950/20 bg-white p-0 backdrop:bg-primary-950/70"
+    >
+      <div class="relative">
+        <img src={photoUrl(photo.file)} alt={photo.caption} class="max-h-[75vh] w-full object-contain bg-primary-950" />
+        <button
+          type="button"
+          data-close-dialog={`${idPrefix}-photo-${i}`}
+          aria-label="Close"
+          class="absolute right-3 top-3 border border-white/40 bg-primary-950/70 px-3 py-1.5 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-primary-950"
+        >
+          Close
+        </button>
+      </div>
+      <div class="flex flex-wrap items-baseline justify-between gap-2 px-5 py-4">
+        <p class="text-primary-950/80">{photo.caption}</p>
+        <p class="font-display text-sm font-bold tabular-nums text-primary-950/45">{year}</p>
+      </div>
+    </dialog>
+  ))
+}
+
+<script>
+  // Astro hoists and bundles this once per page, however many grids are on it.
+  document.querySelectorAll<HTMLElement>('[data-open-dialog]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dialog = document.getElementById(btn.dataset.openDialog!) as HTMLDialogElement | null;
+      dialog?.showModal();
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-close-dialog]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dialog = document.getElementById(btn.dataset.closeDialog!) as HTMLDialogElement | null;
+      dialog?.close();
+    });
+  });
+
+  // Clicking the backdrop closes the lightbox.
+  document.querySelectorAll('dialog').forEach((dialog) => {
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>

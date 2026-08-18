@@ -1,0 +1,1089 @@
+{
+  "_README": "Historical photographs, grouped by season. Every season in history.json has a key here, including the empty ones \u2014 an empty array is what makes the site render a labelled 'no photos yet' slot, which is deliberate. `file` is relative to public/images/history/. To add photos: drop them in public/images/history/<year>/ (or list them in scripts/curated-photos.tsv and run scripts/import-history-photos.sh) and add an entry here. Captions must not name individuals. Full instructions: docs/HISTORY_AND_GALLERY.md",
+  "categories": [
+    {
+      "id": "team-photo",
+      "label": "Team photos"
+    },
+    {
+      "id": "lab",
+      "label": "In the lab"
+    },
+    {
+      "id": "jamboree",
+      "label": "Jamboree"
+    },
+    {
+      "id": "outreach",
+      "label": "Outreach"
+    },
+    {
+      "id": "social",
+      "label": "Socials"
+    },
+    {
+      "id": "conference",
+      "label": "Conferences"
+    }
+  ],
+  "years": {
+    "2026": [
+      {
+        "file": "2026/team-night-out-sports-bar-2026-08-11.webp",
+        "caption": "Team night out at a sports bar, 11 August 2026 \u2014 big group under the string lights.",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/breadboard-motor-control-circuit-aug-2026.webp",
+        "caption": "Bioreactor motor control circuit, in progress, 9 August 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/conference-boulder-group-photo-2026-08-08.webp",
+        "caption": "Team poses on campus boulders during a conference break, 08 August 2026.",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/conference-lecture-hall-selfie-2026-08-08.webp",
+        "caption": "Team attends a conference lecture, coffee in hand, 08 August 2026.",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/conference-pizza-break-campus-2026-08-08.webp",
+        "caption": "Conference break with pizza on a university campus quad, 08 August 2026.",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/gcm-boardroom-breakout-2026-08-13.webp",
+        "caption": "Team gathered around a boardroom table during a breakout session, Great Canadian Meetup, McMaster University, 8\u20139 August 2026",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2026/gcm-certificate-award-photo-1-2026-08-13.webp",
+        "caption": "Team accepts its Great Canadian Meetup award, McMaster University, 8\u20139 August 2026 \u2014 second place overall, with Best Engineering Approach and Best Experimental Evidence",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2026/gcm-certificate-award-photo-2-2026-08-13.webp",
+        "caption": "Second group photo with the Great Canadian Meetup award, McMaster University, 8\u20139 August 2026",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2026/gcm-certificate-outdoor-photo-2026-08-13.webp",
+        "caption": "Team poses outdoors with its Great Canadian Meetup award, McMaster University, 8\u20139 August 2026",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2026/gcm-large-group-photo-2026-08-13.webp",
+        "caption": "Large group photo of Great Canadian Meetup attendees, McMaster University, 8\u20139 August 2026",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2026/gcm-presentation-dry-lab-methods-2026-08-13.webp",
+        "caption": "Presenting dry-lab methods \u2014 sequence mining and enzyme candidate selection \u2014 at the Great Canadian Meetup, McMaster University, 8\u20139 August 2026",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2026/gcm-presentation-petabiote-pitch-2026-08-13.webp",
+        "caption": "Team pitches its PET-degrading enzyme project at the Great Canadian Meetup, McMaster University, 8\u20139 August 2026 \u2014 second place overall, with Best Engineering Approach and Best Experimental Evidence awards",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2026/gcm-team-group-photo-outdoor-2026-08-13.webp",
+        "caption": "Team group photo outside the Great Canadian Meetup venue, McMaster University, 8\u20139 August 2026",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2026/breadboard-motor-fan-circuit-aug-2026.webp",
+        "caption": "Bioreactor pump and fan control circuit under test, 3 August 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/hardware-circuit-testing-jul-2026.webp",
+        "caption": "Testing a wired bioreactor subsystem circuit ahead of the 30 July integration deadline",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/hardware-workbench-overhead-jul-2026.webp",
+        "caption": "Hardware team workbench prototyping the bioreactor's subsystems ahead of the 30 July integration deadline",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/ferry-queue-toronto-islands-2026-07-26.webp",
+        "caption": "Crowded ferry queue back from the Toronto Islands, 26 July 2026.",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/toronto-islands-sunset-team-photo-2026-07-26.webp",
+        "caption": "Team photo on the Toronto Islands at sunset, 26 July 2026 \u2014 skyline behind.",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/team-climbing-gym-hangout-jul-2026.webp",
+        "caption": "Team members at a climbing gym \u2014 informal hangout, 23 July 2026",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/3d-printed-sensor-housing-wiring-jul-2026.webp",
+        "caption": "A hand-wired housing for the team's custom-built optical density sensor, late July 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/bioethics-symposium-zoom-call-2026-07-12.webp",
+        "caption": "Virtual session for the University of Michigan Bioethics Symposium, July 2026 \u2014 the team's entry emphasised the justice pillar",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/breadboard-wire-coil-testing-jul-2026.webp",
+        "caption": "A bioreactor subsystem coil wired to an Arduino Nano controller, late July 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/hardware-cardboard-enclosure-build-jul-2026.webp",
+        "caption": "Assembling a cardboard prototype enclosure for the bioreactor housing, late July 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/hardware-unpacking-wiring-jul-2026.webp",
+        "caption": "Hardware team unpacking new components and wiring a bioreactor subsystem, late July 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/hardware-workshop-team-moment.webp",
+        "caption": "Behind the scenes in the hardware workshop while filming the team's promo video, July 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/igem-swag-distribution-kit-2026-07-02.webp",
+        "caption": "iGEM 2026 team distribution kit unboxed, 02 July 2026 \u2014 pins, stickers and welcome booklet.",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/lab-fridge-reagent-retrieval.webp",
+        "caption": "Researcher retrieves reagents from the fridge in the BME teaching lab, June 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/wet-lab-subgroup-culture-bottles-jun-2026.webp",
+        "caption": "Wet-lab subgroup members in the teaching lab with culture bottles, June 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/team-dinner-canadian-flags.webp",
+        "caption": "Team dinner at a restaurant strung with Canadian flag bunting",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/team-dinner-restaurant-2026-06-05.webp",
+        "caption": "Team dinner at a Middle Eastern restaurant, 05 June 2026 \u2014 kebabs and mezze shared around the table.",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/park-evening-group-wide-1.webp",
+        "caption": "Large team group photo during an evening park outing",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/park-evening-group-wide-2.webp",
+        "caption": "Wide view of the team relaxing together during an evening park outing",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/park-evening-hangout-1.webp",
+        "caption": "Two team members relax on the grass during an evening park outing",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/park-evening-hangout-2.webp",
+        "caption": "Team members share a picnic blanket during an evening park outing",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/park-evening-hangout-3.webp",
+        "caption": "Team members share snacks on the grass during an evening park outing",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/airport-departure-group-1.webp",
+        "caption": "Team gathers with luggage at an airport gate before departure",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/airport-departure-group-2.webp",
+        "caption": "Second shot of the team waiting at the airport gate before departure",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/mindfuel-session-audience.webp",
+        "caption": "Team members seated in the audience at the MindFuel Tech Futures Challenge Innovation Showcase, Calgary, 30 May 2026",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/mindfuel-step-and-repeat-group.webp",
+        "caption": "Team poses at the MindFuel step-and-repeat backdrop, Tech Futures Challenge Innovation Showcase, Calgary, 30 May 2026",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/mindfuel-tech-futures-challenge.webp",
+        "caption": "Team members pose with sponsor MindFuel at the Tech Futures Challenge Innovation Showcase, Calgary, 30 May 2026",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/petadex-poster-tech-futures-1.webp",
+        "caption": "PetaScale's PETAdex poster display at the MindFuel Tech Futures Challenge Innovation Showcase, Calgary, 30 May 2026",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/petadex-poster-tech-futures-2.webp",
+        "caption": "Wider view of the PETAdex poster board at the MindFuel Tech Futures Challenge Innovation Showcase, Calgary, 30 May 2026",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/petascale-startup-showcase-stage.webp",
+        "caption": "PetaScale presents on the Startup Showcase stage at Web Summit Vancouver",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/petase-demo-day-presentation-1.webp",
+        "caption": "Team presents PETase enzyme research on stage at an industry demo day, May 2026",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/petase-demo-day-presentation-2.webp",
+        "caption": "Team presents AI-powered PET microplastic degradation work to an industry audience, May 2026",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/pub-social-gathering-may-2026.webp",
+        "caption": "Team gathers for drinks and conversation at a pub, May 2026",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/petascale-booth-web-summit.webp",
+        "caption": "Team members at the PetaScale booth in the AI & machine learning startup hall \u2014 Web Summit Vancouver",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/conference-badges-vancouver-summit.webp",
+        "caption": "Conference badges from a Vancouver industry summit",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/vancouver-harbour-conference-trip.webp",
+        "caption": "Overlooking the harbour during a conference trip",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/websummit-vancouver-sign-photo.webp",
+        "caption": "Team members pose at the Web Summit Vancouver sign",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/petascale-venture-night-win.webp",
+        "caption": "PetaScale wins the UATECH Vancouver Venture Night pitch competition, 13 May 2026 \u2014 $25,000 in AWS credit",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/conference-hall-laptop-work.webp",
+        "caption": "Working from a stadium-seat conference hall",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/lee-margaret-lau-auditorium-group-a.webp",
+        "caption": "Team members outside the Lee and Margaret Lau Auditorium",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/lee-margaret-lau-auditorium-group-b.webp",
+        "caption": "Group photo outside the conference auditorium",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/uoft-research-symposium-talk.webp",
+        "caption": "A research presentation at a University of Toronto symposium",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/examining-shoreline-sample.webp",
+        "caption": "Examining a collected sample of shoreline debris",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/quadrat-sampling-shoreline.webp",
+        "caption": "Setting up a sampling quadrat on the shoreline",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/shoreline-sample-collection-skyline.webp",
+        "caption": "Collecting shoreline samples with a city skyline in view",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/sieve-shoreline-debris-display.webp",
+        "caption": "Showing off a sieve of collected shoreline debris",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/sieving-waters-edge.webp",
+        "caption": "Sieving samples at the water's edge",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/team-photo-waterfront-tree.webp",
+        "caption": "The team poses under a tree by the waterfront",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2026/shoreline-cleanup-debris-sort.webp",
+        "caption": "Sorting shoreline debris during a cleanup",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/petadex-pitch-competition-screens.webp",
+        "caption": "Team presents its PETAdex project at the UofT Rendezvous Science Pitch Competition, 9 May 2026",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2026/hardware-whiteboard-issue-sort-mar-2026.webp",
+        "caption": "Hardware subgroup whiteboard session sorting bioreactor build issues by subsystem, March 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/pioreactor-unit-hardware-bench-mar-2026.webp",
+        "caption": "One of two reference Pioreactor units the Hardware team assembled to study before designing their own low-cost bioreactor, March 2026",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/team-ramen-dinner-1.webp",
+        "caption": "Team celebrates with a big group ramen dinner, March 2026",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/team-ramen-dinner-2.webp",
+        "caption": "Group shares ramen bowls together at a team dinner, March 2026",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/candid-selfie-team-meeting.webp",
+        "caption": "A candid selfie during a team meeting",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2026/team-meeting-library-room-wide.webp",
+        "caption": "Team meeting in a wood-paneled library room",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/team-working-session-library.webp",
+        "caption": "Team members gathered for a working session",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2026/igemto-community-fair-conversation.webp",
+        "caption": "Team member discusses the project with visitors at a community fair, February 2026",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/igemto-community-fair-group-photo.webp",
+        "caption": "Team members pose together at their community fair booth, February 2026",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/mystiphage-outreach-talk.webp",
+        "caption": "Team member speaks with a crowd of students about the Mystiphage project, February 2026",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/university-lobby-showcase-crowd.webp",
+        "caption": "Students fill a university lobby during a project showcase event, February 2026",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/igem-toronto-booth-setup-jan-2026.webp",
+        "caption": "iGEM Toronto booth set up with mailing-list sign-up and past awards on display, January 2026",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/igem-toronto-booth-visitors-jan-2026.webp",
+        "caption": "Students crowd around the iGEM Toronto booth during a campus fair, January 2026",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2026/igem-toronto-table-staffed-jan-2026.webp",
+        "caption": "Team member staffs the iGEM Toronto table beside the 2025 project display and awards, January 2026",
+        "category": "outreach",
+        "credit": ""
+      }
+    ],
+    "2025": [
+      {
+        "file": "2025/grand-jamboree-2025-celebration-dinner.webp",
+        "caption": "Grand Jamboree 2025 \u2014 celebration dinner",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-awards-detail-night-view-2.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-awards-detail-night-view.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-awards-detail-2.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-awards-detail.webp",
+        "caption": "Grand Jamboree 2025 \u2014 Gold Medal and Best Therapeutics Project",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-booth-signage.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-awards-ceremony-2.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-awards-ceremony.webp",
+        "caption": "Grand Jamboree 2025 \u2014 awards ceremony audience",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-day-4-official.webp",
+        "caption": "Grand Jamboree 2025 \u2014 Day 4",
+        "category": "jamboree",
+        "credit": "iGEM Foundation"
+      },
+      {
+        "file": "2025/grand-jamboree-2025-food-nutrition-village.webp",
+        "caption": "Grand Jamboree 2025 \u2014 Food & Nutrition Village",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-team-logo-wall-2.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-team-logo-wall.webp",
+        "caption": "Grand Jamboree 2025 \u2014 World Expo of Synthetic Biology",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-therapeutics-village-hoodie-2.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-therapeutics-village-hoodie.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-therapeutics-village.webp",
+        "caption": "Grand Jamboree 2025 \u2014 Therapeutics Village",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-signature-wall.webp",
+        "caption": "Grand Jamboree 2025 \u2014 signature wall",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-venue-signage.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-badge-pickup-2.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-badge-pickup.webp",
+        "caption": "Grand Jamboree 2025 \u2014 badge pickup",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-venue-entrance.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-team-lodging.webp",
+        "caption": "Grand Jamboree 2025",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/grand-jamboree-2025-paris-arrival.webp",
+        "caption": "Grand Jamboree 2025 \u2014 arrival in Paris",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2025/mentorship-program-kickoff-2025.webp",
+        "caption": "Mentorship programme kickoff, 3 October 2025",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2025/winter-engineering-clubs-fair-2025-lobby.webp",
+        "caption": "Winter Engineering Clubs Fair, January 2025",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2025/winter-engineering-clubs-fair-2025-table.webp",
+        "caption": "Winter Engineering Clubs Fair, January 2025",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2025/team-on-campus-2025.webp",
+        "caption": "Team members on campus, 2025",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2025/the-2025-team-together.webp",
+        "caption": "The 2025 team",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2024": [
+      {
+        "file": "2024/grand-jamboree-2024-team-photo-1.webp",
+        "caption": "Grand Jamboree 2024 \u2014 the year Toronto first placed in the Top 10",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2024/grand-jamboree-2024-team-photo-2.webp",
+        "caption": "Grand Jamboree 2024 \u2014 the year Toronto first placed in the Top 10",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2024/grand-jamboree-2024-best-model-medal.webp",
+        "caption": "Best Model award, Grand Jamboree 2024",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/grand-jamboree-2024-best-model-trophy.webp",
+        "caption": "Best Model award, Grand Jamboree 2024",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/grand-jamboree-2024-dry-lab-presentation.webp",
+        "caption": "Presenting the dry lab pipeline, Grand Jamboree 2024",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/grand-jamboree-2024-human-practices-presentation.webp",
+        "caption": "Presenting the human practices stakeholder framework, Grand Jamboree 2024",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/grand-jamboree-2024-medal-celebration.webp",
+        "caption": "Celebrating a medal win, Grand Jamboree 2024",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2024/ontheverge-2024-networking.webp",
+        "caption": "OnTheVerge 2024 \u2014 McGill's synthetic biology and AI conference",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2024/synpec-cloning-workshop-gel-electrophoresis.webp",
+        "caption": "SynPEC cloning workshop, spring 2024",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2024/synpec-cloning-workshop-lecture.webp",
+        "caption": "SynPEC cloning workshop, spring 2024",
+        "category": "lab",
+        "credit": ""
+      }
+    ],
+    "2023": [
+      {
+        "file": "2023/grand-jamboree-paris-2023-award-celebration.webp",
+        "caption": "iGEM Grand Jamboree, Paris, November 2023 \u2014 award celebration",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2023/grand-jamboree-paris-2023-eiffel-tower.webp",
+        "caption": "iGEM Grand Jamboree, Paris, November 2023 \u2014 Eiffel Tower visit",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2023/grand-jamboree-paris-2023-plaza-team-list.webp",
+        "caption": "iGEM Grand Jamboree, Paris, November 2023 \u2014 village signage",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2023/team-picnic-toronto-fall-2023.webp",
+        "caption": "Team picnic, Toronto, Fall 2023",
+        "category": "social",
+        "credit": ""
+      },
+      {
+        "file": "2023/in-vitro-conference-uoft-judging-2023.webp",
+        "caption": "In Vitro Conference, 27 August 2023 \u2014 hosted by iGEM McGill",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2023/2023-methanivore-team.webp",
+        "caption": "The 2023 Methanivore team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2023/biozone-co2-conference-poster-session.webp",
+        "caption": "BioZone CO\u2082 Conference",
+        "category": "conference",
+        "credit": ""
+      }
+    ],
+    "2022": [
+      {
+        "file": "2022/grand-jamboree-paris-2022-booth-presentation.webp",
+        "caption": "iGEM Grand Jamboree, Paris, October 2022 \u2014 team booth presentation",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/grand-jamboree-paris-2022-igem-sign-group-1.webp",
+        "caption": "iGEM Grand Jamboree, Paris, October 2022 \u2014 at the iGEM sign",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/grand-jamboree-paris-2022-igem-sign-group-2.webp",
+        "caption": "iGEM Grand Jamboree, Paris, October 2022 \u2014 at the iGEM sign",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/grand-jamboree-paris-2022-judging-room-schedule.webp",
+        "caption": "iGEM Grand Jamboree, Paris, October 2022 \u2014 judging room schedule",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/grand-jamboree-paris-2022-welcome-banner-group.webp",
+        "caption": "iGEM Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/grand-jamboree-paris-2022-welcome-selfie.webp",
+        "caption": "iGEM Grand Jamboree, Paris, October 2022",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2022/2022-dna-extraction-field.webp",
+        "caption": "A field DNA extraction tool used for oak wilt sampling",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2022/2022-freeze-dry-lab.webp",
+        "caption": "Loading a sample into the freeze dryer",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2022/2022-dipstick-assay-lab.webp",
+        "caption": "Dipstick assay reagents ready for testing",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2022/in-vitro-2022-lobby-group.webp",
+        "caption": "A team moment at the In Vitro 2022 Symposium, Montreal, August 2022",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2022/in-vitro-2022-symposium-audience.webp",
+        "caption": "In Vitro 2022 Symposium, Montreal, August 2022",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2022/in-vitro-2022-symposium-speaker.webp",
+        "caption": "In Vitro 2022 Symposium, Montreal, August 2022",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2022/in-vitro-2022-team-group-photo.webp",
+        "caption": "iGEM Toronto members at the In Vitro 2022 Symposium, Montreal, August 2022",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2022/in-vitro-2022-team-selfie.webp",
+        "caption": "The team at the In Vitro 2022 Symposium, Montreal, August 2022",
+        "category": "conference",
+        "credit": ""
+      },
+      {
+        "file": "2022/2022-team-virtual-laptop.webp",
+        "caption": "The 2022 team, joined virtually by teammates on a video call",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2021": [],
+    "2019": [
+      {
+        "file": "2019/open-house-29-feb-2020-candid-portrait.webp",
+        "caption": "A candid moment at the Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-full-room.webp",
+        "caption": "A full house at the Open House info session, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-info-session.webp",
+        "caption": "Open House recruitment session, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-petase-discussion.webp",
+        "caption": "Discussing the PETase project at Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-presenter.webp",
+        "caption": "Presenting at the Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/open-house-29-feb-2020-qa.webp",
+        "caption": "Answering questions on the PETase project, Open House, 29 February 2020",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/giant-jamboree-2019-fluorometer-presentation.webp",
+        "caption": "Grand Jamboree 2019, Boston \u2014 Hardware-Fluorometer presentation",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2019/giant-jamboree-2019-presentation-audience.webp",
+        "caption": "Grand Jamboree 2019, Boston \u2014 watching a team presentation",
+        "category": "jamboree",
+        "credit": ""
+      },
+      {
+        "file": "2019/club-carnival-2019-recruitment-fair.webp",
+        "caption": "Club Carnival, University of Toronto, 4 September 2019",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2019/igem-toronto-2019-team-photo.webp",
+        "caption": "iGEM Toronto 2019 Team Photo, 31 May 2019",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2019/igem-toronto-2018-team-photo.webp",
+        "caption": "iGEM Toronto 2018 Team Photo",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2019/igem-toronto-2016-team-photo.webp",
+        "caption": "The 2016 team \u2014 signing off with a thank-you to sponsors and mentors",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2019/igem-toronto-2019-2020-team-cartoon.webp",
+        "caption": "The 2019-2020 team, in cartoon form",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2018": [],
+    "2017": [
+      {
+        "file": "2017/lab-fluorescence-plate-2017.webp",
+        "caption": "Fluorescence plate assay, wet lab, 4 August 2017",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-2017-briefing.webp",
+        "caption": "Icon-A-Thon, 29 July 2017 \u2014 workshop briefing",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-2017-designing-icons-01.webp",
+        "caption": "Icon-A-Thon, 29 July 2017 \u2014 designing synthetic biology icons",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-2017-designing-icons-02.webp",
+        "caption": "Icon-A-Thon, 29 July 2017 \u2014 designing synthetic biology icons",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/icon-a-thon-2017-designing-icons-03.webp",
+        "caption": "Icon-A-Thon, 29 July 2017 \u2014 designing synthetic biology icons",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-carrying-materials.webp",
+        "caption": "Science Rendezvous 2017 \u2014 carrying outreach materials",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/science-rendezvous-2017-booth.webp",
+        "caption": "Science Rendezvous 2017 \u2014 outreach booth on synthetic biology",
+        "category": "outreach",
+        "credit": ""
+      },
+      {
+        "file": "2017/lab-hardware-prototype-2017.webp",
+        "caption": "Hardware prototype build, dry lab \u2014 display reads 'Welcome iGEM Toronto!'",
+        "category": "lab",
+        "credit": ""
+      }
+    ],
+    "2016": [
+      {
+        "file": "2016/2016-team-front-campus.webp",
+        "caption": "The 2016 team on front campus, University College behind them",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2015": [],
+    "2014": [],
+    "2013": [],
+    "2012": [],
+    "2011": [],
+    "2010": [
+      {
+        "file": "2010/2010-team-oil-sands.webp",
+        "caption": "The 2010 team on campus",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2009": [
+      {
+        "file": "2009/2009-lab-dry-ice-portrait.webp",
+        "caption": "A tub of dry ice smoking in the lab",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2009/2009-lab-magnesium-sulfate-portrait.webp",
+        "caption": "Holding a jar of magnesium sulfate in the lab",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2009/2009-lab-pipette-portrait.webp",
+        "caption": "Miming a quick draw with micropipettes in the lab",
+        "category": "lab",
+        "credit": ""
+      },
+      {
+        "file": "2009/2009-encapsulator-team.webp",
+        "caption": "The 2009 Encapsulator team in the lab",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2008": [],
+    "2007": [],
+    "2006": [
+      {
+        "file": "2006/2006-team-group-1.webp",
+        "caption": "The 2006 Blue Water team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2006/2006-team-group-2.webp",
+        "caption": "The 2006 Blue Water team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2006/2006-team-group-3.webp",
+        "caption": "The 2006 Blue Water team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2006/2006-team-group-4.webp",
+        "caption": "The 2006 Blue Water team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2006/2006-team-group-5.webp",
+        "caption": "The 2006 Blue Water team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2006/2006-team-group-6.webp",
+        "caption": "The 2006 Blue Water team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2006/2006-team-group-7.webp",
+        "caption": "The 2006 Blue Water team",
+        "category": "team-photo",
+        "credit": ""
+      },
+      {
+        "file": "2006/2006-team-group-8.webp",
+        "caption": "The 2006 Blue Water team",
+        "category": "team-photo",
+        "credit": ""
+      }
+    ],
+    "2005": []
+  }
+}

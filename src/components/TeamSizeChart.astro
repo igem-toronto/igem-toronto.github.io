@@ -1,0 +1,144 @@
+---
+/**
+ * Team size for every season, 2005 to the present, as a bar chart.
+ *
+ * Hand-rolled inline SVG, matching the approach in MemberPie.astro — no charting
+ * dependency. Bars are tinted by medal, and 2020 is rendered as an explicit gap
+ * rather than being silently skipped.
+ */
+import { seasonsAscending, medalLabel, seasonUrl, skippedYears } from '../lib/history';
+
+const skipped = new Map(skippedYears.map((entry) => [entry.year, entry.reason]));
+
+const firstYear = seasonsAscending[0].year;
+const lastYear = seasonsAscending[seasonsAscending.length - 1].year;
+
+const SLOT = 40;
+const BAR = 26;
+const PLOT_HEIGHT = 220;
+const LABEL_BAND = 34;
+
+const maxSize = Math.max(...seasonsAscending.map((season) => season.teamSize));
+const width = (lastYear - firstYear + 1) * SLOT;
+const height = PLOT_HEIGHT + LABEL_BAND;
+
+const barFill = (medal: string | null): string => {
+  if (medal === 'Gold') return '#d99b1c';
+  if (medal === 'Silver') return '#8fa3ad';
+  if (medal === 'Bronze') return '#de601e';
+  return '#a0d4f2';
+};
+
+const columns = Array.from({ length: lastYear - firstYear + 1 }, (_, i) => {
+  const year = firstYear + i;
+  const season = seasonsAscending.find((entry) => entry.year === year) ?? null;
+  const x = i * SLOT;
+  const barHeight = season ? Math.max(3, (season.teamSize / maxSize) * PLOT_HEIGHT) : 0;
+
+  return {
+    year,
+    season,
+    skippedReason: skipped.get(year) ?? null,
+    x,
+    barX: x + (SLOT - BAR) / 2,
+    barHeight,
+    barY: PLOT_HEIGHT - barHeight,
+  };
+});
+
+const legend = [
+  { medal: 'Gold', label: 'Gold' },
+  { medal: 'Silver', label: 'Silver' },
+  { medal: 'Bronze', label: 'Bronze' },
+  { medal: null, label: 'No medal recorded' },
+];
+---
+
+<figure>
+  <div class="overflow-x-auto">
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      class="h-56 w-full min-w-[720px] sm:h-72"
+      role="img"
+      aria-label={`Team size for every iGEM Toronto year from ${firstYear} to ${lastYear}. Smallest was 3 in 2008, largest was ${maxSize} in 2024.`}
+    >
+      <line x1="0" y1={PLOT_HEIGHT} x2={width} y2={PLOT_HEIGHT} stroke="#0a1e2b" stroke-opacity="0.2" stroke-width="1" />
+
+      {
+        columns.map((column) =>
+          column.season ? (
+            <a href={seasonUrl(column.year)}>
+              <title>
+                {column.year} — {column.season.teamSize} members, {medalLabel(column.season)}
+              </title>
+              <rect
+                x={column.barX}
+                y={column.barY}
+                width={BAR}
+                height={column.barHeight}
+                fill={barFill(column.season.medal)}
+                class="transition-opacity hover:opacity-70"
+              />
+              <text
+                x={column.barX + BAR / 2}
+                y={column.barY - 5}
+                text-anchor="middle"
+                font-size="11"
+                fill="#0a1e2b"
+                fill-opacity="0.55"
+                class="font-display tabular-nums"
+              >
+                {column.season.teamSize}
+              </text>
+            </a>
+          ) : (
+            <g>
+              <title>{column.year} — {column.skippedReason ?? 'No team'}</title>
+              <rect
+                x={column.barX}
+                y={PLOT_HEIGHT - 8}
+                width={BAR}
+                height={8}
+                fill="none"
+                stroke="#0a1e2b"
+                stroke-opacity="0.3"
+                stroke-dasharray="3 3"
+              />
+            </g>
+          ),
+        )
+      }
+
+      {
+        columns.map((column) => (
+          <text
+            x={column.x + SLOT / 2}
+            y={PLOT_HEIGHT + 20}
+            text-anchor="middle"
+            font-size="11"
+            fill="#0a1e2b"
+            fill-opacity={column.season ? '0.6' : '0.3'}
+            class="tabular-nums"
+          >
+            {`'${String(column.year).slice(2)}`}
+          </text>
+        ))
+      }
+    </svg>
+  </div>
+
+  <figcaption class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-primary-950/55">
+    {
+      legend.map((entry) => (
+        <span class="inline-flex items-center gap-2">
+          <span class="inline-block h-3 w-3" style={`background:${barFill(entry.medal)}`}></span>
+          {entry.label}
+        </span>
+      ))
+    }
+    <span class="inline-flex items-center gap-2">
+      <span class="inline-block h-3 w-3 border border-dashed border-primary-950/40"></span>
+      No team that year
+    </span>
+  </figcaption>
+</figure>

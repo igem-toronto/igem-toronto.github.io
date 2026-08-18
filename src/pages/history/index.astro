@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import TeamSizeChart from '../../components/TeamSizeChart.astro';
+import {
+  allSeasons,
+  medalClass,
+  medalLabel,
+  projectLabel,
+  seasonUrl,
+  skippedYears,
+  summary,
+} from '../../lib/history';
+
+const skipped = new Map(skippedYears.map((entry) => [entry.year, entry.reason]));
+
+// Interleave the seasons with the years nobody competed, newest first, so the
+// index reads as a continuous run of years rather than a list with silent holes.
+type Row =
+  | { kind: 'season'; season: (typeof allSeasons)[number] }
+  | { kind: 'gap'; year: number; reason: string };
+
+const rows: Row[] = [];
+for (let i = 0; i < allSeasons.length; i++) {
+  rows.push({ kind: 'season', season: allSeasons[i] });
+  const next = allSeasons[i + 1];
+  if (!next) continue;
+  for (let year = allSeasons[i].year - 1; year > next.year; year--) {
+    rows.push({ kind: 'gap', year, reason: skipped.get(year) ?? 'No team entered this year.' });
+  }
+}
+---
+
+<BaseLayout
+  title="History"
+  description="Every iGEM Toronto year since 2005 — projects, tracks, results, and team sizes."
+>
+  <PageHeader
+    eyebrow="Since 2005"
+    title="History"
+    lede={`Twenty-one years, ${summary.memberYears} member-years, and ${summary.alumni} people. This is the full record, including the years that went badly and the ones where the evidence has not survived.`}
+  />
+
+  <!-- Team size over time -->
+  <section class="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="Team size, year by year"
+      eyebrow="Growth"
+      number="01"
+      subtitle="Three people in 2008, when the team withdrew, to sixty-seven in 2024, the year it first placed in the Top 10. Select a bar to open that year."
+    />
+    <TeamSizeChart />
+  </section>
+
+  <!-- Year index -->
+  <section class="border-y border-primary-950/15 bg-primary-50">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionHeading
+        title="Every year"
+        eyebrow="The record"
+        number="02"
+        subtitle="Newest first. Select a year for the project, the full award list, and the photographs that survive."
+      />
+
+      <div class="border-t border-primary-950/15">
+        {
+          rows.map((row) =>
+            row.kind === 'gap' ? (
+              <div class="flex items-baseline gap-5 border-b border-primary-950/10 px-1 py-4">
+                <span class="w-14 shrink-0 font-display text-lg font-bold tabular-nums text-primary-950/25">
+                  {row.year}
+                </span>
+                <span class="text-sm italic text-primary-950/45">{row.reason}</span>
+              </div>
+            ) : (
+              <a
+                href={seasonUrl(row.season.year)}
+                class="group flex flex-col gap-2 border-b border-primary-950/10 px-1 py-5 transition-colors hover:bg-white sm:flex-row sm:items-baseline sm:gap-5"
+              >
+                <span class="w-14 shrink-0 font-display text-lg font-bold tabular-nums text-primary-950">
+                  {row.season.year}
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block font-medium text-primary-950 group-hover:text-accent-orange">
+                    {projectLabel(row.season)}
+                  </span>
+                  <span class="mt-1 block text-sm text-primary-950/50">
+                    {row.season.track ?? 'No track recorded'} · {row.season.teamSize} members
+                    {row.season.nickname && ` · ${row.season.nickname}`}
+                  </span>
+                </span>
+                <span
+                  class:list={[
+                    'shrink-0 self-start border px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] sm:self-auto',
+                    medalClass(row.season.medal),
+                  ]}
+                >
+                  {medalLabel(row.season)}
+                </span>
+              </a>
+            ),
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Provenance -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <SectionHeading title="About this record" eyebrow="Provenance" number="03" />
+      </div>
+      <div class="space-y-5 leading-relaxed text-primary-950/75 lg:col-span-8">
+        <p>
+          If you are an iGEM Toronto alumni and/or have more pictures from previous years, please
+          email <a href="mailto:igem@g.skule.ca" class="text-accent-orange underline decoration-accent-orange/40 underline-offset-4 hover:text-primary-950">igem@g.skule.ca</a>
+          — we would love to recover them.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

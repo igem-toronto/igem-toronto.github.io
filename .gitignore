@@ -1,7 +1,14 @@
-env
-venv
-.vscode
-__pycache__
-public
-node_modules
-static/output.css
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# environment
+.env
+.env.*
+
+# editor
+.vscode/
+.DS_Store

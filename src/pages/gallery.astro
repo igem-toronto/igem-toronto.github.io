@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PhotoGrid from '../components/PhotoGrid.astro';
+import {
+  allSeasons,
+  medalLabel,
+  photoCategories,
+  photoCount,
+  photosFor,
+  projectLabel,
+  seasonUrl,
+} from '../lib/history';
+
+const withPhotos = allSeasons.filter((season) => photosFor(season.year).length > 0);
+const withoutPhotos = allSeasons.filter((season) => photosFor(season.year).length === 0);
+
+// Only offer a filter chip for categories that actually have photographs behind
+// them — a chip that always yields nothing is just a broken-looking button.
+const presentCategories = photoCategories.filter((category) =>
+  withPhotos.some((season) => photosFor(season.year).some((photo) => photo.category === category.id)),
+);
+
+const total = photoCount();
+---
+
+<BaseLayout
+  title="Gallery"
+  description="Photographs from twenty-one years of iGEM Toronto — lab work, team photos, socials and the Jamboree."
+>
+  <PageHeader
+    eyebrow="2005 — present"
+    title="Gallery"
+    lede={`${total} photographs from ${withPhotos.length} of ${allSeasons.length} years.`}
+  />
+
+  <!-- Filters -->
+  <section class="sticky top-16 z-20 border-b border-primary-950/15 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-4 py-4 sm:px-6 lg:px-8">
+      <span class="mr-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/40">Filter</span>
+      <button
+        type="button"
+        data-filter="all"
+        aria-pressed="true"
+        class="border border-accent-orange bg-accent-orange px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors"
+      >
+        Everything
+      </button>
+      {
+        presentCategories.map((category) => (
+          <button
+            type="button"
+            data-filter={category.id}
+            aria-pressed="false"
+            class="border border-primary-950/20 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-950/60 transition-colors hover:border-primary-950 hover:text-primary-950"
+          >
+            {category.label}
+          </button>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Seasons that have photographs -->
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="space-y-16">
+      {
+        withPhotos.map((season) => (
+          <div id={`year-${season.year}`} data-season-section={String(season.year)} class="scroll-mt-32">
+            <div class="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-primary-950/15 pb-4">
+              <a
+                href={seasonUrl(season.year)}
+                class="font-display text-3xl font-bold tabular-nums text-primary-950 transition-colors hover:text-accent-orange"
+              >
+                {season.year}
+              </a>
+              <span class="min-w-0 flex-1 text-primary-950/60">{projectLabel(season)}</span>
+              <span class="text-xs font-semibold uppercase tracking-[0.15em] text-primary-950/40">
+                {medalLabel(season)}
+              </span>
+            </div>
+            <PhotoGrid photos={photosFor(season.year)} year={season.year} idPrefix={`gallery-${season.year}`} />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Nothing matched the active filter -->
+    <p
+      data-empty-filter
+      hidden
+      class="border border-dashed border-primary-950/25 bg-primary-50 px-6 py-12 text-center text-primary-950/55"
+    >
+      No photographs in this category yet.
+    </p>
+  </section>
+
+  <!-- Seasons still missing photographs -->
+  <section class="border-t border-primary-950/15 bg-primary-50">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold tracking-tight text-primary-950">Years with no photographs</h2>
+      <p class="mt-3 max-w-2xl leading-relaxed text-primary-950/65">
+        {withoutPhotos.length} of {allSeasons.length} years have nothing yet. If you were on one of these teams,
+        or you know someone who was, photographs from the lab, the Jamboree, outreach events or team socials
+        would fill these in. Instructions for adding them are in <code class="text-primary-950/80">docs/HISTORY_AND_GALLERY.md</code>.
+      </p>
+
+      <div class="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+        {
+          withoutPhotos.map((season) => (
+            <a
+              href={seasonUrl(season.year)}
+              class="flex aspect-square flex-col items-center justify-center border border-dashed border-primary-950/25 bg-white/60 text-center transition-colors hover:border-accent-orange hover:bg-white"
+            >
+              <span class="font-display text-xl font-bold tabular-nums text-primary-950/60">{season.year}</span>
+              <span class="mt-1 px-1 text-[10px] uppercase tracking-wider text-primary-950/35">Empty</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const figures = document.querySelectorAll<HTMLElement>('[data-photo]');
+  const sections = document.querySelectorAll<HTMLElement>('[data-season-section]');
+  const emptyNotice = document.querySelector<HTMLElement>('[data-empty-filter]');
+
+  const activeClasses = ['border-accent-orange', 'bg-accent-orange', 'text-white'];
+  const idleClasses = ['border-primary-950/20', 'text-primary-950/60', 'hover:border-primary-950', 'hover:text-primary-950'];
+
+  const apply = (filter: string) => {
+    figures.forEach((figure) => {
+      figure.hidden = filter !== 'all' && figure.dataset.category !== filter;
+    });
+
+    // Hide a whole season heading once every photograph under it is filtered out.
+    let visible = 0;
+    sections.forEach((section) => {
+      const shown = section.querySelectorAll<HTMLElement>('[data-photo]:not([hidden])').length;
+      section.hidden = shown === 0;
+      visible += shown;
+    });
+
+    if (emptyNotice) emptyNotice.hidden = visible > 0;
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      buttons.forEach((other) => {
+        const active = other === button;
+        other.setAttribute('aria-pressed', String(active));
+        other.classList.toggle(activeClasses[0], active);
+        other.classList.toggle(activeClasses[1], active);
+        other.classList.toggle(activeClasses[2], active);
+        idleClasses.forEach((cls) => other.classList.toggle(cls, !active));
+      });
+
+      apply(button.dataset.filter ?? 'all');
+    });
+  });
+</script>

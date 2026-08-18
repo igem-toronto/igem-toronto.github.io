@@ -23,6 +23,8 @@ jobs:
 
       - name: Build and upload site
         uses: withastro/action@v3
+        with:
+          node-version: "24"
 
   deploy:
     runs-on: ubuntu-latest

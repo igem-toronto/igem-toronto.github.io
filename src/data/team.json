@@ -220,18 +220,6 @@
       "email": "suha.ashraf@mail.utoronto.ca"
     },
     {
-      "name": "Yutian Cheng",
-      "group": "Wet Lab",
-      "roles": [
-        "Wet Lab"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "yutian.cheng@mail.utoronto.ca"
-    },
-    {
       "name": "Naziba Swatta Nahid",
       "group": "Venture",
       "roles": [
@@ -461,18 +449,6 @@
       "linkedin": "",
       "website": "",
       "email": "lia.campbell@mail.utoronto.ca"
-    },
-    {
-      "name": "Daisy Huang",
-      "group": "Hardware",
-      "roles": [
-        "Hardware"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "daisyqx.huang@mail.utoronto.ca"
     },
     {
       "name": "Aayush Mengane",
@@ -707,18 +683,6 @@
       "email": "hannahh.li@mail.utoronto.ca"
     },
     {
-      "name": "Benjamin Outar",
-      "group": "Venture",
-      "roles": [
-        "Venture"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "ben.outar@mail.utoronto.ca"
-    },
-    {
       "name": "Rachel Chu",
       "group": "Venture",
       "roles": [
@@ -870,7 +834,6 @@
       "name": "Abdelrahman Elshrief",
       "group": "Web",
       "roles": [
-        "Outreach",
         "Web"
       ],
       "description": "",
@@ -883,7 +846,6 @@
       "name": "Jane Felicia Jonatan",
       "group": "Web",
       "roles": [
-        "Outreach",
         "Web"
       ],
       "description": "",
@@ -896,8 +858,7 @@
       "name": "Hok Wan (Abby) Lui",
       "group": "Web",
       "roles": [
-        "Web Lead",
-        "Outreach"
+        "Web Lead"
       ],
       "description": "",
       "photo": null,

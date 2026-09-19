@@ -117,7 +117,7 @@ const divisions = [
 
             <div class="flex flex-1 flex-col p-8">
               <div class="flex items-baseline gap-4">
-                <span class="font-display text-sm font-semibold tabular-nums text-accent-orange">
+                <span class="font-display text-sm font-semibold tabular-nums text-accent-gold-deep">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
@@ -132,7 +132,7 @@ const divisions = [
               <ul class="mt-6 border-t border-primary-950/10">
                 {division.highlights.map((highlight) => (
                   <li class="flex items-baseline gap-3 border-b border-primary-950/10 py-2 text-sm text-primary-950/70">
-                    <span class="text-accent-orange">&#8226;</span>
+                    <span class="text-accent-gold-deep">&#8226;</span>
                     {highlight}
                   </li>
                 ))}
@@ -141,7 +141,7 @@ const divisions = [
               {peopleAnchor(division.name) && (
                 <a
                   href={peopleAnchor(division.name)}
-                  class="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold uppercase tracking-widest text-accent-orange transition-colors hover:text-primary-950"
+                  class="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold uppercase tracking-widest text-accent-gold-deep transition-colors hover:text-primary-950"
                 >
                   Meet the division
                   <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -164,7 +164,7 @@ const divisions = [
       </div>
       <a
         href={mailingListUrl}
-        class="shrink-0 border border-accent-orange bg-accent-orange px-7 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent"
+        class="shrink-0 border border-accent-gold bg-accent-gold px-7 py-3 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold"
       >
         Join Us
       </a>

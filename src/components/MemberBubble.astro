@@ -45,7 +45,7 @@ const shortName = name.replace(/^PLACEHOLDER\s*[—-]\s*/, '');
       class:list={[
         'relative aspect-square overflow-hidden rounded-full bg-primary-50 transition-all duration-300',
         variant === 'hub'
-          ? 'border-2 border-accent-orange shadow-[0_0_0_4px_rgba(222,96,30,0.12)]'
+          ? 'border-2 border-accent-gold-deep shadow-[0_0_0_4px_rgba(138,106,26,0.12)]'
           : 'border border-primary-950/25 group-hover/node:border-primary-950',
       ]}
     >
@@ -76,7 +76,7 @@ const shortName = name.replace(/^PLACEHOLDER\s*[—-]\s*/, '');
         <img src={photoSrc} alt="" class="h-16 w-16 rounded-full object-cover grayscale" />
         <div>
           <h3 class="font-display text-lg font-bold text-primary-950">{name}</h3>
-          <p class="mt-1 text-xs uppercase tracking-wider text-accent-orange">{roles.join(' / ')}</p>
+          <p class="mt-1 text-xs uppercase tracking-wider text-accent-gold-deep">{roles.join(' / ')}</p>
         </div>
       </div>
       <button
@@ -95,14 +95,14 @@ const shortName = name.replace(/^PLACEHOLDER\s*[—-]\s*/, '');
       hasLinks && (
         <div class="mt-6 flex items-center gap-4 border-t border-primary-950/15 pt-5 text-primary-950/60">
           {linkedin.trim() && (
-            <a href={normalizeUrl(linkedin.trim())} aria-label={`${shortName}'s LinkedIn`} class="transition-colors hover:text-accent-orange">
+            <a href={normalizeUrl(linkedin.trim())} aria-label={`${shortName}'s LinkedIn`} class="transition-colors hover:text-accent-gold-deep">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 11-.001-4.124 2.062 2.062 0 010 4.124zM7.119 20.452H3.554V9h3.565v11.452z" />
               </svg>
             </a>
           )}
           {website.trim() && (
-            <a href={normalizeUrl(website.trim())} aria-label={`${shortName}'s website`} class="transition-colors hover:text-accent-orange">
+            <a href={normalizeUrl(website.trim())} aria-label={`${shortName}'s website`} class="transition-colors hover:text-accent-gold-deep">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18" />
@@ -110,7 +110,7 @@ const shortName = name.replace(/^PLACEHOLDER\s*[—-]\s*/, '');
             </a>
           )}
           {email.trim() && (
-            <a href={`mailto:${email.trim()}`} aria-label={`Email ${shortName}`} class="transition-colors hover:text-accent-orange">
+            <a href={`mailto:${email.trim()}`} aria-label={`Email ${shortName}`} class="transition-colors hover:text-accent-gold-deep">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                 <rect x="2" y="4" width="20" height="16" />
                 <path d="m2 7 10 6 10-6" />

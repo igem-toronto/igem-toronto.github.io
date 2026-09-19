@@ -1,6 +1,6 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const logoUrl = 'https://static.igem.wiki/teams/4615/wiki/graphics/igem-toronto.png';
+const logoUrl = `${base}/images/igem-toronto-mark-transparent.svg`;
 const year = new Date().getFullYear();
 ---
 
@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
     <div class="grid gap-10 md:grid-cols-12">
       <div class="md:col-span-6">
         <a href={base + '/'}>
-          <img src={logoUrl} alt="iGEM Toronto Logo" class="h-16 w-auto" />
+          <img src={logoUrl} alt="iGEM Toronto" class="h-48 w-auto" />
         </a>
         <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
           Representing the University of Toronto in the International Genetically Engineered Machine competition

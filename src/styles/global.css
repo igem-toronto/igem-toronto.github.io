@@ -16,11 +16,14 @@
   --color-primary-900: #102d3f;
   --color-primary-950: #0a1e2b;
 
-  --color-accent-orange: #de601e;
-  --color-accent-orange-light: #f08a4f;
-  --color-accent-blue: #559dbc;
-  --color-accent-turquoise: #028d81;
-  --color-accent-turquoise-light: #06b3a4;
+  /* Brand refresh (2026): gold + teal, from the new logo lockup.
+     accent-gold is the bright fill/border color and reads fine as TEXT only on
+     dark (primary-950) backgrounds — on light backgrounds use accent-gold-deep,
+     which is darkened until it clears 4.5:1 contrast on white. accent-teal is
+     the secondary accent, for dark-background use only (same reason). */
+  --color-accent-gold: #e8c028;
+  --color-accent-gold-deep: #8a6a1a;
+  --color-accent-teal: #48b0ba;
 
   --color-cream: #fbf7f0;
   --color-cream-dark: #cdc1b6;

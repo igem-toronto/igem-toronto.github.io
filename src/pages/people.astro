@@ -11,11 +11,25 @@ const leadPriority = (roles: string[]) =>
 
 const isLead = (roles: string[]) => leadPriority(roles) < 2;
 
+// A member's `group` is their primary section, but their `roles` often name a
+// second division (e.g. "Venture Lead", "Web Lead"). Surface them under every
+// group their roles point to, not just the primary one.
+const stripLeadSuffix = (role: string) => role.replace(/\s+(co-)?lead$/i, '').trim();
+
+const groupsFor = (member: (typeof team.members)[number]) => {
+  const groups = new Set([member.group]);
+  for (const role of member.roles) {
+    const matched = stripLeadSuffix(role);
+    if (team.groups.includes(matched)) groups.add(matched);
+  }
+  return groups;
+};
+
 const grouped = team.groups
   .map((group) => ({
     group,
     members: team.members
-      .filter((m) => m.group === group)
+      .filter((m) => groupsFor(m).has(group))
       .sort((a, b) => leadPriority(a.roles) - leadPriority(b.roles)),
   }))
   .filter(({ members }) => members.length > 0);
@@ -56,7 +70,7 @@ let cardIndex = 0;
         grouped.map(({ group, members }, i) => (
           <div>
             <div class="mb-8 flex items-baseline gap-4 border-b border-primary-950/15 pb-4">
-              <span class="font-display text-sm font-semibold tabular-nums text-accent-orange">
+              <span class="font-display text-sm font-semibold tabular-nums text-accent-gold-deep">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <h2 class="font-display text-2xl font-bold tracking-tight text-primary-950" id={group.toLowerCase().replace(/\s+/g, '-')}>

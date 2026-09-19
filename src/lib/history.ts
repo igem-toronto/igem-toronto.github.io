@@ -99,7 +99,7 @@ export function medalClass(medal: string | null): string {
   if (medal === null) return 'border-primary-950/20 bg-white text-primary-950/50';
   if (/gold/i.test(medal)) return 'border-amber-500/60 bg-amber-500/10 text-amber-700';
   if (/silver/i.test(medal)) return 'border-primary-950/25 bg-primary-950/5 text-primary-950/70';
-  if (/bronze/i.test(medal)) return 'border-accent-orange/50 bg-accent-orange/10 text-accent-orange';
+  if (/bronze/i.test(medal)) return 'border-orange-700/50 bg-orange-700/10 text-orange-700';
   return 'border-primary-950/20 bg-white text-primary-950/50';
 }
 

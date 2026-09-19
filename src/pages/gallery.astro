@@ -42,7 +42,7 @@ const total = photoCount();
         type="button"
         data-filter="all"
         aria-pressed="true"
-        class="border border-accent-orange bg-accent-orange px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors"
+        class="border border-accent-gold bg-accent-gold px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-950 transition-colors"
       >
         Everything
       </button>
@@ -70,7 +70,7 @@ const total = photoCount();
             <div class="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-primary-950/15 pb-4">
               <a
                 href={seasonUrl(season.year)}
-                class="font-display text-3xl font-bold tabular-nums text-primary-950 transition-colors hover:text-accent-orange"
+                class="font-display text-3xl font-bold tabular-nums text-primary-950 transition-colors hover:text-accent-gold-deep"
               >
                 {season.year}
               </a>
@@ -110,7 +110,7 @@ const total = photoCount();
           withoutPhotos.map((season) => (
             <a
               href={seasonUrl(season.year)}
-              class="flex aspect-square flex-col items-center justify-center border border-dashed border-primary-950/25 bg-white/60 text-center transition-colors hover:border-accent-orange hover:bg-white"
+              class="flex aspect-square flex-col items-center justify-center border border-dashed border-primary-950/25 bg-white/60 text-center transition-colors hover:border-accent-gold-deep hover:bg-white"
             >
               <span class="font-display text-xl font-bold tabular-nums text-primary-950/60">{season.year}</span>
               <span class="mt-1 px-1 text-[10px] uppercase tracking-wider text-primary-950/35">Empty</span>
@@ -128,7 +128,7 @@ const total = photoCount();
   const sections = document.querySelectorAll<HTMLElement>('[data-season-section]');
   const emptyNotice = document.querySelector<HTMLElement>('[data-empty-filter]');
 
-  const activeClasses = ['border-accent-orange', 'bg-accent-orange', 'text-white'];
+  const activeClasses = ['border-accent-gold', 'bg-accent-gold', 'text-primary-950'];
   const idleClasses = ['border-primary-950/20', 'text-primary-950/60', 'hover:border-primary-950', 'hover:text-primary-950'];
 
   const apply = (filter: string) => {

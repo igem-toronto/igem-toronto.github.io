@@ -13,7 +13,7 @@ const { title, eyebrow, number, subtitle, id } = Astro.props;
 <div class="mb-10" id={id}>
   {
     (eyebrow || number) && (
-      <p class="mb-3 flex items-baseline gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent-orange">
+      <p class="mb-3 flex items-baseline gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold-deep">
         {number && <span class="tabular-nums">{number}</span>}
         {eyebrow && <span>{eyebrow}</span>}
       </p>

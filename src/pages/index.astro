@@ -6,7 +6,7 @@ import MemberPie from '../components/MemberPie.astro';
 import { allSeasons, summary } from '../lib/history';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const logoMarkUrl = `${base}/images/logo-mark.png`;
+const logoMarkUrl = `${base}/images/igem-toronto-mark-transparent.svg`;
 const mailingListUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform';
 
@@ -43,7 +43,7 @@ const stats = [
 
     <div class="relative mx-auto w-full max-w-4xl px-4 text-center sm:px-6">
       <h1 class="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-        Life is <em class="not-italic text-accent-orange-light">engineerable</em>
+        Life is <em class="not-italic text-accent-teal">engineerable</em>
       </h1>
       <p class="mx-auto mt-8 max-w-2xl text-lg font-medium leading-relaxed text-white/85 sm:text-xl">
         University of Toronto's iGEM team
@@ -55,7 +55,7 @@ const stats = [
       <div class="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
         <a
           href={mailingListUrl}
-          class="w-full border border-accent-orange bg-accent-orange px-8 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent sm:w-auto"
+          class="w-full border border-accent-gold bg-accent-gold px-8 py-3 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold sm:w-auto"
         >
           Join the Team
         </a>
@@ -63,7 +63,7 @@ const stats = [
           href="#what-we-do"
           class="w-full border border-white/30 px-8 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:border-white sm:w-auto"
         >
-          Who We Are?
+          Who Are We?
         </a>
       </div>
     </div>
@@ -151,7 +151,7 @@ const stats = [
       class="flex flex-col items-start justify-between gap-6 border border-primary-950 bg-primary-950 px-8 py-10 transition-colors hover:bg-primary-950/90 sm:flex-row sm:items-center"
     >
       <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent-orange-light">In practice</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-accent-teal">In practice</p>
         <h2 class="mt-2 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
           Bench work, teaching, outreach, the Jamboree
         </h2>
@@ -159,7 +159,7 @@ const stats = [
           Two decades of it, recovered from the team's own archive and browsable by year or category.
         </p>
       </div>
-      <span class="inline-flex shrink-0 items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors">
+      <span class="inline-flex shrink-0 items-center gap-3 border border-accent-gold bg-accent-gold px-8 py-4 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors">
         Explore the gallery
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
@@ -182,7 +182,7 @@ const stats = [
       <div class="mt-12 border-t border-primary-950/15 pt-8">
         <a
           href={base + '/history/'}
-          class="inline-flex items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
+          class="inline-flex items-center gap-3 border border-accent-gold bg-accent-gold px-8 py-4 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold-deep"
         >
           The full history
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -205,7 +205,7 @@ const stats = [
         />
         <a
           href={base + '/divisions/'}
-          class="mt-8 inline-flex items-center gap-3 border border-accent-orange bg-accent-orange px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent hover:text-accent-orange"
+          class="mt-8 inline-flex items-center gap-3 border border-accent-gold bg-accent-gold px-8 py-4 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold-deep"
         >
           All divisions
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -233,7 +233,7 @@ const stats = [
       </div>
       <a
         href={mailingListUrl}
-        class="shrink-0 border border-accent-orange bg-accent-orange px-7 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-transparent"
+        class="shrink-0 border border-accent-gold bg-accent-gold px-7 py-3 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold"
       >
         Join the Mailing List
       </a>

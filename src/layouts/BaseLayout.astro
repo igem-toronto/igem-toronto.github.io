@@ -14,6 +14,9 @@ const {
 } = Astro.props;
 
 const pageTitle = `${title} | iGEM Toronto`;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ogImageUrl = new URL(`${base}/images/og.png`, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -22,8 +25,10 @@ const pageTitle = `${title} | iGEM Toronto`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <!-- TODO (human): add a favicon at public/favicon.svg (the old favicon files were never committed to the repo). -->
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="icon" type="image/x-icon" href={`${base}/favicon.ico`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon-32.png`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon-16.png`} />
+    <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
     <title>{pageTitle}</title>
 
     <!-- Link previews. Without these, shares to Slack/Discord/LinkedIn fall back
@@ -32,12 +37,13 @@ const pageTitle = `${title} | iGEM Toronto`;
     <meta property="og:site_name" content="iGEM Toronto" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <!-- TODO (human): add a 1200x630 social image at public/images/og.png, set
-         og:image to its absolute URL, and switch this to summary_large_image.
-         Claiming the large card without an image just renders as a bare link. -->
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />

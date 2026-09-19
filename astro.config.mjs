@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // NOTE FOR MAINTAINERS:
 // `base` must stay '/' on Vercel (and for a custom domain), because the site is
@@ -14,6 +15,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://igemtoronto.ca',
   base: '/',
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },

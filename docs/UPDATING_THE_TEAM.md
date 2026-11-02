@@ -1,6 +1,8 @@
 # Updating the Team (and other content) — Maintainer Guide
 
-This site currently ships with **placeholder team members, a placeholder team photo, and placeholder sponsor logos**. This guide explains exactly how to replace them with real content. No coding experience needed beyond editing text files.
+This guide explains where each piece of team content lives and how to change it. No coding experience needed beyond editing text files.
+
+As of November 2026 the roster, headshots, team photo, sponsors and division photos are all real: they were synced from the 2026 competition wiki (`petadex/iGEM_wiki`, `src/data/team/team.csv` and `src/data/sponsors.js`) and reconciled against the "Active members as of Sep 2026" and "Advisors Active as of Sep 2026" tabs of the 2026 Team Roster sheet in the president Drive. Next season, start from that wiki's data again or edit the files below by hand.
 
 ## 1. Updating the team roster
 
@@ -25,11 +27,11 @@ Field-by-field:
 
 | Field | What to put there |
 |---|---|
-| `name` | Full display name. Remove the `PLACEHOLDER —` prefix! |
+| `name` | Preferred first name and surname, nothing else: no middle names, no legal name in parentheses (e.g. "Abby Lui", "James Zhang"). The wiki roster and the president's 2026 Team Roster sheet hold the preferred names; the UofT email confirms the surname. |
 | `group` | Which section of the People page the card appears under. Must exactly match one of the names in the `groups` list at the top of the file (e.g. `"Wet Lab"`, `"Presidents"`). To add/remove/reorder sections, edit that `groups` list. |
 | `roles` | A list of role badges shown on the card. Roles containing "Lead", "Director", or "President" get an orange badge and are sorted to the front of their group automatically. |
-| `description` | A 1–4 sentence third-person bio, shown in the pop-up when a card is clicked. |
-| `photo` | Full URL to the headshot, or `null` to show the generic placeholder silhouette. |
+| `description` | A 1–4 sentence third-person bio, shown in the pop-up when a card is clicked. The 2026 bios are one line built from the wiki roster's year, programme and school; replace with a real bio whenever a member writes one. |
+| `photo` | Full URL to the headshot, or `null` to show the generic placeholder silhouette. The 2026 headshots are the wiki's AVIF files under `https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/`. |
 | `linkedin` / `website` / `email` | Optional. Leave as `""` to hide the icon. |
 
 To add a member, copy an existing block (including the surrounding `{ }`), paste it inside the `members` list, and edit the values. Watch the commas: every member object except the last needs a trailing comma.
@@ -46,16 +48,13 @@ If a photo URL breaks, the card automatically falls back to the placeholder silh
 
 ## 2. Team group photo (People page)
 
-The People page currently shows a dashed "Team photo coming soon" box. To replace it, open [`src/pages/people.astro`](../src/pages/people.astro), find the `TODO (human)` comment near the top of the page body, and swap the placeholder `<div>` for an `<img>` tag as shown in that comment. The 2023 team photo is committed to this repo at `/images/history/2023/team-stairs.webp` if you want a stand-in until the 2026 photo exists.
+The People page opens with a photograph from the gallery, set in [`src/pages/people.astro`](../src/pages/people.astro) (look for the `<figure>` near the top of the page body). It is currently the widest 2026 team shot on file, `public/images/history/2026/park-evening-group-wide-1.webp`, because no full-roster photograph of the 2026 team exists yet. When one is taken, drop it into `public/images/history/<year>/`, add it to `gallery.json` under the `team-photo` category, and point the `<img>` at it. The image is cropped to 2:1, so prefer a landscape shot.
 
-## 3. Sponsor logos
+## 3. Sponsors
 
-Most sponsor logo files were never committed to the old repository, so the Sponsors page renders "Logo coming soon" placeholder boxes. To fix one:
+The Sponsors page lists the 2026 sponsors in three groups (University of Toronto units, industry partners, community sponsors), mirrored from the wiki's `src/data/sponsors.js`. Each entry in [`src/pages/sponsors.astro`](../src/pages/sponsors.astro) has a `name`, an `href`, and a `logo` URL on the iGEM CDN (`https://static.igem.wiki/teams/6187/wiki/sponsor-logos/`). A sponsor with `logo: null` renders its name instead.
 
-1. Get the logo file (PNG/SVG preferred) and place it in `public/images/sponsors/`.
-2. Open [`src/pages/sponsors.astro`](../src/pages/sponsors.astro) and change that sponsor's `logo: null` to `` logo: `${base}/images/sponsors/your-file.png` ``.
-
-Also review the tier assignments — they were carried over from the 2023 sponsor list.
+To add a sponsor, upload the logo via [uploads.igem.org](https://uploads.igem.org) (or put it in `public/images/sponsors/`) and add an object to the right group. Update the number in the page's lede ("Seventeen ... sponsors") when the count changes.
 
 ## 4. Competition history and photographs
 
@@ -78,19 +77,16 @@ Short version, at the end of a competition season:
 
 ## 5. Division descriptions and photos
 
-The Divisions page copy lives in the frontmatter of [`src/pages/divisions.astro`](../src/pages/divisions.astro). Each division has a `lede` (one punchy sentence), a `description` (2–3 sentences), and three `highlights` bullets.
+The Divisions page copy lives in the frontmatter of [`src/pages/divisions.astro`](../src/pages/divisions.astro). Each division has a `lede` (one punchy sentence), a `description` (2–3 sentences), three `highlights` bullets, and a `season` line that says what the division built this year (taken from the competition wiki's Project Description). Rewrite `season` every year.
 
-The current text is **interim** — it should be replaced with the official wording from the "iGEM Toronto Division Info 2026" doc.
-
-To add a division photo, set `photo` from `null` to an image URL (uploads.igem.org) or a local path like `/images/divisions/wet-lab.jpg`. Landscape images work best (they are cropped to 16:9).
+Division photos are gallery files: `photo` is a path under `public/images/history/<year>/` and `photoPosition` is `object-center` or `object-top`, since the card crops to 16:9 and a portrait shot needs the top kept. Web has no photo yet.
 
 ## 6. Other content TODOs
 
 Search the codebase for `TODO (human)` to find every spot that needs real content:
 
-- **Home page** (`src/pages/index.astro`): the hero tagline is a single line if the team lands on a new one.
+- **Home page** (`src/pages/index.astro`): the hero tagline is a single line if the team lands on a new one. The "2026 season" section (`seasonHighlights`) is rewritten each year from the wiki.
 - **Favicon** (`src/layouts/BaseLayout.astro`): add a `favicon.svg` to `public/`.
-- **Sponsors** (`src/pages/sponsors.astro`): tiers and logos still reflect the 2023 sponsor list.
 - **Navigation** (`src/data/navigation.json`): add a link to the newest project wiki each year under "History".
 - **Deployment** (`astro.config.mjs`, `README.md`): set the live URL once Vercel is set up.
 

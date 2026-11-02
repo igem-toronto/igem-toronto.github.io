@@ -1,4 +1,5 @@
 {
+  "_README": "Current roster. Generated from the 2026 wiki roster (iGEM_wiki/src/data/team/team.csv), reconciled with the 2026 Team Roster sheet (Active members as of Sep 2026) on 2026-11-01; edit here or regenerate. `group` is the primary section on the People page; extra divisions in `roles` surface the member there too. Headshots are the wiki's, on static.igem.wiki.",
   "groups": [
     "Presidents",
     "Advisors",
@@ -15,11 +16,12 @@
       "name": "Purav Gupta",
       "group": "Presidents",
       "roles": [
-        "President"
+        "Co-President",
+        "Dry Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Toronto, studying Bioinformatics, Molecular Genetics and Computer Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/purav-gupta.avif",
+      "linkedin": "https://www.linkedin.com/in/puravgupta",
       "website": "",
       "email": "purav.gupta@mail.utoronto.ca"
     },
@@ -27,14 +29,39 @@
       "name": "Anthony Dinglasan",
       "group": "Presidents",
       "roles": [
-        "President",
+        "Co-President",
         "Venture Lead"
       ],
-      "description": "",
+      "description": "Third-year student at the University of Toronto, studying Fundamental Genetics and its Applications Specialist, Immunology Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/anthony-dinglasan.avif",
+      "linkedin": "https://www.linkedin.com/in/anthony-dinglasan-b0a52835b",
+      "website": "",
+      "email": "anthony.dinglasan@mail.utoronto.ca"
+    },
+    {
+      "name": "Artem Babaian",
+      "group": "Advisors",
+      "roles": [
+        "Principal Investigator"
+      ],
+      "description": "Principal Investigator. Assistant Professor at the University of Toronto's Donnelly Centre and head of the RNAlab, whose Logan assembly of the Sequence Read Archive is the database PetaBite mines.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/artem-babaian.avif",
+      "linkedin": "",
+      "website": "https://www.rnalab.ca/",
+      "email": ""
+    },
+    {
+      "name": "Amogh Manivannan",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Past Co-President"
+      ],
+      "description": "Past co-president of iGEM Toronto. Chemical Engineering, University of Toronto.",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": "anthony.dinglasan@mail.utoronto.ca"
+      "email": ""
     },
     {
       "name": "Chinmay Potdar",
@@ -42,32 +69,46 @@
       "roles": [
         "Advisor"
       ],
-      "description": "",
-      "photo": null,
+      "description": "Graduate advisor. BSc from the University of Toronto and MSc in Biomedical and Molecular Science from Queen's University.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/chinmay-potdar.avif",
       "linkedin": "",
       "website": "",
       "email": "chinmay.potdar@alumni.utoronto.ca"
     },
     {
-      "name": "Jonas Lehar",
+      "name": "Francesco Andreace",
       "group": "Advisors",
       "roles": [
-        "Advisor"
+        "Advisor",
+        "Dry Lab Advisor"
       ],
-      "description": "",
+      "description": "Research associate at the Institut Pasteur. Advises Dry Lab.",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": "jonas.lehar@gmail.com"
+      "email": ""
+    },
+    {
+      "name": "Henri Galez",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Dry Lab Advisor"
+      ],
+      "description": "Research associate at the Institut Pasteur. Advises Dry Lab.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
     },
     {
       "name": "Claire Cui",
       "group": "Advisors",
       "roles": [
         "Advisor",
-        "Wet Lab"
+        "Wet Lab Advisor"
       ],
-      "description": "",
+      "description": "Fourth-year student at the University of Toronto, studying Biochemistry and Toxicology. Advises Wet Lab.",
       "photo": null,
       "linkedin": "",
       "website": "",
@@ -78,13 +119,38 @@
       "group": "Advisors",
       "roles": [
         "Advisor",
-        "Wet Lab"
+        "Wet Lab Advisor"
       ],
-      "description": "",
+      "description": "Fourth-year student at the University of Toronto, studying Cell and Molecular Biology and Human Biology. Advises Wet Lab.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/sania-ahmad.avif",
+      "linkedin": "https://www.linkedin.com/in/sania-ahmad-45226b273",
+      "website": "",
+      "email": "sania.ahmad@mail.utoronto.ca"
+    },
+    {
+      "name": "Jonas Lehar",
+      "group": "Advisors",
+      "roles": [
+        "Advisor"
+      ],
+      "description": "Graduate student in Molecular Genetics at the University of Toronto.",
       "photo": null,
       "linkedin": "",
       "website": "",
-      "email": "sania.ahmad@mail.utoronto.ca"
+      "email": "jonas.lehar@gmail.com"
+    },
+    {
+      "name": "Jaden Bhogal",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Past Co-President"
+      ],
+      "description": "Past co-president of iGEM Toronto. Engineering Science (Biomedical Engineering), University of Toronto.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/jaden-bhogal.avif",
+      "linkedin": "https://www.linkedin.com/in/jaden-bhogal/",
+      "website": "",
+      "email": ""
     },
     {
       "name": "Patricia Rea",
@@ -92,9 +158,9 @@
       "roles": [
         "Wet Lab Lead"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Fourth-year student at the University of Toronto, studying Biological Chemistry Specialist, Biochemistry Major, Science, Technology and Society Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/patricia-rea.avif",
+      "linkedin": "https://ca.linkedin.com/in/patricia-rea-8596371b2",
       "website": "",
       "email": "patricia.rea@mail.utoronto.ca"
     },
@@ -104,9 +170,9 @@
       "roles": [
         "Wet Lab Lead"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/selina-liu.avif",
+      "linkedin": "https://www.linkedin.com/in/selina-liu-3b3a99239",
       "website": "",
       "email": "selinayingxue.liu@mail.utoronto.ca"
     },
@@ -116,9 +182,9 @@
       "roles": [
         "Wet Lab Lead"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/owen-poyner.avif",
+      "linkedin": "https://www.linkedin.com/in/owen-poyner",
       "website": "",
       "email": "owen.poyner@mail.utoronto.ca"
     },
@@ -128,9 +194,9 @@
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Toronto, studying Fundamental Genetics Specialist.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/kaitlyn-chen.avif",
+      "linkedin": "https://www.linkedin.com/in/kaitlyn-chen-95498b2ab",
       "website": "",
       "email": "kaitlyn.chen@mail.utoronto.ca"
     },
@@ -141,57 +207,69 @@
         "Wet Lab",
         "Human Practices"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Toronto, studying Biochemistry Specialist, Applied Data Science and Immunology Minors.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/francesca-chernous.avif",
+      "linkedin": "https://www.linkedin.com/in/francesca-chernous-74318a2b1",
       "website": "",
       "email": "francesca.chernous@mail.utoronto.ca"
     },
     {
-      "name": "Angela Tung Yan Leung",
+      "name": "Ipek Ilhan",
       "group": "Wet Lab",
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Biochemistry and Neuroscience.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/ipek-ilhan.avif",
+      "linkedin": "https://www.linkedin.com/in/ipekilhan",
+      "website": "",
+      "email": "ipek.ilhan@mail.utoronto.ca"
+    },
+    {
+      "name": "Angela Leung",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab"
+      ],
+      "description": "Student at the University of Toronto, studying Engineering Science (Biomedical Engineering), currently on PEY Co-op.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/angela-leung.avif",
+      "linkedin": "https://www.linkedin.com/in/angela-leung-692861283",
       "website": "",
       "email": "angelaty.leung@mail.utoronto.ca"
     },
     {
-      "name": "Hin Yau Bernice Wong",
+      "name": "Bernice Wong",
       "group": "Wet Lab",
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "First-year student at the University of Toronto, studying Chemical Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/bernice-wong.avif",
+      "linkedin": "https://www.linkedin.com/in/bernice-wong-9167b72a3",
       "website": "",
       "email": "bernicehy.wong@mail.utoronto.ca"
     },
     {
-      "name": "Xiaosheng Sun",
+      "name": "Osborn Sun",
       "group": "Wet Lab",
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "First-year student at the University of Toronto, studying Computer Science and Statistics, Chemistry Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/osborn-sun.avif",
+      "linkedin": "https://www.linkedin.com/in/xiaosheng-sun-973707322",
       "website": "",
       "email": "osborn.sun@mail.utoronto.ca"
     },
     {
-      "name": "Raffaele William Dengler",
+      "name": "Amelia Dengler",
       "group": "Wet Lab",
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Fourth-year student at the University of Toronto, studying Molecular Genetics and Microbiology Specialist (Genetics Stream) and Chemistry Major.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/amelia-dengler.avif",
+      "linkedin": "https://www.linkedin.com/in/raffaele-dengler-6ba293264",
       "website": "",
       "email": "r.dengler@mail.utoronto.ca"
     },
@@ -201,9 +279,9 @@
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Life Sciences.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/sara-h.avif",
+      "linkedin": "https://www.linkedin.com/in/saraa-habibi1337",
       "website": "",
       "email": "saraa.habibi@mail.utoronto.ca"
     },
@@ -213,33 +291,21 @@
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
+      "description": "First-year student at the University of Toronto, studying Chemical Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/suha-ashram.avif",
       "linkedin": "",
       "website": "",
       "email": "suha.ashraf@mail.utoronto.ca"
     },
     {
-      "name": "Naziba Swatta Nahid",
-      "group": "Venture",
-      "roles": [
-        "Venture"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "naziba.nahid@mail.utoronto.ca"
-    },
-    {
-      "name": "Hongming Cao",
+      "name": "Meghan Cao",
       "group": "Wet Lab",
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Neuroscience and Cell & Molecular Biology Double Major, Psychology Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/meghan-cao.avif",
+      "linkedin": "https://www.linkedin.com/in/meghan-cao-0b2999277",
       "website": "",
       "email": "meghan.cao@mail.utoronto.ca"
     },
@@ -249,23 +315,36 @@
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
+      "description": "First-year student at the University of Toronto, studying Chemical Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/sara-b.avif",
       "linkedin": "",
       "website": "",
       "email": "sara.bousaab@mail.utoronto.ca"
     },
     {
-      "name": "Zi Qi Zhang",
+      "name": "Akina Zhang",
       "group": "Wet Lab",
       "roles": [
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
+      "description": "First-year student at the University of Toronto, studying Life Sciences.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/akina-zhang.avif",
       "linkedin": "",
       "website": "",
       "email": "akina.zhang@mail.utoronto.ca"
+    },
+    {
+      "name": "Cindy Cheng",
+      "group": "Wet Lab",
+      "roles": [
+        "Wet Lab",
+        "Outreach"
+      ],
+      "description": "First-year student at the University of Toronto, studying Life Sciences.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/cindy-cheng.avif",
+      "linkedin": "https://www.linkedin.com/in/cindy-chengg",
+      "website": "",
+      "email": "cindyq.cheng@mail.utoronto.ca"
     },
     {
       "name": "Thomas Quigley",
@@ -273,8 +352,8 @@
       "roles": [
         "Dry Lab Lead"
       ],
-      "description": "",
-      "photo": null,
+      "description": "Third-year student at the University of Toronto, studying Biochemistry Specialist.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/thomas-quigley.avif",
       "linkedin": "",
       "website": "",
       "email": "thomas.quigley@mail.utoronto.ca"
@@ -285,9 +364,9 @@
       "roles": [
         "Dry Lab Lead"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Fourth-year student at the University of Toronto, studying Fundamental Genetics and its Applications, Cells and Systems Biology.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/dennis-zhu.avif",
+      "linkedin": "https://www.linkedin.com/in/dennis-zhu-b93a53185",
       "website": "",
       "email": "dennis.zhu@mail.utoronto.ca"
     },
@@ -297,9 +376,9 @@
       "roles": [
         "Dry Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Toronto, studying Bioinformatics & Computational Biology Specialist.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/denis-rivard.avif",
+      "linkedin": "https://www.linkedin.com/in/denis-rivard",
       "website": "",
       "email": "denis.rivard@mail.utoronto.ca"
     },
@@ -309,9 +388,9 @@
       "roles": [
         "Dry Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Toronto, studying Data Science and Computer Science Specialist, Math Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/oscar-heath.avif",
+      "linkedin": "https://www.linkedin.com/in/oscar-heath",
       "website": "",
       "email": "oscar.heath@mail.utoronto.ca"
     },
@@ -321,9 +400,9 @@
       "roles": [
         "Dry Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Toronto, studying Bioinformatics & Computational Biology and Computer Science Specialists.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/alexander-leonardos.avif",
+      "linkedin": "https://www.linkedin.com/in/alexander-leonardos-08980929b",
       "website": "",
       "email": "alex.leonardos@mail.utoronto.ca"
     },
@@ -333,9 +412,9 @@
       "roles": [
         "Dry Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "First-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/angela-jiang.avif",
+      "linkedin": "https://www.linkedin.com/in/angela-jiang-897716217",
       "website": "",
       "email": "angelajiang.jiang@mail.utoronto.ca"
     },
@@ -345,23 +424,23 @@
       "roles": [
         "Dry Lab"
       ],
-      "description": "",
-      "photo": null,
+      "description": "Fourth-year student at the University of Toronto, studying Neuroscience Specialist, Fundamental Genetics and its Applications Specialist, Physiology Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/aditya-ghosh.avif",
       "linkedin": "",
       "website": "",
       "email": "Aditya.ghosh@mail.utoronto.ca"
     },
     {
       "name": "Sara Parvaresh Rizi",
-      "group": "Web",
+      "group": "Dry Lab",
       "roles": [
         "Dry Lab",
         "Outreach",
         "Web"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/sara-p.avif",
+      "linkedin": "https://www.linkedin.com/in/sarapr06",
       "website": "",
       "email": "s.parvareshrizi@mail.utoronto.ca"
     },
@@ -371,9 +450,9 @@
       "roles": [
         "Dry Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "First-year student at the University of Toronto, studying Chemical Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/nino-saeki.avif",
+      "linkedin": "https://www.linkedin.com/in/nino-saeki-724055303",
       "website": "",
       "email": "nino.saeki@mail.utoronto.ca"
     },
@@ -384,7 +463,7 @@
         "Dry Lab"
       ],
       "description": "",
-      "photo": null,
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/amardeep-singh.avif",
       "linkedin": "",
       "website": "",
       "email": "amardeeps5201@gmail.com"
@@ -395,9 +474,9 @@
       "roles": [
         "Hardware Lead"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/soham-shorey.avif",
+      "linkedin": "https://www.linkedin.com/in/soham-shorey",
       "website": "",
       "email": "soham.shorey@mail.utoronto.ca"
     },
@@ -407,23 +486,11 @@
       "roles": [
         "Hardware Lead"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Toronto, studying Mechanical Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/rebecca-tam.avif",
+      "linkedin": "https://www.linkedin.com/in/rebecca-zoe-tam",
       "website": "",
       "email": "Rebeccazoe.tam@mail.utoronto.ca"
-    },
-    {
-      "name": "Lingqi (Lindsay) Tu",
-      "group": "Hardware",
-      "roles": [
-        "Hardware"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "lindsay.tu@mail.utoronto.ca"
     },
     {
       "name": "Arya Bari",
@@ -431,7 +498,7 @@
       "roles": [
         "Hardware"
       ],
-      "description": "",
+      "description": "First-year student at the University of Toronto, studying Mechanical Engineering.",
       "photo": null,
       "linkedin": "",
       "website": "",
@@ -444,9 +511,9 @@
         "Hardware",
         "Human Practices"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/lia-campbell.avif",
+      "linkedin": "https://www.linkedin.com/in/lia-m-campbell",
       "website": "",
       "email": "lia.campbell@mail.utoronto.ca"
     },
@@ -457,9 +524,9 @@
         "Hardware",
         "Wet Lab"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/aayush-mengane.avif",
+      "linkedin": "https://www.linkedin.com/in/aayush-mengane",
       "website": "",
       "email": "aayush.mengane@mail.utoronto.ca"
     },
@@ -469,8 +536,8 @@
       "roles": [
         "Hardware"
       ],
-      "description": "",
-      "photo": null,
+      "description": "First-year student at the University of Toronto, studying Electrical and Computer Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/claire-dumortier.avif",
       "linkedin": "",
       "website": "",
       "email": "claire.dumortier@mail.utoronto.ca"
@@ -481,7 +548,7 @@
       "roles": [
         "Hardware"
       ],
-      "description": "",
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
       "photo": null,
       "linkedin": "",
       "website": "",
@@ -493,11 +560,23 @@
       "roles": [
         "Hardware"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Mechanical Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/james-zhang.avif",
+      "linkedin": "https://www.linkedin.com/in/zaiyuan-zhang",
       "website": "",
       "email": "zaiyuan.zhang@mail.utoronto.ca"
+    },
+    {
+      "name": "Lindsay Tu",
+      "group": "Hardware",
+      "roles": [
+        "Hardware"
+      ],
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/lindsay-tu.avif",
+      "linkedin": "https://www.linkedin.com/in/lindsay-tu",
+      "website": "",
+      "email": "lindsay.tu@mail.utoronto.ca"
     },
     {
       "name": "Adanna Nmezi",
@@ -505,7 +584,7 @@
       "roles": [
         "Human Practices Lead"
       ],
-      "description": "",
+      "description": "Fourth-year student at the University of Toronto, studying Cell and Molecular Biology.",
       "photo": null,
       "linkedin": "",
       "website": "",
@@ -517,22 +596,22 @@
       "roles": [
         "Human Practices"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Engineering Science.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/komal-lahl.avif",
+      "linkedin": "https://www.linkedin.com/in/komal-lalh-78b93729a",
       "website": "",
       "email": "komal.lalh@mail.utoronto.ca"
     },
     {
-      "name": "Zync Aggarao Infante",
+      "name": "Zync Infante",
       "group": "Human Practices",
       "roles": [
         "Human Practices",
         "Outreach"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Student at the University of Toronto, studying Medicinal and Biological Chemistry Specialist, Applied Statistics Minor, currently on PEY Co-op.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/zinc-infants.avif",
+      "linkedin": "https://www.linkedin.com/in/zyncinfante",
       "website": "",
       "email": "zync.infante@mail.utoronto.ca"
     },
@@ -542,8 +621,8 @@
       "roles": [
         "Human Practices"
       ],
-      "description": "",
-      "photo": null,
+      "description": "First-year student at the University of Toronto, studying Life Sciences.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/megan-chiao.avif",
       "linkedin": "",
       "website": "",
       "email": "megan.chiao@mail.utoronto.ca"
@@ -554,9 +633,9 @@
       "roles": [
         "Human Practices"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Fourth-year student at the University of Toronto, studying Cell and Molecular Biology.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/clara-han.avif",
+      "linkedin": "https://www.linkedin.com/in/clara-h-han",
       "website": "",
       "email": "Clara.han@mail.utoronto.ca"
     },
@@ -566,20 +645,20 @@
       "roles": [
         "Human Practices"
       ],
-      "description": "",
+      "description": "Fourth-year student at the University of Toronto, studying Cell and Molecular Biology, Physiology, Chemistry.",
       "photo": null,
       "linkedin": "",
       "website": "",
       "email": "shivangi.roy@mail.utoronto.ca"
     },
     {
-      "name": "Pelendi Hewage Nadithya Samarawickrema",
+      "name": "Nadithya Samarawickrema",
       "group": "Human Practices",
       "roles": [
         "Human Practices"
       ],
-      "description": "",
-      "photo": null,
+      "description": "Second-year student at the University of Toronto, studying Chemical Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/nadithya-samarawickrema.avif",
       "linkedin": "",
       "website": "",
       "email": "nadithya.samarawickrema@mail.utoronto.ca"
@@ -591,36 +670,11 @@
         "Venture Lead",
         "Dry Lab"
       ],
-      "description": "",
-      "photo": null,
+      "description": "Third-year student at the University of Toronto, studying Bioinformatics & Computational Biology.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/lisa-chen.avif",
       "linkedin": "",
       "website": "",
       "email": "ylisa.chen@mail.utoronto.ca"
-    },
-    {
-      "name": "Ipek Ilhan",
-      "group": "Wet Lab",
-      "roles": [
-        "Wet Lab"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "ipek.ilhan@mail.utoronto.ca"
-    },
-    {
-      "name": "Cindy Cheng",
-      "group": "Wet Lab",
-      "roles": [
-        "Wet Lab",
-        "Outreach"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "cindyq.cheng@mail.utoronto.ca"
     },
     {
       "name": "Grace Li",
@@ -628,19 +682,19 @@
       "roles": [
         "Venture"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Genetics and Biotechnology, and Management.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/grace-li.avif",
+      "linkedin": "https://www.linkedin.com/in/gracemlc1225",
       "website": "",
       "email": "gracee.li@mail.utoronto.ca"
     },
     {
-      "name": "mehrasa kheirizad",
+      "name": "Mehrasa Kheirizad",
       "group": "Venture",
       "roles": [
         "Venture"
       ],
-      "description": "",
+      "description": "Second-year student at the University of Toronto, studying Health and Disease Specialist.",
       "photo": null,
       "linkedin": "",
       "website": "",
@@ -652,9 +706,9 @@
       "roles": [
         "Venture"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Fourth-year student at the University of Toronto, studying Life Sciences, Biotechnology Specialist.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/austin-chiang.avif",
+      "linkedin": "https://www.linkedin.com/in/austinjychiang",
       "website": "",
       "email": "austin.chiang@mail.utoronto.ca"
     },
@@ -664,9 +718,9 @@
       "roles": [
         "Venture"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Biochemistry and Applied Genetics and Biotechnology Majors, Data Science Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/clelia-troisi.avif",
+      "linkedin": "https://www.linkedin.com/in/cleliatroisi",
       "website": "",
       "email": "clelia.troisi@mail.utoronto.ca"
     },
@@ -676,7 +730,7 @@
       "roles": [
         "Venture"
       ],
-      "description": "",
+      "description": "First-year student at the University of Toronto, studying Life Sciences.",
       "photo": null,
       "linkedin": "",
       "website": "",
@@ -688,7 +742,7 @@
       "roles": [
         "Venture"
       ],
-      "description": "",
+      "description": "Fourth-year student at the University of Toronto, studying Pharmacology Specialist, Neuroscience Major.",
       "photo": null,
       "linkedin": "",
       "website": "",
@@ -701,11 +755,23 @@
         "Venture",
         "Human Practices"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Toronto, studying Genetics and Biotechnology Specialist, Cell Biology Major, French Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/isabella-sobec.avif",
+      "linkedin": "https://www.linkedin.com/in/isabella-sobec-8009b6307",
       "website": "",
       "email": "isabella.sobec@mail.utoronto.ca"
+    },
+    {
+      "name": "Naziba Nahid",
+      "group": "Venture",
+      "roles": [
+        "Venture"
+      ],
+      "description": "Second-year student at the University of Toronto, studying Molecular Biology and Biotechnology Specialist.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/naziba-nahid.avif",
+      "linkedin": "",
+      "website": "",
+      "email": "naziba.nahid@mail.utoronto.ca"
     },
     {
       "name": "Michael Pak",
@@ -713,9 +779,9 @@
       "roles": [
         "Venture"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Third-year student at the University of Western Ontario, studying Business at the Ivey Business School.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/michael-pak.avif",
+      "linkedin": "https://www.linkedin.com/in/michael-pak-",
       "website": "",
       "email": "mpak8@uwo.ca"
     },
@@ -726,19 +792,19 @@
         "Venture",
         "Outreach"
       ],
-      "description": "",
+      "description": "Third-year student at the University of Toronto.",
       "photo": null,
       "linkedin": "",
       "website": "",
       "email": "muneer.jaffrey@mail.utoronto.ca"
     },
     {
-      "name": "Adrija (Hiya) Paul",
+      "name": "Hiya Paul",
       "group": "Outreach",
       "roles": [
         "Outreach Lead"
       ],
-      "description": "",
+      "description": "Second-year student at the University of Toronto, studying Molecular Genetics Specialist, Bioethics Minor.",
       "photo": null,
       "linkedin": "",
       "website": "",
@@ -750,11 +816,24 @@
       "roles": [
         "Outreach Lead"
       ],
-      "description": "",
+      "description": "Third-year student at the University of Toronto, studying Health and Disease Specialist.",
       "photo": null,
       "linkedin": "",
       "website": "",
       "email": "talitha.ferro@mail.utoronto.ca"
+    },
+    {
+      "name": "Kathleen Mesach",
+      "group": "Outreach",
+      "roles": [
+        "Outreach",
+        "Wet Lab"
+      ],
+      "description": "Second-year student at the University of Toronto, studying Human Biology and Psychology Major, Physiology Minor.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/kathleen-mesach.avif",
+      "linkedin": "",
+      "website": "",
+      "email": "k.mesach@mail.utoronto.ca"
     },
     {
       "name": "Angirmaa Tamir",
@@ -762,47 +841,34 @@
       "roles": [
         "Outreach"
       ],
-      "description": "",
+      "description": "Third-year student at the University of Toronto, studying Chemical Engineering.",
       "photo": null,
       "linkedin": "",
       "website": "",
       "email": "angirmaa.tamir@mail.utoronto.ca"
     },
     {
-      "name": "Kathleen Nicole Mesach",
-      "group": "Outreach",
-      "roles": [
-        "Outreach",
-        "Wet Lab"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "k.mesach@mail.utoronto.ca"
-    },
-    {
-      "name": "Wineta Prisella Pangestu",
+      "name": "Wineta Pangestu",
       "group": "Outreach",
       "roles": [
         "Outreach"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "First-year student at the University of Toronto, studying Life Sciences.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/wineta-pangetsu.avif",
+      "linkedin": "https://www.linkedin.com/in/wineta",
       "website": "",
       "email": "wineta.pangestu@mail.utoronto.ca"
     },
     {
-      "name": "Hillary Carlton Bongso",
+      "name": "Hillary Bongso",
       "group": "Outreach",
       "roles": [
         "Outreach",
         "Venture"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "First-year student at the University of Toronto, studying Life Sciences.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/hillary-bongso.avif",
+      "linkedin": "https://www.linkedin.com/in/hillary-bongso-147096245",
       "website": "",
       "email": "hillary.bongso@mail.utoronto.ca"
     },
@@ -812,8 +878,8 @@
       "roles": [
         "Outreach"
       ],
-      "description": "",
-      "photo": null,
+      "description": "First-year student at the University of Toronto, studying Mechanical Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/anastasia-butnariu.avif",
       "linkedin": "",
       "website": "",
       "email": "anastasia.butnariu@mail.utoronto.ca"
@@ -824,11 +890,23 @@
       "roles": [
         "Outreach"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Neuroscience Major, Cell and Molecular Biology Major.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/ibtisaam-wasi.avif",
+      "linkedin": "https://www.linkedin.com/in/ibtisaam-wasi-482493395",
       "website": "",
       "email": "ibtisaam.wasi@mail.utoronto.ca"
+    },
+    {
+      "name": "Abby Lui",
+      "group": "Web",
+      "roles": [
+        "Web Lead"
+      ],
+      "description": "Third-year student at the University of Toronto, studying Computer Engineering.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/abby-lui.avif",
+      "linkedin": "",
+      "website": "https://abby-website.vercel.app/",
+      "email": "abby.lui@mail.utoronto.ca"
     },
     {
       "name": "Abdelrahman Elshrief",
@@ -836,35 +914,23 @@
       "roles": [
         "Web"
       ],
-      "description": "",
+      "description": "First-year student at the University of Toronto, studying Computer Engineering.",
       "photo": null,
       "linkedin": "",
       "website": "",
       "email": "abdel.elshrief@mail.utoronto.ca"
     },
     {
-      "name": "Jane Felicia Jonatan",
+      "name": "Jane Jonatan",
       "group": "Web",
       "roles": [
         "Web"
       ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
+      "description": "Second-year student at the University of Toronto, studying Computer Science Specialist (Human-Computer Interaction focus), Statistics and Psychology Minors.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/jane-jonatan.avif",
+      "linkedin": "https://www.linkedin.com/in/janefelicia",
       "website": "",
       "email": "jane.jonatan@mail.utoronto.ca"
-    },
-    {
-      "name": "Hok Wan (Abby) Lui",
-      "group": "Web",
-      "roles": [
-        "Web Lead"
-      ],
-      "description": "",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "abby.lui@mail.utoronto.ca"
     }
   ]
 }

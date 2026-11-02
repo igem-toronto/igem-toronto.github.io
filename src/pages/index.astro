@@ -16,6 +16,28 @@ const topTenFinishes = allSeasons.filter((season) =>
   (season.awards ?? []).some((award) => award.startsWith('Top 10')),
 ).length;
 
+// The current season, straight from history.json so the wiki link and copy
+// cannot drift from the season page. Highlights come from the wiki's Project
+// Description; rewrite them each season.
+const season2026 = allSeasons.find((season) => season.year === 2026)!;
+const seasonHighlights = [
+  {
+    value: '307M',
+    label: 'Enzyme sequences',
+    text: 'PETadex: putative plastic-degrading enzymes recovered from 27.3 million public sequencing datasets, up from 495 known before.',
+  },
+  {
+    value: '2',
+    label: 'New assays',
+    text: 'Copper-release biosensor and selection assays in E. coli that read out PET degradation at high throughput.',
+  },
+  {
+    value: '$204',
+    label: 'Per bioreactor',
+    text: 'An open-source Arduino bioreactor with temperature control, OD600 readings and stirring, built to run in parallel.',
+  },
+];
+
 const stats = [
   { value: String(summary.seasonsRegistered), label: 'Teams since 2005' },
   { value: String(summary.alumni), label: 'People on the team' },
@@ -124,6 +146,53 @@ const stats = [
     </div>
   </section>
 
+  <!-- This season -->
+  <section class="border-t border-primary-950/15 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <SectionHeading title="PetaBite" eyebrow="2026 season" number="02" />
+          <p class="text-lg leading-relaxed text-primary-950/80">
+            Nature has already evolved enzymes for almost every condition on Earth. This year we built a
+            workflow to find the ones that eat PET plastic at room temperature, so wastewater plants could
+            use them without heating anything.
+          </p>
+          <a
+            href={season2026.wikiUrl}
+            class="mt-8 inline-flex items-center gap-3 border border-accent-gold bg-accent-gold px-8 py-4 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold-deep"
+          >
+            Read the wiki
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+        <div class="lg:col-span-8">
+          <div class="grid gap-px border border-primary-950/10 bg-primary-950/10 sm:grid-cols-3">
+            {
+              seasonHighlights.map((item) => (
+                <div class="bg-white p-6">
+                  <div class="font-display text-3xl font-bold tabular-nums text-primary-950">{item.value}</div>
+                  <div class="mt-1 text-xs font-medium uppercase tracking-[0.15em] text-primary-950/50">
+                    {item.label}
+                  </div>
+                  <p class="mt-4 text-sm leading-relaxed text-primary-950/70">{item.text}</p>
+                </div>
+              ))
+            }
+          </div>
+          <p class="mt-6 text-sm text-primary-950/60">
+            Activity data from the assays and the bioreactor feed back into the model, so each round of
+            testing improves the next round of candidates.
+            <a href={`${base}/history/2026/`} class="ml-1 underline decoration-primary-950/30 underline-offset-4 hover:text-primary-950">
+              The season in brief.
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Record -->
   <section class="border-y border-primary-950/15 bg-primary-50">
     <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
@@ -174,7 +243,7 @@ const stats = [
       <SectionHeading
         title="Every team since 2005"
         eyebrow="Track record"
-        number="02"
+        number="03"
         subtitle="A different problem every year, including the years the record is incomplete. Select a year for the short version, then open it for the project, the awards and the photographs that survive."
       />
       <HistoryTimeline />
@@ -200,7 +269,7 @@ const stats = [
         <SectionHeading
           title="Who we are"
           eyebrow="The divisions"
-          number="03"
+          number="04"
           subtitle="Wet lab, dry lab, hardware, human practices, outreach, venture and web. You don't need a biology degree to make an impact here, and a lot of the team does not have one. Select a slice to learn more about that division."
         />
         <a

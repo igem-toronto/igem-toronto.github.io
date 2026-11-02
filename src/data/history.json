@@ -21,7 +21,7 @@
       "year": 2026,
       "teamName": "Toronto",
       "nickname": "PetaBite",
-      "project": "PetaBite \u2014 PETase discovery from the Logan petabase index",
+      "project": "PetaBite \u2014 room-temperature PET-degrading enzymes mined from the Logan petabase index",
       "track": "Bioremediation",
       "section": null,
       "teamSize": 66,
@@ -30,9 +30,9 @@
       "awards": [],
       "wikiUrl": "https://2026.igem.wiki/toronto/",
       "teamsUrl": "https://teams.igem.org/6187",
-      "blurb": "Mining the Logan petabase index \u2014 a search across the entire public sequencing archive \u2014 for new plastic-degrading PETase enzymes.",
-      "story": "PetaBite searches the Logan petabase index, a compressed representation of essentially every public sequencing run ever deposited, for enzymes that break down PET plastic. Where a conventional screen tests a handful of candidates, the index makes it possible to look across the whole archive at once. The season is still running; 66 members make it the second-largest team the chapter has fielded.",
-      "note": "Current season. The wiki is still being built.",
+      "blurb": "Searching the Logan petabase index for PET-degrading enzymes that work at room temperature: a 307-million-sequence catalogue, two new high-throughput assays and an open-source bioreactor.",
+      "story": "PetaBite reversed the usual order of enzyme engineering: discover first, optimise second. Dry Lab searched the Logan index, an assembly of 27.3 million public sequencing datasets, and built PETadex, a catalogue of 307 million putative plastic-degrading enzyme sequences, then trained a protein language model on it to rank candidates and designed a 2,116-variant synthesis library. Wet Lab built two copper-release assays in E. coli, a fluorescent biosensor and an antibiotic selection, so PET degradation can be read out at scale, and Hardware built an open-source Arduino bioreactor for about $204 per unit. Human Practices spoke with roughly 70 stakeholders across four continents and co-organised the University of Toronto Microplastics Conference, while the venture team placed top three in six competitions. With 66 members it is the second-largest team the chapter has fielded.",
+      "note": "Current season. The wiki is complete; the team presents at the Grand Jamboree in Paris, 13 to 16 November 2026.",
       "wikiStatus": "full"
     },
     {

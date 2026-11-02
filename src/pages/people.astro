@@ -4,6 +4,8 @@ import PageHeader from '../components/PageHeader.astro';
 import MemberBubble from '../components/MemberBubble.astro';
 import team from '../data/team.json';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 // Members are grouped by the `group` field, in the order defined in team.json.
 // Leads/directors/presidents are sorted to the front of each group.
 const leadPriority = (roles: string[]) =>
@@ -47,20 +49,20 @@ let cardIndex = 0;
   <!-- Team photo -->
   <section class="mx-auto max-w-7xl px-4 pt-14 sm:px-6 lg:px-8">
     <!--
-      TODO (human): replace the placeholder below with a current team group photo.
-      Upload the photo via https://uploads.igem.org (or place it in public/images/)
-      and swap this div for:
-        <img src="YOUR_PHOTO_URL" alt="The iGEM Toronto team" class="w-full border border-primary-950/15" />
-      The previous 2023 photo lived at:
-        https://static.igem.wiki/teams/4615/wiki/hpphoto/img-3314.jpg
+      No full-roster photograph of the 2026 team exists yet. This is the widest
+      team shot in the gallery (Riverdale Park social, spring 2026). Swap the
+      file when a full team photo is taken; see docs/UPDATING_THE_TEAM.md.
     -->
-    <div class="flex aspect-[21/9] w-full items-center justify-center border border-primary-950/15 bg-primary-50">
-      <div class="px-6 text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary-950/40">Figure 1</p>
-        <p class="mt-2 font-medium text-primary-950/70">Team photograph — to be added</p>
-        <p class="mt-1 text-sm text-primary-950/45">See docs/UPDATING_THE_TEAM.md</p>
-      </div>
-    </div>
+    <figure>
+      <img
+        src={`${base}/images/history/2026/park-evening-group-wide-1.webp`}
+        alt="iGEM Toronto 2026 team members on the grass at an evening park social"
+        class="aspect-[2/1] w-full border border-primary-950/15 object-cover object-center"
+      />
+      <figcaption class="mt-3 text-xs uppercase tracking-[0.15em] text-primary-950/45">
+        The 2026 team, Riverdale Park, spring 2026
+      </figcaption>
+    </figure>
   </section>
 
   <!-- Team grids -->

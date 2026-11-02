@@ -58,7 +58,7 @@ Requires Node.js (LTS). No Python needed anymore.
 **Start with [docs/UPDATING_THE_TEAM.md](docs/UPDATING_THE_TEAM.md).** It covers:
 
 - Editing the team roster (`src/data/team.json`) — names, roles, bios, photos, social links
-- Replacing the placeholder team photo and sponsor logos
+- Changing the team photo, sponsor list and division photos
 - All remaining `TODO (human)` markers in the codebase
 
 For the competition record and photographs, see
@@ -66,9 +66,9 @@ For the competition record and photographs, see
 `src/data/history.json` and photographs to `src/data/gallery.json`. Run `npm run check:history`
 after editing either; the build runs it too and fails if the data is inconsistent.
 
-The site currently ships with **placeholder team members** — the real roster needs to be filled in.
-The gallery is also thin on purpose: only six of twenty-one seasons have any photographs, and
-`/gallery/` lists the empty ones so the gaps stay visible.
+The roster, headshots, sponsors and division photos were synced from the 2026 competition wiki
+(`petadex/iGEM_wiki`) in November 2026. The gallery is thin on purpose: only a few of
+twenty-one seasons have any photographs, and `/gallery/` lists the empty ones so the gaps stay visible.
 
 ## Images and the iGEM CDN
 

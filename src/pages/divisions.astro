@@ -13,9 +13,10 @@ const mailingListUrl =
   'https://docs.google.com/forms/d/e/1FAIpQLSf-KSquSPZU7TA7cn8uHiyXQrtfFgUsrA-pOTJUwozIr7L5TA/viewform';
 
 // Copy sourced from the "iGEM Toronto Division Info 2026" doc, lightly edited
-// for the site's tone. Add a photo per division by setting `photo` to an
-// uploaded image URL (https://uploads.igem.org) or a local path under
-// public/images/divisions/. See docs/UPDATING_THE_TEAM.md.
+// for the site's tone. `season` is what the division built this year, taken
+// from the competition wiki; rewrite it each season. Photos are gallery files
+// under public/images/history/<year>/; `photoPosition` picks the crop
+// (object-top or object-center) since cards are 16:9. See docs/UPDATING_THE_TEAM.md.
 const divisions = [
   {
     name: 'Wet Lab',
@@ -24,7 +25,9 @@ const divisions = [
     description:
       'Wet Lab designs and runs the experiments at the core of every iGEM project. Members clone and assemble genetic constructs, transform and culture cells, run assays, and troubleshoot protocols.',
     highlights: ['Molecular cloning and assembly', 'Assay development and characterization', 'Protocol design and troubleshooting'],
-    photo: null,
+    season: 'In 2026, built two copper-release assays in E. coli, a fluorescent biosensor and an antibiotic selection, that report PET degradation at high throughput.',
+    photo: `${base}/images/history/2026/wet-lab-subgroup-culture-bottles-jun-2026.webp`,
+    photoPosition: 'object-top',
   },
   {
     name: 'Dry Lab',
@@ -33,7 +36,9 @@ const divisions = [
     description:
       'Dry Lab takes the biological questions and tries to model and solve them with code. Members build algorithms, train machine learning models, analyze omics data, and develop the software tools that let the team predict outcomes and prioritize wet lab experiments.',
     highlights: ['Training and using ML models', 'Bioinformatics and data analysis', 'Algorithm design and simulation'],
-    photo: null,
+    season: 'In 2026, built PETadex, a 307-million-sequence catalogue of putative plastic-degrading enzymes mined from the Logan index, trained the PlasticESM language model on it, and designed a 2,116-variant synthesis library with LOBSTER.',
+    photo: `${base}/images/history/2026/gcm-presentation-dry-lab-methods-2026-08-13.webp`,
+    photoPosition: 'object-center',
   },
   {
     name: 'Hardware',
@@ -42,7 +47,9 @@ const divisions = [
     description:
       'Hardware designs and builds the physical devices our projects need. Members work through CAD, electronics, embedded firmware, and fabrication to produce prototypes that are tested against real experimental requirements and iterated alongside the lab. iGEM Toronto is proud to be the only team in eastern North America with a dedicated hardware division.',
     highlights: ['CAD and rapid prototyping', 'Electronics and embedded firmware', 'Device testing and iteration'],
-    photo: null,
+    season: 'In 2026, designed an open-source Arduino bioreactor with temperature control, OD600 readings and stirring for about $204 per unit.',
+    photo: `${base}/images/history/2026/hardware-workshop-team-moment.webp`,
+    photoPosition: 'object-center',
   },
   {
     name: 'Human Practices',
@@ -51,7 +58,9 @@ const divisions = [
     description:
       'Human Practices studies how our work lands in the world. Members interview stakeholders and domain experts, research the ethical, legal, and social implications of the project, and feed what they learn back into the design so the final system reflects the needs of the people it affects.',
     highlights: ['Stakeholder and expert engagement', 'Ethics and policy research', 'Integrating findings into project design'],
-    photo: null,
+    season: 'In 2026, interviewed roughly 70 stakeholders across four continents, wrote Regulatory Oversight and Sustainability reports, and co-organised the University of Toronto Microplastics Conference.',
+    photo: `${base}/images/history/2026/shoreline-sample-collection-skyline.webp`,
+    photoPosition: 'object-center',
   },
   {
     name: 'Venture',
@@ -60,7 +69,9 @@ const divisions = [
     description:
       'Venture takes an academic project and builds the plan to commercialize it. Members size the market, interview potential customers, and build the pitch and business case for commercialization, while also tracking the budget, securing sponsorships, and writing the grant applications that keep the team funded.',
     highlights: ['Market research and business modelling', 'Pitching and fundraising', 'Budget tracking and grant applications'],
-    photo: null,
+    season: 'In 2026, took PetaScale through nine competitions with six top-three finishes, ran 20 feasibility interviews with wastewater operators, and brought in 17 sponsors.',
+    photo: `${base}/images/history/2026/petascale-startup-showcase-stage.webp`,
+    photoPosition: 'object-center',
   },
   {
     name: 'Outreach',
@@ -69,7 +80,9 @@ const divisions = [
     description:
       'Outreach brings our work to people outside the lab. Members plan educational programs and workshops, partner with schools and community organizations, and produce the graphics, social media, and content that share synthetic biology with a general audience.',
     highlights: ['Workshops and educational programming', 'School and community partnerships', 'Graphic design and social media'],
-    photo: null,
+    season: 'In 2026, produced the project promotion video, the Road to Jamboree reel series and The Waterfront newsletter, reaching 300 subscribers and over 105,000 views.',
+    photo: `${base}/images/history/2026/mystiphage-outreach-talk.webp`,
+    photoPosition: 'object-center',
   },
   {
     name: 'Web',
@@ -78,7 +91,9 @@ const divisions = [
     description:
       "Web builds the team's digital presence. Members develop the recruitment website and, closer to the competition deadline, the iGEM wiki, which is our main deliverable for the Jamboree. We use front-end frameworks to turn a year of lab and business work into something that can be presented to the judges and the public.",
     highlights: ['Front-end web development', 'iGEM wiki development', 'Site design and UX'],
+    season: 'In 2026, built the PetaBite wiki in Gatsby and MDX, with an interactive protein structure viewer, a CATH family atlas and live demos of the Dry Lab tools.',
     photo: null,
+    photoPosition: 'object-center',
   },
 ];
 ---
@@ -101,7 +116,7 @@ const divisions = [
                   src={division.photo}
                   alt={`The iGEM Toronto ${division.name} division`}
                   loading="lazy"
-                  class="h-full w-full object-cover"
+                  class:list={['h-full w-full object-cover', division.photoPosition]}
                 />
               ) : (
                 <div class="flex h-full w-full items-center justify-center bg-primary-50">
@@ -128,6 +143,11 @@ const divisions = [
 
               <p class="mt-5 font-display text-lg font-medium leading-snug text-primary-950">{division.lede}</p>
               <p class="mt-3 leading-relaxed text-primary-950/70">{division.description}</p>
+              {division.season && (
+                <p class="mt-4 border-l-2 border-accent-gold-deep pl-4 text-sm leading-relaxed text-primary-950/80">
+                  {division.season}
+                </p>
+              )}
 
               <ul class="mt-6 border-t border-primary-950/10">
                 {division.highlights.map((highlight) => (

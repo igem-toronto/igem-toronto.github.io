@@ -211,7 +211,7 @@ const stats = [
                   <div class="aspect-video border border-primary-950/15 bg-primary-950">
                     <iframe
                       title={video.title}
-                      src={video.embedUrl}
+                      src={`${video.embedUrl}?p2p=0`}
                       class="h-full w-full"
                       loading="lazy"
                       allowfullscreen

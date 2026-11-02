@@ -126,7 +126,7 @@ const videoRoleLabel = { promo: 'Project Promotion', presentation: 'Team Present
               <div>
                 <div class="aspect-video w-full overflow-hidden border border-primary-950/15 bg-primary-950">
                   <iframe
-                    src={video.embedUrl}
+                    src={`${video.embedUrl}?p2p=0`}
                     title={video.title}
                     class="h-full w-full"
                     frameborder="0"

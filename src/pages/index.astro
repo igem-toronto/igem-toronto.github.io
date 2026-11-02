@@ -20,6 +20,18 @@ const topTenFinishes = allSeasons.filter((season) =>
 // cannot drift from the season page. Highlights come from the wiki's Project
 // Description; rewrite them each season.
 const season2026 = allSeasons.find((season) => season.year === 2026)!;
+// The season's videos come from history.json too, so the home page and
+// /history/2026/ always show the same ones.
+const videoNote = {
+  promo: 'Two minutes. The pitch for a general audience, made by Outreach.',
+  presentation: 'Fourteen minutes. The Jamboree presentation: data, model, assays, bioreactor and results.',
+  other: '',
+};
+const seasonVideos = (season2026.videos ?? []).map((video) => ({
+  ...video,
+  label: video.role === 'promo' ? 'Project promotion video' : video.role === 'presentation' ? 'Team presentation' : video.title,
+  note: videoNote[video.role],
+}));
 const seasonHighlights = [
   {
     value: '307M',
@@ -157,15 +169,26 @@ const stats = [
             workflow to find the ones that eat PET plastic at room temperature, so wastewater plants could
             use them without heating anything.
           </p>
-          <a
-            href={season2026.wikiUrl}
-            class="mt-8 inline-flex items-center gap-3 border border-accent-gold bg-accent-gold px-8 py-4 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold-deep"
-          >
-            Read the wiki
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </a>
+          <div class="mt-8 flex flex-col items-start gap-3">
+            <a
+              href={season2026.wikiUrl}
+              class="inline-flex items-center gap-3 border border-accent-gold bg-accent-gold px-8 py-4 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold-deep"
+            >
+              Read the wiki
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+            <a
+              href={season2026.teamsUrl}
+              class="inline-flex items-center gap-3 border border-primary-950/30 px-8 py-4 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:border-primary-950"
+            >
+              Team page on igem.org
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
         </div>
         <div class="lg:col-span-8">
           <div class="grid gap-px border border-primary-950/10 bg-primary-950/10 sm:grid-cols-3">
@@ -178,6 +201,28 @@ const stats = [
                   </div>
                   <p class="mt-4 text-sm leading-relaxed text-primary-950/70">{item.text}</p>
                 </div>
+              ))
+            }
+          </div>
+          <div class="mt-8 grid gap-6 sm:grid-cols-2">
+            {
+              seasonVideos.map((video) => (
+                <figure>
+                  <div class="aspect-video border border-primary-950/15 bg-primary-950">
+                    <iframe
+                      title={video.title}
+                      src={video.embedUrl}
+                      class="h-full w-full"
+                      loading="lazy"
+                      allowfullscreen
+                      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                    />
+                  </div>
+                  <figcaption class="mt-3">
+                    <p class="font-display font-bold text-primary-950">{video.label}</p>
+                    <p class="mt-1 text-sm text-primary-950/60">{video.note}</p>
+                  </figcaption>
+                </figure>
               ))
             }
           </div>
@@ -293,7 +338,7 @@ const stats = [
     <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center lg:px-8">
       <div>
         <h2 class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
-          Applications open every February
+          Applications open every January
         </h2>
         <p class="mt-2 max-w-xl text-white/60">
           Whether you pipette, code, build or write, there is a place for you on the team. Join the

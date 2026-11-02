@@ -2,14 +2,14 @@
   "_README": "Current roster. Generated from the 2026 wiki roster (iGEM_wiki/src/data/team/team.csv), reconciled with the 2026 Team Roster sheet (Active members as of Sep 2026) on 2026-11-01; edit here or regenerate. `group` is the primary section on the People page; extra divisions in `roles` surface the member there too. Headshots are the wiki's, on static.igem.wiki.",
   "groups": [
     "Presidents",
-    "Advisors",
     "Wet Lab",
     "Dry Lab",
     "Hardware",
     "Human Practices",
     "Venture",
     "Outreach",
-    "Web"
+    "Web",
+    "Advisors"
   ],
   "members": [
     {
@@ -37,120 +37,6 @@
       "linkedin": "https://www.linkedin.com/in/anthony-dinglasan-b0a52835b",
       "website": "",
       "email": "anthony.dinglasan@mail.utoronto.ca"
-    },
-    {
-      "name": "Artem Babaian",
-      "group": "Advisors",
-      "roles": [
-        "Principal Investigator"
-      ],
-      "description": "Principal Investigator. Assistant Professor at the University of Toronto's Donnelly Centre and head of the RNAlab, whose Logan assembly of the Sequence Read Archive is the database PetaBite mines.",
-      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/artem-babaian.avif",
-      "linkedin": "",
-      "website": "https://www.rnalab.ca/",
-      "email": ""
-    },
-    {
-      "name": "Amogh Manivannan",
-      "group": "Advisors",
-      "roles": [
-        "Advisor",
-        "Past Co-President"
-      ],
-      "description": "Past co-president of iGEM Toronto. Chemical Engineering, University of Toronto.",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": ""
-    },
-    {
-      "name": "Chinmay Potdar",
-      "group": "Advisors",
-      "roles": [
-        "Advisor"
-      ],
-      "description": "Graduate advisor. BSc from the University of Toronto and MSc in Biomedical and Molecular Science from Queen's University.",
-      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/chinmay-potdar.avif",
-      "linkedin": "",
-      "website": "",
-      "email": "chinmay.potdar@alumni.utoronto.ca"
-    },
-    {
-      "name": "Francesco Andreace",
-      "group": "Advisors",
-      "roles": [
-        "Advisor",
-        "Dry Lab Advisor"
-      ],
-      "description": "Research associate at the Institut Pasteur. Advises Dry Lab.",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": ""
-    },
-    {
-      "name": "Henri Galez",
-      "group": "Advisors",
-      "roles": [
-        "Advisor",
-        "Dry Lab Advisor"
-      ],
-      "description": "Research associate at the Institut Pasteur. Advises Dry Lab.",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": ""
-    },
-    {
-      "name": "Claire Cui",
-      "group": "Advisors",
-      "roles": [
-        "Advisor",
-        "Wet Lab Advisor"
-      ],
-      "description": "Fourth-year student at the University of Toronto, studying Biochemistry and Toxicology. Advises Wet Lab.",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "claire.cui@mail.utoronto.ca"
-    },
-    {
-      "name": "Sania Ahmad",
-      "group": "Advisors",
-      "roles": [
-        "Advisor",
-        "Wet Lab Advisor"
-      ],
-      "description": "Fourth-year student at the University of Toronto, studying Cell and Molecular Biology and Human Biology. Advises Wet Lab.",
-      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/sania-ahmad.avif",
-      "linkedin": "https://www.linkedin.com/in/sania-ahmad-45226b273",
-      "website": "",
-      "email": "sania.ahmad@mail.utoronto.ca"
-    },
-    {
-      "name": "Jonas Lehar",
-      "group": "Advisors",
-      "roles": [
-        "Advisor"
-      ],
-      "description": "Graduate student in Molecular Genetics at the University of Toronto.",
-      "photo": null,
-      "linkedin": "",
-      "website": "",
-      "email": "jonas.lehar@gmail.com"
-    },
-    {
-      "name": "Jaden Bhogal",
-      "group": "Advisors",
-      "roles": [
-        "Advisor",
-        "Past Co-President"
-      ],
-      "description": "Past co-president of iGEM Toronto. Engineering Science (Biomedical Engineering), University of Toronto.",
-      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/jaden-bhogal.avif",
-      "linkedin": "https://www.linkedin.com/in/jaden-bhogal/",
-      "website": "",
-      "email": ""
     },
     {
       "name": "Patricia Rea",
@@ -931,6 +817,120 @@
       "linkedin": "https://www.linkedin.com/in/janefelicia",
       "website": "",
       "email": "jane.jonatan@mail.utoronto.ca"
+    },
+    {
+      "name": "Artem Babaian",
+      "group": "Advisors",
+      "roles": [
+        "Principal Investigator"
+      ],
+      "description": "Principal Investigator. Assistant Professor at the University of Toronto's Donnelly Centre and head of the RNAlab, whose Logan assembly of the Sequence Read Archive is the database PetaBite mines.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/artem-babaian.avif",
+      "linkedin": "",
+      "website": "https://www.rnalab.ca/",
+      "email": ""
+    },
+    {
+      "name": "Amogh Manivannan",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Past Co-President"
+      ],
+      "description": "Past co-president of iGEM Toronto. Chemical Engineering, University of Toronto.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "Chinmay Potdar",
+      "group": "Advisors",
+      "roles": [
+        "Advisor"
+      ],
+      "description": "Graduate advisor. BSc from the University of Toronto and MSc in Biomedical and Molecular Science from Queen's University.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/chinmay-potdar.avif",
+      "linkedin": "",
+      "website": "",
+      "email": "chinmay.potdar@alumni.utoronto.ca"
+    },
+    {
+      "name": "Francesco Andreace",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Dry Lab Advisor"
+      ],
+      "description": "Research associate at the Institut Pasteur. Advises Dry Lab.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "Henri Galez",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Dry Lab Advisor"
+      ],
+      "description": "Research associate at the Institut Pasteur. Advises Dry Lab.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": ""
+    },
+    {
+      "name": "Claire Cui",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Wet Lab Advisor"
+      ],
+      "description": "Fourth-year student at the University of Toronto, studying Biochemistry and Toxicology. Advises Wet Lab.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "claire.cui@mail.utoronto.ca"
+    },
+    {
+      "name": "Sania Ahmad",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Wet Lab Advisor"
+      ],
+      "description": "Fourth-year student at the University of Toronto, studying Cell and Molecular Biology and Human Biology. Advises Wet Lab.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/sania-ahmad.avif",
+      "linkedin": "https://www.linkedin.com/in/sania-ahmad-45226b273",
+      "website": "",
+      "email": "sania.ahmad@mail.utoronto.ca"
+    },
+    {
+      "name": "Jonas Lehar",
+      "group": "Advisors",
+      "roles": [
+        "Advisor"
+      ],
+      "description": "Graduate student in Molecular Genetics at the University of Toronto.",
+      "photo": null,
+      "linkedin": "",
+      "website": "",
+      "email": "jonas.lehar@gmail.com"
+    },
+    {
+      "name": "Jaden Bhogal",
+      "group": "Advisors",
+      "roles": [
+        "Advisor",
+        "Past Co-President"
+      ],
+      "description": "Past co-president of iGEM Toronto. Engineering Science (Biomedical Engineering), University of Toronto.",
+      "photo": "https://static.igem.wiki/teams/6187/wiki/team/meet-the-team-pics/jaden-bhogal.avif",
+      "linkedin": "https://www.linkedin.com/in/jaden-bhogal/",
+      "website": "",
+      "email": ""
     }
   ]
 }

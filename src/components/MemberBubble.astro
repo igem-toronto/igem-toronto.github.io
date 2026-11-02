@@ -43,7 +43,7 @@ const shortName = name.replace(/^PLACEHOLDER\s*[—-]\s*/, '');
   >
     <div
       class:list={[
-        'relative aspect-square overflow-hidden rounded-full bg-primary-50 transition-all duration-300',
+        'relative aspect-[5/7] overflow-hidden bg-primary-50 transition-all duration-300',
         variant === 'hub'
           ? 'border-2 border-accent-gold-deep shadow-[0_0_0_4px_rgba(138,106,26,0.12)]'
           : 'border border-primary-950/25 group-hover/node:border-primary-950',
@@ -53,15 +53,15 @@ const shortName = name.replace(/^PLACEHOLDER\s*[—-]\s*/, '');
         src={photoSrc}
         alt={`Portrait of ${shortName}`}
         loading="lazy"
-        class="h-full w-full object-cover grayscale transition duration-500 group-hover/node:grayscale-0"
+        class="h-full w-full object-cover object-top transition duration-300 group-hover/node:scale-[1.03]"
         onerror={`this.src='${base}/images/placeholder-headshot.svg'; this.onerror=null;`}
       />
     </div>
-    <div class="mt-2 text-center leading-tight">
-      <p class:list={['font-display font-bold text-primary-950', variant === 'hub' ? 'text-sm' : 'text-[11px] sm:text-xs']}>
+    <div class="mt-3 text-center leading-tight">
+      <p class:list={['font-display font-bold text-primary-950', variant === 'hub' ? 'text-lg' : 'text-base']}>
         {shortName}
       </p>
-      <p class="mt-0.5 text-[9px] uppercase tracking-wider text-primary-950/50 sm:text-[10px]">{roles.join(' & ')}</p>
+      <p class="mt-1 text-xs uppercase tracking-wider text-primary-950/55 sm:text-sm">{roles.join(' & ')}</p>
     </div>
   </button>
 </div>
@@ -73,7 +73,7 @@ const shortName = name.replace(/^PLACEHOLDER\s*[—-]\s*/, '');
   <div class="p-6 sm:p-8">
     <div class="flex items-start justify-between gap-4 border-b border-primary-950/15 pb-5">
       <div class="flex items-center gap-4">
-        <img src={photoSrc} alt="" class="h-16 w-16 rounded-full object-cover grayscale" />
+        <img src={photoSrc} alt="" class="h-20 w-[3.6rem] object-cover object-top" />
         <div>
           <h3 class="font-display text-lg font-bold text-primary-950">{name}</h3>
           <p class="mt-1 text-xs uppercase tracking-wider text-accent-gold-deep">{roles.join(' / ')}</p>

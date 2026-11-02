@@ -33,6 +33,20 @@
       "blurb": "Searching the Logan petabase index for PET-degrading enzymes that work at room temperature: a 307-million-sequence catalogue, two new high-throughput assays and an open-source bioreactor.",
       "story": "PetaBite reversed the usual order of enzyme engineering: discover first, optimise second. Dry Lab searched the Logan index, an assembly of 27.3 million public sequencing datasets, and built PETadex, a catalogue of 307 million putative plastic-degrading enzyme sequences, then trained a protein language model on it to rank candidates and designed a 2,116-variant synthesis library. Wet Lab built two copper-release assays in E. coli, a fluorescent biosensor and an antibiotic selection, so PET degradation can be read out at scale, and Hardware built an open-source Arduino bioreactor for about $204 per unit. Human Practices spoke with roughly 70 stakeholders across four continents and co-organised the University of Toronto Microplastics Conference, while the venture team placed top three in six competitions. With 66 members it is the second-largest team the chapter has fielded.",
       "note": "Current season. The wiki is complete; the team presents at the Grand Jamboree in Paris, 13 to 16 November 2026.",
+      "videos": [
+        {
+          "role": "promo",
+          "title": "PetaBite: Accelerating the Discovery of Scalable Plastic-Degrading Enzymes \u2014 Project Promotion",
+          "embedUrl": "https://video.igem.org/videos/embed/ddWX3QzVYppuzVURsaWEGX",
+          "watchUrl": "https://video.igem.org/videos/watch/62fc73e7-f107-48a6-8151-5f49a30d041f"
+        },
+        {
+          "role": "presentation",
+          "title": "PetaBite: Mapping Earth's Biodiversity to Discover Room-Temperature Plastic-Degrading Enzymes \u2014 Team Presentation",
+          "embedUrl": "https://video.igem.org/videos/embed/ipj2SLTMPEziGRQE5Wsqk2",
+          "watchUrl": "https://video.igem.org/videos/watch/8cec93a5-f2fa-47d2-a262-7d6b88e5121f"
+        }
+      ],
       "wikiStatus": "full"
     },
     {

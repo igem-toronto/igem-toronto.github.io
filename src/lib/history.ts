@@ -23,6 +23,22 @@ export interface SeasonVideo {
   watchUrl: string;
 }
 
+/** A public event the team ran that season, shown as its own band on the season page. */
+export interface SeasonConference {
+  name: string;
+  /** Display string, e.g. "19 September 2026". */
+  date: string;
+  venue: string;
+  /** The event's own website. Drives the large button. */
+  url: string;
+  /** One or two sentences. No personal names, same rule as the rest of history.json. */
+  summary: string;
+  /** Headline numbers, e.g. { value: "200+", label: "People registered" }. */
+  stats: { value: string; label: string }[];
+  /** Secondary links, e.g. a recording of the team's talk. */
+  links?: { label: string; url: string }[];
+}
+
 export interface Season {
   year: number;
   teamName: string;
@@ -43,6 +59,8 @@ export interface Season {
   note: string | null;
   /** Videos from the iGEM Video Universe. Absent (not empty) for seasons with none archived there. */
   videos?: SeasonVideo[];
+  /** A conference the team organised that season. Absent for seasons with none. */
+  conference?: SeasonConference;
 }
 
 export interface Photo {

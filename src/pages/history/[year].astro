@@ -34,6 +34,12 @@ const facts = [
   { label: 'Competed as', value: season.nickname ?? season.teamName },
 ];
 
+// Watch is always 01. A conference band, when the season has one, takes 02 and
+// pushes the sections after it down by one.
+const conference = season.conference;
+const sectionNumber = (position: number): string =>
+  String(position + (conference ? 1 : 0)).padStart(2, '0');
+
 const videoRoleLabel = { promo: 'Project Promotion', presentation: 'Team Presentation', other: 'Video' };
 ---
 
@@ -146,11 +152,70 @@ const videoRoleLabel = { promo: 'Project Promotion', presentation: 'Team Present
     )
   }
 
+  {
+    conference && (
+      <section class:list={['bg-primary-950', !season.videos?.length && 'mt-10']}>
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-7">
+              <p class="flex items-baseline gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent-teal">
+                <span class="tabular-nums">02</span>
+                <span>Hosted by iGEM Toronto</span>
+              </p>
+              <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                {conference.name}
+              </h2>
+              <p class="mt-4 text-xs font-semibold uppercase leading-relaxed tracking-[0.15em] text-white/55">
+                {conference.date} &middot; {conference.venue}
+              </p>
+              <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{conference.summary}</p>
+
+              <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-5">
+                <a
+                  href={conference.url}
+                  class="inline-flex items-center gap-3 border border-accent-gold bg-accent-gold px-8 py-4 text-sm font-semibold uppercase tracking-widest text-primary-950 transition-colors hover:bg-transparent hover:text-accent-gold"
+                >
+                  Visit the conference site
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="square" d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+                {(conference.links ?? []).map((link) => (
+                  <a
+                    href={link.url}
+                    class="border-b border-white/30 pb-0.5 text-sm font-semibold uppercase tracking-widest text-white/70 transition-colors hover:border-white hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div class="lg:col-span-5">
+              <div class="grid grid-cols-3 divide-x divide-white/15 border border-white/15 lg:grid-cols-1 lg:divide-x-0 lg:divide-y">
+                {conference.stats.map((stat) => (
+                  <div class="px-5 py-6 lg:flex lg:items-baseline lg:gap-5 lg:px-7">
+                    <div class="font-display text-3xl font-bold tabular-nums text-white sm:text-4xl lg:w-28 lg:shrink-0">
+                      {stat.value}
+                    </div>
+                    <div class="mt-2 text-xs font-medium uppercase tracking-[0.15em] text-white/55 lg:mt-0">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <!-- Story + awards -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="grid gap-x-16 gap-y-10 lg:grid-cols-12">
       <div class="lg:col-span-7">
-        <SectionHeading title="The year" eyebrow="What happened" number="02" />
+        <SectionHeading title="The year" eyebrow="What happened" number={sectionNumber(2)} />
         <p class="text-lg leading-relaxed text-primary-950/80">{season.story}</p>
 
         {
@@ -172,7 +237,7 @@ const videoRoleLabel = { promo: 'Project Promotion', presentation: 'Team Present
       </div>
 
       <div class="lg:col-span-5">
-        <SectionHeading title="Awards" eyebrow="Results" number="03" />
+        <SectionHeading title="Awards" eyebrow="Results" number={sectionNumber(3)} />
         {
           season.awards.length > 0 ? (
             <ul>
@@ -198,7 +263,7 @@ const videoRoleLabel = { promo: 'Project Promotion', presentation: 'Team Present
   <!-- Photographs -->
   <section class="border-y border-primary-950/15 bg-primary-50">
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <SectionHeading title="Photographs" eyebrow="Gallery" number="04" />
+      <SectionHeading title="Photographs" eyebrow="Gallery" number={sectionNumber(4)} />
       {
         photoTotal > 0 ? (
           <>

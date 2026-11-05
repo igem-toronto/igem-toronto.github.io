@@ -47,6 +47,33 @@
           "watchUrl": "https://video.igem.org/videos/watch/8cec93a5-f2fa-47d2-a262-7d6b88e5121f"
         }
       ],
+      "conference": {
+        "name": "UofT Microplastics Conference",
+        "date": "19 September 2026",
+        "venue": "Bahen Centre for Information Technology, University of Toronto",
+        "url": "https://www.uoftmicroplastics.ca/",
+        "summary": "A free one-day conference on microplastics and plastic pollution, organised by iGEM Toronto in close collaboration with the U of T Trash Team. The day ran a keynote on microplastic pollution, research talks on environmental and health effects, a student poster session, the team's own PetaBite talk, and a closing panel on regulation.",
+        "stats": [
+          {
+            "value": "200+",
+            "label": "People registered"
+          },
+          {
+            "value": "15",
+            "label": "Posters presented"
+          },
+          {
+            "value": "5",
+            "label": "Speakers and panellists"
+          }
+        ],
+        "links": [
+          {
+            "label": "Watch the PetaBite talk",
+            "url": "https://www.youtube.com/watch?v=XUABk52v078"
+          }
+        ]
+      },
       "wikiStatus": "full"
     },
     {

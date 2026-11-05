@@ -52,6 +52,7 @@ the medal counts disagree with the seasons.
 | `project` | `null` if it genuinely cannot be recovered. Always pair a `null` project with a `note`. |
 | `note` | Rendered as a highlighted caveat on the season page. Use it whenever the record is incomplete. |
 | `section` | `"undergrad"`, `"overgrad"`, or `null`. |
+| `conference` | Optional. A public event the team organised that season: `name`, `date`, `venue`, `url`, `summary`, `stats` (value and label pairs) and optional `links`. Renders as a dark band with a large button on the season page, numbered 02, and shifts the later section numbers by one. No personal names. See 2026 for the shape. |
 | `wikiStatus` | `"full"` or `"template"`. Controls whether the season's wiki is linked from the History dropdown in the nav. |
 
 ### `wikiUrl` and `wikiStatus`

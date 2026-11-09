@@ -18,6 +18,11 @@ const mailingListUrl =
 // under public/images/history/<year>/; `photoPosition` is an object-position
 // class (e.g. object-[50%_40%]) choosing where the 16:9 crop centres, and
 // `photoZoom` an optional scale/origin pair to tighten the crop. See docs/UPDATING_THE_TEAM.md.
+// `petamon` is the division's Petamon, the 2026 wiki character for that subteam, drawn as the disc
+// from the wiki's Figure 1 (white circle, rim in the subteam's colour, Petamon breaking out of it).
+// The seven PNGs under public/images/petamon/ share one 349 x 250 window with the disc centred, so
+// they all land in the same place. `animal` feeds the alt text. The disc sits top right of the card,
+// beside the division name. Omit `petamon` and the card renders without one.
 const divisions = [
   {
     name: 'Wet Lab',
@@ -30,6 +35,7 @@ const divisions = [
     photo: `${base}/images/history/2026/wet-lab-subgroup-culture-bottles-jun-2026.webp`,
     photoPosition: 'object-[50%_42%]',
     photoZoom: '',
+    petamon: { src: `${base}/images/petamon/wet-lab.png`, animal: 'an axolotl' },
   },
   {
     name: 'Dry Lab',
@@ -42,6 +48,7 @@ const divisions = [
     photo: `${base}/images/history/2026/team-climbing-gym-hangout-jul-2026.webp`,
     photoPosition: 'object-[50%_35%]',
     photoZoom: '',
+    petamon: { src: `${base}/images/petamon/dry-lab.png`, animal: 'a crab' },
   },
   {
     name: 'Hardware',
@@ -54,6 +61,7 @@ const divisions = [
     photo: `${base}/images/history/2026/hardware-circuit-testing-jul-2026.webp`,
     photoPosition: 'object-[50%_45%]',
     photoZoom: '',
+    petamon: { src: `${base}/images/petamon/hardware.png`, animal: 'a turtle' },
   },
   {
     name: 'Human Practices',
@@ -66,6 +74,7 @@ const divisions = [
     photo: `${base}/images/history/2026/team-dinner-canadian-flags.webp`,
     photoPosition: 'object-[76%_80%]',
     photoZoom: 'scale-[1.35] origin-[76%_80%]',
+    petamon: { src: `${base}/images/petamon/human-practices.png`, animal: 'a bird' },
   },
   {
     name: 'Venture',
@@ -78,6 +87,7 @@ const divisions = [
     photo: `${base}/images/history/2026/mindfuel-step-and-repeat-group.webp`,
     photoPosition: 'object-[50%_30%]',
     photoZoom: '',
+    petamon: { src: `${base}/images/petamon/venture.png`, animal: 'a kangaroo' },
   },
   {
     name: 'Outreach',
@@ -90,6 +100,7 @@ const divisions = [
     photo: `${base}/images/history/2026/hardware-workshop-team-moment.webp`,
     photoPosition: 'object-[50%_45%]',
     photoZoom: '',
+    petamon: { src: `${base}/images/petamon/outreach.png`, animal: 'a bunny' },
   },
   {
     name: 'Web',
@@ -102,6 +113,7 @@ const divisions = [
     photo: `${base}/images/history/2026/team-photo-atrium-stairs-fall-2026.webp`,
     photoPosition: 'object-[50%_40%]',
     photoZoom: '',
+    petamon: { src: `${base}/images/petamon/web.png`, animal: 'a dragon' },
   },
 ];
 ---
@@ -139,14 +151,26 @@ const divisions = [
             </div>
 
             <div class="flex flex-1 flex-col p-8">
-              <div class="flex items-baseline gap-4">
-                <span class="font-display text-sm font-semibold tabular-nums text-accent-gold-deep">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h2 class="font-display text-xl font-bold tracking-tight text-primary-950">{division.name}</h2>
-                  <p class="mt-1 text-xs uppercase tracking-[0.15em] text-primary-950/45">{division.tag}</p>
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex items-baseline gap-4">
+                  <span class="font-display text-sm font-semibold tabular-nums text-accent-gold-deep">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h2 class="font-display text-xl font-bold tracking-tight text-primary-950">{division.name}</h2>
+                    <p class="mt-1 text-xs uppercase tracking-[0.15em] text-primary-950/45">{division.tag}</p>
+                  </div>
                 </div>
+                {division.petamon && (
+                  <img
+                    src={division.petamon.src}
+                    alt={`The ${division.name} Petamon, ${division.petamon.animal}`}
+                    loading="lazy"
+                    width="349"
+                    height="250"
+                    class="-my-3 -mr-5 h-[5.5rem] w-auto shrink-0"
+                  />
+                )}
               </div>
 
               <p class="mt-5 font-display text-lg font-medium leading-snug text-primary-950">{division.lede}</p>
